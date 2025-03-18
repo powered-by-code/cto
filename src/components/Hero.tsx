@@ -6,7 +6,7 @@ const Hero: React.FC = () => {
       <div className="hero-content flex-col md:flex-row justify-between w-full">
         <div className="text-left max-w-xl">
           <div className="text-base mb-2 text-primary">Podcast episodes</div>
-          <h1 className="text-4xl font-bold text-white">Hire a Fractional CTO from Anywhere</h1>
+          <h1 className="text-4xl font-bold ">Hire a Fractional CTO from Anywhere</h1>
           <p className="py-4 text-gray-300">
             A cat named Mittens has made national headlines after she managed to find her way 
             back home, despite being lost for over a week.

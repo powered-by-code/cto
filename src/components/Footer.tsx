@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
           </Link>
         </div>
         
-        <div className="flex justify-center gap-6 mb-6 text-sm flex-wrap text-gray-300">
+        <div className="flex justify-center gap-6 mb-6 text-sm flex-wrap">
           <Link href="/about" className="hover:text-primary">About</Link>
           <Link href="/authors" className="hover:text-primary">Authors</Link>
           <Link href="/archive" className="hover:text-primary">Archive</Link>
