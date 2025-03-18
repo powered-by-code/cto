@@ -4,14 +4,16 @@ const Hero: React.FC = () => {
   return (
     <div className="hero bg-base-100 py-12">
       <div className="hero-content flex-col md:flex-row justify-between w-full">
-        <div className="text-left max-w-xl">
-          <div className="text-base mb-2 text-primary">Podcast episodes</div>
+        <div className="text-left max-w-xl flex flex-col gap-4">
+          <div className="text-base mb-2 text-primary">
+            <Link href="/podcast">Podcast episodes</Link>
+          </div>
           <h1 className="text-4xl font-bold ">Hire a Fractional CTO from Anywhere</h1>
-          <p className="py-4 text-gray-300">
+          <p className="py-4-300">
             A cat named Mittens has made national headlines after she managed to find her way 
             back home, despite being lost for over a week.
           </p>
-          <Link href="/consultation" className="btn btn-primary">
+          <Link href="/consultation" className="btn btn-primary sm:btn-sm md:btn-md lg:btn-lg ">
             FREE CONSULTATION WITH RUBEN <span className="ml-2">👋</span>
           </Link>
         </div>
