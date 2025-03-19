@@ -1,17 +1,18 @@
-import PageLayout from '@/components/PageLayout';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import PageLayout from "@/components/PageLayout";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 // Define resource details
 const resources = [
   {
-    id: 'cto-guide-for-startups',
-    title: 'The Complete Guide to Fractional CTO Services for Startups',
-    category: 'Technical Leadership',
-    description: 'Learn how a fractional CTO can help your startup build scalable technology, make strategic decisions, and accelerate growth - without the full-time executive cost.',
-    image: '/images/resource-cto-guide.jpg',
-    date: 'June 15, 2023',
-    author: 'Michael Chen',
+    id: "cto-guide-for-startups",
+    title: "The Complete Guide to Fractional CTO Services for Startups",
+    category: "Technical Leadership",
+    description:
+      "Learn how a fractional CTO can help your startup build scalable technology, make strategic decisions, and accelerate growth - without the full-time executive cost.",
+    image: "/images/resource-cto-guide.jpg",
+    date: "June 15, 2023",
+    author: "Michael Chen",
     content: `
       <h2>Introduction: The Technical Leadership Gap in Startups</h2>
       <p>Every successful startup reaches a critical inflection point in its technical journey. You've validated your idea, built an MVP, and perhaps secured initial funding. Now you're facing increasingly complex technical decisions that will determine your ability to scale, your product's reliability, and ultimately, your company's success.</p>
@@ -149,16 +150,17 @@ const resources = [
       <p>Whether you're a non-technical founder seeking guidance, a technical founder looking to complement your skills, or a growing company navigating a complex transition, a fractional CTO can provide the expertise, perspective, and leadership to help you achieve your technology and business goals.</p>
       
       <p>Remember that the right fractional CTO isn't just a technical advisor—they're a strategic partner in your business growth, bringing the experience and insights needed to turn your technology challenges into competitive advantages.</p>
-    `
+    `,
   },
   {
-    id: 'tech-stack-decisions',
-    title: 'Making Technology Stack Decisions That Won't Haunt You Later',
-    category: 'Technology Strategy',
-    description: 'Avoid costly technology mistakes with this guide to selecting the right tech stack for your business needs, future scalability, and resource constraints.',
-    image: '/images/resource-tech-stack.jpg',
-    date: 'April 18, 2023',
-    author: 'James Wilson',
+    id: "tech-stack-decisions",
+    title: "Making Technology Stack Decisions That Won't Haunt You Later",
+    category: "Technology Strategy",
+    description:
+      "Avoid costly technology mistakes with this guide to selecting the right tech stack for your business needs, future scalability, and resource constraints.",
+    image: "/images/resource-tech-stack.jpg",
+    date: "April 18, 2023",
+    author: "James Wilson",
     content: `
       <h2>Introduction: Why Tech Stack Decisions Matter</h2>
       <p>The technology stack you choose today will shape your product's capabilities, your team's productivity, and your company's agility for years to come. Make the right choices, and your technology becomes a competitive advantage that enables rapid innovation and scalable growth. Make the wrong choices, and you'll face mounting technical debt, increasing development costs, and potentially even the need for painful rewrites.</p>
@@ -351,128 +353,183 @@ const resources = [
       <p>Remember that the goal isn't to pick the "best" technologies in absolute terms, but to select the right technologies for your specific context and needs. And while changing direction becomes increasingly costly as you scale, building with modularity and clear interfaces from the beginning can give you the flexibility to evolve your stack as your requirements change.</p>
       
       <p>Finally, recognize that technology selection is not a one-time decision but an ongoing process of evaluation and refinement. By regularly reassessing your stack against evolving business needs and emerging technologies, you can ensure your technical foundation continues to support rather than hinder your growth.</p>
-    `
-  }
+    `,
+  },
   // Additional resources would be defined here
 ];
 
-export default function ResourcePage({ params }: { params: { id: string } }) {
+export default function ResourcePage(params :  { id: string } ) {
+  console.log(params.id);
   const resource = resources.find((r) => r.id === params.id);
-  
+
   if (!resource) {
     notFound();
   }
-  
+
   // For resources not defined in detail, show a coming soon message
   const isContentAvailable = resource.content !== undefined;
-  
+
   return (
     <PageLayout>
       <div className="py-12">
         <div className="mb-8">
-          <Link href="/resources" className="text-primary flex items-center gap-2">
+          <Link
+            href="/resources"
+            className="text-primary flex items-center gap-2"
+          >
             <span>←</span> Back to Resources
           </Link>
         </div>
-        
+
         <div className="flex flex-col md:flex-row justify-between md:items-center mb-8 gap-4">
           <div>
-            <div className="text-sm badge badge-primary mb-2">{resource.category}</div>
+            <div className="text-sm badge badge-primary mb-2">
+              {resource.category}
+            </div>
             <h1 className="text-4xl font-bold">{resource.title}</h1>
           </div>
           <div className="text-sm">
             <div>{resource.date}</div>
-            {resource.author && <div className="font-medium">By {resource.author}</div>}
+            {resource.author && (
+              <div className="font-medium">By {resource.author}</div>
+            )}
           </div>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             {isContentAvailable ? (
-              <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: resource.content }} />
+              <div
+                className="prose max-w-none"
+                dangerouslySetInnerHTML={{ __html: resource.content }}
+              />
             ) : (
               <div className="prose max-w-none">
-                <p className="text-lg font-medium mb-6">{resource.description}</p>
+                <p className="text-lg font-medium mb-6">
+                  {resource.description}
+                </p>
                 <div className="alert alert-info">
-                  <p>Full content for this resource is coming soon. Please check back later or subscribe to our newsletter to be notified when it's available.</p>
+                  <p>
+                    Full content for this resource is coming soon. Please check
+                    back later or subscribe to our newsletter to be notified
+                    when it's available.
+                  </p>
                 </div>
               </div>
             )}
           </div>
-          
+
           <div className="lg:col-span-1">
             <div className="card bg-base-200 shadow-lg sticky top-8">
               <figure className="h-48 bg-gray-300">
                 {/* Replace with actual images */}
                 <div className="w-full h-full flex items-center justify-center bg-primary/10">
-                  <span className="text-lg font-medium">{resource.category}</span>
+                  <span className="text-lg font-medium">
+                    {resource.category}
+                  </span>
                 </div>
               </figure>
-              
+
               <div className="card-body">
                 <h3 className="card-title">Share this Resource</h3>
                 <div className="flex gap-2 my-4">
                   <button className="btn btn-circle btn-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
                     </svg>
                   </button>
                   <button className="btn btn-circle btn-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
                     </svg>
                   </button>
                   <button className="btn btn-circle btn-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
                     </svg>
                   </button>
                 </div>
-                
+
                 <div className="divider"></div>
-                
+
                 <h3 className="card-title">Download</h3>
                 <button className="btn btn-primary w-full my-4">
                   Download PDF
                 </button>
-                
+
                 <div className="divider"></div>
-                
+
                 <h3 className="card-title">Related Resources</h3>
                 <ul className="mt-4 space-y-2">
-                  {resource.id === 'cto-guide-for-startups' && (
+                  {resource.id === "cto-guide-for-startups" && (
                     <>
                       <li>
-                        <Link href="/resources/tech-team-building" className="text-primary hover:underline">
+                        <Link
+                          href="/resources/tech-team-building"
+                          className="text-primary hover:underline"
+                        >
                           Building High-Performance Technical Teams
                         </Link>
                       </li>
                       <li>
-                        <Link href="/resources/tech-stack-decisions" className="text-primary hover:underline">
+                        <Link
+                          href="/resources/tech-stack-decisions"
+                          className="text-primary hover:underline"
+                        >
                           Making Technology Stack Decisions
                         </Link>
                       </li>
                       <li>
-                        <Link href="/resources/cto-assessment" className="text-primary hover:underline">
+                        <Link
+                          href="/resources/cto-assessment"
+                          className="text-primary hover:underline"
+                        >
                           Do You Need a CTO? Take the Assessment
                         </Link>
                       </li>
                     </>
                   )}
-                  {resource.id === 'tech-stack-decisions' && (
+                  {resource.id === "tech-stack-decisions" && (
                     <>
                       <li>
-                        <Link href="/resources/technical-debt-management" className="text-primary hover:underline">
+                        <Link
+                          href="/resources/technical-debt-management"
+                          className="text-primary hover:underline"
+                        >
                           Technical Debt: When to Pay It Down
                         </Link>
                       </li>
                       <li>
-                        <Link href="/resources/cloud-cost-optimization" className="text-primary hover:underline">
+                        <Link
+                          href="/resources/cloud-cost-optimization"
+                          className="text-primary hover:underline"
+                        >
                           Cloud Cost Optimization
                         </Link>
                       </li>
                       <li>
-                        <Link href="/resources/cto-guide-for-startups" className="text-primary hover:underline">
+                        <Link
+                          href="/resources/cto-guide-for-startups"
+                          className="text-primary hover:underline"
+                        >
                           The Complete Guide to Fractional CTO Services
                         </Link>
                       </li>
@@ -481,9 +538,12 @@ export default function ResourcePage({ params }: { params: { id: string } }) {
                 </ul>
 
                 <div className="divider"></div>
-                
+
                 <h3 className="card-title">Get Expert Help</h3>
-                <p className="mt-4 mb-6 text-sm">Need personalized guidance on this topic? Schedule a free consultation with our fractional CTO team.</p>
+                <p className="mt-4 mb-6 text-sm">
+                  Need personalized guidance on this topic? Schedule a free
+                  consultation with our fractional CTO team.
+                </p>
                 <Link href="/contact" className="btn btn-primary w-full">
                   Book a Consultation
                 </Link>
@@ -494,4 +554,4 @@ export default function ResourcePage({ params }: { params: { id: string } }) {
       </div>
     </PageLayout>
   );
-} 
+}

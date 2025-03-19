@@ -1,6 +1,7 @@
 import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import CaseStudyQuiz from '@/components/CaseStudyQuiz';
 
 // Define case study details
 const caseStudyDetails = [
@@ -247,6 +248,9 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             </div>
           </div>
         </div>
+        
+        {/* Case Study Quiz Section */}
+        <CaseStudyQuiz caseStudyId={params.id} />
       </div>
     </PageLayout>
   );
