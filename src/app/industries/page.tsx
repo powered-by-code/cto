@@ -5,81 +5,81 @@ import Link from 'next/link';
 // Define industry details
 const industryDetails = [
   {
-    id: 'energy',
-    title: 'Energy',
-    description: 'We help energy companies navigate the transition to a low-carbon future, manage climate risks, and capitalize on new opportunities in renewable energy and clean technology.',
-    image: '/images/industry-energy.jpg',
+    id: 'saas',
+    title: 'SaaS Startups',
+    description: 'We help SaaS founders build scalable architectures, optimize cloud infrastructure, implement efficient development processes, and create technical roadmaps that support rapid growth.',
+    image: '/images/industry-saas.jpg',
     services: [
-      'Renewable energy strategy',
-      'Energy transition planning',
-      'Decarbonization roadmaps',
-      'Clean technology assessment',
-      'Climate risk management'
+      'Cloud architecture optimization',
+      'Scalable infrastructure design',
+      'Tech debt management',
+      'DevOps implementation',
+      'SaaS security best practices'
     ]
   },
   {
-    id: 'finance',
-    title: 'Finance',
-    description: 'We assist financial institutions in integrating ESG considerations into investment decisions, developing sustainable finance products, and managing climate-related financial risks.',
-    image: '/images/industry-finance.jpg',
+    id: 'fintech',
+    title: 'FinTech',
+    description: 'We assist FinTech startups with secure architecture design, regulatory compliance, payment integrations, and building high-reliability systems that handle financial data with the utmost integrity.',
+    image: '/images/industry-fintech.jpg',
     services: [
-      'ESG integration',
-      'Sustainable investment strategies',
-      'Climate risk assessment',
-      'Green and sustainable finance',
-      'TCFD reporting and disclosure'
+      'Secure payment architectures',
+      'Financial data management',
+      'Regulatory tech compliance',
+      'Banking API integrations',
+      'High-reliability system design'
     ]
   },
   {
-    id: 'manufacturing',
-    title: 'Manufacturing',
-    description: 'We support manufacturing companies in reducing their environmental footprint, enhancing resource efficiency, and building resilient and sustainable supply chains.',
-    image: '/images/industry-manufacturing.jpg',
+    id: 'marketplaces',
+    title: 'Marketplaces',
+    description: 'We support marketplace founders in building platforms that scale with growing users and transactions, implementing efficient matching algorithms, and designing systems that provide exceptional experiences for all sides of the market.',
+    image: '/images/industry-marketplace.jpg',
     services: [
-      'Sustainable manufacturing',
-      'Circular economy strategies',
-      'Supply chain sustainability',
-      'Resource efficiency',
-      'Net zero manufacturing'
+      'Marketplace architecture design',
+      'Search and matching optimization',
+      'Payment and escrow systems',
+      'Fraud prevention systems',
+      'Scale-ready infrastructure'
     ]
   },
   {
-    id: 'technology',
-    title: 'Technology',
-    description: 'We enable technology companies to leverage their innovations for sustainability, reduce their operational impacts, and develop solutions that address environmental and social challenges.',
-    image: '/images/industry-technology.jpg',
+    id: 'e-commerce',
+    title: 'E-Commerce',
+    description: 'We enable e-commerce companies to build robust shopping experiences, optimize conversion rates through technical improvements, and implement inventory, fulfillment, and payment systems that scale with your business.',
+    image: '/images/industry-ecommerce.jpg',
     services: [
-      'Sustainable technology innovation',
-      'Green data centers',
-      'Sustainable product design',
-      'Digital solutions for sustainability',
-      'ESG in technology'
+      'E-commerce platform selection',
+      'Custom storefront development',
+      'Payment and checkout optimization',
+      'Inventory system integration',
+      'Performance optimization'
     ]
   },
   {
-    id: 'consumer-goods',
-    title: 'Consumer Goods',
-    description: 'We help consumer goods companies respond to growing consumer demand for sustainable products, build responsible supply chains, and reduce environmental impacts across the product lifecycle.',
-    image: '/images/industry-consumer.jpg',
+    id: 'health-tech',
+    title: 'Health Tech',
+    description: 'We help health tech founders navigate the unique challenges of building healthcare applications, including HIPAA compliance, secure patient data management, and integration with existing healthcare systems.',
+    image: '/images/industry-healthtech.jpg',
     services: [
-      'Sustainable product development',
-      'Sustainable packaging',
-      'Responsible sourcing',
-      'Circular business models',
-      'Consumer engagement'
+      'HIPAA-compliant architecture',
+      'Healthcare data security',
+      'Medical API integrations',
+      'Telemedicine implementations',
+      'Regulatory compliance'
     ]
   },
   {
-    id: 'real-estate',
-    title: 'Real Estate',
-    description: 'We assist real estate developers, owners, and investors in enhancing building sustainability, managing climate risks, and capturing value from green building practices.',
-    image: '/images/industry-realestate.jpg',
+    id: 'ai-ml',
+    title: 'AI/ML Startups',
+    description: 'We assist AI and machine learning startups in building efficient data pipelines, selecting the right infrastructure for model training and deployment, and creating scalable architectures for ML-powered applications.',
+    image: '/images/industry-ai.jpg',
     services: [
-      'Green building certification',
-      'Climate resilient design',
-      'Sustainable property management',
-      'Net zero buildings',
-      'ESG in real estate'
+      'ML infrastructure design',
+      'Data pipeline architecture',
+      'Model deployment strategies',
+      'AI application scaling',
+      'ML ops implementation'
     ]
   }
 ];
@@ -90,7 +90,7 @@ export default function IndustriesPage() {
       <div className="py-12">
         <h1 className="text-4xl font-bold mb-6">Industries We Serve</h1>
         <p className="text-lg mb-12 max-w-3xl">
-          We work across a diverse range of industries, providing tailored sustainability and climate solutions that address sector-specific challenges and opportunities.
+          We provide fractional CTO services to a wide range of technology-enabled businesses, with specialized expertise in these key sectors.
         </p>
         
         <Industries />
@@ -110,7 +110,7 @@ export default function IndustriesPage() {
                 <h3 className="card-title text-xl">{industry.title}</h3>
                 <p className="my-4">{industry.description}</p>
                 <div className="mt-4">
-                  <h4 className="font-bold mb-2">Key Services:</h4>
+                  <h4 className="font-bold mb-2">Technical Expertise:</h4>
                   <ul className="list-disc pl-5 space-y-1">
                     {industry.services.map((service, index) => (
                       <li key={index}>{service}</li>
@@ -125,6 +125,12 @@ export default function IndustriesPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 p-8 bg-base-200 rounded-lg">
+          <h2 className="text-2xl font-bold mb-4">Working in a Different Industry?</h2>
+          <p className="mb-6">Our technology expertise extends beyond these industries. Contact us to discuss how we can help with your specific technical challenges.</p>
+          <Link href="/contact" className="btn btn-primary">Get in Touch</Link>
         </div>
       </div>
     </PageLayout>

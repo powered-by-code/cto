@@ -5,81 +5,81 @@ import Link from 'next/link';
 // Define case study details
 const caseStudyDetails = [
   {
-    id: 'global-bank-esg',
-    title: 'Global Bank ESG Integration',
-    industry: 'Finance',
-    description: 'Helping a leading global bank integrate ESG considerations into its investment and lending decisions, enhancing long-term value creation.',
-    image: '/images/case-bank.jpg',
+    id: 'saas-scale-architecture',
+    title: 'SaaS Platform Scale-Up Architecture',
+    industry: 'SaaS',
+    description: 'Helping a rapidly growing SaaS company redesign their architecture to handle 10x user growth without sacrificing performance or reliability.',
+    image: '/images/case-saas.jpg',
     results: [
-      'Developed comprehensive ESG integration framework',
-      'Trained over 500 investment professionals on ESG analysis',
-      'Improved sustainability ratings by two tiers',
-      'Mobilized $10 billion in sustainable financing'
+      'Reduced infrastructure costs by 40% while handling 10x more traffic',
+      'Improved system uptime from 99.5% to 99.99%',
+      'Cut database response times by 65%',
+      'Implemented robust monitoring and auto-scaling solutions'
     ]
   },
   {
-    id: 'energy-company-transition',
-    title: 'Energy Company Transition Strategy',
-    industry: 'Energy',
-    description: 'Supporting a traditional energy company in developing a robust transition strategy to thrive in a low-carbon future.',
-    image: '/images/case-energy.jpg',
+    id: 'fintech-compliance-security',
+    title: 'FinTech Compliance & Security',
+    industry: 'FinTech',
+    description: 'Supporting a financial technology startup in building a secure, compliant payment processing system that met stringent regulatory requirements.',
+    image: '/images/case-fintech.jpg',
     results: [
-      'Created 30-year climate transition roadmap',
-      'Identified $5 billion in low-carbon investment opportunities',
-      'Established science-based emissions reduction targets',
-      'Aligned executive compensation with sustainability metrics'
+      'Achieved PCI DSS and SOC 2 compliance in record time',
+      'Implemented secure architecture processing $10M daily',
+      'Passed rigorous security audits with zero critical findings',
+      'Reduced development time for compliance features by 50%'
     ]
   },
   {
-    id: 'consumer-goods-supply-chain',
-    title: 'Consumer Goods Sustainable Supply Chain',
-    industry: 'Consumer Goods',
-    description: 'Transforming the supply chain of a global consumer goods company to enhance sustainability and resilience.',
-    image: '/images/case-consumer.jpg',
+    id: 'marketplace-platform-scaling',
+    title: 'Marketplace Platform Scaling',
+    industry: 'Marketplaces',
+    description: 'Transforming a struggling marketplace platform into a high-performance system capable of handling millions of transactions.',
+    image: '/images/case-marketplace.jpg',
     results: [
-      'Reduced supply chain emissions by 25%',
-      'Achieved 100% sustainable sourcing for key raw materials',
-      'Improved worker conditions across 200+ supplier facilities',
-      'Reduced water use in manufacturing by 30%'
+      'Redesigned matching algorithm improving conversion by 35%',
+      'Built scalable payment and escrow system handling 3M+ monthly transactions',
+      'Reduced fraud by 80% through advanced detection systems',
+      'Cut infrastructure costs by 45% while improving performance'
     ]
   },
   {
-    id: 'real-estate-climate-resilience',
-    title: 'Real Estate Climate Resilience',
-    industry: 'Real Estate',
-    description: 'Developing a climate resilience strategy for a major real estate portfolio to protect asset value and ensure business continuity.',
-    image: '/images/case-realestate.jpg',
+    id: 'healthtech-hipaa-compliance',
+    title: 'Health Tech HIPAA Compliance',
+    industry: 'Health Tech',
+    description: 'Developing a HIPAA-compliant architecture for a telehealth platform ensuring patient data security while supporting rapid growth.',
+    image: '/images/case-healthtech.jpg',
     results: [
-      'Assessed climate risks across 150+ properties',
-      'Implemented resilience measures saving $25M in potential damages',
-      'Reduced insurance premiums by 15%',
-      'Developed industry-leading climate risk disclosure approach'
+      'Built fully HIPAA-compliant system passing all security audits',
+      'Designed secure video consultation platform supporting 50,000+ daily consultations',
+      'Implemented compliant EHR integration with major healthcare systems',
+      'Created secure data architecture with end-to-end encryption'
     ]
   },
   {
-    id: 'technology-net-zero',
-    title: 'Technology Company Net Zero Strategy',
-    industry: 'Technology',
-    description: 'Helping a leading technology company develop and implement a credible net zero strategy across global operations and value chain.',
-    image: '/images/case-tech.jpg',
+    id: 'tech-team-turnaround',
+    title: 'Technical Team Turnaround',
+    industry: 'E-Commerce',
+    description: 'Helping an e-commerce company restructure their engineering team, improve development processes, and deliver a critical platform upgrade on time.',
+    image: '/images/case-team.jpg',
     results: [
-      'Achieved carbon neutrality for operations within 2 years',
-      'Developed pathway to net zero across value chain by 2040',
-      'Implemented internal carbon pricing to drive innovation',
-      'Engaged with 100+ suppliers on emissions reduction'
+      'Restructured engineering team reducing turnover from 40% to 5%',
+      'Implemented agile processes that increased delivery velocity by 60%',
+      'Successfully delivered major platform upgrade that had been delayed for months',
+      'Reduced critical bugs by 75% through improved QA processes'
     ]
   },
   {
-    id: 'manufacturing-circular-economy',
-    title: 'Manufacturing Circular Economy Transformation',
-    industry: 'Manufacturing',
-    description: 'Transforming a manufacturing company\'s business model from linear to circular, reducing resource use while creating new value streams.',
-    image: '/images/case-manufacturing.jpg',
+    id: 'ai-ml-infrastructure',
+    title: 'AI/ML Infrastructure Optimization',
+    industry: 'AI/ML',
+    description: 'Building efficient data pipelines and deployment architecture for an AI startup, significantly reducing costs while improving model performance.',
+    image: '/images/case-aiml.jpg',
     results: [
-      'Reduced virgin material use by 40%',
-      'Developed product-as-a-service model for key product lines',
-      'Created take-back program recovering 65% of products',
-      'Generated $45M in value from circular initiatives'
+      'Reduced model training costs by 70% through infrastructure optimization',
+      'Implemented MLOps pipeline reducing deployment time from days to minutes',
+      'Created efficient data pipeline processing 500M+ records daily',
+      'Designed scalable inference architecture handling 10,000 requests per second'
     ]
   }
 ];
@@ -88,9 +88,9 @@ export default function CaseStudiesPage() {
   return (
     <PageLayout>
       <div className="py-12">
-        <h1 className="text-4xl font-bold mb-6">Case Studies</h1>
+        <h1 className="text-4xl font-bold mb-6">Success Stories</h1>
         <p className="text-lg mb-12 max-w-3xl">
-          Explore how we've helped leading organizations across industries navigate complex sustainability challenges and create lasting value.
+          Explore how our fractional CTO services have helped startups and growing companies solve complex technical challenges and accelerate their growth.
         </p>
         
         <CaseStudies />
@@ -110,14 +110,28 @@ export default function CaseStudiesPage() {
                 <div className="text-xs opacity-70 mb-1">{caseStudy.industry}</div>
                 <h3 className="card-title text-xl">{caseStudy.title}</h3>
                 <p className="my-4">{caseStudy.description}</p>
+                <div className="mt-4">
+                  <h4 className="font-bold mb-2 text-sm">Key Results:</h4>
+                  <ul className="list-disc pl-5 space-y-1 text-sm">
+                    {caseStudy.results.slice(0, 2).map((result, index) => (
+                      <li key={index}>{result}</li>
+                    ))}
+                  </ul>
+                </div>
                 <div className="card-actions justify-end mt-6">
                   <Link href={`/case-studies/${caseStudy.id}`} className="btn btn-primary">
-                    View Case Study
+                    Full Case Study
                   </Link>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 p-8 bg-base-200 rounded-lg">
+          <h2 className="text-2xl font-bold mb-4">Facing Similar Technical Challenges?</h2>
+          <p className="mb-6">Schedule a free consultation to discuss how our fractional CTO services can help your business overcome technical obstacles and accelerate growth.</p>
+          <Link href="/contact" className="btn btn-primary">Book a Consultation</Link>
         </div>
       </div>
     </PageLayout>

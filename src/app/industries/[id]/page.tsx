@@ -5,188 +5,188 @@ import { notFound } from 'next/navigation';
 // Define industry details
 const industryDetails = [
   {
-    id: 'energy',
-    title: 'Energy',
-    description: 'We help energy companies navigate the transition to a low-carbon future, manage climate risks, and capitalize on new opportunities in renewable energy and clean technology.',
-    longDescription: 'The energy sector is at the forefront of the global sustainability transition, facing both significant challenges and unprecedented opportunities. Our specialized team works with energy companies across the value chain—from traditional oil and gas producers to renewable energy developers and utilities—to navigate this complex landscape. We help clients develop robust strategies for the energy transition, manage climate-related risks, seize opportunities in clean energy, and meet the growing expectations of stakeholders for environmental stewardship and climate action. Our deep industry knowledge, combined with our sustainability expertise, enables us to provide practical solutions that enhance business resilience while contributing to a more sustainable energy future.',
-    image: '/images/industry-energy.jpg',
+    id: 'saas',
+    title: 'SaaS Startups',
+    description: 'We help SaaS founders build scalable architectures, optimize cloud infrastructure, implement efficient development processes, and create technical roadmaps that support rapid growth.',
+    longDescription: 'Software-as-a-Service businesses face unique technical challenges that require specialized expertise. Our fractional CTO services are tailored to help SaaS founders navigate the complexities of building, scaling, and optimizing their platforms. We understand the critical importance of architecture decisions that enable future growth without requiring costly rewrites. Our team works with SaaS companies at all stages, from early prototypes to scaling enterprises, providing the technical leadership needed to make informed decisions about cloud infrastructure, database design, API architecture, security implementations, and development workflows. We help you build systems that can scale with your user base while keeping technical debt manageable and operating costs optimized.',
+    image: '/images/industry-saas.jpg',
     services: [
-      'Renewable energy strategy',
-      'Energy transition planning',
-      'Decarbonization roadmaps',
-      'Clean technology assessment',
-      'Climate risk management'
+      'Cloud architecture optimization',
+      'Scalable infrastructure design',
+      'Tech debt management',
+      'DevOps implementation',
+      'SaaS security best practices'
     ],
     challenges: [
-      'Navigating the transition to low-carbon energy systems',
-      'Managing climate-related financial and operational risks',
-      'Meeting increasing regulatory requirements and investor expectations',
-      'Balancing short-term business needs with long-term sustainability goals',
-      'Developing new business models for the energy transition'
+      'Building scalable architectures that support rapid growth',
+      'Optimizing cloud infrastructure costs as usage increases',
+      'Implementing efficient CI/CD pipelines and deployment processes',
+      'Designing multi-tenant systems with proper data isolation',
+      'Balancing feature development with technical debt management'
     ],
     caseStudies: [
       {
-        title: 'Global Oil & Gas Company',
-        description: 'Developed a comprehensive energy transition strategy that included a roadmap to achieve net zero emissions by 2050, diversification into renewable energy, and management of climate-related financial risks.'
+        title: 'HR Technology Platform',
+        description: 'Redesigned cloud architecture to support 10x user growth while reducing infrastructure costs by 35% through intelligent resource allocation and caching strategies.'
       },
       {
-        title: 'Renewable Energy Developer',
-        description: 'Assisted in expanding renewable energy portfolio through strategic planning, sustainability-linked financing, and stakeholder engagement to secure community support for new projects.'
+        title: 'B2B Analytics SaaS',
+        description: 'Implemented a microservices architecture and DevOps practices that reduced deployment time from days to minutes and improved system reliability during rapid customer acquisition.'
       }
     ]
   },
   {
-    id: 'finance',
-    title: 'Finance',
-    description: 'We assist financial institutions in integrating ESG considerations into investment decisions, developing sustainable finance products, and managing climate-related financial risks.',
-    longDescription: 'The financial sector plays a crucial role in directing capital flows toward a more sustainable economy. We work with banks, asset managers, insurers, and other financial institutions to integrate environmental, social, and governance (ESG) factors into their core business processes. Our services help clients navigate the evolving sustainable finance landscape, develop innovative financial products, manage climate-related financial risks, and meet the growing demand from investors and regulators for enhanced ESG performance and disclosure. By combining our financial expertise with deep sustainability knowledge, we help our clients turn sustainability challenges into opportunities for value creation and positive impact.',
-    image: '/images/industry-finance.jpg',
+    id: 'fintech',
+    title: 'FinTech',
+    description: 'We assist FinTech startups with secure architecture design, regulatory compliance, payment integrations, and building high-reliability systems that handle financial data with the utmost integrity.',
+    longDescription: 'Financial technology companies operate in a highly regulated environment where security, reliability, and compliance are paramount. Our fractional CTO services provide the specialized expertise FinTech founders need to navigate complex technical and regulatory requirements. We help design secure systems that protect sensitive financial data, implement robust architecture that ensures transaction integrity, and develop compliance frameworks that satisfy regulatory requirements. Our team has experience with payment processing systems, banking integrations, blockchain implementations, and financial data analysis platforms. We work with your team to build scalable, secure, and compliant technology that gives your users confidence while allowing your business to innovate and grow.',
+    image: '/images/industry-fintech.jpg',
     services: [
-      'ESG integration',
-      'Sustainable investment strategies',
-      'Climate risk assessment',
-      'Green and sustainable finance',
-      'TCFD reporting and disclosure'
+      'Secure payment architectures',
+      'Financial data management',
+      'Regulatory tech compliance',
+      'Banking API integrations',
+      'High-reliability system design'
     ],
     challenges: [
-      'Integrating ESG considerations into investment processes',
-      'Assessing and managing climate-related financial risks',
-      'Developing credible sustainable finance products and services',
-      'Meeting evolving regulatory requirements and reporting standards',
-      'Addressing concerns about greenwashing and ensuring transparency'
+      'Designing systems that meet financial regulatory requirements',
+      'Building secure payment processing infrastructure',
+      'Implementing robust data protection and privacy controls',
+      'Creating high-availability architectures for financial transactions',
+      'Integrating with legacy banking systems and financial APIs'
     ],
     caseStudies: [
       {
-        title: 'Global Investment Bank',
-        description: 'Developed an ESG integration framework for investment decisions that improved risk-adjusted returns and attracted new sustainability-focused clients, increasing assets under management by 15%.'
+        title: 'Payment Processing Startup',
+        description: 'Designed and implemented a secure payment architecture that achieved PCI DSS compliance while processing over 100,000 transactions daily with 99.99% uptime.'
       },
       {
-        title: 'Regional Commercial Bank',
-        description: 'Created a green finance program that mobilized over $500 million for renewable energy, energy efficiency, and sustainable infrastructure projects within two years.'
+        title: 'Wealth Management Platform',
+        description: 'Built a scalable financial data system that integrated with multiple banking APIs, providing users with a unified view of their investments while maintaining strict security controls.'
       }
     ]
   },
   {
-    id: 'manufacturing',
-    title: 'Manufacturing',
-    description: 'We support manufacturing companies in reducing their environmental footprint, enhancing resource efficiency, and building resilient and sustainable supply chains.',
-    longDescription: 'Manufacturing companies face increasing pressure to reduce their environmental footprint while maintaining competitiveness in a global market. Our industry experts work with manufacturers across sectors to develop and implement sustainable manufacturing strategies that enhance resource efficiency, reduce emissions, and build resilience. We help clients navigate the transition to circular business models, implement cleaner production processes, develop sustainable supply chain strategies, and engage with stakeholders on sustainability issues. By combining technical expertise with strategic insights, we help our manufacturing clients turn sustainability challenges into opportunities for innovation, cost reduction, and market differentiation.',
-    image: '/images/industry-manufacturing.jpg',
+    id: 'marketplaces',
+    title: 'Marketplaces',
+    description: 'We support marketplace founders in building platforms that scale with growing users and transactions, implementing efficient matching algorithms, and designing systems that provide exceptional experiences for all sides of the market.',
+    longDescription: 'Marketplace businesses face the unique challenge of serving multiple user groups simultaneously while ensuring smooth transactions and maintaining platform integrity. Our fractional CTO services help marketplace founders build robust technical foundations that support sustainable growth. We provide expertise in designing scalable architectures that handle increasing transaction volumes, implementing efficient search and matching algorithms, developing fraud prevention systems, and creating seamless payment and fulfillment flows. Our team understands the technical complexities of building systems that serve both sides of a marketplace equally well, with proper incentives and mechanisms to encourage participation and trust. We help you make technology decisions that support your specific marketplace model and growth trajectory.',
+    image: '/images/industry-marketplace.jpg',
     services: [
-      'Sustainable manufacturing',
-      'Circular economy strategies',
-      'Supply chain sustainability',
-      'Resource efficiency',
-      'Net zero manufacturing'
+      'Marketplace architecture design',
+      'Search and matching optimization',
+      'Payment and escrow systems',
+      'Fraud prevention systems',
+      'Scale-ready infrastructure'
     ],
     challenges: [
-      'Reducing carbon emissions and environmental impacts',
-      'Enhancing resource efficiency and minimizing waste',
-      'Transitioning to circular economy models',
-      'Ensuring sustainability throughout complex supply chains',
-      'Meeting customer and stakeholder expectations for sustainable products'
+      'Building platforms that serve multiple user types effectively',
+      'Implementing efficient search and discovery mechanisms',
+      'Designing secure payment and escrow systems',
+      'Developing fraud detection and prevention systems',
+      'Scaling infrastructure to handle increasing transaction volumes'
     ],
     caseStudies: [
       {
-        title: 'Global Electronics Manufacturer',
-        description: 'Implemented a circular economy strategy that reduced virgin material use by 35%, decreased waste by 45%, and generated $30 million in annual cost savings through product redesign and take-back programs.'
+        title: 'Service Provider Marketplace',
+        description: 'Implemented an intelligent matching system that increased booking conversions by 45% while reducing customer service inquiries through improved provider selection algorithms.'
       },
       {
-        title: 'Automotive Components Supplier',
-        description: 'Developed a sustainable supply chain program that improved environmental performance, reduced compliance risks, and strengthened relationships with major automotive customers focused on sustainability.'
+        title: 'B2B Equipment Marketplace',
+        description: 'Designed a secure transaction system with escrow functionality that built trust among users and increased high-value transactions by 60% year-over-year.'
       }
     ]
   },
   {
-    id: 'technology',
-    title: 'Technology',
-    description: 'We enable technology companies to leverage their innovations for sustainability, reduce their operational impacts, and develop solutions that address environmental and social challenges.',
-    longDescription: 'Technology companies have a unique dual role in sustainability—managing their own environmental impacts while also developing solutions that enable sustainability across sectors. We work with technology firms from startups to global leaders to help them navigate this dual challenge. Our services include strategies to reduce the environmental footprint of operations (particularly data centers and manufacturing), sustainable product design approaches, circular economy business models, and responsible innovation frameworks. We also help technology companies identify opportunities to develop and scale solutions that address sustainability challenges, creating business value while contributing to positive environmental and social outcomes.',
-    image: '/images/industry-technology.jpg',
+    id: 'e-commerce',
+    title: 'E-Commerce',
+    description: 'We enable e-commerce companies to build robust shopping experiences, optimize conversion rates through technical improvements, and implement inventory, fulfillment, and payment systems that scale with your business.',
+    longDescription: 'E-commerce businesses require technical solutions that deliver seamless shopping experiences while efficiently managing inventory, payments, and fulfillment. Our fractional CTO services help e-commerce founders make strategic technology decisions that drive growth and operational efficiency. We provide expertise in selecting and customizing e-commerce platforms, optimizing site performance for improved conversion rates, implementing inventory management systems, and integrating with payment processors and shipping providers. Our team helps you navigate technical decisions around content delivery networks, mobile optimization, personalization engines, and security implementations. We work with your team to build scalable, reliable e-commerce systems that provide exceptional customer experiences while supporting your operational needs.',
+    image: '/images/industry-ecommerce.jpg',
     services: [
-      'Sustainable technology innovation',
-      'Green data centers',
-      'Sustainable product design',
-      'Digital solutions for sustainability',
-      'ESG in technology'
+      'E-commerce platform selection',
+      'Custom storefront development',
+      'Payment and checkout optimization',
+      'Inventory system integration',
+      'Performance optimization'
     ],
     challenges: [
-      'Reducing energy consumption and carbon emissions from operations',
-      'Designing products for sustainability and circularity',
-      'Managing electronic waste and supply chain impacts',
-      'Addressing societal concerns about technology ethics and impacts',
-      'Developing technologies that enable sustainability solutions'
+      'Building high-performance storefronts that convert visitors into customers',
+      'Implementing secure and frictionless checkout processes',
+      'Integrating inventory, fulfillment, and shipping systems',
+      'Creating personalized shopping experiences at scale',
+      'Optimizing mobile experiences for e-commerce conversions'
     ],
     caseStudies: [
       {
-        title: 'Global Technology Company',
-        description: 'Developed a comprehensive sustainability strategy that achieved carbon neutrality for operations, committed to 100% renewable energy, and created a $1 billion fund for climate solutions.'
+        title: 'Fashion E-commerce Brand',
+        description: 'Redesigned the technical architecture and implemented performance optimizations that reduced page load times by 60%, increasing conversion rates by 25% and average order value by 15%.'
       },
       {
-        title: 'Enterprise Software Provider',
-        description: 'Created a suite of software solutions that help clients monitor, manage, and report on environmental performance, generating a new $100 million revenue stream.'
+        title: 'Multi-channel Retailer',
+        description: 'Implemented an integrated inventory system that unified online and physical store stock management, reducing oversells by 95% and enabling same-day fulfillment options.'
       }
     ]
   },
   {
-    id: 'consumer-goods',
-    title: 'Consumer Goods',
-    description: 'We help consumer goods companies respond to growing consumer demand for sustainable products, build responsible supply chains, and reduce environmental impacts across the product lifecycle.',
-    longDescription: 'Consumer goods companies are increasingly expected to deliver products that are not only high-quality and affordable but also environmentally and socially responsible. We work with consumer goods manufacturers and retailers to develop comprehensive sustainability strategies that address impacts across the product lifecycle—from sourcing and manufacturing to packaging, distribution, consumption, and end-of-life. Our services help clients respond to growing consumer demand for sustainable products, build responsible and resilient supply chains, reduce environmental footprints, and communicate authentically about sustainability. By integrating sustainability into core business strategies, we help consumer goods companies create value while contributing to positive environmental and social outcomes.',
-    image: '/images/industry-consumer.jpg',
+    id: 'health-tech',
+    title: 'Health Tech',
+    description: 'We help health tech founders navigate the unique challenges of building healthcare applications, including HIPAA compliance, secure patient data management, and integration with existing healthcare systems.',
+    longDescription: 'Healthcare technology companies operate in a highly regulated environment where data security, privacy compliance, and system reliability are critical. Our fractional CTO services provide the specialized expertise health tech founders need to navigate these complex requirements while building innovative solutions. We help design HIPAA-compliant architectures, implement secure patient data management systems, develop integration strategies for electronic health records and medical devices, and create scalable platforms for telehealth and medical data analysis. Our team understands both the technical and regulatory aspects of building healthcare applications, enabling you to create solutions that meet strict compliance requirements while delivering excellent user experiences for patients and healthcare providers.',
+    image: '/images/industry-healthtech.jpg',
     services: [
-      'Sustainable product development',
-      'Sustainable packaging',
-      'Responsible sourcing',
-      'Circular business models',
-      'Consumer engagement'
+      'HIPAA-compliant architecture',
+      'Healthcare data security',
+      'Medical API integrations',
+      'Telemedicine implementations',
+      'Regulatory compliance'
     ],
     challenges: [
-      'Developing products with reduced environmental impacts',
-      'Implementing sustainable packaging solutions',
-      'Ensuring responsible sourcing of materials and ingredients',
-      'Transitioning to circular business models',
-      'Communicating credibly about sustainability to consumers'
+      'Building systems that meet HIPAA and other healthcare regulations',
+      'Designing secure architecture for sensitive patient data',
+      'Integrating with electronic health record (EHR) systems',
+      'Implementing telemedicine and remote monitoring solutions',
+      'Navigating the complex healthcare IT ecosystem'
     ],
     caseStudies: [
       {
-        title: 'Global Food and Beverage Company',
-        description: 'Developed a sustainable packaging strategy that reduced plastic use by 25%, introduced 100% recyclable packaging across key product lines, and enhanced brand reputation.'
+        title: 'Telemedicine Platform',
+        description: 'Designed and implemented a HIPAA-compliant video consultation system that scaled to support over 10,000 daily patient consultations with 99.9% uptime during rapid growth.'
       },
       {
-        title: 'Fashion Retailer',
-        description: 'Implemented a responsible sourcing program that improved labor conditions and environmental practices across the supply chain while reducing costs through resource efficiency.'
+        title: 'Healthcare Data Analytics Startup',
+        description: 'Built a secure data pipeline that integrated with multiple EHR systems while maintaining strict HIPAA compliance, enabling actionable insights for healthcare providers.'
       }
     ]
   },
   {
-    id: 'real-estate',
-    title: 'Real Estate',
-    description: 'We assist real estate developers, owners, and investors in enhancing building sustainability, managing climate risks, and capturing value from green building practices.',
-    longDescription: 'The real estate sector has significant environmental impacts through energy use, resource consumption, and land use, while also facing material risks from climate change. We work with real estate developers, owners, investors, and property managers to enhance building sustainability, manage climate risks, and capture value from green building practices. Our services include green building certifications, energy efficiency strategies, climate resilience assessments, sustainable property management approaches, and ESG integration for real estate portfolios. By combining technical expertise with financial analysis, we help real estate clients develop and implement sustainability strategies that create long-term value while reducing environmental impacts and climate risks.',
-    image: '/images/industry-realestate.jpg',
+    id: 'ai-ml',
+    title: 'AI/ML Startups',
+    description: 'We assist AI and machine learning startups in building efficient data pipelines, selecting the right infrastructure for model training and deployment, and creating scalable architectures for ML-powered applications.',
+    longDescription: 'Artificial intelligence and machine learning startups face unique technical challenges in data management, model development, and production deployment. Our fractional CTO services provide the specialized expertise AI/ML founders need to build effective, scalable, and maintainable systems. We help design efficient data pipelines for collecting, cleaning, and preparing training data, select appropriate infrastructure for model training and deployment, implement MLOps practices for continuous model improvement, and create scalable architectures for ML-powered applications. Our team understands the technical complexities of building AI systems that perform reliably in production environments while allowing for ongoing refinement and optimization. We work with your data scientists and engineers to turn promising models into production-ready systems that deliver value to users.',
+    image: '/images/industry-ai.jpg',
     services: [
-      'Green building certification',
-      'Climate resilient design',
-      'Sustainable property management',
-      'Net zero buildings',
-      'ESG in real estate'
+      'ML infrastructure design',
+      'Data pipeline architecture',
+      'Model deployment strategies',
+      'AI application scaling',
+      'ML ops implementation'
     ],
     challenges: [
-      'Reducing energy consumption and carbon emissions from buildings',
-      'Enhancing resource efficiency and occupant well-being',
-      'Managing physical climate risks to properties',
-      'Meeting evolving regulations and stakeholder expectations',
-      'Financing green building initiatives and retrofits'
+      'Designing efficient data pipelines for model training',
+      'Selecting appropriate infrastructure for AI/ML workloads',
+      'Implementing effective MLOps practices for model deployment',
+      'Scaling AI applications to handle increasing workloads',
+      'Balancing model performance with infrastructure costs'
     ],
     caseStudies: [
       {
-        title: 'Commercial Property Developer',
-        description: 'Implemented a portfolio-wide green building program that achieved LEED certification for 15 properties, reducing operating costs by 20% and increasing occupancy rates and rental premiums.'
+        title: 'Computer Vision Startup',
+        description: 'Designed a scalable infrastructure for real-time image processing that reduced inference costs by 60% while supporting processing of over 1 million images daily.'
       },
       {
-        title: 'Real Estate Investment Trust',
-        description: 'Developed a climate resilience strategy that identified and mitigated physical climate risks across a $2 billion property portfolio, protecting asset values and reducing insurance costs.'
+        title: 'NLP Platform',
+        description: 'Implemented an MLOps pipeline that automated model training, evaluation, and deployment, reducing time-to-production for new models from weeks to hours.'
       }
     ]
   }
@@ -216,14 +216,14 @@ export default function IndustryPage({ params }: { params: { id: string } }) {
               <p className="text-lg font-medium mb-6">{industry.description}</p>
               <p>{industry.longDescription}</p>
               
-              <h2 className="mt-8 mb-4">Key Services</h2>
+              <h2 className="mt-8 mb-4">Technical Expertise</h2>
               <ul>
                 {industry.services.map((service, index) => (
                   <li key={index}>{service}</li>
                 ))}
               </ul>
               
-              <h2 className="mt-8 mb-4">Industry Challenges</h2>
+              <h2 className="mt-8 mb-4">Common Technical Challenges</h2>
               <ul>
                 {industry.challenges.map((challenge, index) => (
                   <li key={index}>{challenge}</li>
@@ -243,16 +243,16 @@ export default function IndustryPage({ params }: { params: { id: string } }) {
               <div className="card-body">
                 <h3 className="card-title">Ready to Get Started?</h3>
                 <p className="my-4">
-                  Contact us today to learn how we can help your {industry.title.toLowerCase()} organization navigate sustainability challenges.
+                  Schedule a free consultation to discuss your {industry.title.toLowerCase()} technical challenges and how our fractional CTO services can help.
                 </p>
                 <Link href="/contact" className="btn btn-primary w-full">
-                  Request a Consultation
+                  Book a Consultation
                 </Link>
               </div>
             </div>
             
             <div className="mt-8">
-              <h3 className="text-xl font-bold mb-4">Case Studies</h3>
+              <h3 className="text-xl font-bold mb-4">Success Stories</h3>
               <div className="space-y-4">
                 {industry.caseStudies.map((caseStudy, index) => (
                   <div key={index} className="card bg-base-200 shadow-sm">
@@ -262,6 +262,20 @@ export default function IndustryPage({ params }: { params: { id: string } }) {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <div className="card bg-base-200 shadow-lg">
+                <div className="card-body">
+                  <h3 className="card-title">Explore Our Services</h3>
+                  <p className="my-4">
+                    Learn more about our specialized fractional CTO services for {industry.title.toLowerCase()}.
+                  </p>
+                  <Link href="/services" className="btn btn-outline w-full">
+                    View Services
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

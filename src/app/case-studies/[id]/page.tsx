@@ -5,141 +5,141 @@ import { notFound } from 'next/navigation';
 // Define case study details
 const caseStudyDetails = [
   {
-    id: 'global-bank-esg',
-    title: 'Global Bank ESG Integration',
-    industry: 'Finance',
-    description: 'Helping a leading global bank integrate ESG considerations into its investment and lending decisions, enhancing long-term value creation.',
-    challenge: 'A leading global investment bank with over $2 trillion in assets under management needed to strengthen its approach to ESG integration across its investment and lending activities. The bank was facing increasing pressure from investors, regulators, and clients to demonstrate how it was managing ESG risks and opportunities, but lacked a consistent framework and capabilities to do so effectively. The challenge was to develop a comprehensive ESG integration approach that would enhance decision-making, create value, and position the bank as a leader in sustainable finance.',
-    solution: 'We worked closely with the bank's leadership team to develop and implement a holistic ESG integration strategy. The approach included:\n\n1. Conducting a comprehensive assessment of current ESG practices across different business units and identifying gaps and opportunities.\n\n2. Developing a customized ESG integration framework aligned with the bank's investment philosophy and processes.\n\n3. Creating sector-specific ESG guidelines for high-impact industries.\n\n4. Designing and delivering an ESG training program for investment professionals across the organization.\n\n5. Implementing robust ESG data management and analytics capabilities.\n\n6. Establishing governance structures and KPIs to drive ESG integration and monitor progress.\n\n7. Developing innovative ESG and impact investing products to meet growing client demand.',
-    image: '/images/case-bank.jpg',
+    id: 'saas-scale-architecture',
+    title: 'SaaS Platform Scale-Up Architecture',
+    industry: 'SaaS',
+    description: 'Helping a rapidly growing SaaS company redesign their architecture to handle 10x user growth without sacrificing performance or reliability.',
+    challenge: 'A fast-growing B2B SaaS company with 50,000+ users was experiencing significant performance degradation and reliability issues as they scaled. Their monolithic architecture couldn\'t handle the increasing load, resulting in slow response times, frequent outages, and escalating cloud infrastructure costs. Customer complaints were rising, and the engineering team was spending more time firefighting than building new features. The company needed to redesign their technical architecture to support their growth trajectory without disrupting their existing customer base.',
+    solution: 'As their fractional CTO, we worked closely with the company\'s engineering team to develop and implement a comprehensive architectural transformation. Our approach included:\n\n1. Conducting a thorough assessment of the current architecture, identifying bottlenecks and failure points.\n\n2. Designing a new microservices-based architecture with clear domain boundaries and service interfaces.\n\n3. Implementing a phased migration plan that minimized disruption to existing customers.\n\n4. Redesigning the database layer with proper sharding and caching strategies to improve performance.\n\n5. Setting up comprehensive monitoring and auto-scaling capabilities to anticipate and respond to demand fluctuations.\n\n6. Implementing CI/CD pipelines to streamline deployment and reduce time-to-market.\n\n7. Training the engineering team on best practices for building and maintaining distributed systems.',
+    image: '/images/case-saas.jpg',
     results: [
-      'Developed comprehensive ESG integration framework',
-      'Trained over 500 investment professionals on ESG analysis',
-      'Improved sustainability ratings by two tiers',
-      'Mobilized $10 billion in sustainable financing',
-      'Launched five new ESG-focused investment products',
-      'Reduced exposure to high-carbon assets by 35%',
-      'Enhanced reporting to meet TCFD recommendations'
+      'Reduced infrastructure costs by 40% while handling 10x more traffic',
+      'Improved system uptime from 99.5% to 99.99%',
+      'Cut database response times by 65%',
+      'Implemented robust monitoring and auto-scaling solutions',
+      'Decreased deployment times from hours to minutes',
+      'Reduced time spent on maintenance by 70%',
+      'Enabled the business to scale to 500,000+ users without performance issues'
     ],
     testimonial: {
-      quote: "The ESG integration framework has transformed our approach to investment decision-making. We're now able to identify risks and opportunities we were previously missing, creating value for both our clients and society.",
-      author: "Chief Investment Officer",
-      company: "Global Investment Bank"
-    }
-  },
-  {
-    id: 'energy-company-transition',
-    title: 'Energy Company Transition Strategy',
-    industry: 'Energy',
-    description: 'Supporting a traditional energy company in developing a robust transition strategy to thrive in a low-carbon future.',
-    challenge: 'A Fortune 500 energy company with significant fossil fuel assets faced growing pressure from investors, regulators, and other stakeholders to address climate change. The company needed to develop a credible and ambitious transition strategy that would enable it to remain competitive in a decarbonizing world while managing financial and operational risks. The challenge was to create a strategy that balanced short-term business realities with long-term climate imperatives, maintained shareholder value, and positioned the company for success in the energy transition.',
-    solution: 'We partnered with the company's executive team to develop a comprehensive climate transition strategy. The approach included:\n\n1. Conducting scenario analysis to understand potential futures and implications for the company's business model under different climate pathways.\n\n2. Assessing the company's carbon footprint across Scopes 1, 2, and 3, and identifying key reduction opportunities.\n\n3. Developing a diversification strategy to expand into renewable energy and low-carbon businesses.\n\n4. Creating a detailed transition roadmap with interim targets and key milestones.\n\n5. Building internal capabilities and adjusting organizational structures to support the transition.\n\n6. Developing a stakeholder engagement strategy to communicate the transition plan and rebuild trust.\n\n7. Redesigning executive compensation to align with climate and energy transition goals.',
-    image: '/images/case-energy.jpg',
-    results: [
-      'Created 30-year climate transition roadmap',
-      'Identified $5 billion in low-carbon investment opportunities',
-      'Established science-based emissions reduction targets',
-      'Aligned executive compensation with sustainability metrics',
-      'Launched major renewable energy division',
-      'Secured stakeholder support for transition strategy',
-      'Improved climate risk disclosure and reporting'
-    ],
-    testimonial: {
-      quote: "This transition strategy has given us a clear path forward in a rapidly changing energy landscape. We're now positioned to be part of the solution to climate change while creating long-term value for our shareholders.",
+      quote: "The architectural transformation led by the fractional CTO was game-changing for our business. We went from constant performance issues to a rock-solid platform that easily handles our growth, all while reducing our cloud costs significantly.",
       author: "CEO",
-      company: "Global Energy Corporation"
+      company: "B2B SaaS Platform"
     }
   },
   {
-    id: 'consumer-goods-supply-chain',
-    title: 'Consumer Goods Sustainable Supply Chain',
-    industry: 'Consumer Goods',
-    description: 'Transforming the supply chain of a global consumer goods company to enhance sustainability and resilience.',
-    challenge: 'A leading global consumer goods company with operations in over 100 countries faced significant sustainability challenges throughout its complex supply chain. Issues included greenhouse gas emissions, water use, deforestation, human rights concerns, and lack of transparency. The company was experiencing reputational damage, regulatory scrutiny, and pressure from consumers and investors to address these issues. The challenge was to transform the supply chain to enhance sustainability performance while maintaining business competitiveness and operational efficiency.',
-    solution: 'We worked with the company to develop and implement a comprehensive sustainable supply chain transformation program. The approach included:\n\n1. Conducting a detailed assessment of environmental and social impacts across the supply chain to identify hotspots and prioritize interventions.\n\n2. Developing sustainable sourcing standards for key raw materials, including environmental and social criteria.\n\n3. Creating a supplier engagement program to drive sustainability improvements and build capacity among suppliers.\n\n4. Implementing technology solutions to enhance supply chain transparency and traceability.\n\n5. Establishing collaborative initiatives with industry peers, NGOs, and governments to address systemic issues.\n\n6. Redesigning packaging to reduce environmental impacts while maintaining product quality and consumer appeal.\n\n7. Developing robust metrics and reporting systems to track progress and drive continuous improvement.',
-    image: '/images/case-consumer.jpg',
+    id: 'fintech-compliance-security',
+    title: 'FinTech Compliance & Security',
+    industry: 'FinTech',
+    description: 'Supporting a financial technology startup in building a secure, compliant payment processing system that met stringent regulatory requirements.',
+    challenge: 'A fintech startup had developed an innovative payment processing solution but faced significant challenges meeting the stringent security and compliance requirements necessary to operate in the financial sector. They needed to achieve PCI DSS compliance, implement robust security measures, and establish the necessary controls for handling sensitive financial data. Without these elements in place, they couldn\'t launch their product or secure partnerships with financial institutions. The technical team lacked experience with financial compliance frameworks and security best practices.',
+    solution: 'Working as their fractional CTO, we guided the company through the complex landscape of financial technology compliance and security. Our approach included:\n\n1. Performing a comprehensive gap analysis against PCI DSS requirements and other relevant regulatory frameworks.\n\n2. Designing a secure architecture for processing and storing sensitive payment information.\n\n3. Implementing end-to-end encryption, secure authentication, and authorization controls.\n\n4. Establishing secure development practices, including code reviews, static analysis, and penetration testing.\n\n5. Creating a comprehensive security monitoring and incident response capability.\n\n6. Developing policies, procedures, and documentation required for compliance certification.\n\n7. Preparing the team for compliance audits and guiding them through the certification process.',
+    image: '/images/case-fintech.jpg',
     results: [
-      'Reduced supply chain emissions by 25%',
-      'Achieved 100% sustainable sourcing for key raw materials',
-      'Improved worker conditions across 200+ supplier facilities',
-      'Reduced water use in manufacturing by 30%',
-      'Eliminated deforestation from supply chain',
-      'Enhanced supply chain transparency and resilience',
-      'Improved brand reputation and consumer trust'
+      'Achieved PCI DSS and SOC 2 compliance in record time',
+      'Implemented secure architecture processing $10M daily',
+      'Passed rigorous security audits with zero critical findings',
+      'Reduced development time for compliance features by 50%',
+      'Established automated security testing in the development pipeline',
+      'Secured partnerships with three major financial institutions',
+      'Successfully processed over $100M in transactions with zero security incidents'
     ],
     testimonial: {
-      quote: "The transformation of our supply chain has not only reduced our environmental footprint and improved social outcomes, but has also made our business more resilient and responsive to consumer demands for sustainability.",
-      author: "Chief Supply Chain Officer",
-      company: "Global Consumer Goods Company"
+      quote: "Our fractional CTO didn\'t just help us meet compliance requirements – they built security and compliance into our DNA. Their expertise was invaluable in navigating the complex regulatory landscape and gave our partners and customers confidence in our platform.",
+      author: "Founder",
+      company: "Payment Processing Startup"
     }
   },
   {
-    id: 'real-estate-climate-resilience',
-    title: 'Real Estate Climate Resilience',
-    industry: 'Real Estate',
-    description: 'Developing a climate resilience strategy for a major real estate portfolio to protect asset value and ensure business continuity.',
-    challenge: 'A leading real estate investment trust (REIT) with a diverse portfolio of commercial properties valued at over $20 billion faced increasing physical climate risks to its assets. Properties in coastal areas were vulnerable to sea-level rise and increased hurricane intensity, while others faced risks from extreme heat, flooding, and other climate hazards. The challenge was to develop a comprehensive climate resilience strategy to protect asset value, ensure business continuity, meet insurance requirements, and maintain investor confidence.',
-    solution: 'We partnered with the REIT to develop and implement a portfolio-wide climate resilience program. The approach included:\n\n1. Conducting a detailed climate risk assessment across the portfolio, using forward-looking climate data and scenarios to identify vulnerabilities.\n\n2. Developing property-specific resilience plans with prioritized adaptation measures based on risk exposure and potential impact.\n\n3. Creating climate-resilient design guidelines for new developments and major renovations.\n\n4. Implementing critical resilience upgrades such as flood protection, backup power systems, and enhanced building envelope performance.\n\n5. Developing business continuity and emergency response plans for high-risk properties.\n\n6. Engaging with tenants to build awareness and collaborative approaches to resilience.\n\n7. Integrating climate risk considerations into acquisition, development, and divestment decisions.',
-    image: '/images/case-realestate.jpg',
+    id: 'marketplace-platform-scaling',
+    title: 'Marketplace Platform Scaling',
+    industry: 'Marketplaces',
+    description: 'Transforming a struggling marketplace platform into a high-performance system capable of handling millions of transactions.',
+    challenge: 'A growing online marketplace connecting service providers with consumers was experiencing critical technical issues as they scaled. Their search and matching algorithms were inefficient, resulting in poor matches and low conversion rates. The payment processing system was unreliable, leading to failed transactions and user frustration. Additionally, increasing instances of fraud were damaging the platform\'s reputation. The technical debt had accumulated to a point where new feature development had nearly halted, and the company was losing market share to competitors.',
+    solution: 'As their fractional CTO, we led a comprehensive technical transformation of the marketplace platform. Our approach included:\n\n1. Redesigning the search and matching algorithms to improve relevance and conversion rates.\n\n2. Building a reliable payment and escrow system that provided security for both sides of the marketplace.\n\n3. Implementing advanced fraud detection systems using machine learning to identify suspicious patterns.\n\n4. Refactoring the codebase to reduce technical debt and improve maintainability.\n\n5. Optimizing database queries and implementing caching strategies to improve performance.\n\n6. Creating a scalable architecture that could handle growing transaction volumes efficiently.\n\n7. Establishing development best practices and quality assurance processes to prevent future issues.',
+    image: '/images/case-marketplace.jpg',
     results: [
-      'Assessed climate risks across 150+ properties',
-      'Implemented resilience measures saving $25M in potential damages',
-      'Reduced insurance premiums by 15%',
-      'Developed industry-leading climate risk disclosure approach',
-      'Maintained business continuity during extreme weather events',
-      'Enhanced property values in vulnerable locations',
-      'Improved investor confidence in long-term portfolio resilience'
+      'Redesigned matching algorithm improving conversion by 35%',
+      'Built scalable payment and escrow system handling 3M+ monthly transactions',
+      'Reduced fraud by 80% through advanced detection systems',
+      'Cut infrastructure costs by 45% while improving performance',
+      'Decreased page load times by 60%',
+      'Increased platform reliability to 99.95% uptime',
+      'Enabled the business to scale to over 1 million monthly active users'
     ],
     testimonial: {
-      quote: "The climate resilience program has transformed how we evaluate and manage our portfolio. We now have a clear understanding of our climate risks and a strategic approach to addressing them, protecting value for our investors and providing safer spaces for our tenants.",
-      author: "Chief Investment Officer",
-      company: "Leading Real Estate Investment Trust"
+      quote: "The technical transformation of our platform was remarkable. Our fractional CTO helped us overcome critical technical challenges that were holding back our growth. The improvements in matching, payments, and fraud prevention transformed the user experience and allowed us to scale confidently.",
+      author: "Co-Founder",
+      company: "Online Service Marketplace"
     }
   },
   {
-    id: 'technology-net-zero',
-    title: 'Technology Company Net Zero Strategy',
-    industry: 'Technology',
-    description: 'Helping a leading technology company develop and implement a credible net zero strategy across global operations and value chain.',
-    challenge: 'A global technology company with operations in 30+ countries and a complex supply chain was committed to addressing climate change but needed a credible and ambitious strategy to achieve net zero emissions. The company's primary challenges included a growing carbon footprint from data centers and manufacturing, significant Scope 3 emissions from suppliers and product use, and the need to balance rapid business growth with ambitious climate targets. The company needed a comprehensive approach that would drive meaningful emissions reductions while supporting innovation and maintaining competitiveness.',
-    solution: 'We worked with the company's leadership team to develop and implement a science-based net zero strategy. The approach included:\n\n1. Conducting a comprehensive carbon footprint assessment across Scopes 1, 2, and 3 to establish a baseline and identify key emission sources.\n\n2. Developing science-based targets aligned with a 1.5°C pathway and a net zero goal for 2040.\n\n3. Creating a detailed decarbonization roadmap with prioritized initiatives across operations, supply chain, and products.\n\n4. Implementing a global renewable energy procurement strategy to address data center and facility emissions.\n\n5. Engaging with key suppliers to drive upstream emissions reductions and establish supplier requirements.\n\n6. Redesigning products for energy efficiency and circularity to reduce downstream emissions.\n\n7. Implementing an internal carbon pricing mechanism to drive innovation and investment decisions.',
-    image: '/images/case-tech.jpg',
+    id: 'healthtech-hipaa-compliance',
+    title: 'Health Tech HIPAA Compliance',
+    industry: 'Health Tech',
+    description: 'Developing a HIPAA-compliant architecture for a telehealth platform ensuring patient data security while supporting rapid growth.',
+    challenge: 'A telehealth startup had developed an innovative platform connecting patients with healthcare providers, but lacked the technical expertise to implement the stringent security and privacy controls required by HIPAA regulations. Their existing architecture had significant compliance gaps, putting the company at risk of regulatory penalties and limiting their ability to partner with healthcare institutions. They needed to completely redesign their approach to handling protected health information (PHI) while maintaining a seamless user experience and supporting rapid user growth.',
+    solution: 'As their fractional CTO, we guided the company through a comprehensive technical redesign focused on HIPAA compliance and scalability. Our approach included:\n\n1. Conducting a thorough HIPAA risk assessment to identify all compliance gaps in the existing system.\n\n2. Designing a secure architecture for storing and transmitting protected health information.\n\n3. Implementing end-to-end encryption for all patient data and communications.\n\n4. Establishing robust access controls, authentication systems, and audit logging.\n\n5. Creating secure video consultation functionality with appropriate technical safeguards.\n\n6. Developing integration capabilities with electronic health record (EHR) systems.\n\n7. Establishing policies, procedures, and training programs to maintain HIPAA compliance.',
+    image: '/images/case-healthtech.jpg',
     results: [
-      'Achieved carbon neutrality for operations within 2 years',
-      'Developed pathway to net zero across value chain by 2040',
-      'Implemented internal carbon pricing to drive innovation',
-      'Engaged with 100+ suppliers on emissions reduction',
-      'Transitioned to 100% renewable electricity globally',
-      'Reduced product use phase emissions by 35%',
-      'Established industry-leading climate disclosure'
+      'Built fully HIPAA-compliant system passing all security audits',
+      'Designed secure video consultation platform supporting 50,000+ daily consultations',
+      'Implemented compliant EHR integration with major healthcare systems',
+      'Created secure data architecture with end-to-end encryption',
+      'Established comprehensive audit logging and monitoring',
+      'Secured partnerships with five major healthcare providers',
+      'Scaled to support over 1 million patient accounts while maintaining compliance'
     ],
     testimonial: {
-      quote: "Our net zero strategy has become a catalyst for innovation across our business. By tackling climate change, we've not only reduced our environmental impact but have also identified new market opportunities and strengthened our relationships with customers who share our commitment to sustainability.",
-      author: "Chief Sustainability Officer",
-      company: "Global Technology Company"
-    }
-  },
-  {
-    id: 'manufacturing-circular-economy',
-    title: 'Manufacturing Circular Economy Transformation',
-    industry: 'Manufacturing',
-    description: 'Transforming a manufacturing company\'s business model from linear to circular, reducing resource use while creating new value streams.',
-    challenge: 'A global manufacturing company with annual revenues of $5 billion faced increasing challenges related to resource scarcity, rising raw material costs, tightening environmental regulations, and growing customer expectations for sustainable products. The company's traditional linear business model (take-make-dispose) was becoming increasingly risky and less profitable. The challenge was to transform the company's approach to one based on circular economy principles, reducing environmental impact while creating new sources of value and competitive advantage.',
-    solution: 'We partnered with the company to develop and implement a comprehensive circular economy transformation program. The approach included:\n\n1. Conducting a product lifecycle assessment to identify key opportunities for circular interventions.\n\n2. Redesigning key product lines for durability, repairability, and recyclability.\n\n3. Developing a product-as-a-service business model for select product categories to maintain ownership of materials and build ongoing customer relationships.\n\n4. Creating a reverse logistics system and take-back program to recover products at end-of-life.\n\n5. Establishing an advanced remanufacturing capability to process recovered products and materials.\n\n6. Building partnerships with suppliers, customers, and other stakeholders to create closed-loop material flows.\n\n7. Developing new metrics and KPIs to track circular economy performance and business impacts.',
-    image: '/images/case-manufacturing.jpg',
-    results: [
-      'Reduced virgin material use by 40%',
-      'Developed product-as-a-service model for key product lines',
-      'Created take-back program recovering 65% of products',
-      'Generated $45M in value from circular initiatives',
-      'Decreased waste to landfill by 75%',
-      'Reduced product carbon footprint by 30%',
-      'Strengthened customer relationships through service-based models'
-    ],
-    testimonial: {
-      quote: "The circular economy transformation has fundamentally changed how we think about our business. We've moved from selling products to providing ongoing value to our customers, while significantly reducing our environmental impact and creating new revenue streams.",
+      quote: "Our fractional CTO transformed our telehealth platform from a compliance liability into a secure, robust system that earned the trust of major healthcare providers. Their expertise in both healthcare regulations and scalable architecture was exactly what we needed to grow confidently in this highly regulated space.",
       author: "CEO",
-      company: "Global Manufacturing Company"
+      company: "Telehealth Platform"
+    }
+  },
+  {
+    id: 'tech-team-turnaround',
+    title: 'Technical Team Turnaround',
+    industry: 'E-Commerce',
+    description: 'Helping an e-commerce company restructure their engineering team, improve development processes, and deliver a critical platform upgrade on time.',
+    challenge: 'An established e-commerce company was facing a critical technical crisis. Their engineering team was suffering from high turnover, low morale, and poor productivity. A major platform upgrade that would enable multi-channel selling had been delayed for months, putting the company\'s growth strategy at risk. The existing codebase was plagued with technical debt, and quality issues were causing frequent production incidents. Leadership had lost confidence in the technical team\'s ability to deliver, and the company was considering outsourcing their entire engineering function.',
+    solution: 'Working as their fractional CTO, we led a comprehensive turnaround of the technical organization. Our approach included:\n\n1. Conducting a thorough assessment of team structure, skills, processes, and technology stack.\n\n2. Restructuring the engineering team with clear roles, responsibilities, and reporting lines.\n\n3. Implementing agile development practices with appropriate ceremonies and tooling.\n\n4. Establishing a quality assurance process with automated testing and continuous integration.\n\n5. Creating a prioritized plan to address critical technical debt while delivering new features.\n\n6. Developing a realistic roadmap for completing the delayed platform upgrade.\n\n7. Mentoring team leads and providing hands-on guidance to rebuild confidence and capability.',
+    image: '/images/case-team.jpg',
+    results: [
+      'Restructured engineering team reducing turnover from 40% to 5%',
+      'Implemented agile processes that increased delivery velocity by 60%',
+      'Successfully delivered major platform upgrade that had been delayed for months',
+      'Reduced critical bugs by 75% through improved QA processes',
+      'Decreased production incidents by 80%',
+      'Improved team morale and collaboration across departments',
+      'Established sustainable development practices that continued after our engagement'
+    ],
+    testimonial: {
+      quote: "The transformation of our engineering team exceeded all expectations. Our fractional CTO not only helped us deliver the platform upgrade we desperately needed but rebuilt our entire technical organization. They turned a struggling team into a high-performing unit that now drives our business forward rather than holding it back.",
+      author: "COO",
+      company: "Multi-channel E-commerce Company"
+    }
+  },
+  {
+    id: 'ai-ml-infrastructure',
+    title: 'AI/ML Infrastructure Optimization',
+    industry: 'AI/ML',
+    description: 'Building efficient data pipelines and deployment architecture for an AI startup, significantly reducing costs while improving model performance.',
+    challenge: 'An AI startup specializing in computer vision had developed promising machine learning models, but was struggling with the infrastructure needed to deploy them at scale. Their data processing pipeline was inefficient and couldn\'t handle the volume of images required for training. Model training was expensive and time-consuming, limiting their ability to iterate and improve. Their inference architecture couldn\'t support production workloads, and costs were spiraling out of control as they scaled. These technical limitations were preventing the company from meeting customer requirements and achieving product-market fit.',
+    solution: 'As their fractional CTO, we redesigned their entire AI/ML infrastructure and deployment architecture. Our approach included:\n\n1. Designing an efficient data ingestion and processing pipeline capable of handling millions of images.\n\n2. Implementing data validation, versioning, and feature stores to ensure model reproducibility.\n\n3. Optimizing the model training infrastructure to reduce costs and accelerate development cycles.\n\n4. Creating a scalable inference architecture with appropriate caching and batching strategies.\n\n5. Implementing MLOps practices for continuous training, evaluation, and deployment of models.\n\n6. Establishing monitoring systems to track model performance and data drift in production.\n\n7. Developing a cost-optimization strategy that balanced performance requirements with infrastructure expenses.',
+    image: '/images/case-aiml.jpg',
+    results: [
+      'Reduced model training costs by 70% through infrastructure optimization',
+      'Implemented MLOps pipeline reducing deployment time from days to minutes',
+      'Created efficient data pipeline processing 500M+ records daily',
+      'Designed scalable inference architecture handling 10,000 requests per second',
+      'Decreased model training time by 85%',
+      'Improved model accuracy by 15% through better data management',
+      'Reduced overall cloud infrastructure costs by 60%'
+    ],
+    testimonial: {
+      quote: "Our fractional CTO\'s expertise in AI infrastructure was transformative for our business. They helped us build systems that not only scaled efficiently but did so at a fraction of our previous costs. The improvements in our data pipeline and inference architecture allowed us to deliver on customer commitments that previously seemed impossible.",
+      author: "Founder & CEO",
+      company: "Computer Vision AI Startup"
     }
   }
 ];
@@ -156,7 +156,7 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
       <div className="py-12">
         <div className="mb-8">
           <Link href="/case-studies" className="text-primary flex items-center gap-2">
-            <span>←</span> Back to Case Studies
+            <span>←</span> Back to Success Stories
           </Link>
         </div>
         
@@ -168,13 +168,13 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             <div className="prose max-w-none">
               <p className="text-lg font-medium mb-6">{caseStudy.description}</p>
               
-              <h2 className="mt-8 mb-4">Challenge</h2>
+              <h2 className="mt-8 mb-4">The Challenge</h2>
               <p>{caseStudy.challenge}</p>
               
-              <h2 className="mt-8 mb-4">Solution</h2>
+              <h2 className="mt-8 mb-4">Our Approach</h2>
               <p>{caseStudy.solution}</p>
               
-              <h2 className="mt-8 mb-4">Results</h2>
+              <h2 className="mt-8 mb-4">Results Achieved</h2>
               <ul>
                 {caseStudy.results.map((result, index) => (
                   <li key={index}>{result}</li>
@@ -198,16 +198,16 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                 
                 <div className="text-sm font-bold mb-2">Services Provided</div>
                 <p className="mb-4">
-                  {caseStudy.id === 'global-bank-esg' && 'ESG Integration, Sustainable Finance, Training and Capacity Building'}
-                  {caseStudy.id === 'energy-company-transition' && 'Climate Transition Strategy, Scenario Analysis, Renewable Energy Strategy'}
-                  {caseStudy.id === 'consumer-goods-supply-chain' && 'Supply Chain Sustainability, Sustainable Sourcing, ESG Risk Management'}
-                  {caseStudy.id === 'real-estate-climate-resilience' && 'Climate Risk Assessment, Resilience Planning, Climate Adaptation'}
-                  {caseStudy.id === 'technology-net-zero' && 'Net Zero Strategy, Carbon Management, Supplier Engagement'}
-                  {caseStudy.id === 'manufacturing-circular-economy' && 'Circular Economy, Product Design, Business Model Innovation'}
+                  {caseStudy.id === 'saas-scale-architecture' && 'Fractional CTO, Architecture Design, System Scaling, Cloud Optimization'}
+                  {caseStudy.id === 'fintech-compliance-security' && 'Fractional CTO, Security Architecture, Compliance Strategy, FinTech Advisory'}
+                  {caseStudy.id === 'marketplace-platform-scaling' && 'Fractional CTO, Marketplace Systems, Technical Strategy, Performance Optimization'}
+                  {caseStudy.id === 'healthtech-hipaa-compliance' && 'Fractional CTO, HIPAA Compliance, Healthcare Systems, Security Implementation'}
+                  {caseStudy.id === 'tech-team-turnaround' && 'Fractional CTO, Team Leadership, Process Implementation, Technical Mentoring'}
+                  {caseStudy.id === 'ai-ml-infrastructure' && 'Fractional CTO, ML Infrastructure, Data Pipeline Design, Cloud Optimization'}
                 </p>
                 
                 <Link href="/contact" className="btn btn-primary w-full mt-4">
-                  Discuss Your Project
+                  Schedule a Consultation
                 </Link>
               </div>
             </div>
@@ -228,6 +228,23 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
             )}
+
+            <div className="mt-8 card bg-base-200 shadow-lg">
+              <div className="card-body">
+                <h3 className="card-title text-lg">Facing Similar Challenges?</h3>
+                <p className="my-4">
+                  Our fractional CTO services can help you navigate technical challenges like these and accelerate your business growth.
+                </p>
+                <div className="flex flex-col gap-3">
+                  <Link href="/services" className="btn btn-outline w-full">
+                    Explore Our Services
+                  </Link>
+                  <Link href="/assessment" className="btn btn-outline w-full">
+                    Take the CTO Assessment
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
