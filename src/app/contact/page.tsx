@@ -152,7 +152,7 @@ export default function ContactPage() {
                 What services do you offer?
               </div>
               <div className="collapse-content"> 
-                <p>We offer a comprehensive range of sustainability services, including sustainability strategy development, ESG integration, climate risk assessment, sustainable finance advisory, net zero strategy, and more. Visit our <Link href="/services" className="text-primary">Services page</Link> to learn more.</p>
+                <p>We offer a comprehensive range of technical leadership services, including fractional CTO services, tech team building, technical pivot support, tech cost optimization, and technical due diligence. Visit our <Link href="/services" className="text-primary">Services page</Link> to learn more.</p>
               </div>
             </div>
             <div className="collapse collapse-plus bg-base-200">
@@ -161,7 +161,7 @@ export default function ContactPage() {
                 Which industries do you work with?
               </div>
               <div className="collapse-content"> 
-                <p>We work across a diverse range of industries, including finance, energy, manufacturing, technology, consumer goods, and real estate. Our industry-specific expertise allows us to provide tailored solutions that address the unique sustainability challenges and opportunities in each sector.</p>
+                <p>We work across a diverse range of technology-enabled industries, including SaaS, FinTech, marketplaces, e-commerce, health tech, and AI/ML startups. Our industry-specific expertise allows us to provide tailored technical leadership solutions that address the unique challenges and opportunities in each sector.</p>
               </div>
             </div>
             <div className="collapse collapse-plus bg-base-200">

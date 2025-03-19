@@ -1,51 +1,46 @@
 import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Define team members
 const teamMembers = [
   {
     name: 'Michael Chen',
-    title: 'Founder & Principal CTO',
-    bio: 'Former CTO at two successful startups with exits over $100M. 15+ years of experience building and scaling technology teams and products across fintech, SaaS, and marketplaces.',
-    image: '/images/team-michael.jpg'
+    title: 'Founder & Lead CTO',
+    bio: '20+ years of experience in technical leadership, with multiple successful exits. Former CTO at TechStart and FinEdge.',
+    image: '/images/team/michael-chen.jpg'
   },
   {
     name: 'Sarah Johnson',
-    title: 'Senior Technology Advisor',
-    bio: 'Ex-VP of Engineering at a leading cloud infrastructure company. Expert in scalable architectures, cloud optimization, and technical leadership with 12+ years of experience.',
-    image: '/images/team-sarah.jpg'
+    title: 'Senior Technical Advisor',
+    bio: 'Expert in cloud architecture and scalable systems. Previously led engineering teams at major tech companies.',
+    image: '/images/team/sarah-johnson.jpg'
   },
   {
-    name: 'David Rodriguez',
+    name: 'David Kumar',
     title: 'Technical Strategy Lead',
-    bio: 'Serial entrepreneur and technical leader who has built and scaled multiple startups from inception to acquisition. Specialized in helping non-technical founders navigate technical decisions.',
-    image: '/images/team-david.jpg'
-  },
-  {
-    name: 'Jennifer Kim',
-    title: 'Technology Team Architect',
-    bio: 'Former Director of Engineering at a unicorn startup. Expert in building high-performing technical teams, engineering processes, and development workflows.',
-    image: '/images/team-jennifer.jpg'
+    bio: 'Specializes in technical due diligence and team building. Has helped scale multiple startups from seed to Series C.',
+    image: '/images/team/david-kumar.jpg'
   }
 ];
 
 // Define company values
 const companyValues = [
   {
-    title: 'Practical Excellence',
-    description: 'We deliver pragmatic solutions that balance technical excellence with business reality. Perfect is the enemy of shipped.'
+    title: 'Technical Excellence',
+    description: 'We maintain the highest standards of technical expertise and stay at the forefront of technology trends.'
   },
   {
-    title: 'Strategic Perspective',
-    description: 'We look beyond the immediate technical challenges to understand how technology decisions support broader business objectives.'
+    title: 'Business Alignment',
+    description: 'Our solutions are always aligned with business objectives, ensuring technology drives growth.'
   },
   {
     title: 'Knowledge Transfer',
-    description: 'We don\'t just solve problems; we ensure your team understands the solution and can maintain it after we\'re gone.'
+    description: 'We believe in empowering teams with knowledge rather than creating dependencies.'
   },
   {
-    title: 'Transparent Partnership',
-    description: 'We build relationships based on honesty, clear communication, and a shared commitment to your success.'
+    title: 'Long-term Impact',
+    description: 'Our recommendations consider both immediate needs and future scalability.'
   }
 ];
 
@@ -54,6 +49,29 @@ export default function AboutUsPage() {
     <PageLayout>
       <div className="py-12">
         <h1 className="text-4xl font-bold mb-6">About Us</h1>
+        
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-6">Our Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="card bg-base-200 shadow-lg">
+                <figure className="relative h-64">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h3 className="card-title">{member.name}</h3>
+                  <p className="text-primary">{member.title}</p>
+                  <p className="mt-4">{member.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
         
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-6">Our Story</h2>
@@ -76,41 +94,6 @@ export default function AboutUsPage() {
             <p>We're also committed to knowledge transfer. While we're happy to provide hands-on implementation when needed, our ultimate goal is to build your team's capabilities so you can operate successfully after our engagement ends. We believe in teaching people to fish, not just serving them a meal.</p>
             
             <p>Finally, we understand that technical decisions have long-lasting implications. We're not just focused on what works today—we consider how your technology choices will support your business as it evolves and scales.</p>
-          </div>
-        </section>
-        
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Our Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {companyValues.map((value, index) => (
-              <div key={index} className="card bg-base-200 shadow-lg">
-                <div className="card-body">
-                  <h3 className="card-title text-xl">{value.title}</h3>
-                  <p>{value.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-        
-        <section>
-          <h2 className="text-3xl font-bold mb-6">Our Leadership Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="card card-side bg-base-200 shadow-lg">
-                <figure className="w-1/3">
-                  {/* Replace with actual images */}
-                  <div className="w-full h-full aspect-square flex items-center justify-center bg-primary/10">
-                    <span className="text-lg font-medium">{member.name.split(' ')[0][0]}{member.name.split(' ')[1][0]}</span>
-                  </div>
-                </figure>
-                <div className="card-body w-2/3">
-                  <h3 className="card-title">{member.name}</h3>
-                  <div className="text-sm font-medium mb-2">{member.title}</div>
-                  <p className="text-sm">{member.bio}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 

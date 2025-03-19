@@ -75,12 +75,6 @@ export default function ServicesPage() {
           Expert tech leadership when you need it, without the full-time cost. We help startup founders, non-technical executives, and growing companies navigate technical challenges, build exceptional teams, and optimize technology investments.
         </p>
         
-        <Services />
-        
-        <hr className="border-gray-800 my-12" />
-        
-        <h2 className="text-3xl font-bold mb-8">How We Can Help</h2>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {serviceDetails.map((service) => (
             <div key={service.id} className="card bg-base-200 shadow-lg">
@@ -96,19 +90,13 @@ export default function ServicesPage() {
                   </ul>
                 </div>
                 <div className="card-actions justify-end mt-6">
-                  <Link href={`/services/${service.id}`} className="btn btn-primary">
-                    Learn More
+                  <Link href="/contact" className="btn btn-primary">
+                    Get Started
                   </Link>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 p-8 bg-base-200 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Not Sure What You Need?</h2>
-          <p className="mb-6">Take our quick CTO Needs Assessment to discover how a Fractional CTO could help your specific situation.</p>
-          <Link href="/assessment" className="btn btn-primary">Take the Assessment</Link>
         </div>
       </div>
     </PageLayout>

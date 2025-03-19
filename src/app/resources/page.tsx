@@ -1,102 +1,92 @@
 import PageLayout from '@/components/PageLayout';
-import Resources from '@/components/Resources';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Define resource categories
-const categories = [
-  "Technical Leadership",
-  "Technology Strategy",
-  "Tech Team Building",
-  "System Architecture",
-  "CTO Guides"
-];
-
-// Define featured resources
-const featuredResources = [
+const resourceCategories = [
   {
-    id: "cto-guide-for-startups",
-    title: "The Complete Guide to Fractional CTO Services for Startups",
-    category: "Technical Leadership",
-    description: "Learn how a fractional CTO can help your startup build scalable technology, make strategic decisions, and accelerate growth - without the full-time executive cost.",
-    image: "/images/resource-cto-guide.jpg",
-    date: "June 15, 2023"
+    id: 'guides',
+    title: 'Technical Leadership Guides',
+    description: 'Comprehensive guides on building and scaling technical teams, architecture decisions, and technology strategy.',
+    resources: [
+      {
+        title: 'Building a High-Performing Engineering Team',
+        description: 'Learn the key principles and practices for building and maintaining an exceptional engineering team.',
+        type: 'Guide',
+        readTime: '15 min read',
+        image: '/images/resources/team-building.jpg'
+      },
+      {
+        title: 'Technical Architecture Decision Making',
+        description: 'A framework for making confident technical decisions that align with business objectives.',
+        type: 'Guide',
+        readTime: '12 min read',
+        image: '/images/resources/architecture.jpg'
+      },
+      {
+        title: 'Scaling Your Tech Stack',
+        description: 'Best practices for scaling your technology infrastructure as your business grows.',
+        type: 'Guide',
+        readTime: '18 min read',
+        image: '/images/resources/scaling.jpg'
+      }
+    ]
   },
   {
-    id: "tech-team-building",
-    title: "Building High-Performance Technical Teams: A Framework for Founders",
-    category: "Tech Team Building",
-    description: "Discover proven strategies for recruiting, structuring, and developing a technical team that delivers results, even if you don't have a technical background.",
-    image: "/images/resource-team-building.jpg",
-    date: "May 3, 2023"
+    id: 'templates',
+    title: 'Templates & Tools',
+    description: 'Ready-to-use templates and tools to help you implement best practices in your organization.',
+    resources: [
+      {
+        title: 'Technical Interview Guide',
+        description: 'A comprehensive template for conducting effective technical interviews.',
+        type: 'Template',
+        readTime: '10 min read',
+        image: '/images/resources/interview.jpg'
+      },
+      {
+        title: 'Engineering Team Structure Template',
+        description: 'A customizable template for designing your engineering organization structure.',
+        type: 'Template',
+        readTime: '8 min read',
+        image: '/images/resources/structure.jpg'
+      },
+      {
+        title: 'Technical Due Diligence Checklist',
+        description: 'A thorough checklist for evaluating technical aspects of potential investments or acquisitions.',
+        type: 'Tool',
+        readTime: '15 min read',
+        image: '/images/resources/due-diligence.jpg'
+      }
+    ]
   },
   {
-    id: "tech-stack-decisions",
-    title: "Making Technology Stack Decisions That Won't Haunt You Later",
-    category: "Technology Strategy",
-    description: "Avoid costly technology mistakes with this guide to selecting the right tech stack for your business needs, future scalability, and resource constraints.",
-    image: "/images/resource-tech-stack.jpg",
-    date: "April 18, 2023"
-  },
-  {
-    id: "cloud-cost-optimization",
-    title: "Cloud Cost Optimization: Stop Overpaying for Infrastructure",
-    category: "System Architecture",
-    description: "Practical strategies to reduce your cloud infrastructure costs by 30-50% without compromising performance, reliability, or scalability.",
-    image: "/images/resource-cloud-costs.jpg",
-    date: "March 7, 2023"
-  },
-  {
-    id: "technical-debt-management",
-    title: "Technical Debt: When to Pay It Down and When to Live With It",
-    category: "Technology Strategy",
-    description: "Learn how to identify, measure, and strategically manage technical debt to maintain development velocity while building sustainable systems.",
-    image: "/images/resource-tech-debt.jpg",
-    date: "February 22, 2023"
-  },
-  {
-    id: "cto-assessment",
-    title: "Do You Need a CTO? Take the Assessment",
-    category: "CTO Guides",
-    description: "Answer 10 questions to evaluate your company's technical leadership needs and determine if a full-time, fractional, or advisory CTO would benefit your business.",
-    image: "/images/resource-assessment.jpg",
-    date: "January 15, 2023"
-  }
-];
-
-// Define all resources
-const allResources = [
-  ...featuredResources,
-  {
-    id: "scaling-architecture",
-    title: "Scalable Architecture Patterns for Growing Applications",
-    category: "System Architecture",
-    description: "A technical deep dive into architectural patterns that allow your applications to scale efficiently as user demand increases.",
-    image: "/images/resource-scaling.jpg",
-    date: "December 5, 2022"
-  },
-  {
-    id: "non-technical-founder-guide",
-    title: "The Non-Technical Founder's Guide to Making Technical Decisions",
-    category: "Technical Leadership",
-    description: "How to effectively evaluate technical options, communicate with developers, and make informed technology decisions without a technical background.",
-    image: "/images/resource-non-technical.jpg",
-    date: "November 20, 2022"
-  },
-  {
-    id: "tech-due-diligence",
-    title: "Technical Due Diligence: What Investors Look For in Your Technology",
-    category: "Technology Strategy",
-    description: "Prepare your startup for technical due diligence with this guide covering what investors examine and how to address common technical red flags.",
-    image: "/images/resource-due-diligence.jpg",
-    date: "October 14, 2022"
-  },
-  {
-    id: "devops-implementation",
-    title: "Implementing DevOps in Small Teams: A Practical Guide",
-    category: "Tech Team Building",
-    description: "How to implement effective DevOps practices in small development teams to improve deployment frequency, reliability, and development speed.",
-    image: "/images/resource-devops.jpg",
-    date: "September 8, 2022"
+    id: 'case-studies',
+    title: 'Case Studies & Success Stories',
+    description: 'Real-world examples of how companies have successfully implemented technical leadership strategies.',
+    resources: [
+      {
+        title: 'How a FinTech Startup Scaled Their Platform',
+        description: 'Learn how we helped a fintech company scale their platform while maintaining security and compliance.',
+        type: 'Case Study',
+        readTime: '20 min read',
+        image: '/images/resources/fintech-case.jpg'
+      },
+      {
+        title: 'Transforming a Legacy SaaS Platform',
+        description: 'A detailed look at how we helped modernize a legacy system while maintaining business continuity.',
+        type: 'Case Study',
+        readTime: '18 min read',
+        image: '/images/resources/saas-case.jpg'
+      },
+      {
+        title: 'Optimizing Tech Infrastructure for Growth',
+        description: 'How we helped a marketplace platform optimize their technology stack for better performance.',
+        type: 'Case Study',
+        readTime: '15 min read',
+        image: '/images/resources/marketplace-case.jpg'
+      }
+    ]
   }
 ];
 
@@ -106,79 +96,44 @@ export default function ResourcesPage() {
       <div className="py-12">
         <h1 className="text-4xl font-bold mb-6">Resources</h1>
         <p className="text-lg mb-12 max-w-3xl">
-          Explore our library of guides, frameworks, and tools designed to help founders and executives make better technology decisions and build stronger technical teams.
+          Access our collection of guides, templates, and case studies designed to help you build and scale your technical organization effectively.
         </p>
         
-        <Resources />
-        
-        <hr className="border-gray-800 my-12" />
-        
-        <h2 className="text-3xl font-bold mb-8">Featured Resources</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {featuredResources.map((resource) => (
-            <div key={resource.id} className="card bg-base-200 shadow-lg h-full">
-              <figure className="h-48 bg-gray-300">
-                {/* Replace with actual images */}
-                <div className="w-full h-full flex items-center justify-center bg-primary/10">
-                  <span className="text-lg font-medium">{resource.category}</span>
-                </div>
-              </figure>
-              <div className="card-body">
-                <div className="text-xs opacity-70 mb-2">{resource.category} • {resource.date}</div>
-                <h3 className="card-title text-xl">{resource.title}</h3>
-                <p className="my-4">{resource.description}</p>
-                <div className="card-actions justify-end mt-auto">
-                  <Link href={`/resources/${resource.id}`} className="btn btn-primary">
-                    Read More
-                  </Link>
-                </div>
+        <div className="space-y-16">
+          {resourceCategories.map((category) => (
+            <section key={category.id}>
+              <h2 className="text-2xl font-bold mb-4">{category.title}</h2>
+              <p className="text-gray-600 mb-8">{category.description}</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {category.resources.map((resource, index) => (
+                  <div key={index} className="card bg-base-200 shadow-lg">
+                    <figure className="relative h-48">
+                      <Image
+                        src={resource.image}
+                        alt={resource.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </figure>
+                    <div className="card-body">
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="badge badge-primary">{resource.type}</span>
+                        <span className="text-sm text-gray-500">{resource.readTime}</span>
+                      </div>
+                      <h3 className="card-title text-xl">{resource.title}</h3>
+                      <p className="mt-2">{resource.description}</p>
+                      <div className="card-actions justify-end mt-4">
+                        <Link href={`/resources/${category.id}/${index}`} className="btn btn-primary">
+                          Read More
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
+            </section>
           ))}
-        </div>
-        
-        <h2 className="text-3xl font-bold mb-8">All Resources</h2>
-        
-        <div className="mb-8 flex flex-wrap gap-3">
-          <button className="btn btn-sm btn-primary">All Categories</button>
-          {categories.map((category) => (
-            <button key={category} className="btn btn-sm btn-outline">
-              {category}
-            </button>
-          ))}
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {allResources.map((resource) => (
-            <div key={resource.id} className="card card-side bg-base-200 shadow-lg">
-              <figure className="w-1/3 bg-gray-300">
-                {/* Replace with actual images */}
-                <div className="w-full h-full flex items-center justify-center bg-primary/10">
-                  <span className="text-sm font-medium">{resource.category}</span>
-                </div>
-              </figure>
-              <div className="card-body w-2/3">
-                <div className="text-xs opacity-70 mb-1">{resource.category} • {resource.date}</div>
-                <h3 className="card-title text-lg">{resource.title}</h3>
-                <p className="text-sm line-clamp-2">{resource.description}</p>
-                <div className="card-actions justify-end">
-                  <Link href={`/resources/${resource.id}`} className="btn btn-sm btn-primary">
-                    Read More
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 p-8 bg-base-200 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h2>
-          <p className="mb-6">Get the latest resources, articles, and insights on technical leadership delivered to your inbox monthly.</p>
-          <div className="flex gap-4 flex-col sm:flex-row">
-            <input type="email" placeholder="Your email address" className="input input-bordered flex-grow" />
-            <button className="btn btn-primary">Subscribe</button>
-          </div>
         </div>
       </div>
     </PageLayout>
