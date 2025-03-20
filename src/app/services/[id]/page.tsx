@@ -6,6 +6,9 @@ import data from '@/data.json';
 // Get service details from data.json
 const serviceDetails = data.services;
 
+// Get meeting link from data.json
+const meetingLink = data.meetingLink;
+
 export default function ServicePage({ params }: { params: { id: string } }) {
   const service = serviceDetails.find((s) => s.id === params.id);
   
@@ -77,8 +80,8 @@ export default function ServicePage({ params }: { params: { id: string } }) {
                 <p className="my-4">
                   Schedule a free consultation to discuss how our {service.title} can help your business.
                 </p>
-                <Link href="/contact" className="btn btn-primary w-full">
-                  Book a Consultation
+                <Link href={meetingLink} className="btn btn-primary w-full" target="_blank" rel="noopener noreferrer">
+                  Book a Free Consultation
                 </Link>
               </div>
             </div>

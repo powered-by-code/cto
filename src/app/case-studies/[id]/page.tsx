@@ -10,11 +10,13 @@ const caseStudyDetails = data.caseStudies;
 
 export default function CaseStudyPage({ params }: { params: { id: string } }) {
   const caseStudy = caseStudyDetails.find((cs) => cs.id === params.id);
+  // Get meeting link from data.json
+  const meetingLink = data.meetingLink;
   
   if (!caseStudy) {
     notFound();
   }
-
+  
   return (
     <PageLayout>
       <div className="py-12">
@@ -23,7 +25,7 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
           Back to All Case Studies
-        </Link>
+          </Link>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
           <div className="lg:col-span-2">
@@ -52,15 +54,15 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
               <div className="card bg-base-200 shadow-lg mb-8">
                 <div className="card-body">
                   <ul className="space-y-3">
-                    {caseStudy.results.map((result, index) => (
+                {caseStudy.results.map((result, index) => (
                       <li key={index} className="flex items-start">
                         <svg className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                         </svg>
                         {result}
                       </li>
-                    ))}
-                  </ul>
+                ))}
+              </ul>
                 </div>
               </div>
             </div>
@@ -107,7 +109,7 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                 <p className="my-4">
                   Our fractional CTO services help businesses solve complex technical challenges and achieve impressive results.
                 </p>
-                <Link href="/contact" className="btn btn-primary w-full">
+                <Link href={meetingLink} className="btn btn-primary w-full" target="_blank" rel="noopener noreferrer">
                   Book a Consultation
                 </Link>
                 

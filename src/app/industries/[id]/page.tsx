@@ -7,12 +7,18 @@ import data from '@/data.json';
 // Get industry details from data.json
 const industryDetails = data.industries;
 
+// Get meeting link from data.json
+const meetingLink = data.meetingLink;
+
 export default function IndustryPage({ params }: { params: { id: string } }) {
   const industry = industryDetails.find((ind) => ind.id === params.id);
   
   if (!industry) {
     notFound();
   }
+  
+  // Find case studies relevant to this industry
+  const relevantCaseStudies = data.caseStudies.filter((cs) => cs.industry.toLowerCase() === industry.title.toLowerCase());
   
   return (
     <PageLayout>
@@ -77,9 +83,9 @@ export default function IndustryPage({ params }: { params: { id: string } }) {
                       </li>
                 ))}
               </ul>
-                </div>
-              </div>
-              
+            </div>
+          </div>
+          
               <h2 className="text-2xl font-bold mt-8 mb-4">Success Stories</h2>
               <div className="space-y-4">
                 {industry.caseStudies.map((caseStudy, index) => (
@@ -101,8 +107,8 @@ export default function IndustryPage({ params }: { params: { id: string } }) {
                 <p className="my-4">
                   Our fractional CTO services help {industry.title.toLowerCase()} companies navigate technical challenges and build scalable systems.
                 </p>
-                <Link href="/contact" className="btn btn-primary w-full">
-                  Book a Consultation
+                <Link href={meetingLink} className="btn btn-primary w-full" target="_blank" rel="noopener noreferrer">
+                  Schedule a Consultation
                 </Link>
                 
                 <div className="divider">OR</div>

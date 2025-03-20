@@ -2,9 +2,12 @@
 import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { useState } from "react";
+import data from '@/data.json';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Get meeting link from data.json
+  const meetingLink = data.meetingLink;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -55,7 +58,7 @@ const Navbar: React.FC = () => {
             </li>
           ))}
           <li>
-            <Link href="/contact" className="btn btn-primary">
+            <Link href={meetingLink} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
               REQUEST QUOTE
             </Link>
           </li>
@@ -74,7 +77,7 @@ const Navbar: React.FC = () => {
               </li>
             ))}
             <li className="mt-2">
-              <Link href="/contact" className="btn btn-primary w-full" onClick={toggleMenu}>
+              <Link href={meetingLink} className="btn btn-primary w-full" onClick={toggleMenu} target="_blank" rel="noopener noreferrer">
                 REQUEST QUOTE
               </Link>
             </li>
