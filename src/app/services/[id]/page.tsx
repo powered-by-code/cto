@@ -7,8 +7,8 @@ const serviceDetails = [
   {
     id: 'fractional-cto',
     title: 'Fractional CTO Services',
-    description: 'Bring strategic tech leadership to your startup without the full-time price tag. Get expert guidance when you need it most, whether that's a few hours per week or several days per month.',
-    longDescription: 'As a startup founder, you're juggling countless responsibilities. Technical leadership shouldn't be a bottleneck to your growth. Our Fractional CTO service provides the strategic tech guidance you need, when you need it, without the full-time executive cost. We work alongside your team to develop clear technical strategies, make informed architecture decisions, and ensure your technology supports your business goals. Whether you're a non-technical founder needing a trusted tech advisor or a technical founder looking to delegate CTO responsibilities, our flexible engagement model adapts to your specific needs and growth stage.',
+    description: 'Bring strategic tech leadership to your startup without the full-time price tag. Get expert guidance when you need it most, whether that\'s a few hours per week or several days per month.',
+    longDescription: 'As a startup founder, you\'re juggling countless responsibilities. Technical leadership shouldn\'t be a bottleneck to your growth. Our Fractional CTO service provides the strategic tech guidance you need, when you need it, without the full-time executive cost. We work alongside your team to develop clear technical strategies, make informed architecture decisions, and ensure your technology supports your business goals. Whether you\'re a non-technical founder needing a trusted tech advisor or a technical founder looking to delegate CTO responsibilities, our flexible engagement model adapts to your specific needs and growth stage.',
     features: [
       'Technical strategy development and execution',
       'Technology stack selection and optimization',
@@ -38,7 +38,7 @@ const serviceDetails = [
     id: 'tech-team-building',
     title: 'Tech Team Building',
     description: 'Build a high-performing technical team that delivers results. We help with recruitment, structure, processes, and culture to create a sustainable engineering organization.',
-    longDescription: 'Building an effective technical team is one of the most challenging aspects of growing a technology business. Our Tech Team Building service guides you through this process, from defining the right roles and team structure to recruiting, onboarding, and developing your engineering talent. We implement proven processes that enhance productivity, code quality, and team satisfaction. Whether you're hiring your first developer or scaling a team of dozens, we provide the expertise needed to build a technical organization that delivers consistent results and supports your business objectives.',
+    longDescription: 'Building an effective technical team is one of the most challenging aspects of growing a technology business. Our Tech Team Building service guides you through this process, from defining the right roles and team structure to recruiting, onboarding, and developing your engineering talent. We implement proven processes that enhance productivity, code quality, and team satisfaction. Whether you\'re hiring your first developer or scaling a team of dozens, we provide the expertise needed to build a technical organization that delivers consistent results and supports your business objectives.',
     features: [
       'Engineering team structure design',
       'Recruitment strategy and technical interviews',
@@ -68,7 +68,7 @@ const serviceDetails = [
     id: 'pivot-support',
     title: 'Technical Pivot Support',
     description: 'Successfully navigate technical changes during business pivots. We provide the expertise you need to realign your technology with your new business direction quickly and efficiently.',
-    longDescription: 'Business pivots are challenging, especially when they require significant technical changes. Our Technical Pivot Support service helps you navigate these transitions with minimal disruption. We assess your current technical assets, identify what can be leveraged in your new direction, and create a strategic roadmap for the technical changes needed. We work with your team to implement these changes methodically, managing risks and maintaining operational stability throughout the process. Whether you're shifting to a new market, changing your business model, or evolving your product offering, we help ensure your technology supports your pivot successfully.',
+    longDescription: 'Business pivots are challenging, especially when they require significant technical changes. Our Technical Pivot Support service helps you navigate these transitions with minimal disruption. We assess your current technical assets, identify what can be leveraged in your new direction, and create a strategic roadmap for the technical changes needed. We work with your team to implement these changes methodically, managing risks and maintaining operational stability throughout the process. Whether you\'re shifting to a new market, changing your business model, or evolving your product offering, we help ensure your technology supports your pivot successfully.',
     features: [
       'Technical feasibility assessment',
       'Legacy system evaluation and migration planning',
@@ -128,7 +128,7 @@ const serviceDetails = [
     id: 'technical-due-diligence',
     title: 'Technical Due Diligence',
     description: 'Get a clear understanding of the technical risks and opportunities in your investment or acquisition targets. Our thorough assessments provide actionable insights for decision-making.',
-    longDescription: 'Making informed investment decisions requires a deep understanding of a company's technical assets, capabilities, and risks. Our Technical Due Diligence service provides a comprehensive assessment of technology investments, acquisitions, or portfolio companies. We evaluate architecture, code quality, scalability, security, technical debt, and team capabilities to identify both risks and opportunities. Our detailed reports help investors, acquirers, and executives make confident decisions with a clear understanding of the technical landscape. We also provide recommendations for post-investment technical improvements to maximize value and minimize risk.',
+    longDescription: 'Making informed investment decisions requires a deep understanding of a company\'s technical assets, capabilities, and risks. Our Technical Due Diligence service provides a comprehensive assessment of technology investments, acquisitions, or portfolio companies. We evaluate architecture, code quality, scalability, security, technical debt, and team capabilities to identify both risks and opportunities. Our detailed reports help investors, acquirers, and executives make confident decisions with a clear understanding of the technical landscape. We also provide recommendations for post-investment technical improvements to maximize value and minimize risk.',
     features: [
       'Architecture and code quality review',
       'Technical debt quantification',

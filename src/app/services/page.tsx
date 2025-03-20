@@ -1,6 +1,6 @@
 import PageLayout from '@/components/PageLayout';
-import Services from '@/components/Services';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Define service details
 const serviceDetails = [
@@ -75,27 +75,22 @@ export default function ServicesPage() {
           Expert tech leadership when you need it, without the full-time cost. We help startup founders, non-technical executives, and growing companies navigate technical challenges, build exceptional teams, and optimize technology investments.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceDetails.map((service) => (
-            <div key={service.id} className="card bg-base-200 shadow-lg">
+            <Link key={service.id} href={`/services/${service.id}`} className="card bg-base-200 shadow-lg hover:shadow-xl transition-shadow">
               <div className="card-body">
-                <h3 className="card-title text-2xl">{service.title}</h3>
-                <p className="my-4">{service.description}</p>
-                <div className="mt-4">
-                  <h4 className="font-bold mb-2">What's Included:</h4>
-                  <ul className="list-disc pl-5 space-y-1">
-                    {service.features.map((feature, index) => (
-                      <li key={index}>{feature}</li>
-                    ))}
-                  </ul>
+                <div className="h-40 bg-gray-300 mb-4 flex items-center justify-center">
+                  {/* Placeholder for image */}
+                  <span className="text-gray-500">Service Image</span>
                 </div>
-                <div className="card-actions justify-end mt-6">
-                  <Link href="/contact" className="btn btn-primary">
-                    Get Started
-                  </Link>
+                <div className="text-xs opacity-70">SERVICES</div>
+                <h3 className="card-title text-xl">{service.title}</h3>
+                <p className="my-4 line-clamp-3">{service.description}</p>
+                <div className="card-actions justify-end mt-auto">
+                  <span className="text-primary">Read more →</span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
