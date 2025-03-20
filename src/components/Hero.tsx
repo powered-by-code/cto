@@ -1,6 +1,7 @@
 "use client"
 import Link from 'next/link';
 import { useRef, useEffect } from 'react';
+import data from '@/data.json';
 
 const Hero: React.FC = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -8,6 +9,8 @@ const Hero: React.FC = () => {
   const videoUrl = 'https://www.youtube.com/watch?v=JpfvxnNIHx8';
   // Remove autoplay from initial URL - we'll add it when needed
   const embedUrl = videoUrl.replace('watch?v=', 'embed/');
+  // Get meeting link from data.json
+  const meetingLink = data.meetingLink;
 
   useEffect(() => {
     // Handle modal close event to stop video
@@ -68,7 +71,7 @@ const Hero: React.FC = () => {
             Get the strategic technical guidance you need, when you need it. Our fractional CTO services help startups and growing companies make confident technical decisions, build scalable systems, and accelerate growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/contact" className="btn btn-primary">
+            <Link href={meetingLink} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
               Schedule a Free Consultation
             </Link>
             <Link href="/services" className="btn btn-outline">

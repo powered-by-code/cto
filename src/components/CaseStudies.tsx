@@ -1,48 +1,56 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import data from '@/data.json';
 
 interface CaseStudyCardProps {
+  id: string;
   title: string;
-  category: string;
+  industry: string;
+  description: string;
   image?: string;
 }
 
-const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ title, category, image }) => {
+const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ id, title, industry, description, image }) => {
   return (
-    <div className="card bg-base-300 shadow-md overflow-hidden">
+    <Link href={`/case-studies/${id}`} className="card bg-base-200 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
       <figure className="relative h-48 w-full">
-        <img
-          src={ "https://placehold.co/600x400"} 
-          alt={title}
-          // fill
-          className="object-cover"
-        />
+        {image ? (
+          <Image
+            src={image} 
+            alt={title}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <div className="bg-base-300 w-full h-full flex items-center justify-center">
+            <span className="text-base-content/50">No image</span>
+          </div>
+        )}
       </figure>
       <div className="card-body p-4">
-        <div className="text-xs opacity-70">{category}</div>
-        <h3 className="font-semibold">{title}</h3>
-        <div className="opacity-70 text-sm">Aeneianum</div>
+        <div className="badge badge-primary mb-1">{industry}</div>
+        <h3 className="font-bold text-lg mb-2">{title}</h3>
+        <p className="text-sm opacity-80 line-clamp-2">{description}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
 const CaseStudies: React.FC = () => {
-  const caseStudies = [
-    { title: "Fractional CTO for a local NGO", category: "Project", image: "/images/case-study-1.jpg" },
-    { title: "Fractional CTO for a local NGO", category: "Project", image: "/images/case-study-2.jpg" },
-    { title: "Fractional CTO for a local NGO", category: "Project", image: "/images/case-study-3.jpg" }
-  ];
+  // Get case studies from data.json
+  const caseStudies = data.caseStudies;
 
   return (
     <section className="py-12">
-      <h2 className="text-3xl font-bold mb-8 ">Case Studies</h2>
+      <h2 className="text-3xl font-bold mb-8">Case Studies</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {caseStudies.map((caseStudy, index) => (
+        {caseStudies.slice(0, 3).map((caseStudy, index) => (
           <CaseStudyCard 
             key={index} 
+            id={caseStudy.id}
             title={caseStudy.title} 
-            category={caseStudy.category}
+            industry={caseStudy.industry}
+            description={caseStudy.description}
             image={caseStudy.image}
           />
         ))}

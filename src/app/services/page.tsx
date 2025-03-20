@@ -1,70 +1,10 @@
 import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
 import Image from 'next/image';
+import data from '@/data.json';
 
-// Define service details
-const serviceDetails = [
-  {
-    id: 'fractional-cto',
-    title: 'Fractional CTO Services',
-    description: 'Bring strategic tech leadership to your startup without the full-time price tag. Get expert guidance when you need it most, whether that\'s a few hours per week or several days per month.',
-    features: [
-      'Technical strategy development and execution',
-      'Technology stack selection and optimization',
-      'Technical debt assessment and management',
-      'Product roadmap development with your team',
-      'Regular strategy sessions and progress reviews'
-    ]
-  },
-  {
-    id: 'tech-team-building',
-    title: 'Tech Team Building',
-    description: 'Build a high-performing technical team that delivers results. We help with recruitment, structure, processes, and culture to create a sustainable engineering organization.',
-    features: [
-      'Engineering team structure design',
-      'Recruitment strategy and technical interviews',
-      'Developer onboarding processes',
-      'Team performance optimization',
-      'Engineering culture development'
-    ]
-  },
-  {
-    id: 'pivot-support',
-    title: 'Technical Pivot Support',
-    description: 'Successfully navigate technical changes during business pivots. We provide the expertise you need to realign your technology with your new business direction quickly and efficiently.',
-    features: [
-      'Technical feasibility assessment',
-      'Legacy system evaluation and migration planning',
-      'Technology stack transition strategy',
-      'Team restructuring guidance',
-      'Risk mitigation during the pivot process'
-    ]
-  },
-  {
-    id: 'tech-cost-optimization',
-    title: 'Tech Cost Optimization',
-    description: 'Identify and eliminate unnecessary technology expenses without compromising growth. Our data-driven approach helps you invest smartly in the tech that truly matters.',
-    features: [
-      'Comprehensive tech spending audit',
-      'Cloud infrastructure optimization',
-      'Software license consolidation',
-      'Make vs. buy analysis',
-      'ROI-focused technology investment strategy'
-    ]
-  },
-  {
-    id: 'technical-due-diligence',
-    title: 'Technical Due Diligence',
-    description: 'Get a clear understanding of the technical risks and opportunities in your investment or acquisition targets. Our thorough assessments provide actionable insights for decision-making.',
-    features: [
-      'Architecture and code quality review',
-      'Technical debt quantification',
-      'Team capability assessment',
-      'Scalability and security evaluation',
-      'Technology risk assessment report'
-    ]
-  }
-];
+// Get services data from data.json
+const serviceDetails = data.services;
 
 export default function ServicesPage() {
   return (
@@ -79,19 +19,34 @@ export default function ServicesPage() {
           {serviceDetails.map((service) => (
             <Link key={service.id} href={`/services/${service.id}`} className="card bg-base-200 shadow-lg hover:shadow-xl transition-shadow">
               <div className="card-body">
-                <div className="h-40 bg-gray-300 mb-4 flex items-center justify-center">
-                  {/* Placeholder for image */}
-                  <span className="text-gray-500">Service Image</span>
+                <h2 className="card-title">{service.title}</h2>
+                <p className="my-4">{service.description}</p>
+                <div>
+                  <ul className="space-y-2">
+                    {service.features.slice(0, 3).map((feature, index) => (
+                      <li key={index} className="flex items-start">
+                        <svg className="w-5 h-5 text-primary mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="text-xs opacity-70">SERVICES</div>
-                <h3 className="card-title text-xl">{service.title}</h3>
-                <p className="my-4 line-clamp-3">{service.description}</p>
-                <div className="card-actions justify-end mt-auto">
-                  <span className="text-primary">Read more →</span>
+                <div className="card-actions justify-end mt-4">
+                  <Link href={`/services/${service.id}`} className="btn btn-sm btn-primary">
+                    Learn More
+                  </Link>
                 </div>
               </div>
             </Link>
           ))}
+        </div>
+        
+        <div className="mt-16 p-8 bg-base-200 rounded-lg">
+          <h2 className="text-2xl font-bold mb-4">Not Sure Which Service You Need?</h2>
+          <p className="mb-6">Take our quick assessment to find out which of our services best fits your current business challenges.</p>
+          <Link href="/assessment" className="btn btn-primary">Take the Assessment</Link>
         </div>
       </div>
     </PageLayout>

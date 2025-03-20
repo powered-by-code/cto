@@ -1,3 +1,5 @@
+import data from '@/data.json';
+
 const PartnerLogo: React.FC<{ name: string; category: string }> = ({ name, category }) => {
   return (
     <div className="flex flex-col items-center p-4">
@@ -6,25 +8,25 @@ const PartnerLogo: React.FC<{ name: string; category: string }> = ({ name, categ
         <span className="text-xs">{name.charAt(0)}</span>
       </div>
       <div className="text-sm font-medium">{name}</div>
-      <div className="text-xs">{category}</div>
+      <div className="text-xs opacity-70">{category}</div>
     </div>
   );
 };
 
 const Partners: React.FC = () => {
-  const clientPartners = [
-    { name: "TechStart", category: "SaaS Startup" },
-    { name: "FinEdge", category: "Fintech" },
-    { name: "HealthSync", category: "HealthTech" },
-    { name: "RetailAI", category: "E-commerce" }
-  ];
-
-  const techPartners = [
-    { name: "AWS", category: "Cloud Provider" },
-    { name: "GCP", category: "Cloud Provider" },
-    { name: "Azure", category: "Cloud Provider" },
-    { name: "Digital Ocean", category: "Cloud Provider" }
-  ];
+  // Use industry data from data.json to create example partners
+  const industries = data.industries;
+  const clientPartners = industries.map(industry => {
+    // Create example company names based on industries
+    const companySuffixes = ['Tech', 'AI', 'Hub', 'Logic', 'Edge'];
+    const randomSuffix = companySuffixes[Math.floor(Math.random() * companySuffixes.length)];
+    const name = industry.title.split(' ')[0] + randomSuffix;
+    
+    return {
+      name,
+      category: industry.title
+    };
+  }).slice(0, 4); // Limit to 4 partners
 
   return (
     <section className="py-12">
@@ -33,16 +35,6 @@ const Partners: React.FC = () => {
         <p className="mb-8">We've helped clients across various industries build scalable technology solutions</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {clientPartners.map((partner, index) => (
-            <PartnerLogo key={index} name={partner.name} category={partner.category} />
-          ))}
-        </div>
-      </div>
-      
-      <div>
-        <h2 className="text-3xl font-bold mb-4">Technology Partners</h2>
-        <p className="mb-8">We work with leading technology providers to deliver the best solutions</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {techPartners.map((partner, index) => (
             <PartnerLogo key={index} name={partner.name} category={partner.category} />
           ))}
         </div>

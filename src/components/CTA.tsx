@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import data from '@/data.json';
 
 const CTA: React.FC = () => {
+  // Get meeting link from data.json
+  const meetingLink = data.meetingLink;
+  
   return (
     <section className="py-12">
       <div className="card bg-base-200 shadow-lg">
@@ -13,7 +17,7 @@ const CTA: React.FC = () => {
             <Link href="/cto-assessment" className="btn btn-primary">
               Take the Free Assessment
             </Link>
-            <Link href="/contact" className="btn btn-outline">
+            <Link href={meetingLink} className="btn btn-outline" target="_blank" rel="noopener noreferrer">
               Talk to a Fractional CTO Now
             </Link>
           </div>

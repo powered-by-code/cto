@@ -1,14 +1,16 @@
 import Link from 'next/link';
 import { Building2, Music, Hotel, Volume2 } from 'lucide-react';
+import data from '@/data.json';
 
 interface IndustryTagProps {
   name: string;
   icon: React.ReactNode;
+  id: string;
 }
 
-const IndustryTag: React.FC<IndustryTagProps> = ({ name, icon }) => {
+const IndustryTag: React.FC<IndustryTagProps> = ({ name, icon, id }) => {
   return (
-    <Link href={`/industries/${name.toLowerCase()}`} className="btn w-full">
+    <Link href={`/industries/${id}`} className="btn w-full">
       {icon}
       <span>{name}</span>
     </Link>
@@ -16,12 +18,28 @@ const IndustryTag: React.FC<IndustryTagProps> = ({ name, icon }) => {
 };
 
 const Industries: React.FC = () => {
-  const industries = [
-    { name: "FinTech", icon: <Building2 className="w-5 h-5" /> },
-    { name: "Soundcloud", icon: <Volume2 className="w-5 h-5" /> },
-    { name: "Hospitality", icon: <Hotel className="w-5 h-5" /> },
-    { name: "Spotify", icon: <Music className="w-5 h-5" /> },
-  ];
+  // Map icon to each industry
+  const getIcon = (id: string) => {
+    switch (id) {
+      case 'fintech':
+        return <Building2 className="w-5 h-5" />;
+      case 'health-tech':
+        return <Volume2 className="w-5 h-5" />;
+      case 'e-commerce':
+        return <Hotel className="w-5 h-5" />;
+      case 'saas':
+        return <Music className="w-5 h-5" />;
+      default:
+        return <Building2 className="w-5 h-5" />;
+    }
+  };
+
+  // Get only the first 4 industries from data.json
+  const industries = data.industries.slice(0, 4).map(industry => ({
+    id: industry.id,
+    name: industry.title,
+    icon: getIcon(industry.id)
+  }));
 
   return (
     <section className="py-12">
@@ -30,13 +48,13 @@ const Industries: React.FC = () => {
         <div className="w-full md:w-1/2">
           <h2 className="text-3xl font-bold mb-4">Industries</h2>
           <p className="mb-6">
-            A cat named Mittens has made national headlines after she managed to find her way 
-            back home, despite being lost for over a week.
+            We serve a wide range of industries, bringing specialized expertise to the unique 
+            technical challenges faced by different sectors.
           </p>
           <div className="flex flex-row flex-wrap">
             {industries.map((industry, index) => (
-              <div className="w-full md:w-1/2 p-2">
-                <IndustryTag key={index} name={industry.name} icon={industry.icon} />
+              <div key={index} className="w-full md:w-1/2 p-2">
+                <IndustryTag name={industry.name} icon={industry.icon} id={industry.id} />
               </div>
             ))}
           </div>
