@@ -12,6 +12,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     // Handle modal close event to stop video
     const modal = modalRef.current;
+    
     const handleClose = () => {
       if (iframeRef.current) {
         // First, remove the iframe
@@ -32,8 +33,19 @@ const Hero: React.FC = () => {
       }
     };
 
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && modalRef.current?.open) {
+        modalRef.current.close();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
     modal?.addEventListener('close', handleClose);
-    return () => modal?.removeEventListener('close', handleClose);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+      modal?.removeEventListener('close', handleClose);
+    };
   }, [embedUrl]);
 
   const handleOpen = () => {
@@ -46,7 +58,7 @@ const Hero: React.FC = () => {
 
   return (
     <div className="hero bg-base-100 py-12">
-      <div className="hero-content flex-col md:flex-row justify-between w-full">
+      <div className="hero-content flex-col md:flex-row items-stretch justify-between w-full">
         <div className="text-left max-w-xl flex flex-col gap-4">
           <div className="text-base mb-2 text-primary">
             <span className="font-medium">Expert Technical Leadership for Growing Companies</span>
@@ -73,10 +85,10 @@ const Hero: React.FC = () => {
           </div>
         </div>
         <div 
-          className="bg-base-300 rounded-lg w-full md:w-1/2 h-48 md:h-64 cursor-pointer relative overflow-hidden"
+          className="bg-base-300 rounded-lg w-full md:w-1/2 cursor-pointer relative overflow-hidden"
           onClick={handleOpen}
         >
-          <picture>
+          <picture className="block h-full">
             <source srcSet="https://img.youtube.com/vi/JpfvxnNIHx8/maxresdefault.jpg" />
             <source srcSet="https://img.youtube.com/vi/JpfvxnNIHx8/hqdefault.jpg" />
             <img 
@@ -86,7 +98,7 @@ const Hero: React.FC = () => {
               loading="lazy"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.onerror = null; // Prevent infinite loop
+                target.onerror = null;
                 target.src = `https://img.youtube.com/vi/JpfvxnNIHx8/0.jpg`;
               }}
             />
@@ -101,8 +113,8 @@ const Hero: React.FC = () => {
 
       {/* DaisyUI Modal */}
       <dialog ref={modalRef} className="modal">
-        <div className="modal-box w-11/12 max-w-5xl h-auto p-0 bg-transparent">
-          <div className="relative w-full aspect-video">
+        <div className="modal-box w-[95vw] max-w-7xl h-[90vh] p-8 pt-16 bg-transparent">
+          <div className="relative w-full h-full">
             <iframe
               ref={iframeRef}
               src={embedUrl}
@@ -111,11 +123,11 @@ const Hero: React.FC = () => {
               allowFullScreen
             ></iframe>
           </div>
-          <div className="modal-action absolute -top-4 right-0">
+          <div className="modal-action absolute top-2 right-2">
             <form method="dialog">
-              <button className="btn btn-circle btn-ghost text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              <button className="btn btn-circle btn-lg bg-base-100 hover:bg-base-200 border-0">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </form>
