@@ -2,60 +2,61 @@ import Link from 'next/link';
 import Image from 'next/image';
 import data from '@/data.json';
 
-interface ResourceLinkProps {
-  title: string;
-  type: string;
-  readTime: string;
-  href: string;
-}
-
-const ResourceLink: React.FC<ResourceLinkProps> = ({ title, type, readTime, href }) => {
-  return (
-    <Link 
-      href={href} 
-      className="btn bg-base-300 hover:bg-primary btn-block justify-between text-left font-normal rounded-full"
-    >
-      <div className="flex items-center">
-        <span>{title}</span>
-        <span className="text-xs ml-2 opacity-70">{type} • {readTime}</span>
-      </div>
-      <span className="text-lg">→</span>
-    </Link>
-  );
-};
-
-const Resources: React.FC = () => {
-  // Get the first resource from each category
-  const featuredResources = data.resources.flatMap(category => 
-    category.resources.slice(0, 1).map(resource => ({
-      title: resource.title,
-      type: resource.type,
-      readTime: resource.readTime,
-      href: `/resources/${category.id}/${resource.title.toLowerCase().replace(/\s+/g, '-')}`
-    }))
-  ).slice(0, 3); // Limit to 3 resources
+export default function Resources() {
+  // Get the first 3 resources
+  const featuredResources = data.resources.slice(0, 3).map(resource => ({
+    title: resource.title,
+    type: resource.type,
+    readTime: resource.readTime,
+    description: resource.description,
+    image: resource.image,
+    id: resource.id
+  }));
 
   return (
-    <section className="py-12">
-      <h2 className="text-3xl font-bold mb-8 text-center">Resources</h2>
-      <div className="max-w-xl mx-auto flex flex-col gap-3">
-        {featuredResources.map((resource, index) => (
-          <ResourceLink 
-            key={index} 
-            title={resource.title} 
-            type={resource.type}
-            readTime={resource.readTime}
-            href={resource.href} 
-          />
-        ))}
-        <div className="text-center mt-4">
-          <Link href="/resources" className="link link-primary">
-            VIEW ALL RESOURCES
+    <section className="py-16 bg-base-200">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Featured Resources</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Access our collection of guides, templates, and case studies designed to help you build and scale your technical organization effectively.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredResources.map((resource) => (
+            <div key={resource.id} className="card bg-base-100 shadow-lg">
+              <figure className="relative h-48">
+                <Image
+                  src={resource.image}
+                  alt={resource.title}
+                  fill
+                  className="object-cover"
+                />
+              </figure>
+              <div className="card-body">
+                <div className="flex justify-between items-start mb-2">
+                  <span className="badge badge-primary">{resource.type}</span>
+                  <span className="text-sm text-gray-500">{resource.readTime}</span>
+                </div>
+                <h3 className="card-title text-xl">{resource.title}</h3>
+                <p className="mt-2">{resource.description}</p>
+                <div className="card-actions justify-end mt-4">
+                  <Link href={`/resources/${resource.id}`} className="btn btn-primary">
+                    Read More
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Link href="/resources" className="btn btn-primary">
+            View All Resources
           </Link>
         </div>
       </div>
     </section>
   );
-};
-
-export default Resources; 
+} 

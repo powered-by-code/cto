@@ -2,6 +2,7 @@ import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
 import Image from 'next/image';
 import data from '@/data.json';
+import MeetingButton from '@/components/MeetingButton';
 
 export default function AboutUsPage() {
   // Get data from data.json
@@ -68,20 +69,16 @@ export default function AboutUsPage() {
         </section>
 
         <section className="mt-16">
-          <div className="card bg-base-200 shadow-lg">
-            <div className="card-body flex flex-col items-center">
-              <h2 className="card-title text-2xl">Ready to Level Up Your Technical Leadership?</h2>
-              <p className="my-4">
-                Schedule a free consultation to discuss how our fractional CTO services can help your business overcome technical challenges and accelerate growth.
-              </p>
-              <div className="card-actions">
-                <Link href={meetingLink} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                  Schedule a Consultation
-                </Link>
-                <Link href="/services" className="btn btn-outline">
-                  Explore Our Services
-                </Link>
-              </div>
+          <div className="card bg-base-200 shadow-lg p-8 text-center mt-16">
+            <h2 className="text-2xl font-bold mb-4">Ready to Work Together?</h2>
+            <p className="max-w-2xl mx-auto mb-6">
+              Schedule a consultation to discuss how our team can help solve your technical challenges.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <MeetingButton text="Schedule a Free Consultation" />
+              <Link href="/services" className="btn btn-outline">
+                Explore Our Services
+              </Link>
             </div>
           </div>
         </section>

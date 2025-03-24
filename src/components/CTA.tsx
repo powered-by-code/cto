@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import data from '@/data.json';
+import MeetingButton from './MeetingButton';
 
 const CTA: React.FC = () => {
   // Get meeting link from data.json
@@ -17,9 +18,7 @@ const CTA: React.FC = () => {
             <Link href="/cto-assessment" className="btn btn-primary">
               Take the Free Assessment
             </Link>
-            <Link href={meetingLink} className="btn btn-outline" target="_blank" rel="noopener noreferrer">
-              Talk to a Fractional CTO Now
-            </Link>
+            <MeetingButton variant="outline" text="Talk to a Fractional CTO Now" />
           </div>
         </div>
       </div>

@@ -6,3 +6,8 @@
     "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade",
     "night", "coffee", "winter";
 }
+
+/* Global button styling for rounded edges */
+.btn {
+  border-radius: 9999px !important; /* Preserve circle buttons as circles */
+}

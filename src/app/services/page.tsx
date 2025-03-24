@@ -2,6 +2,7 @@ import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
 import Image from 'next/image';
 import data from '@/data.json';
+import ServiceCard from '@/components/ServiceCard';
 
 // Get services data from data.json
 const serviceDetails = data.services;
@@ -16,30 +17,14 @@ export default function ServicesPage() {
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {serviceDetails.map((service) => (
-            <Link key={service.id} href={`/services/${service.id}`} className="card bg-base-200 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="card-body">
-                <h2 className="card-title">{service.title}</h2>
-                <p className="my-4">{service.description}</p>
-                <div>
-                  <ul className="space-y-2">
-                    {service.features.slice(0, 3).map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <svg className="w-5 h-5 text-primary mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="card-actions justify-end mt-4">
-                  <Link href={`/services/${service.id}`} className="btn btn-sm btn-primary">
-                    Learn More
-                  </Link>
-                </div>
-              </div>
-            </Link>
+          {serviceDetails.map(service => (
+            <ServiceCard
+              key={service.id}
+              id={service.id}
+              title={service.title}
+              description={service.description}
+              features={service.features}
+            />
           ))}
         </div>
         

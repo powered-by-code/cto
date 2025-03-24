@@ -2,6 +2,7 @@ import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import data from '@/data.json';
+import MeetingButton from '@/components/MeetingButton';
 
 // Get service details from data.json
 const serviceDetails = data.services;
@@ -80,9 +81,7 @@ export default function ServicePage({ params }: { params: { id: string } }) {
                 <p className="my-4">
                   Schedule a free consultation to discuss how our {service.title} can help your business.
                 </p>
-                <Link href={meetingLink} className="btn btn-primary w-full" target="_blank" rel="noopener noreferrer">
-                  Book a Free Consultation
-                </Link>
+                <MeetingButton text="Book a Free Consultation" className="w-full" />
               </div>
             </div>
             

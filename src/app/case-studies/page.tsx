@@ -3,6 +3,8 @@ import CaseStudies from '@/components/CaseStudies';
 import Link from 'next/link';
 import Image from 'next/image';
 import data from '@/data.json';
+import MeetingButton from '@/components/MeetingButton';
+import { Metadata } from 'next';
 
 // Get case study details from data.json
 const caseStudyDetails = data.caseStudies;
@@ -46,18 +48,15 @@ export default function CaseStudiesPage() {
           ))}
         </div>
         
-        <div className="card bg-base-200 shadow-lg p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to Achieve Similar Results?</h2>
-          <p className="max-w-2xl mx-auto mb-6">
-            Schedule a free consultation to discuss your technical challenges and learn how our fractional CTO services can help your business grow.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={meetingLink} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-              Book a Consultation
-            </Link>
-            <Link href="/services" className="btn btn-outline">
-              Explore Our Services
-            </Link>
+        <div className="card bg-base-200 shadow-lg mt-12">
+          <div className="card-body text-center">
+            <h2 className="text-2xl font-bold mb-2">Ready to Discuss Your Technical Challenges?</h2>
+            <p className="mb-6 max-w-2xl mx-auto">
+              Schedule a free consultation to explore how our expertise can help your business overcome technical hurdles and accelerate growth.
+            </p>
+            <div className="flex justify-center">
+              <MeetingButton text="Schedule a Free Consultation" />
+            </div>
           </div>
         </div>
       </div>

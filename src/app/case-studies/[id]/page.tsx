@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import CaseStudyQuiz from '@/components/CaseStudyQuiz';
 import data from '@/data.json';
+import MeetingButton from '@/components/MeetingButton';
 
 // Get case study details from data.json
 const caseStudyDetails = data.caseStudies;
@@ -86,18 +87,11 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
 
             <div className="mt-8 card bg-base-200 shadow-lg">
               <div className="card-body">
-                <h3 className="card-title text-lg">Facing Similar Challenges?</h3>
+                <h3 className="card-title">Facing Similar Challenges?</h3>
                 <p className="my-4">
-                  Our fractional CTO services can help you navigate technical challenges like these and accelerate your business growth.
+                  Schedule a free consultation to discuss how we can help you achieve similar results.
                 </p>
-                <div className="flex flex-col gap-3">
-                  <Link href="/services" className="btn btn-outline w-full">
-                    Explore Our Services
-                  </Link>
-                  <Link href="/assessment" className="btn btn-outline w-full">
-                    Take the CTO Assessment
-                  </Link>
-                </div>
+                <MeetingButton text="Book a Free Consultation" className="w-full" />
               </div>
             </div>
           </div>
@@ -109,9 +103,7 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                 <p className="my-4">
                   Our fractional CTO services help businesses solve complex technical challenges and achieve impressive results.
                 </p>
-                <Link href={meetingLink} className="btn btn-primary w-full" target="_blank" rel="noopener noreferrer">
-                  Book a Consultation
-                </Link>
+                <MeetingButton text="Book a Consultation" className="w-full" />
                 
                 <div className="divider">OR</div>
                 

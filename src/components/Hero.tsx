@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useRef, useEffect } from 'react';
 import data from '@/data.json';
+import MeetingButton from './MeetingButton';
 
 const Hero: React.FC = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -71,9 +72,7 @@ const Hero: React.FC = () => {
             Get the strategic technical guidance you need, when you need it. Our fractional CTO services help startups and growing companies make confident technical decisions, build scalable systems, and accelerate growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href={meetingLink} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-              Schedule a Free Consultation
-            </Link>
+            <MeetingButton text="Schedule a Free Consultation" />
             <Link href="/services" className="btn btn-outline">
               Explore Our Services
             </Link>

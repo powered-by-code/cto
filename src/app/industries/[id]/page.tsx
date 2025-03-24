@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import data from '@/data.json';
+import MeetingButton from '@/components/MeetingButton';
 
 // Get industry details from data.json
 const industryDetails = data.industries;
@@ -107,9 +108,7 @@ export default function IndustryPage({ params }: { params: { id: string } }) {
                 <p className="my-4">
                   Our fractional CTO services help {industry.title.toLowerCase()} companies navigate technical challenges and build scalable systems.
                 </p>
-                <Link href={meetingLink} className="btn btn-primary w-full" target="_blank" rel="noopener noreferrer">
-                  Schedule a Consultation
-                </Link>
+                <MeetingButton text="Schedule a Consultation" className="w-full" />
                 
                 <div className="divider">OR</div>
                 
@@ -140,6 +139,18 @@ export default function IndustryPage({ params }: { params: { id: string } }) {
                   </Link>
                     </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <div className="card bg-base-200 shadow-lg">
+                <div className="card-body">
+                  <h3 className="card-title">Ready to Get Started?</h3>
+                  <p className="my-4">
+                    Schedule a free consultation to discuss your {industry.title} technical challenges.
+                  </p>
+                  <MeetingButton text="Book a Free Consultation" className="w-full" />
                 </div>
               </div>
             </div>
