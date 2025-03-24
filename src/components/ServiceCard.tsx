@@ -6,15 +6,26 @@ interface ServiceCardProps {
   title: string;
   description: string;
   features?: string[];
+  image?: string;
   compact?: boolean;
   className?: string;
 }
 
-const ServiceCard = ({ id, title, description, features, compact = false, className = '' }: ServiceCardProps) => {
+const ServiceCard = ({ id, title, description, features, image, compact = false, className = '' }: ServiceCardProps) => {
   if (compact) {
     return (
       <Link href={`/services/${id}`} className={`card bg-base-200 hover:shadow-xl transition-shadow h-full ${className}`}>
         <div className="card-body p-6 flex flex-col justify-between">
+          {image && (
+            <div className="mb-4 relative w-full h-32">
+              <Image
+                src={image}
+                alt={title}
+                fill
+                className="object-contain"
+              />
+            </div>
+          )}
           <div>
             <div className="text-xs uppercase tracking-wider opacity-70 font-medium mb-2">Service</div>
             <h3 className="font-semibold text-lg mb-2">{title}</h3>
@@ -31,6 +42,16 @@ const ServiceCard = ({ id, title, description, features, compact = false, classN
   return (
     <div className={`card bg-base-200 shadow-lg hover:shadow-xl transition-shadow ${className}`}>
       <div className="card-body">
+        {image && (
+          <div className="mb-4 relative w-full h-48">
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-contain"
+            />
+          </div>
+        )}
         <h3 className="card-title">{title}</h3>
         <p className="my-4">{description}</p>
         {features && features.length > 0 && (

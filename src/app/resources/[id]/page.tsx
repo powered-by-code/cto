@@ -156,9 +156,10 @@ export default function ResourcePage({ params }: { params: { id: string } }) {
                     title={service.title}
                     description={service.description}
                     features={service.features}
+                    image={service.image}
                   />
-                </div>
-              )}
+              </div>
+            )}
             </div>
           </div>
 

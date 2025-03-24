@@ -11,6 +11,119 @@
             "title": "Fractional CTO Services",
             "description": "Bring strategic tech leadership to your startup without the full-time price tag. Get expert guidance when you need it most, whether that's a few hours per week or several days per month.",
             "longDescription": "As a startup founder, you're juggling countless responsibilities. Technical leadership shouldn't be a bottleneck to your growth. Our Fractional CTO service provides the strategic tech guidance you need, when you need it, without the full-time executive cost. We work alongside your team to develop clear technical strategies, make informed architecture decisions, and ensure your technology supports your business goals. Whether you're a non-technical founder needing a trusted tech advisor or a technical founder looking to delegate CTO responsibilities, our flexible engagement model adapts to your specific needs and growth stage.",
+            "image": "https://placehold.co/600x400/red/white?text=Fractional+CTO",
+            "heroImage": "https://placehold.co/1200x400/red/white?text=Fractional+CTO+Hero",
+            "testimonialImage": "https://placehold.co/150x150/gray/white?text=Jason",
+            "testimonialName": "JASON GARY",
+            "testimonialTitle": "CTO at ACME",
+            "assessmentImage": "https://placehold.co/400x300/blue/white?text=Assessment",
+            "offerings": [
+                {
+                    "title": "Strategic Tech Leadership",
+                    "image": "https://placehold.co/300x300/red/white?text=Leadership",
+                    "highlight": false,
+                    "points": [
+                        "Expert guidance aligned with business goals",
+                        "Direct line of communication",
+                        "Consistent, reliable support",
+                        "Seamless workflow integration"
+                    ]
+                },
+                {
+                    "title": "Technology Stack Optimization",
+                    "image": "https://placehold.co/300x300/red/white?text=Stack",
+                    "highlight": true,
+                    "points": [
+                        "Deep product understanding",
+                        "Efficient architecture design",
+                        "Technical debt reduction",
+                        "Measurable performance improvements"
+                    ]
+                },
+                {
+                    "title": "Team Development & Process",
+                    "image": "https://placehold.co/300x300/red/white?text=Team",
+                    "highlight": false,
+                    "points": [
+                        "Engineering team structure",
+                        "Hiring and onboarding processes",
+                        "Code review and quality standards",
+                        "Team productivity optimization"
+                    ]
+                }
+            ],
+            "comparison": {
+                "title": "CTO vs Fractional CTO",
+                "stages": [
+                    {
+                        "name": "Product Discovery",
+                        "traditional": [
+                            "Full-time commitment with high monthly cost",
+                            "Limited by one person's expertise"
+                        ],
+                        "fractional": [
+                            "Flexible engagement based on project needs",
+                            "Access to a team with diverse expertise"
+                        ]
+                    },
+                    {
+                        "name": "Prototyping",
+                        "traditional": [
+                            "May be too expensive for early-stage startups",
+                            "Requires full compensation package"
+                        ],
+                        "fractional": [
+                            "Pay only for the hours you need",
+                            "Scale up or down based on project phases"
+                        ]
+                    },
+                    {
+                        "name": "Development",
+                        "traditional": [
+                            "In-house knowledge building",
+                            "Dedicated to your company only"
+                        ],
+                        "fractional": [
+                            "Cross-industry experience and patterns",
+                            "Best practices from multiple companies"
+                        ]
+                    },
+                    {
+                        "name": "Scaling",
+                        "traditional": [
+                            "May have experience from only 1-2 scaling events",
+                            "Hiring/training costs for additional expertise"
+                        ],
+                        "fractional": [
+                            "Extensive scaling experience across companies",
+                            "Access to specialists for specific challenges"
+                        ]
+                    }
+                ]
+            },
+            "process": {
+                "title": "Our Process",
+                "image": "https://placehold.co/600x500/red/white?text=Process+Diagram",
+                "steps": [
+                    {
+                        "title": "Discovery & Assessment",
+                        "description": "We begin by understanding your business goals, technical challenges, and team structure through a comprehensive assessment."
+                    },
+                    {
+                        "title": "Strategy Development",
+                        "description": "Based on our findings, we create a tailored technical strategy and roadmap aligned with your business objectives."
+                    },
+                    {
+                        "title": "Implementation Support",
+                        "description": "We provide hands-on guidance and support as you implement the strategy, addressing challenges as they arise."
+                    },
+                    {
+                        "title": "Continuous Improvement",
+                        "description": "We regularly review progress, make adjustments, and ensure your technical direction evolves with your business."
+                    }
+                ]
+            },
+            "resultsHeadline": "An expertly designed technical strategy and implementation plan tailored to your business goals",
             "features": [
                 "Technical strategy development and execution",
                 "Technology stack selection and optimization",
@@ -41,6 +154,12 @@
             "title": "Tech Team Building",
             "description": "Build a high-performing technical team that delivers results. We help with recruitment, structure, processes, and culture to create a sustainable engineering organization.",
             "longDescription": "Building an effective technical team is one of the most challenging aspects of growing a technology business. Our Tech Team Building service guides you through this process, from defining the right roles and team structure to recruiting, onboarding, and developing your engineering talent. We implement proven processes that enhance productivity, code quality, and team satisfaction. Whether you're hiring your first developer or scaling a team of dozens, we provide the expertise needed to build a technical organization that delivers consistent results and supports your business objectives.",
+            "image": "https://placehold.co/600x400/green/white?text=Team+Building",
+            "heroImage": "https://placehold.co/1200x400/green/white?text=Team+Building+Hero",
+            "testimonialImage": "https://placehold.co/150x150/gray/white?text=Sarah",
+            "testimonialName": "SARAH SMITH",
+            "testimonialTitle": "CEO at TechGrowth",
+            "assessmentImage": "https://placehold.co/400x300/blue/white?text=Team+Assessment",
             "features": [
                 "Engineering team structure design",
                 "Recruitment strategy and technical interviews",
@@ -71,6 +190,12 @@
             "title": "Technical Pivot Support",
             "description": "Successfully navigate technical changes during business pivots. We provide the expertise you need to realign your technology with your new business direction quickly and efficiently.",
             "longDescription": "When your business direction changes, your technology needs to keep pace. Our Technical Pivot Support service helps you navigate the complex technical challenges that arise during pivots, acquisitions, or major strategic shifts. We work with your team to evaluate existing systems, plan efficient transitions, and implement new technology architectures that support your evolved business model. Our approach minimizes disruption while maximizing the preservation of valuable technical assets and capabilities.",
+            "image": "https://placehold.co/600x400/purple/white?text=Pivot+Support",
+            "heroImage": "https://placehold.co/1200x400/purple/white?text=Pivot+Hero",
+            "testimonialImage": "https://placehold.co/150x150/gray/white?text=Mark",
+            "testimonialName": "MARK DAVIS",
+            "testimonialTitle": "Founder at PivotTech",
+            "assessmentImage": "https://placehold.co/400x300/blue/white?text=Pivot+Assessment",
             "features": [
                 "Technical feasibility assessment",
                 "Legacy system evaluation and migration planning",
@@ -101,6 +226,12 @@
             "title": "Tech Cost Optimization",
             "description": "Identify and eliminate unnecessary technology expenses without compromising growth. Our data-driven approach helps you invest smartly in the tech that truly matters.",
             "longDescription": "In today's fast-paced startup environment, technology costs can quickly spiral out of control. Our Tech Cost Optimization service helps you identify areas of inefficiency and implement strategic changes that reduce expenses without compromising capabilities. We analyze your current infrastructure, licensing, development practices, and technology utilization patterns to uncover opportunities for significant savings. Our recommendations balance immediate cost reduction with long-term technology needs, ensuring you're investing your limited resources in the areas that deliver the greatest business value.",
+            "image": "https://placehold.co/600x400/orange/white?text=Cost+Optimization",
+            "heroImage": "https://placehold.co/1200x400/orange/white?text=Cost+Hero",
+            "testimonialImage": "https://placehold.co/150x150/gray/white?text=Alex",
+            "testimonialName": "ALEX WONG",
+            "testimonialTitle": "CFO at ScaleUp Inc",
+            "assessmentImage": "https://placehold.co/400x300/blue/white?text=Cost+Assessment",
             "features": [
                 "Comprehensive tech spending audit",
                 "Cloud infrastructure optimization",
@@ -131,6 +262,12 @@
             "title": "Technical Due Diligence",
             "description": "Get a clear understanding of the technical risks and opportunities in your investment or acquisition targets. Our thorough assessments provide actionable insights for decision-making.",
             "longDescription": "Whether you're considering an investment, acquisition, or partnership, understanding the technical foundation is crucial to assessing true value and risk. Our Technical Due Diligence service provides comprehensive evaluations of technology organizations, codebases, architecture, and processes. We identify strengths, weaknesses, technical debt, and hidden opportunities that impact valuation and integration potential. Our reports go beyond surface-level assessments to provide actionable insights that inform your investment decisions and post-transaction planning.",
+            "image": "https://placehold.co/600x400/teal/white?text=Due+Diligence",
+            "heroImage": "https://placehold.co/1200x400/teal/white?text=Diligence+Hero",
+            "testimonialImage": "https://placehold.co/150x150/gray/white?text=Jennifer",
+            "testimonialName": "JENNIFER LEE",
+            "testimonialTitle": "Partner at Venture Capital",
+            "assessmentImage": "https://placehold.co/400x300/blue/white?text=Diligence+Assessment",
             "features": [
                 "Architecture and code quality review",
                 "Technical debt quantification",
@@ -163,7 +300,7 @@
             "title": "SaaS Startups",
             "description": "We help SaaS founders build scalable architectures, optimize cloud infrastructure, implement efficient development processes, and create technical roadmaps that support rapid growth.",
             "longDescription": "Software-as-a-Service businesses face unique technical challenges that require specialized expertise. Our fractional CTO services are tailored to help SaaS founders navigate the complexities of building, scaling, and optimizing their platforms. We understand the critical importance of architecture decisions that enable future growth without requiring costly rewrites. Our team works with SaaS companies at all stages, from early prototypes to scaling enterprises, providing the technical leadership needed to make informed decisions about cloud infrastructure, database design, API architecture, security implementations, and development workflows. We help you build systems that can scale with your user base while keeping technical debt manageable and operating costs optimized.",
-            "image": "/images/industry-saas.jpg",
+            "image": "https://placehold.co/600x400/blue/white?text=SaaS+Industry",
             "services": [
                 "Cloud architecture optimization",
                 "Scalable infrastructure design",
@@ -194,7 +331,7 @@
             "title": "FinTech",
             "description": "We assist FinTech startups with secure architecture design, regulatory compliance, payment integrations, and building high-reliability systems that handle financial data with the utmost integrity.",
             "longDescription": "FinTech companies operate in a uniquely challenging space that combines the fast-paced nature of technology startups with the security and compliance demands of the financial industry. Our fractional CTO services help FinTech founders navigate this complex landscape while building scalable, secure systems. We provide guidance on implementing financial data security best practices, achieving regulatory compliance (PCI-DSS, SOC 2, GDPR, etc.), integrating with banking and payment APIs, and designing high-reliability architectures that support financial transactions. Our team helps you make technology decisions that earn trust from users, partners, and regulators while enabling your business to grow and innovate.",
-            "image": "/images/industry-fintech.jpg",
+            "image": "https://placehold.co/600x400/green/white?text=FinTech+Industry",
             "services": [
                 "Secure payment architectures",
                 "Financial data management",
@@ -225,7 +362,7 @@
             "title": "Marketplaces",
             "description": "We support marketplace founders in building platforms that scale with growing users and transactions, implementing efficient matching algorithms, and designing systems that provide exceptional experiences for all sides of the market.",
             "longDescription": "Marketplace businesses face unique technical challenges in connecting suppliers and customers efficiently at scale. Our fractional CTO services help marketplace founders build platforms that create exceptional experiences for all participants. We provide guidance on critical aspects such as matching algorithm development, transaction and payment systems, trust and safety mechanisms, and scaling architecture to handle increasing users and listings. Our team works with you to design and implement the technical infrastructure that allows your marketplace to grow while maintaining performance, reliability, and user satisfaction across all sides of your platform.",
-            "image": "/images/industry-marketplace.jpg",
+            "image": "https://placehold.co/600x400/purple/white?text=Marketplace+Industry",
             "services": [
                 "Marketplace architecture design",
                 "Search and matching optimization",
@@ -256,7 +393,7 @@
             "title": "E-Commerce",
             "description": "We enable e-commerce companies to build robust shopping experiences, optimize conversion rates through technical improvements, and implement inventory, fulfillment, and payment systems that scale with your business.",
             "longDescription": "E-commerce businesses require technical solutions that deliver seamless shopping experiences while efficiently managing inventory, payments, and fulfillment. Our fractional CTO services help e-commerce founders make strategic technology decisions that drive growth and operational efficiency. We provide expertise in selecting and customizing e-commerce platforms, optimizing site performance for improved conversion rates, implementing inventory management systems, and integrating with payment processors and shipping providers. Our team helps you navigate technical decisions around content delivery networks, mobile optimization, personalization engines, and security implementations. We work with your team to build scalable, reliable e-commerce systems that provide exceptional customer experiences while supporting your operational needs.",
-            "image": "/images/industry-ecommerce.jpg",
+            "image": "https://placehold.co/600x400/orange/white?text=E-Commerce+Industry",
             "services": [
                 "E-commerce platform selection",
                 "Custom storefront development",
@@ -287,7 +424,7 @@
             "title": "Health Tech",
             "description": "We help health tech founders navigate the unique challenges of building healthcare applications, including HIPAA compliance, secure patient data management, and integration with existing healthcare systems.",
             "longDescription": "Health tech companies operate at the intersection of technology innovation and healthcare regulation. Our fractional CTO services help health tech founders build compliant, secure systems that deliver value to patients and providers. We provide expertise in HIPAA-compliant architecture design, healthcare data security, electronic health record (EHR) integrations, telemedicine implementations, and navigating healthcare regulations as they apply to technology. Our team helps you make technical decisions that support your mission of improving healthcare outcomes while meeting the stringent requirements of the healthcare industry. We work with your team to build healthcare applications that earn trust from patients, providers, and regulatory bodies.",
-            "image": "/images/industry-healthtech.jpg",
+            "image": "https://placehold.co/600x400/teal/white?text=Health+Tech+Industry",
             "services": [
                 "HIPAA-compliant architecture",
                 "Healthcare data security",
@@ -318,7 +455,7 @@
             "title": "AI/ML Startups",
             "description": "We assist AI and machine learning startups in building efficient data pipelines, selecting the right infrastructure for model training and deployment, and creating scalable architectures for ML-powered applications.",
             "longDescription": "Artificial intelligence and machine learning startups face unique technical challenges in data management, model development, and production deployment. Our fractional CTO services provide the specialized expertise AI/ML founders need to build effective, scalable, and maintainable systems. We help design efficient data pipelines for collecting, cleaning, and preparing training data, select appropriate infrastructure for model training and deployment, implement MLOps practices for continuous model improvement, and create scalable architectures for ML-powered applications. Our team understands the technical complexities of building AI systems that perform reliably in production environments while allowing for ongoing refinement and optimization. We work with your data scientists and engineers to turn promising models into production-ready systems that deliver value to users.",
-            "image": "/images/industry-ai.jpg",
+            "image": "https://placehold.co/600x400/red/white?text=AI-ML+Industry",
             "services": [
                 "ML infrastructure design",
                 "Data pipeline architecture",
@@ -353,7 +490,7 @@
             "description": "Helping a rapidly growing SaaS company redesign their architecture to handle 10x user growth without sacrificing performance or reliability.",
             "challenge": "A fast-growing B2B SaaS company with 50,000+ users was experiencing significant performance degradation and reliability issues as they scaled. Their monolithic architecture couldn't handle the increasing load, resulting in slow response times, frequent outages, and escalating cloud infrastructure costs. Customer complaints were rising, and the engineering team was spending more time firefighting than building new features. The company needed to redesign their technical architecture to support their growth trajectory without disrupting their existing customer base.",
             "solution": "As their fractional CTO, we worked closely with the company's engineering team to develop and implement a comprehensive architectural transformation. Our approach included:\n\n1. Conducting a thorough assessment of the current architecture, identifying bottlenecks and failure points.\n\n2. Designing a new microservices-based architecture with clear domain boundaries and service interfaces.\n\n3. Implementing a phased migration plan that minimized disruption to existing customers.\n\n4. Redesigning the database layer with proper sharding and caching strategies to improve performance.\n\n5. Setting up comprehensive monitoring and auto-scaling capabilities to anticipate and respond to demand fluctuations.\n\n6. Implementing CI/CD pipelines to streamline deployment and reduce time-to-market.\n\n7. Training the engineering team on best practices for building and maintaining distributed systems.",
-            "image": "/images/case-saas.jpg",
+            "image": "https://placehold.co/800x450/blue/white?text=SaaS+Case+Study",
             "results": [
                 "Reduced infrastructure costs by 40% while handling 10x more traffic",
                 "Improved system uptime from 99.5% to 99.99%",
@@ -376,7 +513,7 @@
             "description": "Supporting a financial technology startup in building a secure, compliant payment processing system that met stringent regulatory requirements.",
             "challenge": "A fintech startup had developed an innovative payment processing solution but faced significant challenges meeting the stringent security and compliance requirements necessary to operate in the financial sector. They needed to achieve PCI DSS compliance, implement robust security measures, and establish the necessary controls for handling sensitive financial data. Without these elements in place, they couldn't launch their product or secure partnerships with financial institutions. The technical team lacked experience with financial compliance frameworks and security best practices.",
             "solution": "Working as their fractional CTO, we guided the company through the complex landscape of financial technology compliance and security. Our approach included:\n\n1. Performing a comprehensive gap analysis against PCI DSS requirements and other relevant regulatory frameworks.\n\n2. Designing a secure architecture for processing and storing sensitive payment information.\n\n3. Implementing end-to-end encryption, secure authentication, and authorization controls.\n\n4. Establishing secure development practices, including code reviews, static analysis, and penetration testing.\n\n5. Creating a comprehensive security monitoring and incident response capability.\n\n6. Developing policies, procedures, and documentation required for compliance certification.\n\n7. Preparing the team for compliance audits and guiding them through the certification process.",
-            "image": "/images/case-fintech.jpg",
+            "image": "https://placehold.co/800x450/green/white?text=FinTech+Case+Study",
             "results": [
                 "Achieved PCI DSS and SOC 2 compliance in record time",
                 "Implemented secure architecture processing $10M daily",
@@ -399,7 +536,7 @@
             "description": "Transforming a struggling marketplace platform into a high-performance system capable of handling millions of transactions.",
             "challenge": "An online service marketplace was experiencing significant technical challenges as they attempted to scale their platform. Their matching algorithm was inefficient, leading to poor user connections and lost revenue. Payment processing was unreliable, causing trust issues with service providers. The platform suffered from frequent outages during peak usage times, and fraud was increasing as they grew. These technical limitations were preventing the company from raising their next funding round and threatening their market position.",
             "solution": "As their fractional CTO, we implemented a comprehensive technical transformation strategy:\n\n1. Redesigned the matching algorithm to consider multiple factors including location, availability, ratings, and specific service attributes.\n\n2. Built a robust payment and escrow system with proper reconciliation and error handling.\n\n3. Implemented a sophisticated fraud detection system using behavioral analytics and machine learning.\n\n4. Restructured the database and caching layers to improve performance and reduce load times.\n\n5. Redesigned the architecture to be horizontally scalable, with proper load balancing and failover capabilities.\n\n6. Implemented comprehensive monitoring and alerting to identify and address issues before they impacted users.\n\n7. Established performance testing processes to ensure the platform could handle projected growth.",
-            "image": "/images/case-marketplace.jpg",
+            "image": "https://placehold.co/800x450/purple/white?text=Marketplace+Case+Study",
             "results": [
                 "Redesigned matching algorithm improving conversion by 35%",
                 "Built scalable payment and escrow system handling 3M+ monthly transactions",
@@ -422,7 +559,7 @@
             "description": "Developing a HIPAA-compliant architecture for a telehealth platform ensuring patient data security while supporting rapid growth.",
             "challenge": "A telehealth startup had developed an innovative platform connecting patients with healthcare providers, but faced significant challenges implementing the rigorous security and compliance measures required in healthcare. They needed to achieve HIPAA compliance, implement secure video consultations, properly manage protected health information (PHI), and integrate with existing healthcare systems. Without a solid compliance foundation, they were unable to scale their business or partner with major healthcare providers. Their small technical team lacked healthcare compliance expertise.",
             "solution": "Serving as their fractional CTO, we led the development of a comprehensive HIPAA-compliant technical architecture and processes:\n\n1. Conducted a thorough HIPAA gap analysis and created a detailed remediation plan.\n\n2. Designed and implemented a secure architecture for handling protected health information (PHI).\n\n3. Established end-to-end encryption for all patient data and communications, including video consultations.\n\n4. Implemented proper authentication, authorization, and audit logging throughout the platform.\n\n5. Developed secure APIs for integrating with electronic health record (EHR) systems.\n\n6. Created a comprehensive security incident response plan and breach notification procedures.\n\n7. Trained the engineering team on healthcare compliance requirements and secure development practices.",
-            "image": "/images/case-healthtech.jpg",
+            "image": "https://placehold.co/800x450/teal/white?text=Health+Tech+Case+Study",
             "results": [
                 "Built fully HIPAA-compliant system passing all security audits",
                 "Designed secure video consultation platform supporting 50,000+ daily consultations",
@@ -445,7 +582,7 @@
             "description": "Helping an e-commerce company restructure their engineering team, improve development processes, and deliver a critical platform upgrade on time.",
             "challenge": "A multi-channel e-commerce company was experiencing severe problems with their engineering organization. Team turnover was high, with key engineers leaving regularly. The development process was chaotic, with no consistent methodologies, resulting in missed deadlines and poor quality code. A critical platform upgrade had been delayed multiple times, putting the business at risk. The engineering and product teams were in constant conflict, and morale was at an all-time low. The company needed to transform their technical team and delivery capability quickly.",
             "solution": "Acting as their fractional CTO, we implemented a comprehensive transformation of the engineering organization:\n\n1. Conducted in-depth interviews with team members to understand root issues and gather improvement suggestions.\n\n2. Restructured the engineering team with clear roles, responsibilities, and career paths.\n\n3. Implemented Agile development methodologies with proper planning, prioritization, and delivery processes.\n\n4. Established quality assurance practices including automated testing, code reviews, and deployment verification.\n\n5. Created a technical debt reduction plan that balanced new feature development with system improvements.\n\n6. Implemented collaborative processes between engineering, product, and business teams.\n\n7. Provided coaching and mentoring to engineering managers and team leads.",
-            "image": "/images/case-team.jpg",
+            "image": "https://placehold.co/800x450/orange/white?text=Team+Turnaround+Case+Study",
             "results": [
                 "Restructured engineering team reducing turnover from 40% to 5%",
                 "Implemented agile processes that increased delivery velocity by 60%",
@@ -468,7 +605,7 @@
             "description": "Building efficient data pipelines and deployment architecture for an AI startup, significantly reducing costs while improving model performance.",
             "challenge": "An artificial intelligence startup specializing in computer vision was struggling with their ML infrastructure as they scaled. Their data pipeline was inefficient, creating bottlenecks in model training. Infrastructure costs were skyrocketing, consuming a significant portion of their runway. Model deployment was a manual, error-prone process that took days to complete. The team lacked expertise in MLOps and efficient infrastructure design for AI workloads. These technical limitations were hindering their ability to improve their models and deliver on customer commitments.",
             "solution": "As their fractional CTO, we redesigned their ML infrastructure and implemented modern MLOps practices:\n\n1. Architected an efficient data pipeline with proper preprocessing, validation, and versioning capabilities.\n\n2. Implemented infrastructure optimizations including spot instances, GPU utilization improvements, and efficient resource scheduling.\n\n3. Designed a scalable inference architecture that dynamically allocated resources based on demand.\n\n4. Built a comprehensive MLOps pipeline with automated testing, evaluation, and deployment capabilities.\n\n5. Implemented a monitoring system that tracked model performance, drift, and system health.\n\n6. Established data quality and validation processes to improve model training outcomes.\n\n7. Trained the team on MLOps best practices and efficient infrastructure management.",
-            "image": "/images/case-aiml.jpg",
+            "image": "https://placehold.co/800x450/red/white?text=AI+ML+Case+Study",
             "results": [
                 "Reduced model training costs by 70% through infrastructure optimization",
                 "Implemented MLOps pipeline reducing deployment time from days to minutes",
@@ -492,7 +629,7 @@
             "description": "Learn the key principles and practices for building and maintaining an exceptional engineering team.",
             "type": "Guide",
             "readTime": "15 min read",
-            "image": "/images/resources/team-building.jpg",
+            "image": "https://placehold.co/600x350/blue/white?text=Team+Building+Resource",
             "serviceId": "tech-team-building",
             "tags": ["Team Building", "Engineering Leadership"]
         },
@@ -502,7 +639,7 @@
             "description": "A framework for making confident technical decisions that align with business objectives.",
             "type": "Guide",
             "readTime": "12 min read",
-            "image": "/images/resources/architecture.jpg",
+            "image": "https://placehold.co/600x350/gray/white?text=Architecture+Resource",
             "serviceId": "fractional-cto",
             "tags": ["Architecture", "Technical Strategy"]
         },
@@ -512,7 +649,7 @@
             "description": "Best practices for scaling your technology infrastructure as your business grows.",
             "type": "Guide",
             "readTime": "18 min read",
-            "image": "/images/resources/scaling.jpg",
+            "image": "https://placehold.co/600x350/green/white?text=Scaling+Resource",
             "serviceId": "tech-cost-optimization",
             "tags": ["Infrastructure", "Scaling"]
         },
@@ -522,7 +659,7 @@
             "description": "A comprehensive template for conducting effective technical interviews.",
             "type": "Template",
             "readTime": "10 min read",
-            "image": "/images/resources/interview.jpg",
+            "image": "https://placehold.co/600x350/orange/white?text=Interview+Guide",
             "serviceId": "tech-team-building",
             "tags": ["Hiring", "Team Building"]
         },
@@ -532,7 +669,7 @@
             "description": "A customizable template for designing your engineering organization structure.",
             "type": "Template",
             "readTime": "8 min read",
-            "image": "/images/resources/structure.jpg",
+            "image": "https://placehold.co/600x350/red/white?text=Team+Structure",
             "serviceId": "tech-team-building",
             "tags": ["Team Structure", "Organization"]
         },
@@ -542,7 +679,7 @@
             "description": "A thorough checklist for evaluating technical aspects of potential investments or acquisitions.",
             "type": "Tool",
             "readTime": "15 min read",
-            "image": "/images/resources/due-diligence.jpg",
+            "image": "https://placehold.co/600x350/purple/white?text=Due+Diligence+Tool",
             "serviceId": "technical-due-diligence",
             "tags": ["Due Diligence", "Investment"]
         },
@@ -552,7 +689,7 @@
             "description": "Learn how we helped a fintech company scale their platform while maintaining security and compliance.",
             "type": "Case Study",
             "readTime": "20 min read",
-            "image": "/images/resources/fintech-case.jpg",
+            "image": "https://placehold.co/600x350/green/white?text=FinTech+Case+Study",
             "serviceId": "fractional-cto",
             "tags": ["FinTech", "Scaling"]
         },
@@ -562,7 +699,7 @@
             "description": "A detailed look at how we helped modernize a legacy system while maintaining business continuity.",
             "type": "Case Study",
             "readTime": "18 min read",
-            "image": "/images/resources/saas-case.jpg",
+            "image": "https://placehold.co/600x350/blue/white?text=SaaS+Transformation",
             "serviceId": "pivot-support",
             "tags": ["SaaS", "Modernization"]
         },
@@ -572,7 +709,7 @@
             "description": "How we helped a marketplace platform optimize their technology stack for better performance.",
             "type": "Case Study",
             "readTime": "15 min read",
-            "image": "/images/resources/marketplace-case.jpg",
+            "image": "https://placehold.co/600x350/purple/white?text=Marketplace+Optimization",
             "serviceId": "tech-cost-optimization",
             "tags": ["Marketplace", "Infrastructure"]
         }
@@ -582,19 +719,19 @@
           "name": "Michael Chen",
           "title": "Founder & Lead CTO",
           "bio": "20+ years of experience in technical leadership, with multiple successful exits. Former CTO at TechStart and FinEdge.",
-          "image": "/images/team/michael-chen.jpg"
+          "image": "https://placehold.co/300x300/gray/white?text=Michael+Chen"
         },
         {
           "name": "Sarah Johnson",
           "title": "Senior Technical Advisor",
           "bio": "Expert in cloud architecture and scalable systems. Previously led engineering teams at major tech companies.",
-          "image": "/images/team/sarah-johnson.jpg"
+          "image": "https://placehold.co/300x300/gray/white?text=Sarah+Johnson"
         },
         {
           "name": "David Kumar",
           "title": "Technical Strategy Lead",
           "bio": "Specializes in technical due diligence and team building. Has helped scale multiple startups from seed to Series C.",
-          "image": "/images/team/david-kumar.jpg"
+          "image": "https://placehold.co/300x300/gray/white?text=David+Kumar"
         }
     ],
     "companyValues": [
@@ -631,5 +768,21 @@
             "We're also committed to knowledge transfer. While we're happy to provide hands-on implementation when needed, our ultimate goal is to build your team's capabilities so you can operate successfully after our engagement ends. We believe in teaching people to fish, not just serving them a meal.",
             "Finally, we understand that technical decisions have long-lasting implications. We're not just focused on what works today—we consider how your technology choices will support your business as it evolves and scales."
         ]
-    }
+    },
+    "podcastURLs": [
+        "https://www.youtube.com/embed/wOBOWZ7I-sM?si=QjOVjj-4DJUcv2ww",
+        "https://www.youtube.com/embed/djQ7b6BVkd4?si=PlrK9-XzJtQxAert",
+        "https://www.youtube.com/embed/Vr5ou0poKGg?si=1PTdoR50_g1ZFGQA",
+        "https://www.youtube.com/embed/0aXFpO5FWlA?si=zExIV5TSctExjdRT",
+        "https://www.youtube.com/embed/tm2g1EGnzGc?si=3s7H03bkSuDbNJ31",
+        "https://www.youtube.com/embed/b2sAdA_mrXU?si=2bccVoHkTMc77H__",
+        "https://www.youtube.com/embed/5tZUVczuvAY?si=VP8RFnq0bd5hY8II",
+        "https://www.youtube.com/embed/iy-Eb3KO1kY?si=IskIHKcXCsRmUZtC",
+        "https://www.youtube.com/embed/zMEOVp52Rww?si=bdVp086jqiRO_vRq",
+        "https://www.youtube.com/embed/uRTBJiGAw1A?si=SUBmHcrvQELOvEKd",
+        "https://www.youtube.com/embed/1yzGzf-aU2Y?si=2xGGzkoZ4Zpufjzn",
+        "https://www.youtube.com/embed/_JmrLnbUZoU?si=t7G-nqENBDJvLRxh",
+        "https://www.youtube.com/embed/VvkGY74nX5I?si=61C4uPSu3XFkKaQZ",
+        "https://www.youtube.com/embed/UCuyQ1_NgWE?si=vNCHvcCOd3ks35ko"
+      ]
 }

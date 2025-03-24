@@ -16,6 +16,7 @@ const Services = () => {
             title={service.title} 
             id={service.id} 
             description={service.description}
+            image={service.image}
             compact={true}
           />
         ))}

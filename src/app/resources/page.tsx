@@ -25,7 +25,7 @@ export default function ResourcesPage() {
       <div className="py-12">
         <h1 className="text-4xl font-bold mb-6">Resources</h1>
         <p className="text-lg mb-12 max-w-3xl">
-          Access our collection of guides, templates, and case studies designed to help you build and scale your technical organization effectively.
+          Access our collection of guides, templates, case studies, and video content designed to help you build and scale your technical organization effectively.
         </p>
 
         {/* Filters */}
@@ -99,6 +99,42 @@ export default function ResourcesPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Podcasts Section */}
+        <div className="mt-24">
+          <h2 className="text-3xl font-bold mb-8">Podcast Episodes</h2>
+          <p className="text-lg mb-12 max-w-3xl">
+            Watch our latest podcast episodes featuring interviews with industry experts, technical deep dives, and practical advice for technology leaders.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {data.podcastURLs && data.podcastURLs.slice(0, 6).map((url, index) => (
+              <div key={index} className="card bg-base-200 shadow-lg overflow-hidden">
+                <div className="aspect-video">
+                  <iframe 
+                    src={url} 
+                    title={`Podcast Episode ${index + 1}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                </div>
+                <div className="card-body">
+                  <h3 className="card-title">Episode {index + 1}</h3>
+                  <p>Watch this episode to learn from our experts about technical leadership and building effective engineering teams.</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          {data.podcastURLs && data.podcastURLs.length > 6 && (
+            <div className="text-center mt-8">
+              <Link href="/resources/podcasts" className="btn btn-primary">
+                View All Episodes
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </PageLayout>

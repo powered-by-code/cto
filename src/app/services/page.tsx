@@ -24,6 +24,7 @@ export default function ServicesPage() {
               title={service.title}
               description={service.description}
               features={service.features}
+              image={service.image}
             />
           ))}
         </div>
