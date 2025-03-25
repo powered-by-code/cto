@@ -1,9 +1,8 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import CalEmbed from "@/components/CalEmbed";
-import data from "@/data.json";
-import Image from "next/image";
-import { Mail, MapPin, Phone } from "lucide-react";
+// import PageLayout from '@/components/PageLayout';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import CalEmbed from '@/components/CalEmbed';
+import data from '@/data.json';
 
 export const metadata = {
   title: "Contact Us | Fractional CTO Services",
@@ -37,7 +36,7 @@ export default function Contact() {
               calLink={data.meetingLink.calLink}
               config={{
                 theme: "light",
-                hideEventTypeDetails: false,
+                hideEventTypeDetails: "false",
                 layout: "month_view",
               }}
               // TODO: Add posthog recording ID

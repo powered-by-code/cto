@@ -33,10 +33,14 @@ interface Resource {
   serviceId: string;
   tags: string[];
   content?: CaseStudyContent | GuideContent;
+  relatedResources: string[];
 }
 
-export default function ResourcePage({ params }: { params: { id: string } }) {
-  const resource = data.resources.find((r) => r.id === params.id) as Resource;
+type Params = Promise<{ id: string }>;
+
+export default async function ResourcePage({ params }: { params: Params }) {
+  const { id } = await params;
+  const resource = data.resources.find((r) => r.id === id) as Resource;
   const service = data.services.find((s) => s.id === resource?.serviceId);
 
   if (!resource) {
@@ -166,7 +170,13 @@ export default function ResourcePage({ params }: { params: { id: string } }) {
           <div className="lg:col-span-1">
             <div className="card bg-base-200 shadow-lg sticky top-8">
               <figure className="h-48 bg-gray-300">
-                <img src={resource.image} alt={resource.title} className="w-full h-full object-cover" />
+                <Image
+                  src={resource.image}
+                  alt={resource.title}
+                  width={400}
+                  height={192}
+                  className="w-full h-full object-cover"
+                />
               </figure>
 
               <div className="card-body">

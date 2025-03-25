@@ -32,7 +32,9 @@ const Partners: React.FC = () => {
     <section className="py-12">
       <div className="mb-12">
         <h2 className="text-3xl font-bold mb-4">Trusted By Innovative Companies</h2>
-        <p className="mb-8">We've helped clients across various industries build scalable technology solutions</p>
+        <p className="text-base-content/80">
+          We&apos;re proud to partner with leading companies in the tech industry.
+        </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {clientPartners.map((partner, index) => (
             <PartnerLogo key={index} name={partner.name} category={partner.category} />

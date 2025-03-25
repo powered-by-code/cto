@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
-import data from "@/data.json";
+// const { meetingLink } = data;
 import MeetingButton from "./MeetingButton";
 
 const Hero: React.FC = () => {
@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
   // Remove autoplay from initial URL - we'll add it when needed
   const embedUrl = videoUrl.replace("watch?v=", "embed/");
   // Get meeting link from data.json
-  const meetingLink = data.meetingLink;
+  // const meetingLink = data.meetingLink;
 
   useEffect(() => {
     // Handle modal close event to stop video

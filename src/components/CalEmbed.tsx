@@ -3,27 +3,8 @@
 import Cal from "@calcom/embed-react";
 import data from '@/data.json';
 
-// Declare the custom elements for TypeScript
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'cal-inline-widget': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement> & {
-        'data-cal-link'?: string;
-      }, HTMLElement>;
-    }
-  }
-}
 
-interface CalEmbedProps {
-  calLink?: string;
-  config?: {
-    theme?: 'light' | 'dark';
-    [key: string]: any;
-  };
-  posthogRecordingId?: string;
-}
-
-export default function CalEmbed({ calLink, config, posthogRecordingId }: CalEmbedProps) {
+export default function CalEmbed({ calLink, config, posthogRecordingId }: { calLink: string, config: any, posthogRecordingId: string }) {
   const link = calLink || data.meetingLink.calLink;
   
   // Prepare config with posthog recording ID
@@ -39,7 +20,7 @@ export default function CalEmbed({ calLink, config, posthogRecordingId }: CalEmb
     <div className="w-full">
       <div 
       >
-        <Cal calLink={link} config={calConfig} />
+        <Cal calLink={link} config={calConfig as any} />
       </div>
     </div>
   );

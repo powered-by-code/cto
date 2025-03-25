@@ -106,7 +106,7 @@ export default function CTOAssessmentPage() {
               CTO Needs Assessment
             </h1>
             <p className="text-xl text-base-content/80 max-w-2xl mx-auto">
-              Join 500+ companies who've optimized their technical leadership through our assessment. 
+              Join 500+ companies who&apos;ve optimized their technical leadership through our assessment. 
               Take 2 minutes to discover if a fractional CTO is right for you.
             </p>
             
@@ -209,7 +209,7 @@ export default function CTOAssessmentPage() {
                 <div className="card-body">
                   <h2 className="text-2xl font-bold mb-4">Get Your Detailed Report</h2>
                   <p className="mb-6 text-base-content/80">
-                    Join 500+ tech leaders who've received personalized insights and actionable recommendations.
+                    Join 500+ tech leaders who&apos;ve received personalized insights and actionable recommendations.
                   </p>
                   
                   <form onSubmit={handleEmailSubmit} className="space-y-4">

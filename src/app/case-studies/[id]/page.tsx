@@ -1,41 +1,55 @@
-import PageLayout from '@/components/PageLayout';
-import Link from 'next/link';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import CaseStudyQuiz from '@/components/CaseStudyQuiz';
-import data from '@/data.json';
-import MeetingButton from '@/components/MeetingButton';
+import PageLayout from "@/components/PageLayout";
+import Link from "next/link";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import CaseStudyQuiz from "@/components/CaseStudyQuiz";
+import data from "@/data.json";
+import MeetingButton from "@/components/MeetingButton";
 
 // Get case study details from data.json
 const caseStudyDetails = data.caseStudies;
 
-export default function CaseStudyPage({ params }: { params: { id: string } }) {
-  const caseStudy = caseStudyDetails.find((cs) => cs.id === params.id);
-  // Get meeting link from data.json
-  const meetingLink = data.meetingLink;
-  
+type Params = Promise<{ id: string }>;
+
+export default async function CaseStudyPage({ params }: { params: Params }) {
+  const { id } = await params;
+  const caseStudy = caseStudyDetails.find((cs) => cs.id === id);
+
   if (!caseStudy) {
     notFound();
   }
-  
+
   return (
     <PageLayout>
       <div className="py-12">
-        <Link href="/case-studies" className="text-primary mb-4 inline-flex items-center">
-          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        <Link
+          href="/case-studies"
+          className="text-primary mb-4 inline-flex items-center"
+        >
+          <svg
+            className="w-4 h-4 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            ></path>
           </svg>
           Back to All Case Studies
-          </Link>
-        
+        </Link>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
           <div className="lg:col-span-2">
             <div className="badge badge-primary mb-2">{caseStudy.industry}</div>
             <h1 className="text-4xl font-bold mb-6">{caseStudy.title}</h1>
-            
+
             <div className="aspect-video bg-base-300 rounded-lg relative mb-8">
               {caseStudy.image && (
-                <Image 
+                <Image
                   src={caseStudy.image}
                   alt={caseStudy.title}
                   fill
@@ -43,41 +57,59 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                 />
               )}
             </div>
-            
+
             <div className="prose max-w-none">
               <h2 className="text-2xl font-bold mt-8 mb-4">The Challenge</h2>
               <p>{caseStudy.challenge}</p>
-              
+
               <h2 className="text-2xl font-bold mt-8 mb-4">Our Solution</h2>
               <p className="whitespace-pre-line">{caseStudy.solution}</p>
-              
+
               <h2 className="text-2xl font-bold mt-8 mb-4">Results</h2>
               <div className="card bg-base-200 shadow-lg mb-8">
                 <div className="card-body">
                   <ul className="space-y-3">
-                {caseStudy.results.map((result, index) => (
+                    {caseStudy.results.map((result, index) => (
                       <li key={index} className="flex items-start">
-                        <svg className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                        <svg
+                          className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M5 13l4 4L19 7"
+                          />
                         </svg>
                         {result}
                       </li>
-                ))}
-              </ul>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
-            
+
             {caseStudy.testimonial && (
               <div className="mt-8 card bg-base-200 shadow-lg">
                 <div className="card-body">
                   <div className="flex items-start">
-                    <svg className="w-12 h-12 text-primary opacity-30" fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-12 h-12 text-primary opacity-30"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                     </svg>
                     <div className="ml-4">
-                      <p className="italic mb-4">{caseStudy.testimonial.quote}</p>
-                      <p className="font-bold">{caseStudy.testimonial.author}</p>
+                      <p className="italic mb-4">
+                        {caseStudy.testimonial.quote}
+                      </p>
+                      <p className="font-bold">
+                        {caseStudy.testimonial.author}
+                      </p>
                       <p className="text-sm">{caseStudy.testimonial.company}</p>
                     </div>
                   </div>
@@ -89,47 +121,62 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
               <div className="card-body">
                 <h3 className="card-title">Facing Similar Challenges?</h3>
                 <p className="my-4">
-                  Schedule a free consultation to discuss how we can help you achieve similar results.
+                  Schedule a free consultation to discuss how we can help you
+                  achieve similar results.
                 </p>
-                <MeetingButton text="Book a Free Consultation" className="w-full" />
+                <MeetingButton
+                  text="Book a Free Consultation"
+                  className="w-full"
+                />
               </div>
             </div>
           </div>
-          
+
           <div className="lg:col-span-1">
             <div className="card bg-base-200 shadow-lg sticky top-4">
               <div className="card-body">
                 <h3 className="card-title">Need Similar Results?</h3>
                 <p className="my-4">
-                  Our fractional CTO services help businesses solve complex technical challenges and achieve impressive results.
+                  Our fractional CTO services help businesses solve complex
+                  technical challenges and achieve impressive results.
                 </p>
                 <MeetingButton text="Book a Consultation" className="w-full" />
-                
+
                 <div className="divider">OR</div>
-                
+
                 <Link href="/services" className="btn btn-outline w-full">
                   Explore Services
                 </Link>
               </div>
             </div>
-            
+
             <div className="mt-8">
               <h3 className="text-xl font-bold mb-4">Related Case Studies</h3>
               <div className="space-y-4">
                 {caseStudyDetails
-                  .filter(cs => cs.id !== caseStudy.id && cs.industry === caseStudy.industry)
+                  .filter(
+                    (cs) =>
+                      cs.id !== caseStudy.id &&
+                      cs.industry === caseStudy.industry
+                  )
                   .slice(0, 2)
                   .map((relatedCase, index) => (
-                    <Link key={index} href={`/case-studies/${relatedCase.id}`} className="card bg-base-200 shadow-sm hover:shadow-md transition-shadow">
+                    <Link
+                      key={index}
+                      href={`/case-studies/${relatedCase.id}`}
+                      className="card bg-base-200 shadow-sm hover:shadow-md transition-shadow"
+                    >
                       <div className="card-body p-4">
                         <h4 className="font-bold">{relatedCase.title}</h4>
-                        <p className="text-sm line-clamp-2">{relatedCase.description}</p>
+                        <p className="text-sm line-clamp-2">
+                          {relatedCase.description}
+                        </p>
                       </div>
                     </Link>
                   ))}
               </div>
             </div>
-            
+
             <div className="mt-8">
               <div className="card bg-base-200 shadow-lg">
                 <div className="card-body">
@@ -137,9 +184,22 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                   <ul className="mt-4 space-y-3">
                     {data.services.slice(0, 3).map((service, index) => (
                       <li key={index}>
-                        <Link href={`/services/${service.id}`} className="flex items-center hover:text-primary transition-colors">
-                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                        <Link
+                          href={`/services/${service.id}`}
+                          className="flex items-center hover:text-primary transition-colors"
+                        >
+                          <svg
+                            className="w-4 h-4 mr-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M9 5l7 7-7 7"
+                            />
                           </svg>
                           {service.title}
                         </Link>
@@ -151,10 +211,10 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             </div>
           </div>
         </div>
-        
+
         {/* Case Study Quiz Section */}
-        <CaseStudyQuiz caseStudyId={params.id} />
+        <CaseStudyQuiz caseStudyId={id} />
       </div>
     </PageLayout>
   );
-} 
+}

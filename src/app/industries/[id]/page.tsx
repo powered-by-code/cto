@@ -8,18 +8,15 @@ import MeetingButton from '@/components/MeetingButton';
 // Get industry details from data.json
 const industryDetails = data.industries;
 
-// Get meeting link from data.json
-const meetingLink = data.meetingLink;
+type Params = Promise<{ id: string }>;
 
-export default function IndustryPage({ params }: { params: { id: string } }) {
-  const industry = industryDetails.find((ind) => ind.id === params.id);
+export default async function IndustryPage({ params }: { params: Params }) {
+  const { id } = await params;
+  const industry = industryDetails.find((ind) => ind.id === id);
   
   if (!industry) {
     notFound();
   }
-  
-  // Find case studies relevant to this industry
-  const relevantCaseStudies = data.caseStudies.filter((cs) => cs.industry.toLowerCase() === industry.title.toLowerCase());
   
   return (
     <PageLayout>

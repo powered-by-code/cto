@@ -9,11 +9,11 @@ import ServiceCard from "@/components/ServiceCard";
 // Get service details from data.json
 const serviceDetails = data.services;
 
-// Get meeting link from data.json
-const meetingLink = data.meetingLink;
+type Params = Promise<{ id: string }>;
 
-export default function ServicePage({ params }: { params: { id: string } }) {
-  const service = serviceDetails.find((s) => s.id === params.id);
+export default async function ServicePage({ params }: { params: Params }) {
+  const { id } = await params;
+  const service = serviceDetails.find((s) => s.id === id);
 
   if (!service) {
     notFound();

@@ -3,12 +3,13 @@ import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { useState } from "react";
 import data from '@/data.json';
+// const { meetingLink } = data;
 import MeetingButton from "./MeetingButton";
 import Image from "next/image";
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // Get meeting link from data.json
-  const meetingLink = data.meetingLink;
+  // const meetingLink = data.meetingLink;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -62,7 +63,7 @@ const Navbar: React.FC = () => {
             </li>
           ))}
           <li>
-            <MeetingButton text="REQUEST QUOTE" className="ml-2" href="/contact" />
+            <MeetingButton text="REQUEST QUOTE" className="ml-2" />
           </li>
         </ul>
       </div>
@@ -79,7 +80,7 @@ const Navbar: React.FC = () => {
               </li>
             ))}
             <li className="mt-2">
-              <MeetingButton text="REQUEST QUOTE" className="w-full" onClick={toggleMenu} href="/contact" />
+              <MeetingButton text="REQUEST QUOTE" className="w-full" onClick={toggleMenu} />
             </li>
           </ul>
         </div>

@@ -6,7 +6,7 @@ import MeetingButton from '@/components/MeetingButton';
 
 export default function AboutUsPage() {
   // Get data from data.json
-  const { meetingLink, teamMembers, companyValues, companyStory, companyApproach } = data;
+  const { teamMembers, companyValues, companyStory, companyApproach } = data;
   
   return (
     <PageLayout>

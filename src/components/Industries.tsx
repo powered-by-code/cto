@@ -2,25 +2,11 @@ import Link from 'next/link';
 import { Building2, Music, Hotel, Volume2 } from 'lucide-react';
 import data from '@/data.json';
 
-interface IndustryTagProps {
-  name: string;
-  icon: React.ReactNode;
-  id: string;
-}
-
-const IndustryTag: React.FC<IndustryTagProps> = ({ name, icon, id }) => {
-  return (
-    <Link 
-      href={`/industries/${id}`} 
-      className="btn w-full bg-base-200 hover:bg-primary/10 text-base-content hover:text-primary border border-base-300 hover:border-primary/30 transition-all shadow-sm hover:shadow group"
-    >
-      <div className="mr-2 text-primary/70 group-hover:text-primary transition-colors">
-      {icon}
-      </div>
-      <span className="font-medium">{name}</span>
-    </Link>
-  );
-};
+// const IndustryTag: React.FC<{ tag: string }> = ({ tag }) => {
+//   return (
+//     <span className="badge badge-outline">{tag}</span>
+//   );
+// };
 
 // Simple IndustryCard component
 interface IndustryCardProps {
@@ -31,7 +17,7 @@ interface IndustryCardProps {
   compact?: boolean;
 }
 
-const IndustryCard = ({ title, id, description, image, compact = false }: IndustryCardProps) => {
+const IndustryCard: React.FC<IndustryCardProps> = ({ title, id, description, compact = false }) => {
   // Map icon to each industry
   const getIcon = (id: string) => {
     switch (id) {

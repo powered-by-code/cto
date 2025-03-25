@@ -1,6 +1,6 @@
 import PageLayout from '@/components/PageLayout';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 import data from '@/data.json';
 import ServiceCard from '@/components/ServiceCard';
 

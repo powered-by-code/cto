@@ -1,18 +1,12 @@
 import PageLayout from '@/components/PageLayout';
-import Link from 'next/link';
-import Image from 'next/image';
 import data from '@/data.json';
 import MeetingButton from '@/components/MeetingButton';
-import { Metadata } from 'next';
 import { CaseStudyCard } from '@/components/CaseStudies';
 
 // Get case study details from data.json
 const caseStudyDetails = data.caseStudies;
 
 export default function CaseStudiesPage() {
-  // Get meeting link from data.json
-  const meetingLink = data.meetingLink;
-  
   return (
     <PageLayout>
       <div className="py-12">

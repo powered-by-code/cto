@@ -1,10 +1,11 @@
 import Link from "next/link";
-import data from "@/data.json";
+// import data from "@/data.json";
+// const { meetingLink } = data;
 import MeetingButton from "./MeetingButton";
 
 const CTA: React.FC = () => {
   // Get meeting link from data.json
-  const meetingLink = data.meetingLink;
+  // const meetingLink = data.meetingLink;
 
   return (
     <section className="py-16 relative">

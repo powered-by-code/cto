@@ -8,9 +8,6 @@ import MeetingButton from '@/components/MeetingButton';
 const industriesData = data.industries;
 
 export default function IndustriesPage() {
-  // Get meeting link from data.json
-  const meetingLink = data.meetingLink;
-  
   return (
     <PageLayout>
       <div className="py-12">
