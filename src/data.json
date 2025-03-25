@@ -1,5 +1,43 @@
 {
   "companyName": "TechOps",
+  "footer": {
+    "socialLinks": [
+      {
+        "name": "Twitter",
+        "url": "https://twitter.com"
+      },
+      {
+        "name": "Facebook",
+        "url": "https://facebook.com"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com"
+      }
+    ],
+    "links": [
+      {
+        "name": "About",
+        "url": "/about"
+      },
+      {
+        "name": "Authors",
+        "url": "/authors"
+      },
+      {
+        "name": "Archive",
+        "url": "/archive"
+      },
+      {
+        "name": "Terms and Conditions",
+        "url": "/terms"
+      },
+      {
+        "name": "Cookie Policy",
+        "url": "/cookie-policy"
+      }
+    ]
+  },
   "meetingLink": {
     "url": "/contact",
     "calLink": "ruben-pbl/30min",

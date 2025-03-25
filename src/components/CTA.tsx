@@ -55,7 +55,7 @@ const CTA: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
-              href="/cto-assessment"
+              href="/assessment"
               className="btn btn-primary btn-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
             >
               Take the Free Assessment
