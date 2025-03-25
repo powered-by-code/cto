@@ -30,7 +30,6 @@ const MeetingButton: React.FC<MeetingButtonProps> = ({
     <Link 
       href={meetingLink.url} 
       className={`btn ${variantClass} flex items-center gap-2 ${className}`}
-      target="_blank" 
       rel="noopener noreferrer"
       onClick={onClick}
     >

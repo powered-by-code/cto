@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="hero bg-base-100 py-12">
+    <div className="hero  py-12">
       <div className="hero-content flex-col md:flex-row items-stretch justify-between w-full">
         <div className="text-left max-w-xl flex flex-col gap-4">
           <div className="text-base mb-2 text-primary">

@@ -1,6 +1,7 @@
 {
     "meetingLink": {
-        "url": "https://cal.com/jason-mccarthy-1/30min",
+        "url": "/contact",
+        "calLink": "ruben-pbl/30min",
         "image": "https://media.licdn.com/dms/image/v2/D4D03AQHarAA1SUEqbw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730207922417?e=1748476800&v=beta&t=wRUk76-qeGDCQimdx8QlHz7Kl9B6aBnsc1vxOYfCpY0",
         "buttonText": "Schedule a Call",
         "imageAlt": "Jason McCarthy"

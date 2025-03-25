@@ -20,6 +20,7 @@ const Navbar: React.FC = () => {
     { href: "/case-studies", label: "CASE STUDIES" },
     { href: "/about-us", label: "ABOUT US" },
     { href: "/resources", label: "RESOURCES" },
+    { href: "/contact", label: "CONTACT" },
   ];
 
   return (
@@ -59,7 +60,7 @@ const Navbar: React.FC = () => {
             </li>
           ))}
           <li>
-            <MeetingButton text="REQUEST QUOTE" className="ml-2" />
+            <MeetingButton text="REQUEST QUOTE" className="ml-2" href="/contact" />
           </li>
         </ul>
       </div>
@@ -76,7 +77,7 @@ const Navbar: React.FC = () => {
               </li>
             ))}
             <li className="mt-2">
-              <MeetingButton text="REQUEST QUOTE" className="w-full" onClick={toggleMenu} />
+              <MeetingButton text="REQUEST QUOTE" className="w-full" onClick={toggleMenu} href="/contact" />
             </li>
           </ul>
         </div>

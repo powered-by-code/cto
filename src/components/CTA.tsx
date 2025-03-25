@@ -18,7 +18,7 @@ const CTA: React.FC = () => {
             <Link href="/cto-assessment" className="btn btn-primary">
               Take the Free Assessment
             </Link>
-            <MeetingButton variant="outline" text="Talk to a Fractional CTO Now" />
+            <MeetingButton variant="outline" text="Talk to a Fractional CTO Now" href="/contact" />
           </div>
         </div>
       </div>

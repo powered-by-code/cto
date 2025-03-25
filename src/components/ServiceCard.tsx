@@ -29,7 +29,7 @@ const ServiceCard = ({ id, title, description, features, image, compact = false,
           <div>
             <div className="text-xs uppercase tracking-wider opacity-70 font-medium mb-2">Service</div>
             <h3 className="font-semibold text-lg mb-2">{title}</h3>
-            <p className="text-sm text-gray-600">{description}</p>
+            <p className="text-sm ">{description}</p>
           </div>
           <div className="flex items-center text-primary mt-4">
             Learn More <span className="ml-2">→</span>

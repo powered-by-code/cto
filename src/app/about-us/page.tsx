@@ -10,32 +10,10 @@ export default function AboutUsPage() {
   
   return (
     <PageLayout>
-      <div className="py-12">
+      <div className="py-12 max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6">About Us</h1>
         
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Our Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="card bg-base-200 shadow-lg">
-                <figure className="relative h-64">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h3 className="card-title">{member.name}</h3>
-                  <p className="text-primary">{member.title}</p>
-                  <p className="mt-4">{member.bio}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-        
+     
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-6">{companyStory.headline}</h2>
           <div className="prose max-w-none">
@@ -67,7 +45,29 @@ export default function AboutUsPage() {
             ))}
           </div>
         </section>
-
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-6">Our Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="card bg-base-200 shadow-lg">
+                <figure className="relative h-64">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h3 className="card-title">{member.name}</h3>
+                  <p className="text-primary">{member.title}</p>
+                  <p className="mt-4">{member.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+        
         <section className="mt-16">
           <div className="card bg-base-200 shadow-lg p-8 text-center mt-16">
             <h2 className="text-2xl font-bold mb-4">Ready to Work Together?</h2>

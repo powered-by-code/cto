@@ -22,7 +22,7 @@ const Services = () => {
         ))}
       </div>
       <div className="text-center mt-8">
-        <Link href="/services" className="link link-primary">
+        <Link href="/services" className="btn btn-primary">
           VIEW ALL SERVICES
         </Link>
       </div>

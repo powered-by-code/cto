@@ -108,8 +108,8 @@ export default function ResourcesPage() {
             Watch our latest podcast episodes featuring interviews with industry experts, technical deep dives, and practical advice for technology leaders.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {data.podcastURLs && data.podcastURLs.slice(0, 6).map((url, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {data.podcastURLs && data.podcastURLs.slice(0, 8).map((url, index) => (
               <div key={index} className="card bg-base-200 shadow-lg overflow-hidden">
                 <div className="aspect-video">
                   <iframe 
