@@ -8,19 +8,15 @@ import {
   BookOpen, 
   Settings, 
   BarChart, 
-  Pin,
   GitBranch, 
   Github, 
   GitMerge, 
   Folder, 
   Cloud, 
-  LineChart, 
   Dog,
   BarChart2, 
   AlertTriangle,
   FileSpreadsheet, 
-  FileCode, 
-  FolderArchive, 
   Box, 
   MessageSquare,
   Video, 
@@ -630,8 +626,9 @@ export default function CostCalculator() {
 
   // Calculate our service fee based on percentage from data.json
   const ourServiceFee = useMemo(() => {
-    return Math.round(totalSavingsPerYear * (contact.serviceFeePercentage / 100));
-  }, [totalSavingsPerYear, contact.serviceFeePercentage]);
+    // Use 25% instead of the percentage from data.json
+    return Math.round(totalSavingsPerYear * (25 / 100));
+  }, [totalSavingsPerYear]);
 
   // Calculate net savings (total savings minus our service fee)
   const netSavings = useMemo(() => {
@@ -1036,7 +1033,7 @@ export default function CostCalculator() {
           </div>
           
           <div class="service-fee">
-            <div class="service-fee-title">Our Service Fee (${contact.serviceFeePercentage}% of annual savings)</div>
+            <div class="service-fee-title">Our Service Fee (25% of annual savings)</div>
             <div class="service-fee-value">$${ourServiceFee.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
             <p>Our team of experts will guide your transition to open source alternatives, providing implementation support, training, and ongoing maintenance.</p>
             <div class="service-fee-title">Net Annual Savings</div>
@@ -1376,7 +1373,7 @@ export default function CostCalculator() {
           </div>
           
           <div className="card bg-base-200 p-6 shadow-md mb-8">
-            <div className="font-bold text-lg mb-2">Our Service Fee ({contact.serviceFeePercentage}% of annual savings)</div>
+            <div className="font-bold text-lg mb-2">Our Service Fee (25% of annual savings)</div>
             <div className="text-3xl font-bold text-warning mb-2">${ourServiceFee.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
             <p className="text-sm opacity-80 mb-4">Our team of experts will guide your transition to open source alternatives, providing implementation support, training, and ongoing maintenance.</p>
             

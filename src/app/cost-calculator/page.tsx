@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,27 +11,6 @@ const CostCalculator = dynamic(
 );
 
 export default function CostCalculatorPage() {
-  const [activeTab, setActiveTab] = useState<number>(0);
-
-  const faqItems = [
-    {
-      question: 'Is open source software really free?',
-      answer: 'While open source software is free to use, there may be costs associated with implementation, support, and maintenance. However, these costs are typically much lower than commercial license fees and give you more control over your technology stack.'
-    },
-    {
-      question: 'How difficult is it to migrate from commercial to open source tools?',
-      answer: 'Migration complexity varies depending on your current tools, data volume, and customizations. With proper planning and expertise, migrations can be smooth and minimally disruptive. Our team specializes in planning and executing these transitions effectively.'
-    },
-    {
-      question: 'Are open source alternatives as reliable as commercial products?',
-      answer: 'Many popular open source alternatives are backed by large communities and organizations, making them as reliable (and often more secure) than their commercial counterparts. Projects like Linux, PostgreSQL, and GitLab are used by some of the world\'s largest organizations.'
-    },
-    {
-      question: 'How do we get support for open source software?',
-      answer: 'Open source projects typically have vibrant communities offering free support through forums, documentation, and issue trackers. For enterprises, many open source projects offer paid support options or have companies providing professional support services. We can help you navigate these options and even provide direct support for your implementation.'
-    }
-  ];
-
   return (
     <main className="bg-base-100 min-h-screen relative">
       {/* Background elements */}
@@ -48,7 +27,7 @@ export default function CostCalculatorPage() {
         
         <div className="py-16">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Open Source Cost Savings Calculator</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Open Source Cost Savings Calculator</h1>
             <p className="text-xl opacity-80">
               Discover how much your organization could save by switching from commercial tools to open source alternatives.
             </p>
@@ -83,31 +62,6 @@ export default function CostCalculatorPage() {
                     <li>Custom integration development</li>
                     <li>Ongoing support and maintenance</li>
                   </ul>
-                </div>
-              </div>
-            </div>
-            
-            <div className="card bg-base-100 shadow-xl mt-8">
-              <div className="card-body">
-                <h2 className="card-title text-2xl mb-4">Frequently Asked Questions</h2>
-                <div className="mt-4 space-y-4">
-                  {faqItems.map((item, index) => (
-                    <div key={index} className="collapse collapse-plus bg-base-200">
-                      <input 
-                        type="radio" 
-                        name="faq-accordion" 
-                        checked={activeTab === index} 
-                        onChange={() => setActiveTab(index)}
-                        className="cursor-pointer peer"
-                      /> 
-                      <div className="collapse-title text-xl font-medium cursor-pointer peer-checked:bg-primary/10">
-                        {item.question}
-                      </div>
-                      <div className="collapse-content peer-checked:bg-primary/5"> 
-                        <p>{item.answer}</p>
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>
