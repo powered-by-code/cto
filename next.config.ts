@@ -2,9 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    loader: "custom",
-    loaderFile: "/custom-image-loader.ts",
-
     dangerouslyAllowSVG: true,
     remotePatterns: [
       {
