@@ -52,8 +52,8 @@ export default function Resources() {
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/resources" className="btn btn-primary">
-            View All Resources
+          <Link href="/resources" className="btn btn-primary btn-lg">
+            VIEW ALL RESOURCES
           </Link>
         </div>
       </div>

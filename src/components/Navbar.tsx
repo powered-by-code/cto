@@ -4,7 +4,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import { useState } from "react";
 import data from '@/data.json';
 import MeetingButton from "./MeetingButton";
-
+import Image from "next/image";
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // Get meeting link from data.json
@@ -20,16 +20,18 @@ const Navbar: React.FC = () => {
     { href: "/case-studies", label: "CASE STUDIES" },
     { href: "/about-us", label: "ABOUT US" },
     { href: "/resources", label: "RESOURCES" },
-    { href: "/contact", label: "CONTACT" },
   ];
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
-        <Link href="/" className="text-xl font-bold text-primary">
-          Logo
-        </Link>
-        <ThemeSwitcher />
+        <div className="flex items-center gap-2">
+          <Link href="/" className="text-xl font-bold text-primary flex items-center gap-2">
+            <Image src="/logo.svg" alt="Logo" width={32} height={32} />
+            {data.companyName}
+          </Link>
+          <ThemeSwitcher />
+        </div>
       </div>
 
       {/* Mobile menu */}

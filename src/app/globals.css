@@ -7,7 +7,20 @@
     "night", "coffee", "winter";
 }
 
+
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  
+  --color-primary: "#6B78CB";
+  --color-secondary: "#FC79DF";
+  --color-accent: "#74FF33";
+  --color-neutral: "#FC79DF";
+}
+
 /* Global button styling for rounded edges */
 .btn {
   border-radius: 9999px !important; /* Preserve circle buttons as circles */
 }
+

@@ -10,9 +10,9 @@ interface CaseStudyCardProps {
   image?: string;
 }
 
-const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ id, title, industry, description, image }) => {
+export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ id, title, industry, description, image }) => {
   return (
-    <Link href={`/case-studies/${id}`} className="card bg-base-200 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+    <Link href={`/case-studies/${id}`} className="card shadow-md hover:shadow-lg transition-shadow overflow-hidden">
       <figure className="relative h-48 w-full">
         {image ? (
           <Image
@@ -22,7 +22,7 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ id, title, industry, desc
             className="object-cover"
           />
         ) : (
-          <div className="bg-base-300 w-full h-full flex items-center justify-center">
+          <div className="w-full h-full flex items-center justify-center">
             <span className="text-base-content/50">No image</span>
           </div>
         )}

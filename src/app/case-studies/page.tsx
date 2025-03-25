@@ -1,10 +1,10 @@
 import PageLayout from '@/components/PageLayout';
-import CaseStudies from '@/components/CaseStudies';
 import Link from 'next/link';
 import Image from 'next/image';
 import data from '@/data.json';
 import MeetingButton from '@/components/MeetingButton';
 import { Metadata } from 'next';
+import { CaseStudyCard } from '@/components/CaseStudies';
 
 // Get case study details from data.json
 const caseStudyDetails = data.caseStudies;
@@ -25,26 +25,7 @@ export default function CaseStudiesPage() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {caseStudyDetails.map((caseStudy, index) => (
-            <div key={index} className="card bg-base-200 shadow-lg overflow-hidden">
-              <figure className="relative h-48">
-                {caseStudy.image && (
-                  <Image 
-                    src={caseStudy.image}
-                    alt={caseStudy.title}
-                    fill
-                    className="object-cover"
-                  />
-                )}
-              </figure>
-              <div className="card-body">
-                <div className="badge badge-primary mb-2">{caseStudy.industry}</div>
-                <h2 className="card-title">{caseStudy.title}</h2>
-                <p className="line-clamp-3 mb-4">{caseStudy.description}</p>
-                <Link href={`/case-studies/${caseStudy.id}`} className="btn btn-outline btn-sm">
-                  Read Case Study
-                </Link>
-              </div>
-            </div>
+            <CaseStudyCard key={index} {...caseStudy} />
           ))}
         </div>
         

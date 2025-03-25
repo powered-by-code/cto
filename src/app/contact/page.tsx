@@ -17,7 +17,7 @@ export default function Contact() {
       <div className="container mx-auto px-4">
         <Navbar />
 
-        <div className="py-12">
+        <div className="py-12 max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">
             Contact Us
           </h1>
