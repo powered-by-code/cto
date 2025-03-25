@@ -9,6 +9,12 @@ import ServiceCard from "@/components/ServiceCard";
 // Get service details from data.json
 const serviceDetails = data.services;
 
+export async function generateStaticParams() {
+  return serviceDetails.map((s) => ({
+    id: s.id,
+  }));
+}
+
 type Params = Promise<{ id: string }>;
 
 export default async function ServicePage({ params }: { params: Params }) {

@@ -8,6 +8,12 @@ import MeetingButton from '@/components/MeetingButton';
 // Get industry details from data.json
 const industryDetails = data.industries;
 
+export async function generateStaticParams() {
+  return industryDetails.map((ind) => ({
+    id: ind.id,
+  }));
+}
+
 type Params = Promise<{ id: string }>;
 
 export default async function IndustryPage({ params }: { params: Params }) {

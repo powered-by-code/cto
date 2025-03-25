@@ -9,6 +9,12 @@ import MeetingButton from "@/components/MeetingButton";
 // Get case study details from data.json
 const caseStudyDetails = data.caseStudies;
 
+export async function generateStaticParams() {
+  return caseStudyDetails.map((cs) => ({
+    id: cs.id,
+  }));
+}
+
 type Params = Promise<{ id: string }>;
 
 export default async function CaseStudyPage({ params }: { params: Params }) {

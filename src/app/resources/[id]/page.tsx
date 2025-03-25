@@ -36,6 +36,12 @@ interface Resource {
   relatedResources: string[];
 }
 
+export async function generateStaticParams() {
+  return data.resources.map((res) => ({
+    id: res.id,
+  }));
+}
+
 type Params = Promise<{ id: string }>;
 
 export default async function ResourcePage({ params }: { params: Params }) {
