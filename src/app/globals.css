@@ -24,3 +24,70 @@
   border-radius: 9999px !important; /* Preserve circle buttons as circles */
 }
 
+/* Cost Calculator Animations */
+@keyframes counter {
+  from { content: "0"; }
+  to { content: attr(data-value); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-counter {
+  animation: counter 2s ease-out forwards;
+}
+
+/* Step Indicator Styles */
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--fallback-b3,oklch(var(--b3)/1));
+  color: var(--fallback-bc,oklch(var(--bc)/1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.step-item.active .step {
+  background-color: var(--fallback-p,oklch(var(--p)/1));
+  color: var(--fallback-pc,oklch(var(--pc)/1));
+}
+
+.step-connector {
+  height: 3px;
+  width: 80px;
+  background-color: var(--fallback-b3,oklch(var(--b3)/1));
+  margin: 0 10px;
+  margin-bottom: 25px;
+}
+
+.step-item.active + .step-connector {
+  background-color: var(--fallback-p,oklch(var(--p)/1));
+}
+
+.quiz-step {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+

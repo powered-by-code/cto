@@ -1,5 +1,11 @@
 {
-  "companyName": "",
+  "websiteUrl": "https://ctoprime.com",
+  "companyName": "CTOprime",
+  "contact": {
+    "email": "contact@ctoprime.com",
+    "phone": "(555) 123-4567",
+    "serviceFeePercentage": 10
+  },
   "footer": {
     "socialLinks": [
       {

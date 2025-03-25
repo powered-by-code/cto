@@ -21,6 +21,7 @@ const Navbar: React.FC = () => {
     { href: "/case-studies", label: "CASE STUDIES" },
     { href: "/about-us", label: "ABOUT US" },
     { href: "/resources", label: "RESOURCES" },
+    { href: "/cost-calculator", label: "COST CUTTING CALCULATOR 🖩" },
   ];
 
   return (
