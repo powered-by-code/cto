@@ -16,11 +16,25 @@ const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { href: "/services", label: "SERVICES" },
-    { href: "/industries", label: "INDUSTRIES" },
+    { href: "/about-us", label: "ABOUT US" },
+    {
+      href: "/services",
+      label: "SERVICES",
+      children: data.services.map((service) => ({
+        href: `/services/${service.id}`,
+        label: service.title,
+      })),
+    },
+    {
+      href: "/industries",
+      label: "INDUSTRIES",
+      children: data.industries.map((industry) => ({
+        href: `/industries/${industry.id}`,
+        label: industry.title,
+      })),
+    },
     { href: "/case-studies", label: "CASE STUDIES" },
     { href: "/resources", label: "RESOURCES" },
-    { href: "/about-us", label: "ABOUT US" },
     {
       label: "Free Tools",
       children: [
