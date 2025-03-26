@@ -2,7 +2,7 @@
 import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { useState } from "react";
-import data from '@/data.json';
+import data from "@/data.json";
 // const { meetingLink } = data;
 import MeetingButton from "./MeetingButton";
 import Image from "next/image";
@@ -19,16 +19,25 @@ const Navbar: React.FC = () => {
     { href: "/services", label: "SERVICES" },
     { href: "/industries", label: "INDUSTRIES" },
     { href: "/case-studies", label: "CASE STUDIES" },
-    { href: "/about-us", label: "ABOUT US" },
     { href: "/resources", label: "RESOURCES" },
-    { href: "/cost-calculator", label: "COST CUTTING CALCULATOR 🖩" },
+    { href: "/about-us", label: "ABOUT US" },
+    {
+      label: "Free Tools",
+      children: [
+        { href: "/cost-calculator", label: "COST CUTTING CALCULATOR 🖩" },
+        { href: "/assessment", label: "CTO Needs Assessment" },
+      ],
+    },
   ];
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
         <div className="flex items-center gap-2">
-          <Link href="/" className="text-xl font-bold text-primary flex items-center gap-2">
+          <Link
+            href="/"
+            className="text-xl font-bold text-primary flex items-center gap-2"
+          >
             <Image src="/logo.svg" alt="Logo" width={32} height={32} />
             {data.companyName}
           </Link>
@@ -60,7 +69,20 @@ const Navbar: React.FC = () => {
         <ul className="menu menu-horizontal px-1">
           {navLinks.map((link, index) => (
             <li key={index}>
-              <Link href={link.href}>{link.label}</Link>
+              {link.children ? (
+                <details>
+                  <summary>{link.label}</summary>
+                  <ul className="bg-base-100 rounded-t-none p-2 w-70">
+                    {link.children.map((child, childIndex) => (
+                      <li key={childIndex}>
+                        <Link href={child.href || ""}>{child.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              ) : (
+                <Link href={link.href || ""}>{link.label}</Link>
+              )}
             </li>
           ))}
           <li>
@@ -75,13 +97,30 @@ const Navbar: React.FC = () => {
           <ul className="menu menu-vertical w-full">
             {navLinks.map((link, index) => (
               <li key={index}>
-                <Link href={link.href} onClick={toggleMenu}>
-                  {link.label}
-                </Link>
+                {link.children ? (
+                  <details>
+                    <summary>{link.label}</summary>
+                    <ul className="bg-base-100 rounded-t-none p-2">
+                      {link.children.map((child, childIndex) => (
+                        <li key={childIndex}>
+                          <Link href={child.href || ""}>{child.label}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                ) : (
+                  <Link href={link.href || ""} onClick={toggleMenu}>
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
             <li className="mt-2">
-              <MeetingButton text="REQUEST QUOTE" className="w-full" onClick={toggleMenu} />
+              <MeetingButton
+                text="REQUEST QUOTE"
+                className="w-full"
+                onClick={toggleMenu}
+              />
             </li>
           </ul>
         </div>
