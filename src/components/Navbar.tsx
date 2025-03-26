@@ -72,7 +72,7 @@ const Navbar: React.FC = () => {
               {link.children ? (
                 <details>
                   <summary>{link.label}</summary>
-                  <ul className="bg-base-100 rounded-t-none p-2 w-70">
+                  <ul className="bg-base-100 rounded-t-none p-2 w-65 z-50">
                     {link.children.map((child, childIndex) => (
                       <li key={childIndex}>
                         <Link href={child.href || ""}>{child.label}</Link>

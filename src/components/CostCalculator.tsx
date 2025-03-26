@@ -607,9 +607,43 @@ export default function CostCalculator() {
   const [completedCategories, setCompletedCategories] = useState<string[]>([]);
   const [progress, setProgress] = useState<number>(0);
   const [departments, setDepartments] = useState<string[]>([]);
+  const [email, setEmail] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [showEmailForm, setShowEmailForm] = useState<boolean>(false);
+  const [name, setName] = useState<string>("");
+  const [jobTitle, setJobTitle] = useState<string>("");
 
   // Company data from data.json
   const { websiteUrl, companyName, contact } = siteData;
+
+  // Load saved data from localStorage
+  useEffect(() => {
+    const savedData = localStorage.getItem('calculatorData');
+    if (savedData) {
+      const data = JSON.parse(savedData);
+      setTeamSize(data.teamSize || 0);
+      setTeamSizeText(data.teamSizeText || "");
+      setSelectedTools(data.selectedTools || []);
+      setDepartments(data.departments || []);
+      setEmail(data.email || "");
+      setName(data.name || "");
+      setJobTitle(data.jobTitle || "");
+    }
+  }, []);
+
+  // Save data to localStorage whenever it changes
+  useEffect(() => {
+    const data = {
+      teamSize,
+      teamSizeText,
+      selectedTools,
+      departments,
+      email,
+      name,
+      jobTitle,
+    };
+    localStorage.setItem('calculatorData', JSON.stringify(data));
+  }, [teamSize, teamSizeText, selectedTools, departments, email, name, jobTitle]);
 
   // Calculate total savings
   const totalCostPerYear = useMemo(() => {
@@ -866,18 +900,38 @@ export default function CostCalculator() {
   
   const renderStepIndicator = () => {
     return (
-      <div className="mb-8">
-        <div className="w-full bg-base-200 rounded-full h-4">
+      <div className="mb-12">
+        <div className="w-full bg-base-200 rounded-full h-2">
           <div 
-            className="bg-primary h-4 rounded-full transition-all duration-500 ease-in-out"
+            className="bg-primary h-2 rounded-full transition-all duration-500 ease-in-out"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
-        <div className="flex justify-between mt-2 text-sm">
-          <div className={(step >= 1) ? "text-primary font-medium" : ""}>Step 1: Team Size</div>
-          <div className={(step >= 2) ? "text-primary font-medium" : ""}>Step 2: Departments</div>
-          <div className={(step >= 3 && !showResults) ? "text-primary font-medium" : ""}>Step 3: Tools</div>
-          <div className={showResults ? "text-primary font-medium" : ""}>Results</div>
+        <div className="flex justify-between mt-4 text-sm">
+          <div className={`flex items-center ${(step >= 1) ? "text-primary font-medium" : "opacity-50"}`}>
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${(step >= 1) ? "bg-primary text-primary-content" : "bg-base-200"}`}>
+              1
+            </div>
+            Team Size
+          </div>
+          <div className={`flex items-center ${(step >= 2) ? "text-primary font-medium" : "opacity-50"}`}>
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${(step >= 2) ? "bg-primary text-primary-content" : "bg-base-200"}`}>
+              2
+            </div>
+            Departments
+          </div>
+          <div className={`flex items-center ${(step >= 3 && !showResults) ? "text-primary font-medium" : "opacity-50"}`}>
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${(step >= 3 && !showResults) ? "bg-primary text-primary-content" : "bg-base-200"}`}>
+              3
+            </div>
+            Tools
+          </div>
+          <div className={`flex items-center ${showResults ? "text-primary font-medium" : "opacity-50"}`}>
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${showResults ? "bg-primary text-primary-content" : "bg-base-200"}`}>
+              4
+            </div>
+            Results
+          </div>
         </div>
       </div>
     );
@@ -1108,6 +1162,25 @@ export default function CostCalculator() {
       };
     }, 500);
   };
+
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Here you would typically send the data to your backend
+      // For now, we'll just simulate a delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Show success message
+      setShowEmailForm(false);
+      // You would typically show a success message here
+    } catch (error) {
+      console.error('Error submitting email:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   
   return (
     <div className="w-full max-w-4xl mx-auto bg-base-100 rounded-box shadow-xl p-6 md:p-8">
@@ -1138,50 +1211,55 @@ export default function CostCalculator() {
       </div>
       
       {step === 1 && (
-        <div>
-          <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">How many people are in your organization?</h2>
+        <div className="space-y-8">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Calculate Your Open Source Savings
+            </h2>
+            <p className="text-xl opacity-80 mb-8">
+              Discover how much your organization could save by switching to open source alternatives.
+              Start by entering your team size below.
+            </p>
+          </div>
           
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:w-2/3">
-              {[5, 10, 25, 50].map(size => (
+          <div className="space-y-6">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+              {[5, 10, 25, 50, 100, 250].map(size => (
                 <button 
                   key={size}
                   onClick={() => handleTeamSizeSelect(size)}
-                  className={`btn ${teamSize === size ? 'btn-primary' : 'btn-outline'}`}
-                >
-                  {size}
-                </button>
-              ))}
-              {[100, 250, 500, 1000].map(size => (
-                <button 
-                  key={size}
-                  onClick={() => handleTeamSizeSelect(size)}
-                  className={`btn ${teamSize === size ? 'btn-primary' : 'btn-outline'}`}
+                  className={`btn btn-sm transition-all duration-200 ${
+                    teamSize === size 
+                      ? 'btn-primary scale-105 shadow-lg' 
+                      : 'btn-outline hover:bg-primary/10'
+                  }`}
                 >
                   {size}
                 </button>
               ))}
             </div>
             
-            <div className="form-control md:w-1/3">
+            <div className="divider">OR</div>
+            
+            <div className="form-control w-full">
               <label className="label">
-                <span className="label-text">Custom</span>
+                <span className="label-text text-lg">Enter Custom Team Size</span>
               </label>
               <input
                 type="number"
                 value={teamSizeText}
                 onChange={handleTeamSizeChange}
-                placeholder="Enter team size"
-                className="input input-bordered w-full"
+                placeholder="Enter number of employees"
+                className="input input-bordered input-lg w-full focus:ring-2 focus:ring-primary"
                 min="1"
               />
             </div>
           </div>
           
-          <div className="flex justify-end mt-8">
+          <div className="flex justify-end">
             <button 
               onClick={handleNextStep} 
-              className="btn btn-primary"
+              className="btn btn-primary btn-lg"
               disabled={teamSize <= 0}
             >
               Next <span className="ml-2">→</span>
@@ -1191,72 +1269,46 @@ export default function CostCalculator() {
       )}
       
       {step === 2 && (
-        <div>
-          <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Which departments does your organization have?</h2>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-            <div 
-              onClick={() => handleDepartmentToggle('engineering')}
-              className={`card cursor-pointer ${departments.includes('engineering') ? 'bg-primary text-primary-content' : 'bg-base-200'} hover:bg-primary hover:text-primary-content transition-colors p-6`}
-            >
-              <div className="text-4xl mb-2">👨‍💻</div>
-              <h3 className="font-bold">Engineering</h3>
-              <p className="text-sm opacity-80">Development, DevOps, QA</p>
-            </div>
-            
-            <div 
-              onClick={() => handleDepartmentToggle('product')}
-              className={`card cursor-pointer ${departments.includes('product') ? 'bg-primary text-primary-content' : 'bg-base-200'} hover:bg-primary hover:text-primary-content transition-colors p-6`}
-            >
-              <div className="text-4xl mb-2">📋</div>
-              <h3 className="font-bold">Product</h3>
-              <p className="text-sm opacity-80">Product Management, Design</p>
-            </div>
-            
-            <div 
-              onClick={() => handleDepartmentToggle('marketing')}
-              className={`card cursor-pointer ${departments.includes('marketing') ? 'bg-primary text-primary-content' : 'bg-base-200'} hover:bg-primary hover:text-primary-content transition-colors p-6`}
-            >
-              <div className="text-4xl mb-2">📢</div>
-              <h3 className="font-bold">Marketing</h3>
-              <p className="text-sm opacity-80">Growth, Content, Social Media</p>
-            </div>
-            
-            <div 
-              onClick={() => handleDepartmentToggle('sales')}
-              className={`card cursor-pointer ${departments.includes('sales') ? 'bg-primary text-primary-content' : 'bg-base-200'} hover:bg-primary hover:text-primary-content transition-colors p-6`}
-            >
-              <div className="text-4xl mb-2">💼</div>
-              <h3 className="font-bold">Sales & CRM</h3>
-              <p className="text-sm opacity-80">Sales, Customer Relations</p>
-            </div>
-            
-            <div 
-              onClick={() => handleDepartmentToggle('operations')}
-              className={`card cursor-pointer ${departments.includes('operations') ? 'bg-primary text-primary-content' : 'bg-base-200'} hover:bg-primary hover:text-primary-content transition-colors p-6`}
-            >
-              <div className="text-4xl mb-2">🏢</div>
-              <h3 className="font-bold">Operations</h3>
-              <p className="text-sm opacity-80">Finance, HR, Administration</p>
-            </div>
-            
-            <div 
-              onClick={() => handleDepartmentToggle('support')}
-              className={`card cursor-pointer ${departments.includes('support') ? 'bg-primary text-primary-content' : 'bg-base-200'} hover:bg-primary hover:text-primary-content transition-colors p-6`}
-            >
-              <div className="text-4xl mb-2">🎧</div>
-              <h3 className="font-bold">Support</h3>
-              <p className="text-sm opacity-80">Customer Support, Success</p>
-            </div>
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Which departments do you have?</h2>
+            <p className="text-lg opacity-80">Select the departments in your organization to see relevant tools.</p>
           </div>
           
-          <div className="flex justify-between mt-8">
-            <button onClick={handlePrevStep} className="btn btn-outline">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { id: 'engineering', name: 'Engineering', icon: '⚙️', desc: 'Development, DevOps' },
+              { id: 'product', name: 'Product', icon: '🎯', desc: 'Product Management, Design' },
+              { id: 'marketing', name: 'Marketing', icon: '📢', desc: 'Marketing, Content' },
+              { id: 'sales', name: 'Sales & CRM', icon: '💼', desc: 'Sales, Customer Relations' },
+              { id: 'operations', name: 'Operations', icon: '🏢', desc: 'Finance, HR, Administration' },
+              { id: 'support', name: 'Support', icon: '🎧', desc: 'Customer Support, Success' }
+            ].map(dept => (
+              <div 
+                key={dept.id}
+                onClick={() => handleDepartmentToggle(dept.id)}
+                className={`card cursor-pointer transition-all duration-200 ${
+                  departments.includes(dept.id) 
+                    ? 'bg-primary text-primary-content shadow-lg scale-[1.02]' 
+                    : 'bg-base-200 hover:bg-base-300'
+                }`}
+              >
+                <div className="card-body p-6">
+                  <div className="text-4xl mb-3">{dept.icon}</div>
+                  <h3 className="font-bold text-xl">{dept.name}</h3>
+                  <p className="text-sm opacity-80">{dept.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="flex justify-between">
+            <button onClick={handlePrevStep} className="btn btn-outline btn-lg">
               <span className="mr-2">←</span> Back
             </button>
             <button 
               onClick={handleNextStep} 
-              className="btn btn-primary"
+              className="btn btn-primary btn-lg"
               disabled={departments.length === 0}
             >
               Next <span className="ml-2">→</span>
@@ -1266,15 +1318,16 @@ export default function CostCalculator() {
       )}
       
       {step === 3 && !showResults && (
-        <div>
-          <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Which tools is your team currently using?</h2>
-          <p className="mb-2 opacity-80">Select the commercial tools your team uses for a personalized savings estimate.</p>
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Which tools is your team currently using?</h2>
+            <p className="text-lg opacity-80">Select the commercial tools your team uses for a personalized savings estimate.</p>
+          </div>
           
-          {/* Current category indicator */}
           {getCurrentCategoryInfo() && (
-            <div className="bg-base-200 p-3 rounded-lg mb-6 flex justify-between items-center">
-              <h3 className="font-bold text-lg">{getCurrentCategoryInfo()?.name || ""}</h3>
-              <span className="badge badge-primary">{getCurrentCategoryInfo()?.progress || ""}</span>
+            <div className="bg-base-200 p-4 rounded-lg flex justify-between items-center">
+              <h3 className="font-bold text-xl">{getCurrentCategoryInfo()?.name || ""}</h3>
+              <span className="badge badge-primary badge-lg">{getCurrentCategoryInfo()?.progress || ""}</span>
             </div>
           )}
           
@@ -1285,14 +1338,18 @@ export default function CostCalculator() {
                 <div 
                   key={tool.id}
                   onClick={() => handleToolToggle(tool.id)}
-                  className={`card cursor-pointer ${selectedTools.includes(tool.id) ? 'bg-primary text-primary-content' : 'bg-base-200'} hover:bg-primary hover:text-primary-content transition-colors`}
+                  className={`card cursor-pointer transition-all duration-200 ${
+                    selectedTools.includes(tool.id) 
+                      ? 'bg-primary text-primary-content shadow-lg scale-[1.02]' 
+                      : 'bg-base-200 hover:bg-base-300'
+                  }`}
                 >
-                  <div className="card-body p-4">
+                  <div className="card-body p-6">
                     <div className="flex items-start justify-between">
                       <div>
-                        <div className="text-2xl mb-1">{tool.icon}</div>
-                        <h3 className="font-bold">{tool.name}</h3>
-                        <div className="text-sm opacity-80">
+                        <div className="text-3xl mb-3">{tool.icon}</div>
+                        <h3 className="font-bold text-xl">{tool.name}</h3>
+                        <div className="text-lg font-medium mt-1">
                           ${tool.costPerUser}/user/month
                         </div>
                       </div>
@@ -1305,11 +1362,11 @@ export default function CostCalculator() {
                         />
                       </div>
                     </div>
-                    <div className="mt-2 text-sm">
-                      <div className="opacity-80">
-                        Open Source Alt: {tool.openSourceAlternative}
+                    <div className="mt-4">
+                      <div className="text-sm opacity-80">
+                        Open Source Alternative: <span className="font-medium">{tool.openSourceAlternative}</span>
                       </div>
-                      <div className="mt-1 font-medium">
+                      <div className="mt-2 text-lg font-medium text-success">
                         Team Savings: ${(tool.costPerUser * teamSize).toLocaleString('en-US', { maximumFractionDigits: 0 })}/year
                       </div>
                     </div>
@@ -1318,101 +1375,152 @@ export default function CostCalculator() {
               ))}
           </div>
           
-          {toolOptions.filter(tool => tool.category === activeCategory).length === 0 && (
-            <div className="alert alert-info mt-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              <span>No tools available in this category.</span>
-            </div>
-          )}
-          
-          <div className="flex justify-between mt-8">
-            <button onClick={handlePrevStep} className="btn btn-outline">
+          <div className="flex justify-between">
+            <button onClick={handlePrevStep} className="btn btn-outline btn-lg">
               <span className="mr-2">←</span> Back
             </button>
-            
             <button 
               onClick={handleNextStep} 
-              className="btn btn-primary"
+              className="btn btn-primary btn-lg"
             >
-              {getCurrentCategoryInfo() && 
-                (getCurrentCategoryInfo()?.progress === `${getAllVisibleCategories().length} of ${getAllVisibleCategories().length}`)
-                ? 'View Results' 
-                : 'Next Category'} 
-              <span className="ml-2">→</span>
+              {activeCategory === toolCategories[toolCategories.length - 1].id ? 'View Results' : 'Next Category'}
             </button>
           </div>
         </div>
       )}
       
       {showResults && (
-        <div className="calculator-results">
-          <h1 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Open Source Cost Savings Calculator</h1>
-          <p className="text-center mb-8">Discover how much your organization could save by switching from commercial tools to open source alternatives.</p>
+        <div className="calculator-results space-y-12">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Your Open Source Savings Potential</h1>
+            <p className="text-xl opacity-80">Here's how much your team of {teamSize} could save by switching to open source alternatives.</p>
+          </div>
           
-          <h2 className="text-3xl font-bold mb-2">Your Potential Savings</h2>
-          <p className="mb-6 opacity-80">Here's how much your team of {teamSize} could save by switching to open source alternatives.</p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="stats shadow">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="stats shadow-lg">
               <div className="stat">
-                <div className="stat-title">Annual Savings</div>
-                <div className="stat-value text-success">${totalSavingsPerYear.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                <div className="stat-title text-lg">Annual Savings</div>
+                <div className="stat-value text-success text-4xl">${totalSavingsPerYear.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
                 <div className="stat-desc">By switching to open source</div>
               </div>
             </div>
             
-            <div className="stats shadow">
+            <div className="stats shadow-lg">
               <div className="stat">
-                <div className="stat-title">3 Year Savings</div>
-                <div className="stat-value text-primary">${(totalSavingsPerYear * 3).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+                <div className="stat-title text-lg">3 Year Savings</div>
+                <div className="stat-value text-primary text-4xl">${(totalSavingsPerYear * 3).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
                 <div className="stat-desc">Long-term impact</div>
               </div>
             </div>
           </div>
           
-          <div className="card bg-base-200 p-6 shadow-md mb-8">
-            <div className="font-bold text-lg mb-2">Our Service Fee (25% of annual savings)</div>
-            <div className="text-3xl font-bold text-warning mb-2">${ourServiceFee.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-            <p className="text-sm opacity-80 mb-4">Our team of experts will guide your transition to open source alternatives, providing implementation support, training, and ongoing maintenance.</p>
+          <div className="card bg-base-200 p-8 shadow-lg">
+            <div className="font-bold text-xl mb-3">Our Service Fee (25% of annual savings)</div>
+            <div className="text-4xl font-bold text-warning mb-4">${ourServiceFee.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+            <p className="text-base opacity-80 mb-6">Our team of experts will guide your transition to open source alternatives, providing implementation support, training, and ongoing maintenance.</p>
             
-            <div className="font-bold text-lg mt-4">Net Annual Savings</div>
-            <div className="text-3xl font-bold text-success">${netSavings.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
+            <div className="font-bold text-xl mt-6">Net Annual Savings</div>
+            <div className="text-4xl font-bold text-success">${netSavings.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
           </div>
           
           {renderSavingsChart()}
           
-          <div className="mt-8 text-center">
-            <h3 className="text-2xl font-bold mb-4">Ready to Start Your Open Source Journey?</h3>
-            <p className="mb-6 opacity-80">
+          <div className="text-center space-y-6">
+            <h3 className="text-2xl font-bold">Ready to Start Your Open Source Journey?</h3>
+            <p className="text-lg opacity-80 max-w-2xl mx-auto">
               Our team can help you plan and execute a smooth transition to open source alternatives, 
               maximizing your savings while minimizing disruption.
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
-              <a href={`${websiteUrl}/contact`} className="btn btn-primary no-print">
+              <a href={`${websiteUrl}/contact`} className="btn btn-primary btn-lg no-print">
                 Contact Us
               </a>
-              <button onClick={handleDownloadPDF} className="btn btn-outline no-print">
-                <span className="mr-2">📥</span> Download PDF Report
+              <button 
+                onClick={() => setShowEmailForm(true)} 
+                className="btn btn-outline btn-lg no-print"
+              >
+                <span className="mr-2">📧</span> Get Detailed Report
               </button>
             </div>
           </div>
+
+          {showEmailForm && (
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+              <div className="bg-base-100 p-8 rounded-lg shadow-xl max-w-md w-full mx-4">
+                <h3 className="text-2xl font-bold mb-4">Get Your Detailed Report</h3>
+                <p className="mb-6 opacity-80">
+                  Enter your details below and we'll send you a comprehensive PDF report of your potential savings.
+                </p>
+                <form onSubmit={handleEmailSubmit} className="space-y-4">
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Full Name</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Enter your full name"
+                      className="input input-bordered w-full"
+                      required
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Job Title</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={jobTitle}
+                      onChange={(e) => setJobTitle(e.target.value)}
+                      placeholder="Enter your job title"
+                      className="input input-bordered w-full"
+                      required
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Email Address</span>
+                    </label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      className="input input-bordered w-full"
+                      required
+                    />
+                  </div>
+                  <div className="flex justify-end gap-4 mt-6">
+                    <button
+                      type="button"
+                      onClick={() => setShowEmailForm(false)}
+                      className="btn btn-outline"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <span className="loading loading-spinner loading-sm mr-2"></span>
+                          Sending...
+                        </>
+                      ) : (
+                        'Send Report'
+                      )}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
           
-          <div className="mt-10 pt-4 border-t text-center text-sm opacity-70 no-print">
+          <div className="mt-12 pt-6 border-t text-center text-sm opacity-70 no-print">
             <p>© {new Date().getFullYear()} {companyName} | <a href={websiteUrl} className="hover:underline">{websiteUrl}</a></p>
-          </div>
-          
-          <div className="flex justify-between mt-8 no-print">
-            <button onClick={handlePrevStep} className="btn btn-outline">
-              <span className="mr-2">←</span> Back
-            </button>
-            <button 
-              onClick={() => {setStep(1); setSelectedTools([]); setShowResults(false); setCompletedCategories([]); setDepartments([]);}} 
-              className="btn btn-outline"
-            >
-              Start Over
-            </button>
           </div>
         </div>
       )}
