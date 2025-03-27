@@ -17,9 +17,6 @@ export default function CostCalculatorPage() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-primary/10 to-transparent"></div>
         <div className="absolute bottom-0 inset-x-0 h-96 bg-gradient-to-t from-secondary/10 to-transparent"></div>
-        
-        {/* Graph Grid Background */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -27,7 +24,7 @@ export default function CostCalculatorPage() {
         
         <div className="py-16">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Open Source Cost Savings Calculator</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent h-15">IT Budget Optimizer</h1>
             <p className="text-xl opacity-80">
               Discover how much your organization could save by switching from commercial tools to open source alternatives.
             </p>

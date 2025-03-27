@@ -6,13 +6,19 @@ import data from "@/data.json";
 // const { meetingLink } = data;
 import MeetingButton from "./MeetingButton";
 import Image from "next/image";
+import { MenuIcon, ChevronDown } from "lucide-react";
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [areDropdownsOpen, setAreDropdownsOpen] = useState(false);
   // Get meeting link from data.json
   // const meetingLink = data.meetingLink;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleAllDropdowns = () => {
+    setAreDropdownsOpen(!areDropdownsOpen);
   };
 
   const navLinks = [
@@ -33,16 +39,24 @@ const Navbar: React.FC = () => {
         label: industry.title,
       })),
     },
-    { href: "/case-studies", label: "CASE STUDIES" },
-    { href: "/resources", label: "RESOURCES" },
+    {
+      href: "/resources",
+      label: "RESOURCES",
+      children: [
+        { href: "/resources", label: "ARTICLES" },
+        { href: "/case-studies", label: "CASE STUDIES" },
+        { href: "/podcasts", label: "PODCASTS" },
+      ],
+    },
     {
       label: "Free Tools",
       children: [
-        { href: "/cost-calculator", label: "COST CUTTING CALCULATOR 🖩" },
+        { href: "/cost-calculator", label: "IT Budget Optimizer" },
         { href: "/assessment", label: "CTO Needs Assessment" },
       ],
     },
   ];
+
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -59,41 +73,41 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu button */}
       <div className="flex-none lg:hidden">
         <button className="btn btn-square btn-ghost" onClick={toggleMenu}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block w-5 h-5 stroke-current"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
+          <MenuIcon />
         </button>
       </div>
 
       {/* Desktop menu */}
       <div className="flex-none hidden lg:block">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu xl:menu-horizontal bg-base-200 rounded-box lg:min-w-max">
           {navLinks.map((link, index) => (
             <li key={index}>
               {link.children ? (
-                <details>
-                  <summary>{link.label}</summary>
-                  <ul className="bg-base-100 rounded-t-none p-2 w-65 z-50">
-                    {link.children.map((child, childIndex) => (
-                      <li key={childIndex}>
-                        <Link href={child.href || ""}>{child.label}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
+                <>
+                  <button 
+                    onClick={toggleAllDropdowns}
+                    className="flex items-center justify-between"
+                  >
+                    {link.label}
+                    <ChevronDown 
+                      className={`w-4 h-4 transition-transform ${
+                        areDropdownsOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  {areDropdownsOpen && (
+                    <ul className="bg-base-200 rounded-box p-2">
+                      {link.children.map((child, childIndex) => (
+                        <li key={childIndex}>
+                          <Link href={child.href || ""}>{child.label}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
               ) : (
                 <Link href={link.href || ""}>{link.label}</Link>
               )}
@@ -107,25 +121,21 @@ const Navbar: React.FC = () => {
 
       {/* Mobile menu dropdown */}
       {isMenuOpen && (
-        <div className="fixed top-16 left-0 right-0 bg-base-100 shadow-lg p-4 z-50 lg:hidden">
+        <div className="fixed top-16 left-0 right-0 bg-base-200 shadow-lg p-4 z-50 lg:hidden">
           <ul className="menu menu-vertical w-full">
             {navLinks.map((link, index) => (
               <li key={index}>
-                {link.children ? (
-                  <details>
-                    <summary>{link.label}</summary>
-                    <ul className="bg-base-100 rounded-t-none p-2">
-                      {link.children.map((child, childIndex) => (
-                        <li key={childIndex}>
-                          <Link href={child.href || ""}>{child.label}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                ) : (
-                  <Link href={link.href || ""} onClick={toggleMenu}>
-                    {link.label}
-                  </Link>
+                <a>{link.label}</a>
+                {link.children && (
+                  <ul className="bg-base-200 rounded-box p-2">
+                    {link.children.map((child, childIndex) => (
+                      <li key={childIndex}>
+                        <Link href={child.href || ""} onClick={toggleMenu}>
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </li>
             ))}
