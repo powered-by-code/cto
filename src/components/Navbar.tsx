@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <div className="drawer">
+    <div className="drawer drawer-end">
       <input 
         id="navbar-drawer" 
         type="checkbox" 
@@ -187,13 +187,25 @@ const Navbar: React.FC = () => {
         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           {navLinks.map((link, index) => (
             <li key={index}>
-              <a
-                className={`hover:bg-base-300 ${
-                  isActive(link.href || "") ? "text-primary font-bold" : ""
-                }`}
-              >
-                {link.label}
-              </a>
+              {link.children ? (
+                <a
+                  className={`hover:bg-base-300 ${
+                    isActive(link.href || "") ? "text-primary font-bold" : ""
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  href={link.href || ""}
+                  onClick={toggleMenu}
+                  className={`hover:bg-base-300 ${
+                    isActive(link.href || "") ? "text-primary font-bold" : ""
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )}
               {link.children && (
                 <ul className="bg-base-200 rounded-box p-2">
                   {link.children.map((child, childIndex) => (
