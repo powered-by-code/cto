@@ -1,8 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import data from "@/data.json";
+import { navLinks } from "@/lib/navLinks";
 
 const Footer: React.FC = () => {
+  // Calculate the number of columns based on navLinks length
+  const columnClass = `grid-cols-1 ${
+    navLinks.length === 2 ? 'md:grid-cols-2' :
+    navLinks.length === 3 ? 'md:grid-cols-3' :
+    navLinks.length === 4 ? 'md:grid-cols-4' :
+    navLinks.length >= 5 ? 'md:grid-cols-4 lg:grid-cols-5' : ''
+  }`;
+
   return (
     <footer className="py-12 border-t border-gray-800 bg-base-200">
       <div className="container mx-auto">
@@ -33,15 +42,31 @@ const Footer: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex justify-center gap-6 mb-6 text-sm flex-wrap">
-          {data.footer.links.map((link) => (
-            <Link
-              key={link.name}
-              href={link.url}
-              className="hover:text-primary"
-            >
-              {link.name}
-            </Link>
+        <div className={`grid ${columnClass} gap-8 max-w-6xl mx-auto px-4`}>
+          {navLinks.map((section, index) => (
+            <div key={index} className="flex flex-col gap-2">
+              {section.href && (
+                <Link
+                  href={section.href}
+                  className="text-sm font-bold hover:text-primary"
+                >
+                  {section.label}
+                </Link>
+              )}
+              {section.children && (
+                <div className="flex flex-col gap-2">
+                  {section.children.map((child, childIndex) => (
+                    <Link
+                      key={childIndex}
+                      href={child.href || ''}
+                      className="text-sm hover:text-primary"
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>

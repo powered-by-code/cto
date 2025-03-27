@@ -7,6 +7,7 @@ import MeetingButton from "./MeetingButton";
 import Image from "next/image";
 import { MenuIcon, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { navLinks } from "@/lib/navLinks";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -27,42 +28,6 @@ const Navbar: React.FC = () => {
     if (!href) return false;
     return pathname === href || pathname.startsWith(`${href}/`);
   };
-
-  const navLinks = [
-    { href: "/about-us", label: "ABOUT US" },
-    {
-      href: "/services",
-      label: "SERVICES",
-      children: data.services.map((service) => ({
-        href: `/services/${service.id}`,
-        label: service.title,
-      })),
-    },
-    {
-      href: "/industries",
-      label: "INDUSTRIES",
-      children: data.industries.map((industry) => ({
-        href: `/industries/${industry.id}`,
-        label: industry.title,
-      })),
-    },
-    {
-      href: "/resources",
-      label: "RESOURCES",
-      children: [
-        { href: "/resources", label: "ARTICLES" },
-        { href: "/case-studies", label: "CASE STUDIES" },
-        { href: "/resources/podcasts", label: "PODCASTS" },
-      ],
-    },
-    {
-      label: "Free Tools",
-      children: [
-        { href: "/cost-calculator", label: "IT Budget Optimizer" },
-        { href: "/assessment", label: "CTO Needs Assessment" },
-      ],
-    },
-  ];
 
   return (
     <div className="drawer drawer-end">
