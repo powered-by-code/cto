@@ -28,7 +28,7 @@ const Services = () => {
               <ServiceCard 
                 title={service.title} 
                 id={service.id} 
-                description={service.description}
+                features={service.features?.slice(0, 3)}
                 image={service.image}
                 compact={true}
               />

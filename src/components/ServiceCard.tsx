@@ -4,7 +4,7 @@ import Image from "next/image";
 interface ServiceCardProps {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   features?: string[];
   image?: string;
   compact?: boolean;
@@ -28,9 +28,13 @@ const ServiceCard = ({
       >
         <figure>
           {image && (
-            <div className="mb-4 relative w-full h-32">
-              <Image src={image} alt={title} fill  />
-            </div>
+            <Image 
+              src={image} 
+              alt={title} 
+              width={600} 
+              height={400} 
+              className="w-full h-48 object-cover"
+            />
           )}
         </figure>
         <div className="card-body p-6 flex flex-col justify-between">
@@ -38,8 +42,29 @@ const ServiceCard = ({
             <div className="text-xs uppercase tracking-wider opacity-70 font-medium mb-2">
               Service
             </div>
-            <h3 className="font-semibold text-lg mb-2">{title}</h3>
-            <p className="text-sm ">{description}</p>
+            <h3 className="font-semibold text-lg mb-4">{title}</h3>
+            {features && features.length > 0 && (
+              <ul className="space-y-2">
+                {features.slice(0, 3).map((feature, index) => (
+                  <li key={index} className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-primary mt-0.5 mr-2 flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span className="text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
           <div className="flex items-center text-primary mt-4">
             Learn More <span className="ml-2">→</span>
