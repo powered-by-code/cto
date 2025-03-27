@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import ThemeSwitcher from "./ThemeSwitcher";
 import { useState } from "react";
 import data from "@/data.json";
 // const { meetingLink } = data;
@@ -53,7 +52,7 @@ const Navbar: React.FC = () => {
       children: [
         { href: "/resources", label: "ARTICLES" },
         { href: "/case-studies", label: "CASE STUDIES" },
-        { href: "/podcasts", label: "PODCASTS" },
+        { href: "/resources/podcasts", label: "PODCASTS" },
       ],
     },
     {
@@ -87,7 +86,6 @@ const Navbar: React.FC = () => {
                 <Image src="/logo.svg" alt="Logo" width={32} height={32} />
                 {data.companyName}
               </Link>
-              <ThemeSwitcher />
             </div>
           </div>
 
