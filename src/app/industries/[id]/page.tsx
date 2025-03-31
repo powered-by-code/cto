@@ -25,14 +25,14 @@ export default async function IndustryPage({ params }: { params: Params }) {
   }
   
   return (
-    <PageLayout>
+    <PageLayout showCTA={false}>
       <div className="py-12">
         <Link href="/industries" className="text-primary mb-4 inline-flex items-center">
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
           Back to All Industries
-          </Link>
+        </Link>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
           <div className="lg:col-span-2">
@@ -62,15 +62,15 @@ export default async function IndustryPage({ params }: { params: Params }) {
               <div className="card bg-base-200 shadow-lg mb-8">
                 <div className="card-body">
                   <ul className="space-y-3">
-                {industry.services.map((service, index) => (
+                    {industry.services.map((service, index) => (
                       <li key={index} className="flex items-start">
                         <svg className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                         </svg>
                         {service}
                       </li>
-                ))}
-              </ul>
+                    ))}
+                  </ul>
                 </div>
               </div>
               
@@ -78,18 +78,18 @@ export default async function IndustryPage({ params }: { params: Params }) {
               <div className="card bg-base-200 shadow-lg mb-8">
                 <div className="card-body">
                   <ul className="space-y-3">
-                {industry.challenges.map((challenge, index) => (
+                    {industry.challenges.map((challenge, index) => (
                       <li key={index} className="flex items-start">
                         <svg className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                         </svg>
                         {challenge}
                       </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              
               <h2 className="text-2xl font-bold mt-8 mb-4">Success Stories</h2>
               <div className="space-y-4">
                 {industry.caseStudies.map((caseStudy, index) => (
@@ -112,49 +112,6 @@ export default async function IndustryPage({ params }: { params: Params }) {
                   Our fractional CTO services help {industry.title.toLowerCase()} companies navigate technical challenges and build scalable systems.
                 </p>
                 <MeetingButton text="Schedule a Consultation" className="w-full" />
-                
-                <div className="divider">OR</div>
-                
-                <Link href="/assessment" className="btn btn-outline w-full">
-                  Take the Tech Assessment
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <div className="card bg-base-200 shadow-lg">
-                <div className="card-body">
-                  <h3 className="card-title">Related Services</h3>
-                  <ul className="mt-4 space-y-3">
-                    {data.services.slice(0, 3).map((service, index) => (
-                      <li key={index}>
-                        <Link href={`/services/${service.id}`} className="flex items-center hover:text-primary transition-colors">
-                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                          </svg>
-                          {service.title}
-                        </Link>
-                      </li>
-                    ))}
-                    <li>
-                      <Link href="/services" className="flex items-center text-primary hover:underline transition-colors mt-2">
-                        View all services
-                  </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <div className="card bg-base-200 shadow-lg">
-                <div className="card-body">
-                  <h3 className="card-title">Ready to Get Started?</h3>
-                  <p className="my-4">
-                    Schedule a free consultation to discuss your {industry.title} technical challenges.
-                  </p>
-                  <MeetingButton text="Book a Free Consultation" className="w-full" />
-                </div>
               </div>
             </div>
           </div>
