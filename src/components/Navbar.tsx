@@ -12,16 +12,9 @@ import { navLinks } from "@/lib/navLinks";
 const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [areDropdownsOpen, setAreDropdownsOpen] = useState(false);
-  // Get meeting link from data.json
-  // const meetingLink = data.meetingLink;
-
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleAllDropdowns = () => {
-    setAreDropdownsOpen(!areDropdownsOpen);
   };
 
   const isActive = (href: string) => {
@@ -63,67 +56,45 @@ const Navbar: React.FC = () => {
 
           {/* Desktop menu */}
           <div className="flex-none hidden xl:block">
-            <ul className="menu menu-horizontal bg-base-200 rounded-box xl:min-w-max">
+            <ul className="menu menu-horizontal bg-base-200 rounded-box xl:min-w-max whitespace-nowrap">
               {navLinks.map((link, index) => (
-                <li key={index}>
+                <li key={index} className="dropdown dropdown-hover">
                   {link.children ? (
                     <>
-                      <button
-                        onClick={toggleAllDropdowns}
-                        className={`flex items-center justify-between hover:bg-base-300 ${
+                      <div
+                        tabIndex={0}
+                        className={`flex items-center justify-between hover:bg-base-300 whitespace-nowrap ${
                           link.children.some((child) => isActive(child.href || ""))
                             ? "text-primary font-bold"
                             : ""
                         }`}
                       >
-                        <div>
+                        <div className="whitespace-nowrap">
                           {link.label}
-                          {/* find the child with the longest label */}
-                          {/* and use that as the width of the button */}
-                          <div className="h-0 opacity-0 -mt-4 overflow-hidden p-2">
-                            {
-                              link.children.find(
-                                (child) =>
-                                  child.label.length ===
-                                  Math.max(
-                                    ...link.children.map(
-                                      (child) => child.label.length
-                                    )
-                                  )
-                              )?.label
-                            }
-                          </div>
                         </div>
-
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform ${
-                            areDropdownsOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      {areDropdownsOpen && (
-                        <ul className="bg-base-200 rounded-box p-2">
-                          {link.children.map((child, childIndex) => (
-                            <li key={childIndex}>
-                              <Link
-                                href={child.href || ""}
-                                className={`hover:bg-base-300 ${
-                                  isActive(child.href || "")
-                                    ? "text-primary font-bold"
-                                    : ""
-                                }`}
-                              >
-                                {child.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
+                        <ChevronDown className="w-4 h-4 ml-1" />
+                      </div>
+                      <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box whitespace-nowrap">
+                        {link.children.map((child, childIndex) => (
+                          <li key={childIndex}>
+                            <Link
+                              href={child.href || ""}
+                              className={`hover:bg-base-300 whitespace-nowrap ${
+                                isActive(child.href || "")
+                                  ? "text-primary font-bold"
+                                  : ""
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </>
                   ) : (
                     <Link
                       href={link.href || ""}
-                      className={`hover:bg-base-300 ${
+                      className={`hover:bg-base-300 whitespace-nowrap ${
                         isActive(link.href || "") ? "text-primary font-bold" : ""
                       }`}
                     >
@@ -133,7 +104,7 @@ const Navbar: React.FC = () => {
                 </li>
               ))}
               <li>
-                <MeetingButton text="REQUEST QUOTE" className="ml-2" />
+                <MeetingButton text="REQUEST QUOTE" className="ml-2 whitespace-nowrap" />
               </li>
             </ul>
           </div>
@@ -204,3 +175,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
