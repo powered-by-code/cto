@@ -3,7 +3,14 @@ import Link from "next/link";
 // const { meetingLink } = data;
 import MeetingButton from "./MeetingButton";
 
-const CTA: React.FC = () => {
+interface CTAProps {
+  additionalCTA?: {
+    href: string;
+    label: string;
+  };
+}
+
+const CTA: React.FC<CTAProps> = ({ additionalCTA }) => {
   // Get meeting link from data.json
   // const meetingLink = data.meetingLink;
 
@@ -55,17 +62,26 @@ const CTA: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link
-              href="/assessment"
-              className="btn btn-primary btn-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-            >
-              Take the Free Assessment
-            </Link>
-            <MeetingButton
-              variant="outline"
-              className="btn-lg"
-              text="Talk to a Fractional CTO Now"
-            />
+            {additionalCTA ? (
+              <>
+                <Link
+                  href={additionalCTA.href}
+                  className="btn btn-primary btn-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                >
+                  {additionalCTA.label}
+                </Link>
+                <MeetingButton
+                  variant="outline"
+                  className="btn-lg"
+                  text="Free Consultation"
+                />
+              </>
+            ) : (
+              <MeetingButton
+                className="btn-primary btn-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                text="Free Consultation"
+              />
+            )}
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-8 text-sm text-base-content/70">

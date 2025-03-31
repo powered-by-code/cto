@@ -53,6 +53,11 @@
   },
   "services": [
     {
+      "additionalCTA": {
+        "href": "/assessment",
+        "label": "Fractional CTO Need Assessment Test"
+      },
+      "order": 1,
       "id": "fractional-cto",
       "title": "Fractional CTO Services",
       "description": "Bring strategic tech leadership to your startup without the full-time price tag. Get expert guidance when you need it most, whether that's a few hours per week or several days per month.",
@@ -196,6 +201,7 @@
       ]
     },
     {
+      "order": 3,
       "id": "tech-team-building",
       "title": "Tech Team Building",
       "description": "Build a high-performing technical team that delivers results. We help with recruitment, structure, processes, and culture to create a sustainable engineering organization.",
@@ -232,6 +238,7 @@
       ]
     },
     {
+      "order": 4,
       "id": "pivot-support",
       "title": "Technical Pivot Support",
       "description": "Successfully navigate technical changes during business pivots. We provide the expertise you need to realign your technology with your new business direction quickly and efficiently.",
@@ -268,6 +275,11 @@
       ]
     },
     {
+      "order": 2,
+      "additionalCTA": {
+        "href": "/cost-calculator",
+        "label": "IT Budget Optimizer"
+      },
       "id": "tech-cost-optimization",
       "title": "Tech Cost Optimization",
       "description": "Identify and eliminate unnecessary technology expenses without compromising growth. Our data-driven approach helps you invest smartly in the tech that truly matters.",
@@ -304,6 +316,7 @@
       ]
     },
     {
+      "order": 5,
       "id": "technical-due-diligence",
       "title": "Technical Due Diligence",
       "description": "Get a clear understanding of the technical risks and opportunities in your investment or acquisition targets. Our thorough assessments provide actionable insights for decision-making.",
@@ -342,6 +355,7 @@
   ],
   "industries": [
     {
+      "order": 1,
       "id": "saas",
       "title": "SaaS Startups",
       "description": "We help SaaS founders build scalable architectures, optimize cloud infrastructure, implement efficient development processes, and create technical roadmaps that support rapid growth.",
@@ -404,6 +418,7 @@
       ]
     },
     {
+      "order": 6,
       "id": "marketplaces",
       "title": "Marketplaces",
       "description": "We support marketplace founders in building platforms that scale with growing users and transactions, implementing efficient matching algorithms, and designing systems that provide exceptional experiences for all sides of the market.",
@@ -435,6 +450,7 @@
       ]
     },
     {
+      "order": 2,
       "id": "e-commerce",
       "title": "E-Commerce",
       "description": "We enable e-commerce companies to build robust shopping experiences, optimize conversion rates through technical improvements, and implement inventory, fulfillment, and payment systems that scale with your business.",
@@ -466,8 +482,9 @@
       ]
     },
     {
+      "order": 5,
       "id": "health-tech",
-      "title": "Health Tech",
+      "title": "HealthTech",
       "description": "We help health tech founders navigate the unique challenges of building healthcare applications, including HIPAA compliance, secure patient data management, and integration with existing healthcare systems.",
       "longDescription": "Health tech companies operate at the intersection of technology innovation and healthcare regulation. Our fractional CTO services help health tech founders build compliant, secure systems that deliver value to patients and providers. We provide expertise in HIPAA-compliant architecture design, healthcare data security, electronic health record (EHR) integrations, telemedicine implementations, and navigating healthcare regulations as they apply to technology. Our team helps you make technical decisions that support your mission of improving healthcare outcomes while meeting the stringent requirements of the healthcare industry. We work with your team to build healthcare applications that earn trust from patients, providers, and regulatory bodies.",
       "image": "https://placehold.co/600x400/teal/white?text=Health+Tech+Industry",
@@ -497,8 +514,9 @@
       ]
     },
     {
+      "order": 4,
       "id": "ai-ml",
-      "title": "AI/ML Startups",
+      "title": "AI & Machine Learning",
       "description": "We assist AI and machine learning startups in building efficient data pipelines, selecting the right infrastructure for model training and deployment, and creating scalable architectures for ML-powered applications.",
       "longDescription": "Artificial intelligence and machine learning startups face unique technical challenges in data management, model development, and production deployment. Our fractional CTO services provide the specialized expertise AI/ML founders need to build effective, scalable, and maintainable systems. We help design efficient data pipelines for collecting, cleaning, and preparing training data, select appropriate infrastructure for model training and deployment, implement MLOps practices for continuous model improvement, and create scalable architectures for ML-powered applications. Our team understands the technical complexities of building AI systems that perform reliably in production environments while allowing for ongoing refinement and optimization. We work with your data scientists and engineers to turn promising models into production-ready systems that deliver value to users.",
       "image": "https://placehold.co/600x400/red/white?text=AI-ML+Industry",
@@ -599,9 +617,10 @@
       }
     },
     {
+      "order": 5,
       "id": "healthtech-hipaa-compliance",
       "title": "Health Tech HIPAA Compliance",
-      "industry": "Health Tech",
+      "industry": "HealthTech",
       "description": "Developing a HIPAA-compliant architecture for a telehealth platform ensuring patient data security while supporting rapid growth.",
       "challenge": "A telehealth startup had developed an innovative platform connecting patients with healthcare providers, but faced significant challenges implementing the rigorous security and compliance measures required in healthcare. They needed to achieve HIPAA compliance, implement secure video consultations, properly manage protected health information (PHI), and integrate with existing healthcare systems. Without a solid compliance foundation, they were unable to scale their business or partner with major healthcare providers. Their small technical team lacked healthcare compliance expertise.",
       "solution": "Serving as their fractional CTO, we led the development of a comprehensive HIPAA-compliant technical architecture and processes:\n\n1. Conducted a thorough HIPAA gap analysis and created a detailed remediation plan.\n\n2. Designed and implemented a secure architecture for handling protected health information (PHI).\n\n3. Established end-to-end encryption for all patient data and communications, including video consultations.\n\n4. Implemented proper authentication, authorization, and audit logging throughout the platform.\n\n5. Developed secure APIs for integrating with electronic health record (EHR) systems.\n\n6. Created a comprehensive security incident response plan and breach notification procedures.\n\n7. Trained the engineering team on healthcare compliance requirements and secure development practices.",

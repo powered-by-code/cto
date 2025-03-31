@@ -31,21 +31,11 @@ export default async function ServicePage({ params }: { params: Params }) {
     .slice(0, 2);
 
   return (
-    <PageLayout>
+    <PageLayout showCTA={false}>
       <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
-        <section className="bg-base-200 py-16 relative">
-          {service.heroImage && (
-            <div className="absolute inset-0 opacity-10">
-              <Image
-                src={service.heroImage}
-                alt={service.title}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          )}
+        <section className="py-16 relative">
+          
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center">
               <div className="uppercase text-xs tracking-widest mb-4">
@@ -361,15 +351,27 @@ export default async function ServicePage({ params }: { params: Params }) {
         <section className="py-16 bg-primary text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
-            <p className="text-lg mb-8 max-w-2xl mx-auto">
-              Schedule a free consultation to discuss how our {service.title}{" "}
-              can help your business achieve its technical goals.
-            </p>
-            <div className="flex justify-center">
-              <MeetingButton
-                text="Book a Free Consultation"
-                className="btn-lg btn-secondary"
-              />
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              {service.additionalCTA ? (
+                <>
+                  <Link
+                    href={service.additionalCTA.href}
+                    className="btn btn-lg btn-secondary shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                  >
+                    {service.additionalCTA.label}
+                  </Link>
+                  <MeetingButton
+                    text="Free Consultation"
+                    variant="outline"
+                    className="btn-lg"
+                  />
+                </>
+              ) : (
+                <MeetingButton
+                  text="Free Consultation"
+                  className="btn-lg btn-secondary shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                />
+              )}
             </div>
           </div>
         </section>

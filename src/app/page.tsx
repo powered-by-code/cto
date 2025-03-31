@@ -7,8 +7,13 @@ import Resources from '@/components/Resources';
 import CTA from '@/components/CTA';
 import Partners from '@/components/Partners';
 import Footer from '@/components/Footer';
+import data from '@/data.json';
 
 export default function Home() {
+  // Find the fractional CTO service and get its additionalCTA
+  const fractionalCTOService = data.services.find(s => s.id === 'fractional-cto');
+  const additionalCTA = fractionalCTOService?.additionalCTA;
+
   return (
     <main className="bg-base-100 min-h-screen relative">
       {/* Background elements */}
@@ -44,7 +49,7 @@ export default function Home() {
         
         <hr className="border-base-content/10 my-12" />
         
-        <CTA />
+        <CTA additionalCTA={additionalCTA} />
         
         <hr className="border-base-content/10 my-12" />
         
