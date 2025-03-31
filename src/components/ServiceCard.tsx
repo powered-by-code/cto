@@ -32,8 +32,8 @@ const ServiceCard = ({
               src={image} 
               alt={title} 
               width={600} 
-              height={400} 
-              className="w-full h-48 object-cover"
+              height={200} 
+              className="h-48 object-scale-down"
             />
           )}
         </figure>
