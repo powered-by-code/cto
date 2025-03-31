@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
   return (
     <div className="hero py-16 relative overflow-hidden">
       <div className="hero-content relative z-10 flex-col lg:flex-row items-stretch justify-between w-full gap-8">
-        <div className="order-2 lg:order-1 text-left lg:max-w-xl flex flex-col gap-4 bg-base-100/80 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-primary/20">
+        <div className="order-2 lg:order-1 text-left lg:max-w-xl flex flex-col gap-4 bg-base-100/80 ">
           <div className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary font-medium text-sm mb-2 animate-pulse">
             Expert Technical Leadership for Growing Companies
           </div>
