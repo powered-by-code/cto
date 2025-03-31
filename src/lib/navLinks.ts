@@ -3,7 +3,14 @@ import data from "@/data.json";
 const sortByOrder = (a: any, b: any) =>
   (a?.order ?? Infinity) - (b?.order ?? Infinity);
 
-export const links = [
+interface NavLink {
+  href?: string;
+  label: string;
+  hidden?: boolean;
+  children?: NavLink[];
+}
+
+export const links: NavLink[] = [
   { href: "/about-us", label: "ABOUT US" },
   {
     href: "/services",
@@ -12,6 +19,7 @@ export const links = [
       ...data.services.sort(sortByOrder).map((service) => ({
         href: `/services/${service.id}`,
         label: service.title,
+        hidden: service.hidden,
       })),
       {
         href: "/contact",
@@ -25,6 +33,7 @@ export const links = [
     children: data.industries.sort(sortByOrder).map((industry) => ({
       href: `/industries/${industry.id}`,
       label: industry.title,
+      hidden: industry?.hidden,
     })),
     hidden: true,
   },
@@ -51,5 +60,5 @@ export const navLinks = links
   .filter((link) => !link.hidden)
   .map((link) => ({
     ...link,
-    children: link.children?.filter((child) => !child.hidden),
+    children: link.children?.filter((child) => !child?.hidden),
   }));

@@ -40,12 +40,14 @@ export default function Home() {
         <Industries />
         
         <hr className="border-base-content/10 my-12" />
+
+        {/* TODO: uncomment when case studies are ready */}
         
-        <CaseStudies />
+        {/* <CaseStudies />
         
         <hr className="border-base-content/10 my-12" />
         
-        <Resources />
+        <Resources /> */}
         
         <hr className="border-base-content/10 my-12" />
         

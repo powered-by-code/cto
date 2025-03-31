@@ -317,6 +317,7 @@
     },
     {
       "order": 5,
+      "hidden": true,
       "id": "technical-due-diligence",
       "title": "Technical Due Diligence",
       "description": "Get a clear understanding of the technical risks and opportunities in your investment or acquisition targets. Our thorough assessments provide actionable insights for decision-making.",
@@ -388,6 +389,7 @@
     },
     {
       "id": "fintech",
+      "hidden": true,
       "title": "FinTech",
       "description": "We assist FinTech startups with secure architecture design, regulatory compliance, payment integrations, and building high-reliability systems that handle financial data with the utmost integrity.",
       "longDescription": "FinTech companies operate in a uniquely challenging space that combines the fast-paced nature of technology startups with the security and compliance demands of the financial industry. Our fractional CTO services help FinTech founders navigate this complex landscape while building scalable, secure systems. We provide guidance on implementing financial data security best practices, achieving regulatory compliance (PCI-DSS, SOC 2, GDPR, etc.), integrating with banking and payment APIs, and designing high-reliability architectures that support financial transactions. Our team helps you make technology decisions that earn trust from users, partners, and regulators while enabling your business to grow and innovate.",

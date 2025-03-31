@@ -4,7 +4,7 @@ import ServiceCard from './ServiceCard';
 
 const Services = () => {
   // Get services from data.json and show only the first 4
-  const services = data.services.slice(0, 4);
+  const services = data.services.filter((service) => !service.hidden).slice(0, 4);
 
   return (
     <section className="py-16 relative">
@@ -21,7 +21,7 @@ const Services = () => {
           <h2 className="text-4xl font-bold mb-4 animate-fade-in-up">How We Can Help</h2>
           <div className="w-20 h-1 bg-primary/30 rounded"></div>
         </div>
-        
+        {/* default center */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-animate">
           {services.map((service, index) => (
             <div key={service.id} className="animate-fade-in-up shadow-md hover:shadow-lg transition-all" style={{animationDelay: `${0.1 + index * 0.1}s`}}>
@@ -37,12 +37,13 @@ const Services = () => {
         </div>
         
         <div className="text-center mt-12">
-          <Link 
+          {/* TODO: uncomment this when we have a services page */}
+          {/* <Link 
             href="/services" 
             className="btn btn-primary btn-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 text-base-100"
           >
             VIEW ALL SERVICES
-          </Link>
+          </Link> */}
         </div>
       </div>
     </section>
