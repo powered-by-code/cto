@@ -34,8 +34,8 @@ const Navbar: React.FC = () => {
       
       <div className="drawer-content">
         {/* Main Navbar Content */}
-        <div className="navbar bg-base-100 shadow-sm items-start py-2">
-          <div className="flex-1">
+        <div className="navbar bg-base-100 shadow-sm items-center py-0">
+          <div className="flex-1" id="navbar-logo-title">
             <div className="flex items-center gap-2">
               <Link
                 href="/"
@@ -56,13 +56,13 @@ const Navbar: React.FC = () => {
 
           {/* Desktop menu */}
           <div className="flex-none hidden xl:block">
-            <ul className="menu menu-horizontal bg-base-200 rounded-box xl:min-w-max whitespace-nowrap">
+            <ul className="menu menu-horizontal  xl:min-w-max whitespace-nowrap">
               {navLinks.map((link, index) => (
-                <li key={index} className="dropdown dropdown-hover">
+                <li key={index} className="dropdown dropdown-hover dropdown-end">
                   {link.children ? (
                     <>
                       <div
-                        tabIndex={0}
+                        role="button"
                         className={`flex items-center justify-between hover:bg-base-300 whitespace-nowrap ${
                           link.children.some((child) => isActive(child.href || ""))
                             ? "text-primary font-bold"
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
                         </div>
                         <ChevronDown className="w-4 h-4 ml-1" />
                       </div>
-                      <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box whitespace-nowrap">
+                      <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box whitespace-nowrap">
                         {link.children.map((child, childIndex) => (
                           <li key={childIndex}>
                             <Link

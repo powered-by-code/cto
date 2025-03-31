@@ -45,14 +45,14 @@ const Footer: React.FC = () => {
         <div className={`grid ${columnClass} gap-8 max-w-6xl mx-auto px-4`}>
           {navLinks.map((section, index) => (
             <div key={index} className="flex flex-col gap-2">
-              {section.href && (
+              
                 <Link
-                  href={section.href}
+                  href={section.href || ''}
                   className="text-sm font-bold hover:text-primary"
                 >
                   {section.label}
                 </Link>
-              )}
+
               {section.children && (
                 <div className="flex flex-col gap-2">
                   {section.children.map((child, childIndex) => (

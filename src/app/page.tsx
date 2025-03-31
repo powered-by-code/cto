@@ -49,7 +49,7 @@ export default function Home() {
         
         <Resources /> */}
         
-        <hr className="border-base-content/10 my-12" />
+        {/* <hr className="border-base-content/10 my-12" /> */}
         
         <CTA additionalCTA={additionalCTA} />
         
