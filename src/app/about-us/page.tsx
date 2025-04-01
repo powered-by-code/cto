@@ -9,7 +9,7 @@ export default function AboutUsPage() {
   const { teamMembers, companyValues, companyStory, companyApproach } = data;
   
   return (
-    <PageLayout>
+    <PageLayout showCTA={false}>
       <div className="py-12 max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6">About Us</h1>
         
@@ -55,7 +55,7 @@ export default function AboutUsPage() {
                     src={member.image}
                     alt={member.name}
                     fill
-                    className="object-cover"
+                    className="object-cover grayscale"
                   />
                 </figure>
                 <div className="card-body">
@@ -70,7 +70,7 @@ export default function AboutUsPage() {
         
         <section className="mt-16">
           <div className="card bg-base-200 shadow-lg p-8 text-center mt-16">
-            <h2 className="text-2xl font-bold mb-4">Ready to Work Together?</h2>
+            <h2 className="text-2xl font-bold mb-4">Do you need a help with your project?</h2>
             <p className="max-w-2xl mx-auto mb-6">
               Schedule a consultation to discuss how our team can help solve your technical challenges.
             </p>

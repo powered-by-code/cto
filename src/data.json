@@ -1,10 +1,8 @@
 {
-  "websiteUrl": "https://ctoprime.com",
+  "websiteUrl": "https://cubeunity.com",
   "companyName": "cubeunity",
   "contact": {
-    "email": "contact@cubeunity.com",
-    "phone": "(555) 123-4567",
-    "serviceFeePercentage": 10
+    "email": "ruben@cubeunity.com"
   },
   "footer": {
     "socialLinks": [
@@ -61,8 +59,8 @@
       "id": "fractional-cto",
       "title": "Fractional CTO",
       "heroTitle": "Hire Fractional CTO",
-      "description": "Get expert guidance from top fractional CTOs when you need it most-whether it’s a few hours per week or several days per month.",
-      "longDescription": "As a startup founder, you're juggling countless responsibilities. Technical leadership shouldn't be a bottleneck to your growth. Our Fractional CTO service provides the strategic tech guidance you need, when you need it, without the full-time executive cost. We work alongside your team to develop clear technical strategies, make informed architecture decisions, and ensure your technology supports your business goals. Whether you're a non-technical founder needing a trusted tech advisor or a technical founder looking to delegate CTO responsibilities, our flexible engagement model adapts to your specific needs and growth stage.",
+      "description": "Get expert guidance from top fractional CTOs when you need it most-whether it's a few hours per week or several days per month.",
+      "longDescription": "We provide experienced technical leadership without the full-time CTO cost, helping founders make confident technology decisions that support business goals. Our team develops clear technical strategies and architecture while adapting to your specific needs at any growth stage.",
       "image": "/images/1.png",
       "heroImage": "https://placehold.co/1200x400/red/white?text=Fractional+CTO+Hero",
       "testimonialImage": "https://placehold.co/150x150/gray/white?text=Jason",
@@ -106,49 +104,73 @@
       ],
       "comparison": {
         "title": "CTO vs Fractional CTO",
+        "firstRow": "Traditional CTO",
+        "secondRow": "Fractional CTO",
         "stages": [
           {
-            "name": "Product Discovery",
+            "name": "Cost & Commitment",
             "traditional": [
-              "Full-time commitment with high monthly cost",
-              "Limited by one person's expertise"
+              "Full salary ($200K-$350K annually) plus benefits and equity",
+              "Full-time permanent commitment regardless of project phase"
             ],
             "fractional": [
-              "Flexible engagement based on project needs",
-              "Access to a team with diverse expertise"
+              "Flexible pricing ($5K-$15K monthly based on engagement level)",
+              "Adjustable time commitment that scales with your needs"
             ]
           },
           {
-            "name": "Prototyping",
+            "name": "Availability & Timeline",
             "traditional": [
-              "May be too expensive for early-stage startups",
-              "Requires full compensation package"
+              "3-6 months recruitment cycle to find the right person",
+              "Long onboarding period to understand company dynamics"
             ],
             "fractional": [
-              "Pay only for the hours you need",
-              "Scale up or down based on project phases"
+              "Available within days or weeks to address immediate needs",
+              "Rapid integration due to extensive experience with diverse companies"
             ]
           },
           {
-            "name": "Development",
+            "name": "Expertise & Knowledge",
             "traditional": [
-              "In-house knowledge building",
-              "Dedicated to your company only"
+              "Limited to one person's background and experiences",
+              "Expertise may not align with evolving company challenges"
             ],
             "fractional": [
-              "Cross-industry experience and patterns",
-              "Best practices from multiple companies"
+              "Access to diverse expertise across multiple industries",
+              "Cross-pollination of best practices from various organizations"
             ]
           },
           {
-            "name": "Scaling",
+            "name": "Strategic Focus",
             "traditional": [
-              "May have experience from only 1-2 scaling events",
-              "Hiring/training costs for additional expertise"
+              "Often consumed by day-to-day technical operations",
+              "May have limited bandwidth for strategic planning"
             ],
             "fractional": [
-              "Extensive scaling experience across companies",
-              "Access to specialists for specific challenges"
+              "Dedicated focus on strategic technology roadmapping",
+              "Objective recommendations without political entanglements"
+            ]
+          },
+          {
+            "name": "Team Building & Scaling",
+            "traditional": [
+              "Usually limited experience with 1-2 scaling events",
+              "Learning team building through trial and error"
+            ],
+            "fractional": [
+              "Multiple scaling experiences across different business models",
+              "Proven frameworks for technical hiring and team structure"
+            ]
+          },
+          {
+            "name": "Cost Optimization",
+            "traditional": [
+              "Typically not a primary focus area",
+              "May lack experience identifying inefficiencies"
+            ],
+            "fractional": [
+              "Specialized expertise in reducing tech spend",
+              "Fresh perspective to identify redundancies and waste"
             ]
           }
         ]
@@ -297,7 +319,6 @@
         "Resource allocation efficiency",
         "Technical debt prioritization",
         "ROI analysis for technology investments"
-        
       ],
       "benefits": [
         "Reduce monthly cloud and infrastructure costs",
@@ -788,22 +809,34 @@
   ],
   "teamMembers": [
     {
-      "name": "Michael Chen",
-      "title": "Founder & Lead CTO",
-      "bio": "20+ years of experience in technical leadership, with multiple successful exits. Former CTO at TechStart and FinEdge.",
-      "image": "https://placehold.co/300x300/gray/white?text=Michael+Chen"
+      "name": "Ruben Khachatryan",
+      "title": "Engineering Management, Soft Skills, Containerization, Documentation",
+      "bio": "13+ years of experience in engineering leadership and system architecture.",
+      "image": "/avatars/ruben.png"
     },
     {
-      "name": "Sarah Johnson",
-      "title": "Senior Technical Advisor",
-      "bio": "Expert in cloud architecture and scalable systems. Previously led engineering teams at major tech companies.",
-      "image": "https://placehold.co/300x300/gray/white?text=Sarah+Johnson"
+      "name": "Andranik Khandanyan",
+      "title": "Engineering Management, Software Architecture, System Performance, Backend",
+      "bio": "13+ years of experience in engineering management and backend system architecture.",
+      "image": "/avatars/andranik-k.png"
     },
     {
-      "name": "David Kumar",
-      "title": "Technical Strategy Lead",
-      "bio": "Specializes in technical due diligence and team building. Has helped scale multiple startups from seed to Series C.",
-      "image": "https://placehold.co/300x300/gray/white?text=David+Kumar"
+      "name": "Andranik Muradyan",
+      "title": "Distributed Systems, Complex System Design, TDD, Functional Programming",
+      "bio": "19+ years of expertise in distributed systems and complex software design.",
+      "image": "/avatars/andranik.png"
+    },
+    {
+      "name": "Norayr Chilingaryan",
+      "title": "Embedded Systems, DevOps, Linux, Infrastructure, Open Source",
+      "bio": "29+ years of experience in embedded systems, Linux, and infrastructure implementation.",
+      "image": "/avatars/norayr.png"
+    },
+    {
+      "name": "Karen Navasardyan",
+      "title": "Android, iOS, Native Mobile Architecture",
+      "bio": "11+ years specializing in native mobile application development and architecture.",
+      "image": "/avatars/karen.png"
     }
   ],
   "companyValues": [
@@ -827,9 +860,9 @@
   "companyStory": {
     "headline": "Our Story",
     "paragraphs": [
-      "CTOprime was born from a simple observation: many promising startups struggle with technical leadership challenges that can make or break their success. While these companies need strategic technical guidance, they often can't justify the expense of a full-time CTO, especially in their earlier stages.",
-      "Founded in 2018 by Michael Chen, a veteran CTO with multiple successful exits, CTOprime set out to solve this problem by providing flexible, high-impact technical leadership to startups and growing companies. What began as a solo consultancy has evolved into a team of experienced technology leaders who share a passion for helping founders navigate technical challenges and build successful companies.",
-      "Today, we work with clients across industries—from SaaS and fintech to marketplaces and health tech—providing the strategic technical leadership they need, precisely when they need it. Our fractional CTO model has helped dozens of companies make confident technology decisions, build scalable systems, and accelerate their growth trajectory."
+      "Cubeunity was founded by Ruben Khachatryan in 2024 to address a common challenge: startups need technical leadership but often can't justify the expense of a full-time CTO.",
+      "We provide flexible technical guidance to startups and growing companies when they need it most. Our approach is practical and focused on delivering tangible results rather than theoretical advice.",
+      "We work with clients across various industries, offering technical leadership tailored to their specific needs and growth stage."
     ]
   },
   "companyApproach": {

@@ -102,10 +102,7 @@ export default async function ServicePage({ params }: { params: Params }) {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {service.offerings.map((offering, index) => (
-                  <div
-                    key={index}
-                    className={`card shadow-lg bg-base-100`}
-                  >
+                  <div key={index} className={`card shadow-lg bg-base-100`}>
                     <div className="card-body">
                       <h3 className="card-title">{offering.title}</h3>
                       <div className="flex justify-center my-6">
@@ -162,8 +159,12 @@ export default async function ServicePage({ params }: { params: Params }) {
                   <thead>
                     <tr className="bg-base-200">
                       <th className="py-4 px-6 text-left">STAGE</th>
-                      <th className="py-4 px-6 text-center">TRADITIONAL CTO</th>
-                      <th className="py-4 px-6 text-center">FRACTIONAL CTO</th>
+                      <th className="py-4 px-6 text-center uppercase">
+                        {service.comparison.firstRow}
+                      </th>
+                      <th className="py-4 px-6 text-center uppercase">
+                        {service.comparison.secondRow}
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -176,14 +177,18 @@ export default async function ServicePage({ params }: { params: Params }) {
                           {stage.name}
                         </td>
                         <td className="py-4 px-6">
-                          {stage.traditional.map((point, pointIndex) => (
-                            <p key={pointIndex}>{point}</p>
-                          ))}
+                          <ul className="list-disc list-inside">
+                            {stage.traditional.map((point, pointIndex) => (
+                              <li key={pointIndex}>{point}</li>
+                            ))}
+                          </ul>
                         </td>
                         <td className="py-4 px-6">
-                          {stage.fractional.map((point, pointIndex) => (
-                            <p key={pointIndex}>{point}</p>
-                          ))}
+                          <ul className="list-disc list-inside">
+                            {stage.fractional.map((point, pointIndex) => (
+                              <li key={pointIndex}>{point}</li>
+                            ))}
+                          </ul>
                         </td>
                       </tr>
                     ))}
@@ -253,23 +258,23 @@ export default async function ServicePage({ params }: { params: Params }) {
               {service.benefits.map((benefit, index) => {
                 const split = benefit.split("~");
 
-                return(
-                <div key={index} className="card bg-white shadow-lg">
-                  <div className="card-body">
-                    <h3 className="card-title text-lg">{split[0]}</h3>
-                    {split.length > 1 && (
-                      <p className="text-sm flex items-center gap-2">
-                        <CheckIcon className="w-4 h-4" />
-                        {split[1]}
-                      </p>
-                    )}
+                return (
+                  <div key={index} className="card bg-white shadow-lg">
+                    <div className="card-body">
+                      <h3 className="card-title text-lg">{split[0]}</h3>
+                      {split.length > 1 && (
+                        <p className="text-sm flex items-center gap-2">
+                          <CheckIcon className="w-4 h-4" />
+                          {split[1]}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              )})}
+                );
+              })}
             </div>
           </div>
         </section>
-
 
         {/* TODO: uncomment this when we have case studies */}
         {/* Case Studies Section */}
