@@ -19,20 +19,34 @@ const ServiceCard = ({
   image,
   className = "",
 }: ServiceCardProps) => {
+  // Generate random delays and durations for more variation
+  const animationDelay = `${Math.random() * 2}s`;
+  const animationDuration = `${7 + Math.random() * 2}s`; // Random duration between 7-9s
+  
   return (
     <Link
       href={`/services/${id}`}
       className={`card hover:shadow-xl transition-shadow h-full ${className}`}
     >
-      <figure>
+      <figure className="relative overflow-hidden">
         {image && (
-          <Image
-            src={image}
-            alt={title}
-            width={600}
-            height={200}
-            className="h-30 object-scale-down bg-base-200"
-          />
+          <div className="bg-base-200">
+            <div 
+              className="animate-float hover:scale-105 transition-transform duration-500"
+              style={{ 
+                animationDelay,
+                animationDuration
+              }}
+            >
+              <Image
+                src={image}
+                alt={title}
+                width={600}
+                height={200}
+                className="h-30 object-scale-down"
+              />
+            </div>
+          </div>
         )}
       </figure>
       <div className="card-body p-6 flex flex-col justify-between">

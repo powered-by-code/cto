@@ -87,3 +87,25 @@
   animation: fadeIn 0.5s ease-out forwards;
 }
 
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float var(--duration, 8s) ease-in-out infinite;
+    will-change: transform;
+  }
+}
+
