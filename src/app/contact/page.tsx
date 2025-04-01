@@ -26,12 +26,6 @@ export default function Contact() {
           </p>
 
           <div>
-            <h2 className="text-2xl font-bold mb-4">Schedule a Call</h2>
-            <p className="mb-6">
-              Select a date and time that works for you, and our experts will be
-              in touch.
-            </p>
-
             <CalEmbed
               calLink={data.meetingLink.calLink}
               config={{
