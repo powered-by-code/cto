@@ -59,8 +59,9 @@
       },
       "order": 1,
       "id": "fractional-cto",
-      "title": "Fractional CTO Services",
-      "description": "Bring strategic tech leadership to your startup without the full-time price tag. Get expert guidance when you need it most, whether that's a few hours per week or several days per month.",
+      "title": "Fractional CTO",
+      "heroTitle": "Hire Fractional CTO",
+      "description": "Get expert guidance from top fractional CTOs when you need it most-whether it’s a few hours per week or several days per month.",
       "longDescription": "As a startup founder, you're juggling countless responsibilities. Technical leadership shouldn't be a bottleneck to your growth. Our Fractional CTO service provides the strategic tech guidance you need, when you need it, without the full-time executive cost. We work alongside your team to develop clear technical strategies, make informed architecture decisions, and ensure your technology supports your business goals. Whether you're a non-technical founder needing a trusted tech advisor or a technical founder looking to delegate CTO responsibilities, our flexible engagement model adapts to your specific needs and growth stage.",
       "image": "/images/1.png",
       "heroImage": "https://placehold.co/1200x400/red/white?text=Fractional+CTO+Hero",
@@ -174,7 +175,7 @@
           }
         ]
       },
-      "resultsHeadline": "An expertly designed technical strategy and implementation plan tailored to your business goals",
+      "resultsHeadline": "Delivering proven results across industries",
       "features": [
         "Senior tech expertise",
         "Part-time technology leadership",
@@ -183,11 +184,11 @@
         "Team leadership & development"
       ],
       "benefits": [
-        "Free up founder time to focus on business growth",
-        "Reduce technical risk through expert guidance",
-        "Make confident technology decisions",
-        "Accelerate product development timelines",
-        "Save costs compared to hiring a full-time CTO"
+        "Free up founder time to focus on business growth ~ Save up to 10 hours per week",
+        "Reduce technical risk through expert guidance ~ Reduce risk by up to 50%",
+        "Make confident technology decisions ~ Increase decision-making speed by 30%",
+        "Accelerate product development timelines ~ Reduce timelines by 20%",
+        "Save costs compared to hiring a full-time CTO ~ Save up to 60% in costs"
       ],
       "caseStudies": [
         {

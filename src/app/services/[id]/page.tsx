@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import data from "@/data.json";
 import MeetingButton from "@/components/MeetingButton";
 import ServiceCard from "@/components/ServiceCard";
+import { CheckIcon } from "lucide-react";
 
 // Get service details from data.json
 const serviceDetails = data.services;
@@ -35,20 +36,22 @@ export default async function ServicePage({ params }: { params: Params }) {
       <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
         <section className="py-16 relative">
-          
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center">
               <div className="uppercase text-xs tracking-widest mb-4">
                 SERVICES
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                {service.title}
+                {service.heroTitle || service.title}
               </h1>
               <p className="text-lg max-w-2xl mx-auto mb-8">
                 {service.description}
               </p>
               <div className="flex justify-center">
-                <MeetingButton text="Request Service" className="btn-primary" />
+                <MeetingButton
+                  text="Schedule a Call with Ruben"
+                  className="btn-primary"
+                />
               </div>
             </div>
           </div>
@@ -101,11 +104,7 @@ export default async function ServicePage({ params }: { params: Params }) {
                 {service.offerings.map((offering, index) => (
                   <div
                     key={index}
-                    className={`card shadow-lg ${
-                      offering.highlight
-                        ? "bg-red-400 text-white"
-                        : "bg-base-100"
-                    }`}
+                    className={`card shadow-lg bg-base-100`}
                   >
                     <div className="card-body">
                       <h3 className="card-title">{offering.title}</h3>
@@ -126,11 +125,7 @@ export default async function ServicePage({ params }: { params: Params }) {
                         {offering.points.map((point, pointIndex) => (
                           <li key={pointIndex} className="flex items-start">
                             <svg
-                              className={`w-5 h-5 ${
-                                offering.highlight
-                                  ? "text-white"
-                                  : "text-primary"
-                              } mt-0.5 mr-2 flex-shrink-0`}
+                              className={`w-5 h-5 text-primary mt-0.5 mr-2 flex-shrink-0`}
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -247,7 +242,7 @@ export default async function ServicePage({ params }: { params: Params }) {
         <section className="py-16 bg-base-200">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-2 text-center">
-              As a result, you get
+              What You Get
             </h2>
             <p className="text-xl text-center mb-12 max-w-3xl mx-auto">
               {service.resultsHeadline ||
@@ -255,51 +250,30 @@ export default async function ServicePage({ params }: { params: Params }) {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {service.benefits.map((benefit, index) => (
+              {service.benefits.map((benefit, index) => {
+                const split = benefit.split("~");
+
+                return(
                 <div key={index} className="card bg-white shadow-lg">
                   <div className="card-body">
-                    <h3 className="card-title text-lg">{benefit}</h3>
+                    <h3 className="card-title text-lg">{split[0]}</h3>
+                    {split.length > 1 && (
+                      <p className="text-sm flex items-center gap-2">
+                        <CheckIcon className="w-4 h-4" />
+                        {split[1]}
+                      </p>
+                    )}
                   </div>
                 </div>
-              ))}
+              )})}
             </div>
           </div>
         </section>
 
-        {/* Assessment CTA */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row items-center gap-8 bg-base-200 rounded-lg p-8">
-              <div className="w-full md:w-1/4">
-                <div className="relative w-full h-48">
-                  <Image
-                    src={
-                      service.assessmentImage ||
-                      "/images/services/assessment-graphic.jpg"
-                    }
-                    alt="Assessment"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-              <div className="w-full md:w-3/4">
-                <h2 className="text-2xl font-bold mb-4">Assessment Test</h2>
-                <p className="mb-6">
-                  Not sure if our {service.title} is the right fit for your
-                  needs? Take our quick assessment to find out which of our
-                  services would best address your current technical challenges.
-                </p>
-                <Link href="/assessment" className="btn btn-primary">
-                  Take the Test
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
 
+        {/* TODO: uncomment this when we have case studies */}
         {/* Case Studies Section */}
-        {service.caseStudies && service.caseStudies.length > 0 && (
+        {/* {service.caseStudies && service.caseStudies.length > 0 && (
           <section className="py-16 bg-base-200">
             <div className="container mx-auto px-4">
               <h2 className="text-3xl font-bold mb-12 text-center">
@@ -323,7 +297,7 @@ export default async function ServicePage({ params }: { params: Params }) {
               </div>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* Related Services */}
         <section className="py-16">
