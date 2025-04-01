@@ -2,6 +2,7 @@ import Link from "next/link";
 // import data from "@/data.json";
 // const { meetingLink } = data;
 import MeetingButton from "./MeetingButton";
+import { Clock, Award, Users } from "lucide-react";
 
 interface CTAProps {
   additionalCTA?: {
@@ -9,6 +10,34 @@ interface CTAProps {
     label: string;
   };
 }
+
+const iconMap = {
+  Clock,
+  Award,
+  Users,
+} as const;
+
+const ctaData = {
+  badge: "Strategic Tech Leadership",
+  title: "Is Your Startup Ready for Tech Leadership?",
+  description:
+    "Take our 2-minute CTO Needs Assessment to find out how a fractional CTO can help solve your technical challenges and accelerate your growth.",
+  defaultCTA: "Free Consultation",
+  features: [
+    {
+      text: "Takes only 2 minutes",
+      icon: "Clock",
+    },
+    {
+      text: "Free personalized report",
+      icon: "Award",
+    },
+    {
+      text: "Expert recommendations",
+      icon: "Users",
+    },
+  ],
+};
 
 const CTA: React.FC<CTAProps> = ({ additionalCTA }) => {
   // Get meeting link from data.json
@@ -49,16 +78,12 @@ const CTA: React.FC<CTAProps> = ({ additionalCTA }) => {
 
         <div className="card-body text-center relative z-10 py-12">
           <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-medium text-sm mx-auto mb-4 animate-pulse">
-            Strategic Tech Leadership
+            {ctaData.badge}
           </div>
 
-          <h2 className="text-4xl font-bold mb-4">
-            Is Your Startup Ready for Tech Leadership?
-          </h2>
+          <h2 className="text-4xl font-bold mb-4">{ctaData.title}</h2>
           <p className="mb-8 max-w-2xl mx-auto text-lg">
-            Take our 2-minute CTO Needs Assessment to discover if a fractional
-            CTO can help solve your technical challenges and accelerate your
-            growth.
+            {ctaData.description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -73,59 +98,28 @@ const CTA: React.FC<CTAProps> = ({ additionalCTA }) => {
                 <MeetingButton
                   variant="outline"
                   className="btn-lg"
-                  text="Free Consultation"
+                  text={ctaData.defaultCTA}
                 />
               </>
             ) : (
               <MeetingButton
                 className="btn-primary btn-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-                text="Free Consultation"
+                text={ctaData.defaultCTA}
               />
             )}
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-8 text-sm text-base-content/70">
-            <div className="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 mr-2 text-primary"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Takes only 2 minutes</span>
-            </div>
-            <div className="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 mr-2 text-primary"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Free personalized report</span>
-            </div>
-            <div className="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 mr-2 text-primary"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-              </svg>
-              <span>Expert recommendations</span>
-            </div>
+            {ctaData.features.map((feature, index) => {
+              const IconComponent =
+                iconMap[feature.icon as keyof typeof iconMap];
+              return (
+                <div key={index} className="flex items-center">
+                  <IconComponent className="h-5 w-5 mr-2 text-primary" />
+                  <span>{feature.text}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

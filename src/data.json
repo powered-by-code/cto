@@ -389,6 +389,7 @@
       ]
     },
     {
+      "order": 3,
       "id": "fintech",
       "hidden": true,
       "title": "FinTech",
@@ -574,6 +575,7 @@
       }
     },
     {
+      "order": 3,
       "id": "fintech-compliance-security",
       "title": "FinTech Compliance & Security",
       "industry": "FinTech",
@@ -597,6 +599,7 @@
       }
     },
     {
+      "order": 6,
       "id": "marketplace-platform-scaling",
       "title": "Marketplace Platform Scaling",
       "industry": "Marketplaces",

@@ -1,7 +1,5 @@
 import data from "@/data.json";
-
-const sortByOrder = (a: any, b: any) =>
-  (a?.order ?? Infinity) - (b?.order ?? Infinity);
+import { sortByOrder } from "@/utils/sortByOrder";
 
 interface NavLink {
   href?: string;
