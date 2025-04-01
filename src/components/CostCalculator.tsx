@@ -1139,7 +1139,7 @@ export default function CostCalculator() {
               Our team can help you plan and execute a smooth transition to open source alternatives, 
               maximizing your savings while minimizing disruption.
             </p>
-            <p><strong>Email:</strong> ${contact.email} | <strong>Phone:</strong> ${contact.phone}</p>
+            <p><strong>Email:</strong> ${contact.email}</p>
             <a href="${websiteUrl}/contact" class="btn">Contact Us</a>
           </div>
           
