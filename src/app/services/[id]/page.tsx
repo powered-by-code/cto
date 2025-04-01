@@ -5,10 +5,31 @@ import { notFound } from "next/navigation";
 import data from "@/data.json";
 import MeetingButton from "@/components/MeetingButton";
 import ServiceCard from "@/components/ServiceCard";
-import { CheckIcon } from "lucide-react";
+import { CheckIcon, XIcon } from "lucide-react";
 
 // Get service details from data.json
 const serviceDetails = data.services;
+
+const comparison = (comparison: string) => {
+  const firstSymbol = comparison[0];
+  const icon =
+    firstSymbol === "+" ? (
+      <CheckIcon className="text-secondary w-4 h-4 mt-1 mr-2" strokeWidth={5} />
+    ) : firstSymbol === "-" ? (
+      <XIcon className="text-danger w-4 h-4 mt-1 mr-2" strokeWidth={5} />
+    ) : null;
+
+  if (!icon) {
+    return comparison;
+  }
+
+  return (
+    <div className="flex">
+      {icon}
+      {comparison.slice(1)}
+    </div>
+  );
+};
 
 export async function generateStaticParams() {
   return serviceDetails.map((s) => ({
@@ -177,17 +198,21 @@ export default async function ServicePage({ params }: { params: Params }) {
                           {stage.name}
                         </td>
                         <td className="py-4 px-6">
-                          <ul className="list-disc list-inside">
-                            {stage.traditional.map((point, pointIndex) => (
-                              <li key={pointIndex}>{point}</li>
-                            ))}
+                          <ul className="">
+                            {stage.firstCol?.map(
+                              (point: string, pointIndex: number) => (
+                                <li key={pointIndex}>{comparison(point)}</li>
+                              )
+                            )}
                           </ul>
                         </td>
                         <td className="py-4 px-6">
-                          <ul className="list-disc list-inside">
-                            {stage.fractional.map((point, pointIndex) => (
-                              <li key={pointIndex}>{point}</li>
-                            ))}
+                          <ul className="">
+                            {stage.secondCol?.map(
+                              (point: string, pointIndex: number) => (
+                                <li key={pointIndex}>{comparison(point)}</li>
+                              )
+                            )}
                           </ul>
                         </td>
                       </tr>

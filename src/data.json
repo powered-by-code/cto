@@ -102,75 +102,76 @@
           ]
         }
       ],
+
       "comparison": {
         "title": "CTO vs Fractional CTO",
         "firstRow": "Traditional CTO",
         "secondRow": "Fractional CTO",
         "stages": [
           {
-            "name": "Cost & Commitment",
-            "traditional": [
-              "Full salary ($200K-$350K annually) plus benefits and equity",
-              "Full-time permanent commitment regardless of project phase"
+            "name": "Cost",
+            "firstCol": [
+              "- High fixed cost ($200K-$350K annually)",
+              "+ Predictable budgeting"
             ],
-            "fractional": [
-              "Flexible pricing ($5K-$15K monthly based on engagement level)",
-              "Adjustable time commitment that scales with your needs"
+            "secondCol": [
+              "+ Flexible pricing ($5K-$15K monthly)",
+              "+ Pay only for what you need"
             ]
           },
           {
-            "name": "Availability & Timeline",
-            "traditional": [
-              "3-6 months recruitment cycle to find the right person",
-              "Long onboarding period to understand company dynamics"
+            "name": "Availability",
+            "firstCol": [
+              "- 3-6 months recruitment cycle",
+              "+ Full-time dedicated presence"
             ],
-            "fractional": [
-              "Available within days or weeks to address immediate needs",
-              "Rapid integration due to extensive experience with diverse companies"
+            "secondCol": [
+              "+ Available within days/weeks",
+              "- Limited weekly availability"
             ]
           },
           {
-            "name": "Expertise & Knowledge",
-            "traditional": [
-              "Limited to one person's background and experiences",
-              "Expertise may not align with evolving company challenges"
+            "name": "Expertise",
+            "firstCol": [
+              "- Limited to one person's experience",
+              "+ Deep knowledge of your specific business"
             ],
-            "fractional": [
-              "Access to diverse expertise across multiple industries",
-              "Cross-pollination of best practices from various organizations"
+            "secondCol": [
+              "+ Diverse expertise across industries",
+              "+ Access to broader network of specialists"
             ]
           },
           {
-            "name": "Strategic Focus",
-            "traditional": [
-              "Often consumed by day-to-day technical operations",
-              "May have limited bandwidth for strategic planning"
+            "name": "Commitment",
+            "firstCol": [
+              "+ Long-term alignment with company",
+              "- Fixed commitment regardless of need"
             ],
-            "fractional": [
-              "Dedicated focus on strategic technology roadmapping",
-              "Objective recommendations without political entanglements"
+            "secondCol": [
+              "+ Scales with project phases",
+              "- May have competing priorities"
             ]
           },
           {
-            "name": "Team Building & Scaling",
-            "traditional": [
-              "Usually limited experience with 1-2 scaling events",
-              "Learning team building through trial and error"
+            "name": "Focus",
+            "firstCol": [
+              "- Often consumed by daily operations",
+              "+ Direct management of technical team"
             ],
-            "fractional": [
-              "Multiple scaling experiences across different business models",
-              "Proven frameworks for technical hiring and team structure"
+            "secondCol": [
+              "+ Dedicated to strategic planning",
+              "+ Objective, politics-free perspective"
             ]
           },
           {
-            "name": "Cost Optimization",
-            "traditional": [
-              "Typically not a primary focus area",
-              "May lack experience identifying inefficiencies"
+            "name": "Optimization",
+            "firstCol": [
+              "- May lack cost-cutting experience",
+              "+ Focused on company's specific technology"
             ],
-            "fractional": [
-              "Specialized expertise in reducing tech spend",
-              "Fresh perspective to identify redundancies and waste"
+            "secondCol": [
+              "+ Specialized in reducing tech spend",
+              "+ Cross-industry best practices"
             ]
           }
         ]
@@ -249,6 +250,79 @@
         "Improve code quality and delivery speed",
         "Build a sustainable engineering culture"
       ],
+      "comparison": {
+        "title": "Traditional vs Expert-Led Tech Team Building",
+        "firstRow": "Traditional Approach",
+        "secondRow": "Expert-Led Approach",
+        "stages": [
+          {
+            "name": "Recruitment",
+            "firstCol": [
+              "- Generic job descriptions",
+              "- Lengthy hiring timelines (60+ days)"
+            ],
+            "secondCol": [
+              "+ Tailored technical role definitions",
+              "+ Optimized hiring process (30-45 days)"
+            ]
+          },
+          {
+            "name": "Candidate Assessment",
+            "firstCol": [
+              "- Limited technical evaluation depth",
+              "+ Familiar interview process"
+            ],
+            "secondCol": [
+              "+ Specialized technical screening",
+              "+ Role-specific coding challenges"
+            ]
+          },
+          {
+            "name": "Team Structure",
+            "firstCol": [
+              "- Copy-paste org charts from competitors",
+              "- One-size-fits-all hierarchy"
+            ],
+            "secondCol": [
+              "+ Purpose-built for specific project needs",
+              "+ Optimized for communication flow"
+            ]
+          },
+          {
+            "name": "Onboarding",
+            "firstCol": [
+              "- Generic company onboarding",
+              "+ Established company culture integration"
+            ],
+            "secondCol": [
+              "+ Technical skill-specific ramp-up plans",
+              "+ Structured knowledge transfer processes"
+            ]
+          },
+          {
+            "name": "Team Development",
+            "firstCol": [
+              "- Ad-hoc skill development",
+              "- Limited growth planning"
+            ],
+            "secondCol": [
+              "+ Personalized technical growth roadmaps",
+              "+ Cross-training and knowledge sharing frameworks"
+            ]
+          },
+          {
+            "name": "Cost Efficiency",
+            "firstCol": [
+              "- High turnover costs",
+              "- Productivity gaps during transitions"
+            ],
+            "secondCol": [
+              "+ Optimal team sizing to prevent over-hiring",
+              "+ Skills-based compensation alignment"
+            ]
+          }
+        ]
+      },
       "caseStudies": [
         {
           "title": "AI Startup",
@@ -286,6 +360,79 @@
         "Maintain team productivity during transition",
         "Align technology strategy with new business goals"
       ],
+      "comparison": {
+        "title": "Internal vs Expert-Guided Technical Pivot",
+        "firstRow": "Internal Pivot Management",
+        "secondRow": "Expert-Guided Pivot",
+        "stages": [
+          {
+            "name": "Strategic Assessment",
+            "firstCol": [
+              "- Limited external market perspective",
+              "+ Deep understanding of current systems"
+            ],
+            "secondCol": [
+              "+ Objective, unbiased technology evaluation",
+              "+ Market-validated pivot frameworks"
+            ]
+          },
+          {
+            "name": "Technology Selection",
+            "firstCol": [
+              "- Often biased toward familiar technologies",
+              "- Research limited by team's experience"
+            ],
+            "secondCol": [
+              "+ Cross-industry technology expertise",
+              "+ Vetted vendor and solution recommendations"
+            ]
+          },
+          {
+            "name": "Risk Management",
+            "firstCol": [
+              "- Blind spots in risk identification",
+              "+ Intimate knowledge of business constraints"
+            ],
+            "secondCol": [
+              "+ Comprehensive risk assessment methodology",
+              "+ Experience from multiple pivot scenarios"
+            ]
+          },
+          {
+            "name": "Transition Planning",
+            "firstCol": [
+              "- Often underestimates complexity",
+              "- One-shot approaches with limited contingencies"
+            ],
+            "secondCol": [
+              "+ Phased implementation planning",
+              "+ Proven migration and testing strategies"
+            ]
+          },
+          {
+            "name": "Team Adaptation",
+            "firstCol": [
+              "- Potential resistance to change",
+              "+ Existing team relationships"
+            ],
+            "secondCol": [
+              "+ Structured skill transition planning",
+              "+ Change management expertise"
+            ]
+          },
+          {
+            "name": "Time-to-Market",
+            "firstCol": [
+              "- Learning curve impacts timeline",
+              "- Higher risk of costly pivots or restarts"
+            ],
+            "secondCol": [
+              "+ Accelerated execution timelines",
+              "+ Resource optimization during transition"
+            ]
+          }
+        ]
+      },
       "caseStudies": [
         {
           "title": "B2B Software Company",
@@ -327,6 +474,42 @@
         "Align tech spending with business priorities",
         "Free up capital for strategic investments"
       ],
+
+      "comparison": {
+        "title": "SaaS vs On-Premises Solutions",
+        "firstRow": "SaaS",
+        "secondRow": "On-Premises",
+        "stages": [
+          {
+            "name": "Initial Cost",
+            "firstCol": ["+ Lower upfront investment"],
+            "secondCol": [
+              "- Higher initial expenditure",
+              "+ Long-term asset value"
+            ]
+          },
+          {
+            "name": "Ongoing Expenses",
+            "firstCol": ["- Costs grow with user base"],
+            "secondCol": ["+ Lower recurring costs"]
+          },
+          {
+            "name": "Maintenance",
+            "firstCol": ["- Limited control over updates"],
+            "secondCol": ["+ Full control over systems"]
+          },
+          {
+            "name": "Data Control",
+            "firstCol": ["- Data on third-party servers"],
+            "secondCol": ["+ Complete data sovereignty"]
+          },
+          {
+            "name": "Long-Term ROI",
+            "firstCol": ["- Higher lifetime costs"],
+            "secondCol": ["+ Better value after just 1 year"]
+          }
+        ]
+      },
       "caseStudies": [
         {
           "title": "Data Analytics Platform",
