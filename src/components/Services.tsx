@@ -7,7 +7,7 @@ const Services = () => {
   const services = data.services.filter((service) => !service.hidden).slice(0, 4);
 
   return (
-    <section className="py-16 relative">
+    <section className="py-6 relative">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-circuit-pattern opacity-20"></div>
@@ -28,9 +28,8 @@ const Services = () => {
               <ServiceCard 
                 title={service.title} 
                 id={service.id} 
-                features={service.features?.slice(0, 3)}
+                features={service.features}
                 image={service.image}
-                compact={true}
               />
             </div>
           ))}

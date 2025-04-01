@@ -28,7 +28,7 @@ export default async function ServicePage({ params }: { params: Params }) {
   // Get other services for comparison
   const otherServices = serviceDetails
     .filter((s) => s.id !== service.id)
-    .slice(0, 2);
+    .slice(0, 3);
 
   return (
     <PageLayout showCTA={false}>
@@ -332,7 +332,7 @@ export default async function ServicePage({ params }: { params: Params }) {
               Related Services
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {otherServices.map((otherService) => (
                 <ServiceCard
                   key={otherService.id}

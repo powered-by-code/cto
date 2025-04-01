@@ -28,12 +28,6 @@ export default function ServicesPage() {
             />
           ))}
         </div>
-        
-        <div className="mt-16 p-8 bg-base-200 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Not Sure Which Service You Need?</h2>
-          <p className="mb-6">Take our quick assessment to find out which of our services best fits your current business challenges.</p>
-          <Link href="/assessment" className="btn btn-primary">Take the Assessment</Link>
-        </div>
       </div>
     </PageLayout>
   );

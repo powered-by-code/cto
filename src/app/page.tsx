@@ -31,29 +31,29 @@ export default function Home() {
         <Navbar />
         <Hero />
         
-        <hr className="border-base-content/10 my-12" />
+        <hr className="border-base-content/10 my-6" />
         
         <Services />
         
-        <hr className="border-base-content/10 my-12" />
+        <hr className="border-base-content/10 my-6" />
         
         <Industries />
         
-        <hr className="border-base-content/10 my-12" />
+        <hr className="border-base-content/10 my-6" />
 
         {/* TODO: uncomment when case studies are ready */}
         
         {/* <CaseStudies />
         
-        <hr className="border-base-content/10 my-12" />
+        <hr className="border-base-content/10 my-6" />
         
         <Resources /> */}
         
-        {/* <hr className="border-base-content/10 my-12" /> */}
+        {/* <hr className="border-base-content/10 my-6" /> */}
         
         <CTA additionalCTA={additionalCTA} />
         
-        <hr className="border-base-content/10 my-12" />
+        <hr className="border-base-content/10 my-6" />
         
         <Partners />
       </div>

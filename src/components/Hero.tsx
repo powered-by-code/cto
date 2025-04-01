@@ -1,17 +1,54 @@
 "use client";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
-// const { meetingLink } = data;
 import MeetingButton from "./MeetingButton";
+import { Check, Play, X } from "lucide-react";
+
+const heroData = {
+  video: {
+    url: "https://www.youtube.com/watch?v=JpfvxnNIHx8",
+    thumbnails: {
+      max: "https://img.youtube.com/vi/JpfvxnNIHx8/maxresdefault.jpg",
+      high: "https://img.youtube.com/vi/JpfvxnNIHx8/hqdefault.jpg",
+      medium: "https://img.youtube.com/vi/JpfvxnNIHx8/mqdefault.jpg",
+      fallback: "https://img.youtube.com/vi/JpfvxnNIHx8/0.jpg",
+    },
+  },
+  header: {
+    tagline: "Helping Startups & Growing Businesses",
+    title: "Fractional CTO Solutions & Tech Leadership",
+    description:
+      "Get the strategic technical guidance you need, exactly when you need it. Our fractional CTO services help startups and scaling companies make informed tech decisions, build scalable systems, and accelerate growth.",
+  },
+  cta: {
+    primary: {
+      text: "Schedule a Free Consultation",
+    },
+    secondary: {
+      text: "Explore Our Services",
+      link: "/services",
+    },
+  },
+  features: [
+    {
+      text: "Flexible engagement options",
+      delay: "0s",
+    },
+    {
+      text: "Transparent monthly pricing",
+      delay: "0.5s",
+    },
+    {
+      text: "No long-term commitments",
+      delay: "1s",
+    },
+  ],
+};
 
 const Hero: React.FC = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const videoUrl = "https://www.youtube.com/watch?v=JpfvxnNIHx8";
-  // Remove autoplay from initial URL - we'll add it when needed
-  const embedUrl = videoUrl.replace("watch?v=", "embed/");
-  // Get meeting link from data.json
-  // const meetingLink = data.meetingLink;
+  const embedUrl = heroData.video.url.replace("watch?v=", "embed/");
 
   useEffect(() => {
     // Handle modal close event to stop video
@@ -64,86 +101,35 @@ const Hero: React.FC = () => {
   return (
     <div className="hero py-16 relative overflow-hidden">
       <div className="hero-content relative z-10 flex-col lg:flex-row items-stretch justify-between w-full gap-8">
-        <div className="order-2 lg:order-1 text-left lg:max-w-xl flex flex-col gap-4  ">
-          <div className="inline-block px-3 py-1 rounded-full  text-primary font-medium text-sm mb-2 animate-pulse">
-            Expert Technical Leadership for Growing Companies
+        <div className="order-2 lg:order-1 text-left lg:max-w-xl flex flex-col gap-4">
+          <div className="inline-block px-3 py-1 rounded-full text-primary font-medium text-sm mb-2 animate-pulse">
+            {heroData.header.tagline}
           </div>
           <h1 className="text-5xl font-bold leading-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Is Your Startup Ready for Tech Leadership?
+            {heroData.header.title}
           </h1>
-          <p className="py-4 text-lg">
-            Get the strategic technical guidance you need, when you need it. Our
-            fractional CTO services help startups and growing companies make
-            confident technical decisions, build scalable systems, and
-            accelerate growth.
-          </p>
+          <p className="py-4 text-lg">{heroData.header.description}</p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <MeetingButton text="Schedule a Free Consultation" />
+            <MeetingButton text={heroData.cta.primary.text} />
             <Link
-              href="/services"
+              href={heroData.cta.secondary.link}
               className="btn btn-outline btn-secondary hover:bg-secondary/20"
             >
-              Explore Our Services
+              {heroData.cta.secondary.text}
             </Link>
           </div>
           <div className="mt-4 flex flex-wrap gap-y-2 items-center text-sm">
-            <div className="flex items-center mr-4">
-              <div className="w-5 h-5 rounded-full bg-primary/30 flex items-center justify-center mr-2 animate-pulse-glow">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-3 w-3 text-primary"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+            {heroData.features.map((feature, index) => (
+              <div key={index} className="flex items-center mr-4">
+                <div
+                  className="w-5 h-5 rounded-full bg-primary/30 flex items-center justify-center mr-2 animate-pulse-glow"
+                  style={{ animationDelay: feature.delay }}
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                  <Check className="h-3 w-3 text-primary" />
+                </div>
+                <span>{feature.text}</span>
               </div>
-              <span>Flexible engagement models</span>
-            </div>
-            <div className="flex items-center mr-4">
-              <div
-                className="w-5 h-5 rounded-full bg-primary/30 flex items-center justify-center mr-2 animate-pulse-glow"
-                style={{ animationDelay: "0.5s" }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-3 w-3 text-primary"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <span>Fixed monthly pricing</span>
-            </div>
-            <div className="flex items-center">
-              <div
-                className="w-5 h-5 rounded-full bg-primary/30 flex items-center justify-center mr-2 animate-pulse-glow"
-                style={{ animationDelay: "1s" }}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-3 w-3 text-primary"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <span>No long-term contracts</span>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -156,29 +142,23 @@ const Hero: React.FC = () => {
           }}
         >
           <picture className="block h-full">
-            <source srcSet="https://img.youtube.com/vi/JpfvxnNIHx8/maxresdefault.jpg" />
-            <source srcSet="https://img.youtube.com/vi/JpfvxnNIHx8/hqdefault.jpg" />
+            <source srcSet={heroData.video.thumbnails.max} />
+            <source srcSet={heroData.video.thumbnails.high} />
             <img
-              src={`https://img.youtube.com/vi/JpfvxnNIHx8/mqdefault.jpg`}
+              src={heroData.video.thumbnails.medium}
               alt="Video thumbnail"
               className="w-full h-full object-cover"
               loading="lazy"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.onerror = null;
-                target.src = `https://img.youtube.com/vi/JpfvxnNIHx8/0.jpg`;
+                target.src = heroData.video.thumbnails.fallback;
               }}
             />
           </picture>
           <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/30 to-black/50 hover:from-black/40 hover:to-black/60 transition-all">
             <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center transition-transform duration-200 hover:scale-110 animate-pulse-glow">
-              <svg
-                className="w-8 h-8 text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              <Play className="w-8 h-8 text-white" fill="currentColor" />
             </div>
           </div>
         </div>
@@ -199,20 +179,7 @@ const Hero: React.FC = () => {
           <div className="modal-action absolute top-2 right-2">
             <form method="dialog">
               <button className="btn btn-circle btn-lg bg-base-100 hover:bg-base-200 border-0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-10 w-10"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <X className="h-10 w-10" />
               </button>
             </form>
           </div>

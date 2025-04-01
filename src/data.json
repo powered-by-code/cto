@@ -176,11 +176,11 @@
       },
       "resultsHeadline": "An expertly designed technical strategy and implementation plan tailored to your business goals",
       "features": [
-        "Technical strategy development and execution",
-        "Technology stack selection and optimization",
-        "Technical debt assessment and management",
-        "Product roadmap development with your team",
-        "Regular strategy sessions and progress reviews"
+        "Senior tech expertise",
+        "Part-time technology leadership",
+        "Strategic technology roadmap",
+        "Architecture & tech strategy",
+        "Team leadership & development"
       ],
       "benefits": [
         "Free up founder time to focus on business growth",
@@ -250,11 +250,11 @@
       "testimonialTitle": "Founder at PivotTech",
       "assessmentImage": "https://placehold.co/400x300/blue/white?text=Pivot+Assessment",
       "features": [
+        "Technical product roadmap creation",
+        "Build vs. buy decision guidance",
+        "MVP definition and scoping",
         "Technical feasibility assessment",
-        "Legacy system evaluation and migration planning",
-        "Technology stack transition strategy",
-        "Team restructuring guidance",
-        "Risk mitigation during the pivot process"
+        "Development methodology selection"
       ],
       "benefits": [
         "Reduce the technical risk of business pivots",
@@ -278,7 +278,7 @@
       "order": 2,
       "additionalCTA": {
         "href": "/cost-calculator",
-        "label": "IT Budget Optimizer"
+        "label": "IT Budget Optimizer tool"
       },
       "id": "tech-cost-optimization",
       "title": "Tech Cost Optimization",
@@ -291,11 +291,12 @@
       "testimonialTitle": "CFO at ScaleUp Inc",
       "assessmentImage": "https://placehold.co/400x300/blue/white?text=Cost+Assessment",
       "features": [
-        "Comprehensive tech spending audit",
-        "Cloud infrastructure optimization",
-        "Software license consolidation",
-        "Make vs. buy analysis",
-        "ROI-focused technology investment strategy"
+        "Infrastructure cost analysis",
+        "Licensing review and optimization",
+        "Resource allocation efficiency",
+        "Technical debt prioritization",
+        "ROI analysis for technology investments"
+        
       ],
       "benefits": [
         "Reduce monthly cloud and infrastructure costs",
