@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
       
       <div className="drawer-content">
         {/* Main Navbar Content */}
-        <div className="navbar bg-base-100 shadow-sm items-center py-0">
+        <div className="navbar bg-base-100 shadow-sm items-center py-0 px-6">
           <div className="flex-1" id="navbar-logo-title">
             <div className="flex items-center gap-2">
               <Link

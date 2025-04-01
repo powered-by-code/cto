@@ -66,20 +66,10 @@ const Industries = () => {
   return (
     <section className="py-8 relative">
       <div className="relative z-10 container mx-auto px-4">
-        <div className="flex flex-col items-start mb-6">
-          <span className="px-3 py-1 text-sm font-medium rounded-full bg-secondary/20 text-secondary mb-2 animate-pulse shadow-sm">
-            Industries We Serve
-          </span>
-          <h2 className="text-3xl font-bold mb-2 animate-fade-in-up">
-            Our Expertise
-          </h2>
-          <div className="w-16 h-1 bg-secondary/30 rounded"></div>
-        </div>
-
-        <div className="flex flex-col lg:flex-row gap-4 items-center">
+        <div className="flex flex-col lg:flex-row gap-4 items-stretch">
           {/* Left side image */}
           <div className="lg:w-1/2">
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-lg">
+            <div className="relative rounded-lg overflow-hidden shadow-lg" style={{ height: '400px' }}>
               <Image
                 src="/industries.png"
                 alt="Industries Overview"
@@ -90,8 +80,25 @@ const Industries = () => {
             </div>
           </div>
 
-          {/* Right side industries grid */}
-          <div className="lg:w-1/2 flex items-center">
+          {/* Right side content */}
+          <div className="lg:w-1/2">
+            {/* Title and description moved here */}
+            <div className="flex flex-col items-start mb-6">
+              <span className="px-3 py-1 text-sm font-medium rounded-full bg-secondary/20 text-secondary mb-2 animate-pulse shadow-sm">
+                Industries We Serve
+              </span>
+              <h2 className="text-3xl font-bold mb-3 animate-fade-in-up">
+                Our Expertise
+              </h2>
+              <p className="text-base-content/80 mb-6">
+                We specialize in delivering cutting-edge solutions across various industries, 
+                combining deep domain knowledge with technical excellence to drive innovation 
+                and digital transformation.
+              </p>
+              <div className="w-16 h-1 bg-secondary/30 rounded mb-6"></div>
+            </div>
+
+            {/* Industries grid */}
             <div className="grid grid-cols-2 gap-3 stagger-animate w-full">
               {industries.map((industry, index) => (
                 <div
