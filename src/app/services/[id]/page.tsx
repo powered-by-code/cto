@@ -70,7 +70,7 @@ export default async function ServicePage({ params }: { params: Params }) {
               </p>
               <div className="flex justify-center">
                 <MeetingButton
-                  text="Schedule a Call with Ruben"
+                  text={service.buttonText || "Schedule a Call with Ruben"}
                   className="btn-primary"
                 />
               </div>
@@ -286,9 +286,9 @@ export default async function ServicePage({ params }: { params: Params }) {
                 return (
                   <div key={index} className="card bg-white shadow-lg">
                     <div className="card-body">
-                      <h3 className="card-title text-lg">{split[0]}</h3>
+                      <h3 className=" ">{split[0]}</h3>
                       {split.length > 1 && (
-                        <p className="text-sm flex items-center gap-2">
+                        <p className="text-sm flex items-center gap-2 card-title">
                           <CheckIcon className="w-4 h-4" />
                           {split[1]}
                         </p>
@@ -329,6 +329,35 @@ export default async function ServicePage({ params }: { params: Params }) {
           </section>
         )} */}
 
+        {/* CTA Section */}
+        <section className="py-4 bg-primary text-white rounded-md">
+          <div className="container mx-auto px-2 text-center">
+            <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              {service.additionalCTA ? (
+                <>
+                  <Link
+                    href={service.additionalCTA.href}
+                    className="btn btn-lg btn-secondary shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                  >
+                    {service.additionalCTA.label}
+                  </Link>
+                  <MeetingButton
+                    text={service?.CTA?.label || "Free Consultation"}
+                    variant="outline"
+                    className="btn-lg"
+                  />
+                </>
+              ) : (
+                <MeetingButton
+                  text="Free Consultation"
+                  className="btn-lg btn-secondary shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
+                />
+              )}
+            </div>
+          </div>
+        </section>
+
         {/* Related Services */}
         <section className="py-16">
           <div className="container mx-auto px-4">
@@ -347,35 +376,6 @@ export default async function ServicePage({ params }: { params: Params }) {
                   image={otherService.image}
                 />
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-primary text-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              {service.additionalCTA ? (
-                <>
-                  <Link
-                    href={service.additionalCTA.href}
-                    className="btn btn-lg btn-secondary shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-                  >
-                    {service.additionalCTA.label}
-                  </Link>
-                  <MeetingButton
-                    text="Free Consultation"
-                    variant="outline"
-                    className="btn-lg"
-                  />
-                </>
-              ) : (
-                <MeetingButton
-                  text="Free Consultation"
-                  className="btn-lg btn-secondary shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
-                />
-              )}
             </div>
           </div>
         </section>

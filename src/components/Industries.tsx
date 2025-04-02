@@ -109,7 +109,7 @@ const Industries = () => {
             </div>
 
             {/* Industries grid */}
-            <div className="grid grid-cols-3 gap-3 stagger-animate w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
               {industries.map((industry, index) => (
                 <div
                   key={industry.id}

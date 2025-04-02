@@ -3,16 +3,21 @@
   themes: "light";
 }
 
-
-
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  
+
   --color-primary: "#6B78CB";
   --color-secondary: "#FC79DF";
   --color-accent: "#74FF33";
   --color-neutral: "#FC79DF";
+}
+
+.btn-secondary {
+  color: var(--color-base-200);
+  &.btn-outline {
+    color: var(--color-secondary);
+  }
 }
 
 /* Global button styling for rounded edges */
@@ -22,13 +27,23 @@
 
 /* Cost Calculator Animations */
 @keyframes counter {
-  from { content: "0"; }
-  to { content: attr(data-value); }
+  from {
+    content: "0";
+  }
+  to {
+    content: attr(data-value);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fadeIn {
@@ -51,8 +66,8 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: var(--fallback-b3,oklch(var(--b3)/1));
-  color: var(--fallback-bc,oklch(var(--bc)/1));
+  background-color: var(--fallback-b3, oklch(var(--b3) / 1));
+  color: var(--fallback-bc, oklch(var(--bc) / 1));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,20 +76,20 @@
 }
 
 .step-item.active .step {
-  background-color: var(--fallback-p,oklch(var(--p)/1));
-  color: var(--fallback-pc,oklch(var(--pc)/1));
+  background-color: var(--fallback-p, oklch(var(--p) / 1));
+  color: var(--fallback-pc, oklch(var(--pc) / 1));
 }
 
 .step-connector {
   height: 3px;
   width: 80px;
-  background-color: var(--fallback-b3,oklch(var(--b3)/1));
+  background-color: var(--fallback-b3, oklch(var(--b3) / 1));
   margin: 0 10px;
   margin-bottom: 25px;
 }
 
 .step-item.active + .step-connector {
-  background-color: var(--fallback-p,oklch(var(--p)/1));
+  background-color: var(--fallback-p, oklch(var(--p) / 1));
 }
 
 .quiz-step {
@@ -108,4 +123,3 @@
     will-change: transform;
   }
 }
-
