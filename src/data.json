@@ -70,7 +70,7 @@
       "offerings": [
         {
           "title": "Strategic Tech Leadership",
-          "image": "https://placehold.co/300x300/red/white?text=Leadership",
+          "image": "/fractional-cto/leadership.webp",
           "highlight": false,
           "points": [
             "Expert guidance aligned with business goals",
@@ -81,7 +81,7 @@
         },
         {
           "title": "Technology Stack Optimization",
-          "image": "https://placehold.co/300x300/red/white?text=Stack",
+          "image": "/fractional-cto/stack.webp",
           "highlight": true,
           "points": [
             "Deep product understanding",
@@ -92,7 +92,7 @@
         },
         {
           "title": "Team Development & Process",
-          "image": "https://placehold.co/300x300/red/white?text=Team",
+          "image": "/fractional-cto/team.webp",
           "highlight": false,
           "points": [
             "Engineering team structure",
@@ -178,7 +178,7 @@
       },
       "process": {
         "title": "Our Process",
-        "image": "https://placehold.co/600x500/red/white?text=Process+Diagram",
+        "image": "/fractional-cto/process.png",
         "steps": [
           {
             "title": "Discovery & Assessment",
