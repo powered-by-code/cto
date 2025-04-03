@@ -244,11 +244,11 @@
         "Engineering culture development"
       ],
       "benefits": [
-        "Hire the right technical talent faster",
-        "Reduce costly mis-hires and team turnover",
-        "Implement effective development processes",
-        "Improve code quality and delivery speed",
-        "Build a sustainable engineering culture"
+        "Find and hire elite technical talent while cutting recruitment costs ~ Reduce hiring time by 60%",
+        "Build team stability and prevent costly engineer turnover ~ Decrease turnover rate from industry average 30% to under 10%",
+        "Transform new hires into productive team members faster ~ Achieve full productivity in 4-6 weeks vs industry average 3-6 months",
+        "Implement engineering processes that boost quality and speed ~ Increase feature delivery velocity by 40% while reducing bugs by 50%",
+        "Create an engineering culture that attracts and retains top talent ~ 95% team satisfaction and improved employer branding"
       ],
       "comparison": {
         "title": "Traditional vs Expert-Led Tech Team Building",
@@ -332,7 +332,8 @@
           "title": "SaaS Company",
           "description": "Transformed an underperforming engineering team by restructuring roles, implementing agile processes, and establishing metrics-driven development practices."
         }
-      ]
+      ],
+      "resultsHeadline": "Building high-performing engineering teams that deliver results"
     },
     {
       "order": 4,
@@ -442,7 +443,8 @@
           "title": "Mobile App Startup",
           "description": "Helped redesign the technical architecture to support a pivot from a consumer app to an enterprise solution, without disrupting existing customer relationships."
         }
-      ]
+      ],
+      "resultsHeadline": "Navigate technical transitions with confidence and speed"
     },
     {
       "order": 2,
@@ -525,7 +527,8 @@
           "title": "Multi-product SaaS Business",
           "description": "Conducted a comprehensive tech spending audit that identified $450K in annual savings through infrastructure consolidation and license optimization."
         }
-      ]
+      ],
+      "resultsHeadline": "Transforming tech spend into strategic investment"
     },
     {
       "order": 5,
@@ -563,7 +566,8 @@
           "title": "Strategic Acquirer",
           "description": "Performed comprehensive technical assessment of an acquisition target, developing an integration roadmap that reduced expected technical integration time by 40%."
         }
-      ]
+      ],
+      "resultsHeadline": "Revealing the true technical value behind potential investments"
     }
   ],
   "industries": [

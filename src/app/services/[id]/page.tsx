@@ -286,9 +286,9 @@ export default async function ServicePage({ params }: { params: Params }) {
                 return (
                   <div key={index} className="card bg-white shadow-lg">
                     <div className="card-body">
-                      <h3 className=" ">{split[0]}</h3>
+                      <h3>{split[0]}</h3>
                       {split.length > 1 && (
-                        <p className="text-sm flex items-center gap-2 card-title">
+                        <p className=" flex  gap-2 card-title">
                           <CheckIcon className="w-4 h-4" />
                           {split[1]}
                         </p>
@@ -350,7 +350,7 @@ export default async function ServicePage({ params }: { params: Params }) {
                 </>
               ) : (
                 <MeetingButton
-                  text="Free Consultation"
+                  text="Free Consultation with Ruben"
                   className="btn-lg btn-secondary shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
                 />
               )}
