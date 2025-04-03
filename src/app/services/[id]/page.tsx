@@ -56,7 +56,7 @@ export default async function ServicePage({ params }: { params: Params }) {
     <PageLayout showCTA={false}>
       <div className="max-w-4xl mx-auto">
         {/* Hero Section */}
-        <section className="py-16 relative">
+        <section className="py-8 relative">
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center">
               <div className="uppercase text-xs tracking-widest mb-4">
@@ -115,7 +115,7 @@ export default async function ServicePage({ params }: { params: Params }) {
 
         {/* What We Offer Section */}
         {service.offerings && (
-          <section className="py-16">
+          <section className="py-8">
             <div className="container mx-auto px-4">
               <h2 className="text-3xl font-bold mb-12 text-center">
                 What We Offer
@@ -169,7 +169,7 @@ export default async function ServicePage({ params }: { params: Params }) {
 
         {/* CTO Comparison Table */}
         {service.comparison && (
-          <section className="py-16 bg-base-200">
+          <section className="py-8 bg-base-200">
             <div className="container mx-auto px-4">
               <h2 className="text-3xl font-bold mb-12 text-center">
                 {service.comparison.title}
@@ -226,7 +226,7 @@ export default async function ServicePage({ params }: { params: Params }) {
 
         {/* Process Section */}
         {service.process && (
-          <section className="py-16">
+          <section className="py-8">
             <div className="container mx-auto px-4">
               <h2 className="text-3xl font-bold mb-12 text-center">
                 {service.process.title}
@@ -269,29 +269,57 @@ export default async function ServicePage({ params }: { params: Params }) {
         )}
 
         {/* Results Section */}
-        <section className="py-16 bg-base-200">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-2 text-center">
-              What You Get
-            </h2>
-            <p className="text-xl text-center mb-12 max-w-3xl mx-auto">
-              {service.resultsHeadline ||
-                "An expertly designed solution tailored to your business goals"}
-            </p>
+        <section className="py-8 bg-base-200 relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="flex flex-col items-center mb-12">
+              <span className="px-4 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">Results You Can Expect</span>
+              <h2 className="text-4xl font-bold mb-3 text-center text-primary">
+                What You Get
+              </h2>
+              <div className="w-24 h-1 bg-primary rounded-full mb-6"></div>
+              <p className="text-xl text-center max-w-3xl mx-auto">
+                {service.resultsHeadline ||
+                  "An expertly designed solution tailored to your business goals"}
+              </p>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {service.benefits.map((benefit, index) => {
                 const split = benefit.split("~");
 
                 return (
-                  <div key={index} className="card bg-white shadow-lg">
-                    <div className="card-body">
-                      <h3>{split[0]}</h3>
+                  <div 
+                    key={index} 
+                    className="card bg-white shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-primary/10 group"
+                  >
+                    <div className="card-body p-0">
+                      <div className="p-5 bg-primary/5 group-hover:bg-primary/10 transition-colors duration-300 relative overflow-hidden">
+                        <div className="flex items-center gap-3 relative z-10">
+                          <div className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <span className="font-bold">{index + 1}</span>
+                          </div>
+                          <h3 className="text-base text-gray-600 font-medium">{split[0]}</h3>
+                        </div>
+                      </div>
+                      
                       {split.length > 1 && (
-                        <p className=" flex  gap-2 card-title">
-                          <CheckIcon className="w-4 h-4" />
-                          {split[1]}
-                        </p>
+                        <div className="p-6 flex items-start relative">
+                          <div className="flex-1 relative z-10">
+                            <p className="text-2xl font-bold mb-4 leading-tight text-primary">
+                              {split[1]}
+                            </p>
+                            <div className="mt-3 flex justify-between items-center">
+                              <div className="h-1 w-16 bg-primary rounded-full group-hover:w-24 transition-all duration-300"></div>
+                              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                                <CheckIcon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-300" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -304,7 +332,7 @@ export default async function ServicePage({ params }: { params: Params }) {
         {/* TODO: uncomment this when we have case studies */}
         {/* Case Studies Section */}
         {/* {service.caseStudies && service.caseStudies.length > 0 && (
-          <section className="py-16 bg-base-200">
+          <section className="py-8 bg-base-200">
             <div className="container mx-auto px-4">
               <h2 className="text-3xl font-bold mb-12 text-center">
                 Success Stories
@@ -359,7 +387,7 @@ export default async function ServicePage({ params }: { params: Params }) {
         </section>
 
         {/* Related Services */}
-        <section className="py-16">
+        <section className="py-8">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">
               Related Services
