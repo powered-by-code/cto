@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import data from "@/data.json";
 import { navLinks } from "@/lib/navLinks";
+import { Youtube, Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 
 const Footer: React.FC = () => {
   // Calculate the number of columns based on navLinks length
@@ -34,10 +35,13 @@ const Footer: React.FC = () => {
             <Link
               key={link.name}
               href={link.url}
-              className="btn btn-circle btn-sm bg-base-300 hover:bg-primary"
+              className="btn btn-lg btn-circle bg-base-300 hover:bg-secondary"
             >
-              {/* SVG icons remain in the component since they're presentational */}
-              {/* You can keep the existing SVG code for each social icon */}
+              {link.name === "YouTube" && <Youtube size={24} />}
+              {link.name === "LinkedIn" && <Linkedin size={24} />}
+              {link.name === "Instagram" && <Instagram size={24} />}
+              {link.name === "Facebook" && <Facebook size={24} />}
+              {link.name === "Twitter" && <Twitter size={24} />}
             </Link>
           ))}
         </div>
