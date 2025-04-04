@@ -858,7 +858,6 @@ export default function CostCalculator() {
               <tr>
                 <th>Commercial Tool</th>
                 <th>Department</th>
-                <th>Cost</th>
                 <th>Open Source Alternative</th>
                 <th>Annual Savings</th>
               </tr>
@@ -878,18 +877,17 @@ export default function CostCalculator() {
                       <span>{tool.name}</span>
                     </td>
                     <td>{category?.name || ""}</td>
-                    <td>${(tool.costPerUser * teamSize).toLocaleString('en-US', { maximumFractionDigits: 0 })}/year</td>
                     <td>{tool.openSourceAlternative}</td>
-                    <td className="text-success font-medium">${toolCost.toLocaleString('en-US', { maximumFractionDigits: 0 })}</td>
+                    <td className="text-success font-medium text-right">${toolCost.toLocaleString('en-US', { maximumFractionDigits: 0 })}</td>
                   </tr>
                 );
               })}
             </tbody>
             <tfoot>
               <tr>
-                <th colSpan={3}>Total</th>
+                <th colSpan={2}>Total</th>
                 <th></th>
-                <th className="text-success font-medium">${totalSavingsPerYear.toLocaleString('en-US', { maximumFractionDigits: 0 })}</th>
+                <th className="text-success font-medium font-extrabold text-right underline">${totalSavingsPerYear.toLocaleString('en-US', { maximumFractionDigits: 0 })}</th>
               </tr>
             </tfoot>
           </table>
@@ -920,8 +918,8 @@ export default function CostCalculator() {
             </div>
             Departments
           </div>
-          <div className={`flex items-center ${(step >= 3 && !showResults) ? "text-primary font-medium" : "opacity-50"}`}>
-            <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${(step >= 3 && !showResults) ? "bg-primary text-primary-content" : "bg-base-200"}`}>
+          <div className={`flex items-center ${(step >= 3) ? "text-primary font-medium" : "opacity-50"}`}>
+            <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${(step >= 3) ? "bg-primary text-primary-content" : "bg-base-200"}`}>
               3
             </div>
             Tools
@@ -1086,13 +1084,7 @@ export default function CostCalculator() {
             </div>
           </div>
           
-          <div class="service-fee">
-            <div class="service-fee-title">Our Service Fee (25% of annual savings)</div>
-            <div class="service-fee-value">$${ourServiceFee.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-            <p>Our team of experts will guide your transition to open source alternatives, providing implementation support, training, and ongoing maintenance.</p>
-            <div class="service-fee-title">Net Annual Savings</div>
-            <div class="net-savings">$${netSavings.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-          </div>
+     
           
           <h2>Selected Tools Summary</h2>
           <table>
@@ -1390,7 +1382,7 @@ export default function CostCalculator() {
       )}
       
       {showResults && (
-        <div className="calculator-results space-y-12">
+        <div className="calculator-results">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Your Open Source Savings Potential</h1>
             <p className="text-xl opacity-80">Here's how much your team of {teamSize} could save by switching to open source alternatives.</p>
@@ -1414,14 +1406,6 @@ export default function CostCalculator() {
             </div>
           </div>
           
-          <div className="card bg-base-200 p-8 shadow-lg">
-            <div className="font-bold text-xl mb-3">Our Service Fee (25% of annual savings)</div>
-            <div className="text-4xl font-bold text-warning mb-4">${ourServiceFee.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-            <p className="text-base opacity-80 mb-6">Our team of experts will guide your transition to open source alternatives, providing implementation support, training, and ongoing maintenance.</p>
-            
-            <div className="font-bold text-xl mt-6">Net Annual Savings</div>
-            <div className="text-4xl font-bold text-success">${netSavings.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-          </div>
           
           {renderSavingsChart()}
           
@@ -1445,8 +1429,8 @@ export default function CostCalculator() {
           </div>
 
           {showEmailForm && (
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-              <div className="bg-base-100 p-8 rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
+              <div className="bg-base-100 p-8 rounded-lg shadow-xl max-w-md w-full">
                 <h3 className="text-2xl font-bold mb-4">Get Your Detailed Report</h3>
                 <p className="mb-6 opacity-80">
                   Enter your details below and we'll send you a comprehensive PDF report of your potential savings.
