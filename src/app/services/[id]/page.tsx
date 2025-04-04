@@ -2,10 +2,13 @@ import PageLayout from "@/components/PageLayout";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { CheckIcon, XIcon } from "lucide-react";
+
+
 import data from "@/data.json";
 import MeetingButton from "@/components/MeetingButton";
 import ServiceCard from "@/components/ServiceCard";
-import { CheckIcon, XIcon } from "lucide-react";
+import Partners from "@/components/Partners";
 
 // Get service details from data.json
 const serviceDetails = data.services;
@@ -407,6 +410,8 @@ export default async function ServicePage({ params }: { params: Params }) {
             </div>
           </div>
         </section>
+      <Partners />
+
       </div>
     </PageLayout>
   );

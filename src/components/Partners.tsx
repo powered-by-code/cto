@@ -52,7 +52,7 @@ const cases = [
   },
   {
     name: "reArmenia",
-    industry: "Startup",
+    industry: "SaaS Startup",
     logo: "/logos/rearmenia.png",
     url: "https://rearmenia.am",
     width: 200,
@@ -76,7 +76,7 @@ const cases = [
   },
   {
     name: "Metaport",
-    industry: "Startup",
+    industry: "Marketplace",
     logo: "/logos/metaport.png",
     url: "https://metaport.ai/",
     width: 200,
@@ -84,7 +84,7 @@ const cases = [
   },
   {
     name: "wellbeingbuddy",
-    industry: "Startup",
+    industry: "AI & Machine Learning",
     logo: "/logos/wellbeing.png",
     url: "https://www.wellbeingbuddy.com.au/",
     width: 200,
