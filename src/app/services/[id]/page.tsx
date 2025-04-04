@@ -4,7 +4,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CheckIcon, XIcon } from "lucide-react";
 
-
 import data from "@/data.json";
 import MeetingButton from "@/components/MeetingButton";
 import ServiceCard from "@/components/ServiceCard";
@@ -276,18 +275,17 @@ export default async function ServicePage({ params }: { params: Params }) {
           {/* Decorative elements */}
           <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
-          
+
           <div className="container mx-auto px-4 relative z-10">
             <div className="flex flex-col items-center mb-12">
-              <span className="px-4 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">Results You Can Expect</span>
+              <span className="px-4 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
+                {service.resultsHeadline ||
+                  "An expertly designed solution tailored to your business goals"}
+              </span>
               <h2 className="text-4xl font-bold mb-3 text-center text-primary">
                 What You Get
               </h2>
-              <div className="w-24 h-1 bg-primary rounded-full mb-6"></div>
-              <p className="text-xl text-center max-w-3xl mx-auto">
-                {service.resultsHeadline ||
-                  "An expertly designed solution tailored to your business goals"}
-              </p>
+              <div className="w-24 h-1 bg-primary rounded-full"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -295,8 +293,8 @@ export default async function ServicePage({ params }: { params: Params }) {
                 const split = benefit.split("~");
 
                 return (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className="card bg-white shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 overflow-hidden border border-primary/10 group"
                   >
                     <div className="card-body p-0">
@@ -305,10 +303,12 @@ export default async function ServicePage({ params }: { params: Params }) {
                           <div className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                             <span className="font-bold">{index + 1}</span>
                           </div>
-                          <h3 className="text-base text-gray-600 font-medium">{split[0]}</h3>
+                          <h3 className="text-base text-gray-600 font-medium">
+                            {split[0]}
+                          </h3>
                         </div>
                       </div>
-                      
+
                       {split.length > 1 && (
                         <div className="p-6 flex items-start relative">
                           <div className="flex-1 relative z-10">
@@ -410,8 +410,7 @@ export default async function ServicePage({ params }: { params: Params }) {
             </div>
           </div>
         </section>
-      <Partners />
-
+        <Partners />
       </div>
     </PageLayout>
   );
