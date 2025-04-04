@@ -18,7 +18,7 @@ const PartnerLogo: React.FC<{
         href={partner.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:opacity-80 transition-opacity text-center"
+        className="hover:opacity-80 transition-opacity text-center group"
       >
         <div className="h-32 w-full flex items-center justify-center mb-2">
           {/* Use actual logo instead of placeholder */}
@@ -26,7 +26,7 @@ const PartnerLogo: React.FC<{
             <img
               src={partner.logo}
               alt={partner.name}
-              className="object-contain p-2 w-full h-full"
+              className="object-contain p-2 w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
               width={partner.width}
               height={partner.height}
             />
@@ -93,36 +93,87 @@ const cases = [
 ];
 
 const Partners: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [isTransitioning, setIsTransitioning] = React.useState(true);
+  const [isPaused, setIsPaused] = React.useState(false);
   const sliderRef = React.useRef<HTMLDivElement>(null);
   
-  // Create an array that duplicates the first 4 items at the end
-  const extendedPartners = [...cases, ...cases.slice(0, 4)];
+  // References to track animation state
+  const startTimeRef = React.useRef<number | null>(null);
+  const pauseStartTimeRef = React.useRef<number | null>(null);
+  const totalPausedTimeRef = React.useRef<number>(0);
+  const currentPositionRef = React.useRef<number>(0);
+  const previousTimestampRef = React.useRef<number | null>(null);
   
-  // Function to rotate through partners - continuously forward
+  // Create enough duplicates to ensure smooth looping
+  const extendedPartners = [...cases, ...cases, ...cases];
+  
+  // Function for continuous animation
   React.useEffect(() => {
-    const timer = setInterval(() => {
-      if (currentIndex >= cases.length) {
-        // We've reached the cloned items, reset without animation
-        setIsTransitioning(false);
-        setCurrentIndex(0);
-        
-        // Force browser reflow before re-enabling transitions
-        if (sliderRef.current) void sliderRef.current.offsetHeight;
-        
-        // Re-enable transitions after the reset
-        setTimeout(() => {
-          setIsTransitioning(true);
-        }, 10);
-      } else {
-        // Normal forward movement
-        setCurrentIndex(prevIndex => prevIndex + 1);
-      }
-    }, 4000);
+    const animationDuration = 30000; // 30 seconds for a complete cycle
+    let animationFrame: number;
     
-    return () => clearInterval(timer);
-  }, [currentIndex, cases.length]);
+    const animate = (timestamp: number) => {
+      if (previousTimestampRef.current === null) {
+        previousTimestampRef.current = timestamp;
+      }
+      
+      // Initialize start time if not set
+      if (startTimeRef.current === null) {
+        startTimeRef.current = timestamp;
+      }
+      
+      // Handle pause/resume logic
+      if (isPaused) {
+        if (pauseStartTimeRef.current === null) {
+          pauseStartTimeRef.current = timestamp;
+        }
+      } else {
+        // On resume, add to total paused time
+        if (pauseStartTimeRef.current !== null) {
+          totalPausedTimeRef.current += timestamp - pauseStartTimeRef.current;
+          pauseStartTimeRef.current = null;
+        }
+        
+        // Calculate effective elapsed time (accounting for pauses)
+        const effectiveElapsed = timestamp - startTimeRef.current - totalPausedTimeRef.current;
+        
+        // Calculate position based on effective time - with smoother movement
+        const totalItems = cases.length;
+        const progress = (effectiveElapsed % animationDuration) / animationDuration;
+        
+        // Calculate current position smoothly
+        const targetPosition = progress * totalItems;
+        
+        // Apply the transform - use the exact calculated position for smoothness
+        if (sliderRef.current) {
+          sliderRef.current.style.transform = `translateX(-${targetPosition * 25}%)`;
+        }
+        
+        // Update current position for when we pause again
+        currentPositionRef.current = targetPosition;
+      }
+      
+      previousTimestampRef.current = timestamp;
+      
+      // Request next frame
+      animationFrame = requestAnimationFrame(animate);
+    };
+    
+    // Start the animation
+    animationFrame = requestAnimationFrame(animate);
+    
+    // Cleanup
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [isPaused]);
+  
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+  };
+  
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
   
   return (
     <section className="py-12">
@@ -132,11 +183,15 @@ const Partners: React.FC = () => {
           We're proud to partner with leading companies in the tech industry
           globally.{" "}
         </p>
-        <div className="relative overflow-hidden">
+        <div 
+          className="relative overflow-hidden"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <div 
             ref={sliderRef}
-            className={`flex ${isTransitioning ? 'transition-transform duration-700 ease-in-out' : 'transition-none'}`}
-            style={{ transform: `translateX(-${currentIndex * 25}%)` }}
+            className="flex"
+            style={{ willChange: "transform" }}
           >
             {extendedPartners.map((partner, index) => (
               <div key={index} className="w-1/4 flex-shrink-0">
