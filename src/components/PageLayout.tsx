@@ -7,7 +7,7 @@ interface PageLayoutProps {
   showCTA?: boolean;
 }
 
-const PageLayout: React.FC<PageLayoutProps> = ({ children, showCTA = true }) => {
+const PageLayout: React.FC<PageLayoutProps> = ({ children, showCTA = false }) => {
   const fractionalCTOService = data.services.find(s => s.id === 'fractional-cto');
   const additionalCTA = fractionalCTOService?.additionalCTA;
   return (
