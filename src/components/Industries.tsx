@@ -78,11 +78,11 @@ const Industries = () => {
   const industries = data.industries.sort(sortByOrder);
 
   return (
-    <section className="relative">
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:items-start">
+    <section className="">
+      <div className=" container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:items-start">
           {/* Left side image */}
-          <div className="relative rounded-lg overflow-hidden shadow-lg h-auto lg:sticky lg:top-24">
+          <div className="relative rounded-lg overflow-hidden shadow-lg h-full lg:sticky lg:top-24">
             <div className="aspect-[3/1] xs:aspect-[2/1] sm:aspect-[3/2] md:aspect-[4/3] xl:aspect-[16/10]">
               <Image
                 src="/industries.png"
@@ -130,16 +130,6 @@ const Industries = () => {
               ))}
             </div>
           </div>
-        </div>
-
-        <div className="text-center mt-12">
-          {/* TODO: uncomment this when we have a industries page */}
-          {/* <Link 
-            href="/industries" 
-            className="btn btn-secondary btn-lg shadow-md hover:shadow-lg transition-all hover:-translate-y-1 text-base-100"
-          >
-            VIEW ALL INDUSTRIES
-          </Link> */}
         </div>
       </div>
     </section>
