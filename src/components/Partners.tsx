@@ -13,12 +13,12 @@ const PartnerLogo: React.FC<{
   };
 }> = ({ partner }) => {
   return (
-    <div className="flex flex-col items-center p-4">
+    <div className="flex flex-col items-center p-4 group hover:bg-base-100/10 rounded-lg transition-colors">
       <a
         href={partner.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:opacity-80 transition-opacity text-center group"
+        className="transition-opacity text-center w-full h-full"
       >
         <div className="h-32 w-full flex items-center justify-center mb-2">
           {/* Use actual logo instead of placeholder */}
@@ -26,7 +26,7 @@ const PartnerLogo: React.FC<{
             <img
               src={partner.logo}
               alt={partner.name}
-              className="object-contain p-2 w-full h-full grayscale hover:grayscale-0 transition-all duration-300"
+              className="object-contain p-2 w-full h-full grayscale group-hover:grayscale-0 transition-all duration-300"
               width={partner.width}
               height={partner.height}
             />
@@ -145,7 +145,9 @@ const Partners: React.FC = () => {
         
         // Apply the transform - use the exact calculated position for smoothness
         if (sliderRef.current) {
-          sliderRef.current.style.transform = `translateX(-${targetPosition * 25}%)`;
+          const isMobile = window.innerWidth < 768; // Check if we're on mobile
+          const slideWidth = isMobile ? 50 : 25; // 50% for mobile (2 logos), 25% for desktop (4 logos)
+          sliderRef.current.style.transform = `translateX(-${targetPosition * slideWidth}%)`;
         }
         
         // Update current position for when we pause again
@@ -194,7 +196,7 @@ const Partners: React.FC = () => {
             style={{ willChange: "transform" }}
           >
             {extendedPartners.map((partner, index) => (
-              <div key={index} className="w-1/4 flex-shrink-0">
+              <div key={index} className="w-1/2 md:w-1/4 flex-shrink-0">
                 <PartnerLogo partner={partner} />
               </div>
             ))}
