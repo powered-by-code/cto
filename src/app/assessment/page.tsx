@@ -251,9 +251,9 @@ export default function CTOAssessmentPage() {
     
     // Auto-advance to next question after a short delay
     setTimeout(() => {
-      if (currentQuestion < quizQuestions.length - 1) {
+    if (currentQuestion < quizQuestions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
-      } else {
+    } else {
         calculateResults(newAnswers);
       }
     }, 300);
@@ -332,7 +332,7 @@ export default function CTOAssessmentPage() {
     });
     
     // Show results
-    setShowResults(true);
+      setShowResults(true);
   };
 
   // Handle email popup submission with analytics
@@ -628,15 +628,15 @@ export default function CTOAssessmentPage() {
                     Receive a comprehensive PDF with personalized insights and actionable recommendations based on your assessment results.
                   </p>
                   
-                  <button 
+                    <button 
                     onClick={() => setShowEmailPopup(true)}
                     className="btn btn-primary w-full h-14 text-lg font-semibold"
-                  >
+                    >
                     Download My Custom Report
-                  </button>
+                    </button>
                   <p className="text-sm text-center text-base-content/60 mt-4">
-                    We respect your privacy. No spam, ever.
-                  </p>
+                      We respect your privacy. No spam, ever.
+                    </p>
                 </div>
               </div>
 
@@ -666,12 +666,12 @@ export default function CTOAssessmentPage() {
                         className="group transition-all duration-300 hover:shadow-md p-4 rounded-lg border border-base-200 hover:border-primary/30 relative overflow-hidden"
                       >
                         <ServiceCard
-                          id={service.id}
-                          title={service.title}
-                          description={service.description}
-                          features={service.features}
-                          image={service.image}
-                        />
+                        id={service.id}
+                        title={service.title}
+                        description={service.description}
+                        features={service.features}
+                        image={service.image}
+                      />
                         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                       </div>
                     ))}

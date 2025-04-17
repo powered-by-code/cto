@@ -312,7 +312,7 @@ export default async function ServicePage({ params }: { params: Params }) {
                       {split.length > 1 && (
                         <div className="p-6 flex items-start relative">
                           <div className="flex-1 relative z-10">
-                            <p className="text-2xl font-bold mb-4 leading-tight text-primary">
+                            <p className="text-2xl font-bold mb-4 leading-tight">
                               {split[1]}
                             </p>
                             <div className="mt-3 flex justify-between items-center">
