@@ -48,7 +48,7 @@ export const links: NavLink[] = [
   {
     label: "Free Tools",
     children: [
-      { href: "/cost-calculator", label: "IT Budget Optimizer" },
+      { href: "/it-budget-optimizer", label: "IT Budget Optimizer" },
       { href: "/assessment", label: "Fractional CTO Need Assessment Test" },
     ],
   },

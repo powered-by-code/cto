@@ -1,8 +1,18 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { trackEvent, EventNames, capturePosthogData } from '@/utils/analytics';
+import { useSearchParams } from 'next/navigation';
+
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+
+// Declare global window type with generatePDF
+declare global {
+  interface Window {
+    generatePDF: () => void;
+  }
+}
 
 // Use dynamic import with SSR disabled for the calculator component
 const CostCalculator = dynamic(
@@ -11,6 +21,54 @@ const CostCalculator = dynamic(
 );
 
 export default function CostCalculatorPage() {
+  const searchParams = useSearchParams();
+  
+  useEffect(() => {
+    // Capture PostHog data first
+    capturePosthogData();
+    
+    // Track page view with enhanced data from localStorage
+    trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email: "" }, {
+      action: "page_viewed"
+    });
+    
+    // Check if we have calculatorData in URL params (from email)
+    const calculatorData = searchParams.get('calculatorData');
+    if (calculatorData) {
+      try {
+        // Try to parse the decoded calculator data
+        const decodedData = decodeURIComponent(calculatorData);
+        const parsedData = JSON.parse(decodedData);
+        
+        console.log('Loading calculator data from URL:', parsedData);
+        
+        // Track that the user came from email
+        trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email: parsedData.email || "" }, {
+          action: "loaded_from_email",
+          calculatorData: parsedData
+        });
+        
+        // Trigger PDF download automatically
+        setTimeout(() => {
+          // Call the generatePDF function
+          if (typeof window !== 'undefined' && window.generatePDF) {
+            window.generatePDF();
+          } else {
+            console.log('PDF generator not ready yet, waiting...');
+            // Try again after a delay
+            setTimeout(() => {
+              if (typeof window !== 'undefined' && window.generatePDF) {
+                window.generatePDF();
+              }
+            }, 2000);
+          }
+        }, 1500);
+      } catch (error) {
+        console.error('Error parsing calculator data from URL:', error);
+      }
+    }
+  }, [searchParams]);
+  
   return (
     <main className="bg-base-100 min-h-screen relative">
       {/* Background elements */}

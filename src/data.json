@@ -449,7 +449,7 @@
         "label": "Book a Free Consultation"
       },
       "additionalCTA": {
-        "href": "/cost-calculator",
+        "href": "/it-budget-optimizer",
         "label": "Audit My Tech Costs (Free tool)"
       },
       "id": "tech-cost-optimization",

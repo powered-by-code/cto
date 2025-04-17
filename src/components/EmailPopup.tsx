@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import UnifiedPopup from './UnifiedPopup';
+import { trackEvent, EventNames, triggerPlunkEmail } from '@/utils/analytics';
 
 interface EmailPopupProps {
   isOpen: boolean;
@@ -8,6 +10,9 @@ interface EmailPopupProps {
   description?: string;
   requireName?: boolean;
   requireJobTitle?: boolean;
+  eventName?: EventNames;
+  eventData?: Record<string, any>;
+  emailTriggerId?: string;
 }
 
 export default function EmailPopup({
@@ -17,7 +22,10 @@ export default function EmailPopup({
   title = "Get Your Detailed Report",
   description = "Enter your details below and we'll send you a comprehensive report.",
   requireName = true,
-  requireJobTitle = true
+  requireJobTitle = true,
+  eventName = EventNames.CONTACT_REQUESTED,
+  eventData = {},
+  emailTriggerId
 }: EmailPopupProps) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -28,13 +36,31 @@ export default function EmailPopup({
     e.preventDefault();
     setIsSubmitting(true);
     
+    const userData = {
+      email,
+      name: name || undefined,
+      jobTitle: jobTitle || undefined,
+    };
+    
     try {
-      await onSubmit({ email, name, jobTitle });
+      // Track event in PostHog and Plunk
+      await trackEvent(eventName, userData, eventData);
+      
+      // If an email trigger ID is provided, trigger the email via Plunk
+      if (emailTriggerId && email) {
+        await triggerPlunkEmail(emailTriggerId, userData, {
+          source: eventName,
+          ...eventData
+        });
+      }
+      
+      // Call the onSubmit handler from props
+      await onSubmit(userData);
+      
       // Reset form fields after successful submission
       setEmail('');
       setName('');
       setJobTitle('');
-      onClose();
     } catch (error) {
       console.error('Error submitting form:', error);
     } finally {
@@ -42,90 +68,84 @@ export default function EmailPopup({
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div 
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+    <UnifiedPopup
+      isOpen={isOpen}
+      onClose={onClose}
+      title={title}
+      description={description}
     >
-      <div className="bg-base-100 p-8 rounded-lg shadow-xl max-w-md w-full">
-        <h3 className="text-2xl font-bold mb-4">{title}</h3>
-        <p className="mb-6 text-base-content/80">
-          {description}
-        </p>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {requireName && (
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Full Name</span>
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your full name"
-                className="input input-bordered w-full"
-                required={requireName}
-              />
-            </div>
-          )}
-          
-          {requireJobTitle && (
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Job Title</span>
-              </label>
-              <input
-                type="text"
-                value={jobTitle}
-                onChange={(e) => setJobTitle(e.target.value)}
-                placeholder="Enter your job title"
-                className="input input-bordered w-full"
-                required={requireJobTitle}
-              />
-            </div>
-          )}
-          
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {requireName && (
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email Address</span>
+              <span className="label-text">Full Name</span>
             </label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your full name"
               className="input input-bordered w-full"
-              required
+              required={requireName}
             />
           </div>
-          
-          <div className="flex justify-end gap-4 mt-6">
-            <button
-              type="button"
-              onClick={onClose}
-              className="btn btn-outline"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <>
-                  <span className="loading loading-spinner loading-sm mr-2"></span>
-                  Sending...
-                </>
-              ) : (
-                'Send Report'
-              )}
-            </button>
+        )}
+        
+        {requireJobTitle && (
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Job Title</span>
+            </label>
+            <input
+              type="text"
+              value={jobTitle}
+              onChange={(e) => setJobTitle(e.target.value)}
+              placeholder="Enter your job title"
+              className="input input-bordered w-full"
+              required={requireJobTitle}
+            />
           </div>
-        </form>
-      </div>
-    </div>
+        )}
+        
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Email Address</span>
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            className="input input-bordered w-full"
+            required
+          />
+        </div>
+        
+        <div className="flex justify-end gap-4 mt-6">
+          <button
+            type="button"
+            onClick={onClose}
+            className="btn btn-outline"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <span className="loading loading-spinner loading-sm mr-2"></span>
+                Sending...
+              </>
+            ) : (
+              'Send Report'
+            )}
+          </button>
+        </div>
+      </form>
+    </UnifiedPopup>
   );
 } 

@@ -1,7 +1,7 @@
 'use client';
 
 import PageLayout from '@/components/PageLayout';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import data from '@/data.json';
 import ServiceCard from '@/components/ServiceCard';
 import EmailPopup from '@/components/EmailPopup';
@@ -17,6 +17,7 @@ import {
   Download
 } from 'lucide-react';
 import { markdown } from 'markdown';
+import { trackEvent, EventNames, getUserStorage, updateUserStorage, capturePosthogData } from '@/utils/analytics';
 
 // Add testimonial data
 const testimonials = [
@@ -235,6 +236,24 @@ export default function CTOAssessmentPage() {
   } | null>(null);
   const [showEmailPopup, setShowEmailPopup] = useState(false);
 
+  // Update how we capture PostHog data on page load
+  useEffect(() => {
+    // Ensure we have PostHog data by capturing it on mount
+    capturePosthogData();
+    
+    // Use a timeout to ensure PostHog has initialized
+    const trackPageView = setTimeout(() => {
+      // Track page view with data from localStorage
+      trackEvent(EventNames.CTO_ASSESSMENT, { email: "" }, {
+        action: "page_viewed"
+      });
+      
+      console.log('CTO Assessment page view tracked');
+    }, 1000);
+    
+    return () => clearTimeout(trackPageView);
+  }, []);
+
   // Handle answer selection with analytics tracking
   const handleAnswer = (questionId: string, optionId: string) => {
     // Update answers
@@ -242,12 +261,21 @@ export default function CTOAssessmentPage() {
     setAnswers(newAnswers);
     
     // Log analytics event
-    console.log('Question answered:', {
-      questionId,
-      optionText: quizQuestions
-        .find(q => q.id === questionId)?.options
-        .find(o => o.id === optionId)?.text
-    });
+    const question = quizQuestions.find(q => q.id === questionId);
+    const option = question?.options.find(o => o.id === optionId);
+    
+    // Track in PostHog (we don't have email yet)
+    if (question && option) {
+      trackEvent(EventNames.CTO_ASSESSMENT, { email: "" }, {
+        action: "answered_question",
+        questionId,
+        questionText: question.question,
+        answerId: optionId,
+        answerText: option.text,
+        currentQuestion: currentQuestion + 1,
+        totalQuestions: quizQuestions.length
+      });
+    }
     
     // Auto-advance to next question after a short delay
     setTimeout(() => {
@@ -321,41 +349,57 @@ export default function CTOAssessmentPage() {
     });
     
     // Track completion event
-    console.log('Assessment completed', {
+    const organizationType = finalAnswers["org_type"] 
+      ? quizQuestions[0].options.find(opt => opt.id === finalAnswers["org_type"])?.text 
+      : 'Unknown';
+      
+    trackEvent(EventNames.CTO_ASSESSMENT, { email: "" }, {
+      action: "completed_assessment",
       typeScore,
       timeScore,
       ctoType: ctoTypeResult.type,
       timeCommitment: timeCommitmentResult.commitment,
-      organizationType: finalAnswers["org_type"] 
-        ? quizQuestions[0].options.find(opt => opt.id === finalAnswers["org_type"])?.text 
-        : 'Unknown'
+      organizationType,
+      answers: Object.entries(finalAnswers).reduce((acc, [key, value]) => {
+        const question = quizQuestions.find(q => q.id === key);
+        const option = question?.options.find(o => o.id === value);
+        acc[key] = option?.text || value;
+        return acc;
+      }, {} as Record<string, string>)
     });
     
     // Show results
-      setShowResults(true);
+    setShowResults(true);
   };
 
   // Handle email popup submission with analytics
   const handleEmailSubmit = async (formData: { email: string, name?: string, jobTitle?: string }) => {
-    console.log('Form data:', formData);
     setIsSubmitting(true);
     try {
-      // Simulate API call - replace with actual API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Log analytics event
-      console.log('Report requested', {
-        email: formData.email,
-        name: formData.name,
-        jobTitle: formData.jobTitle,
+      // Get complete quiz results to ensure we have everything
+      const completeResults = {
+        action: "requested_report",
         results: {
           ctoType: assessmentResults?.ctoType,
           timeCommitment: assessmentResults?.timeCommitment,
+          typeScore: assessmentResults?.typeScore,
+          timeScore: assessmentResults?.timeScore,
           organizationType: answers["org_type"] 
             ? quizQuestions[0].options.find(opt => opt.id === answers["org_type"])?.text 
-            : 'Unknown'
+            : 'Unknown',
+          answers: Object.entries(answers).reduce((acc, [key, value]) => {
+            const question = quizQuestions.find(q => q.id === key);
+            const option = question?.options.find(o => o.id === value);
+            acc[key] = option?.text || value;
+            return acc;
+          }, {} as Record<string, string>)
         }
-      });
+      };
+      
+      console.log('Submitting email with formData:', formData);
+      
+      // Track the report request with all assessment data
+      await trackEvent(EventNames.CTO_ASSESSMENT, formData, completeResults);
       
       setSubmitSuccess(true);
       // Close popup after success
@@ -604,7 +648,7 @@ export default function CTOAssessmentPage() {
                       onClick={() => {
                         // This would typically share the results, here we just copy a summary to clipboard
                         if (assessmentResults) {
-                          const summary = `My CTO Assessment Results: ${assessmentResults.ctoType} (${assessmentResults.timeCommitment}) - Get your own assessment at ctoprime.com/assessment`;
+                          const summary = `My CTO Assessment Results: ${assessmentResults.ctoType} (${assessmentResults.timeCommitment}) - Get your own assessment at cubeunity.com/assessment`;
                           navigator.clipboard.writeText(summary);
                           alert('Summary copied to clipboard!');
                         }
@@ -649,6 +693,12 @@ export default function CTOAssessmentPage() {
                 description="Enter your email to receive a detailed PDF report with actionable insights customized for your organization's needs."
                 requireName={true}
                 requireJobTitle={true}
+                eventName={EventNames.CTO_ASSESSMENT}
+                eventData={{
+                  action: "opened_report_popup",
+                  source: "assessment_results"
+                }}
+                emailTriggerId="cto-assessment-report"
               />
 
               {/* Recommended services card with enhanced styling */}

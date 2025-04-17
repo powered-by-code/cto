@@ -44,16 +44,50 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import siteData from '../data.json';
+import { trackEvent, EventNames, getUserStorage, updateUserStorage } from '@/utils/analytics';
+import UnifiedPopup from './UnifiedPopup';
+
+// Define the OpenSourceAlternative interface
+interface OpenSourceAlternative {
+  name: string;
+  url?: string;
+  description?: string;
+}
 
 interface ToolOption {
   id: string;
   name: string;
+  category: string;
+  type: string;
+  description: string;
   costPerUser: number;
-  openSourceAlternative: string;
-  savings: number; // percentage of savings (0-100)
-  icon: React.ReactNode; // Use React.ReactNode for Lucid icons
-  serviceCost?: number; // Optional additional service cost per user
-  category: string; // Tool category
+  image?: string;
+  link?: string;
+  icon?: React.ReactNode;
+  openSourceAlternatives: OpenSourceAlternative[];
+}
+
+// Add a partial type for tool options when some properties might be missing
+interface PartialToolOption {
+  id: string;
+  name: string;
+  category: string;
+  costPerUser: number;
+  openSourceAlternatives: OpenSourceAlternative[];
+  type?: string;
+  description?: string;
+}
+
+// Add CalculatorData interface
+interface CalculatorData {
+  action?: string;
+  totalSavingsPerYear?: number;
+  selectedTools?: Array<{
+    id: string;
+    name: string;
+    category: string;
+    price: number;
+  }>;
 }
 
 // Tool categories
@@ -75,80 +109,61 @@ const toolOptions: ToolOption[] = [
     id: 'jira',
     name: 'Jira',
     costPerUser: 7.75,
-    openSourceAlternative: 'Taiga / Redmine',
-    savings: 100,
-    icon: <Trello />,
-    serviceCost: 0.75,
-    category: 'project'
+    openSourceAlternatives: [
+      { name: 'Taiga' },
+      { name: 'Redmine' }
+    ],
+    category: 'project',
+    type: 'pm',
+    description: 'Project management tool'
   },
   {
     id: 'confluence',
     name: 'Confluence',
     costPerUser: 5.75,
-    openSourceAlternative: 'BookStack / Wiki.js',
-    savings: 100,
-    icon: <FileText />,
-    serviceCost: 0.50,
+    openSourceAlternatives: [],
     category: 'project'
   },
   {
     id: 'asana',
     name: 'Asana',
     costPerUser: 10.99,
-    openSourceAlternative: 'OpenProject / Taiga',
-    savings: 100,
-    icon: <CheckSquare />,
-    serviceCost: 1.10,
+    openSourceAlternatives: [],
     category: 'project'
   },
   {
     id: 'monday',
     name: 'Monday.com',
     costPerUser: 10,
-    openSourceAlternative: 'Leantime / Focalboard',
-    savings: 100,
-    icon: <Calendar />,
-    serviceCost: 1.00,
+    openSourceAlternatives: [],
     category: 'project'
   },
   {
     id: 'notion',
     name: 'Notion',
     costPerUser: 8,
-    openSourceAlternative: 'AppFlowy / AFFiNE',
-    savings: 100,
-    icon: <BookOpen />,
-    serviceCost: 0.80,
+    openSourceAlternatives: [],
     category: 'project'
   },
   {
     id: 'atlassian',
     name: 'Atlassian Suite',
     costPerUser: 29,
-    openSourceAlternative: 'GitLab + OpenProject',
-    savings: 100,
-    icon: <Settings />,
-    serviceCost: 2.90,
+    openSourceAlternatives: [],
     category: 'project'
   },
   {
     id: 'clickup',
     name: 'ClickUp',
     costPerUser: 9,
-    openSourceAlternative: 'Kanboard / Taiga',
-    savings: 100,
-    icon: <BarChart />,
-    serviceCost: 0.90,
+    openSourceAlternatives: [],
     category: 'project'
   },
   {
     id: 'trello',
     name: 'Trello',
     costPerUser: 5,
-    openSourceAlternative: 'Wekan / Kanboard',
-    savings: 100,
-    icon: <Trello />,
-    serviceCost: 0.50,
+    openSourceAlternatives: [],
     category: 'project'
   },
   
@@ -157,90 +172,63 @@ const toolOptions: ToolOption[] = [
     id: 'github',
     name: 'GitHub Enterprise',
     costPerUser: 21,
-    openSourceAlternative: 'GitLab Community / Gitea',
-    savings: 100,
-    icon: <Github />,
-    serviceCost: 1.50,
+    openSourceAlternatives: [],
     category: 'development'
   },
   {
     id: 'gitlab-premium',
     name: 'GitLab Premium',
     costPerUser: 19,
-    openSourceAlternative: 'GitLab Community Edition',
-    savings: 100,
-    icon: <GitBranch />,
-    serviceCost: 1.90,
+    openSourceAlternatives: [],
     category: 'development'
   },
   {
     id: 'gitlab-ci',
     name: 'GitLab CI/CD Premium',
     costPerUser: 19,
-    openSourceAlternative: 'Jenkins / Drone CI',
-    savings: 100,
-    icon: <GitMerge />,
-    serviceCost: 1.90,
+    openSourceAlternatives: [],
     category: 'development'
   },
   {
     id: 'bitbucket',
     name: 'Bitbucket Premium',
     costPerUser: 6,
-    openSourceAlternative: 'Gitea / Gogs',
-    savings: 100,
-    icon: <Folder />,
-    serviceCost: 0.60,
+    openSourceAlternatives: [],
     category: 'development'
   },
   {
     id: 'azure-devops',
     name: 'Azure DevOps',
     costPerUser: 6,
-    openSourceAlternative: 'GitLab CI/CD + Jenkins',
-    savings: 100,
-    icon: <Cloud />,
-    serviceCost: 0.60,
+    openSourceAlternatives: [],
     category: 'development'
   },
   {
     id: 'new-relic',
     name: 'New Relic',
     costPerUser: 15,
-    openSourceAlternative: 'Prometheus + Grafana',
-    savings: 100,
-    icon: <BarChart2 />,
-    serviceCost: 1.50,
+    openSourceAlternatives: [],
     category: 'development'
   },
   {
     id: 'datadog',
     name: 'Datadog',
     costPerUser: 15,
-    openSourceAlternative: 'Grafana + Loki + Prometheus',
-    savings: 100,
-    icon: <Dog />,
-    serviceCost: 1.50,
+    openSourceAlternatives: [],
     category: 'development'
   },
   {
     id: 'posthog',
     name: 'PostHog',
     costPerUser: 10,
-    openSourceAlternative: 'PostHog Open Source / Umami',
-    savings: 100,
-    icon: <BarChart />,
-    serviceCost: 1.00,
+    openSourceAlternatives: [],
     category: 'development'
   },
   {
     id: 'sentry',
     name: 'Sentry',
     costPerUser: 12,
-    openSourceAlternative: 'Sentry Open Source / GlitchTip',
-    savings: 100,
-    icon: <AlertTriangle />,
-    serviceCost: 1.20,
+    openSourceAlternatives: [],
     category: 'development'
   },
   
@@ -249,60 +237,42 @@ const toolOptions: ToolOption[] = [
     id: 'office365',
     name: 'Microsoft Office 365',
     costPerUser: 12.5,
-    openSourceAlternative: 'LibreOffice / OnlyOffice',
-    savings: 100,
-    icon: <FileSpreadsheet />,
-    serviceCost: 1.25,
+    openSourceAlternatives: [],
     category: 'office'
   },
   {
     id: 'gsuite',
     name: 'Google Workspace',
     costPerUser: 12,
-    openSourceAlternative: 'NextCloud + Collabora',
-    savings: 100,
-    icon: <FileText />,
-    serviceCost: 1.20,
+    openSourceAlternatives: [],
     category: 'office'
   },
   {
     id: 'dropbox',
     name: 'Dropbox Business',
     costPerUser: 15,
-    openSourceAlternative: 'NextCloud / Seafile',
-    savings: 100,
-    icon: <Folder />,
-    serviceCost: 1.50,
+    openSourceAlternatives: [],
     category: 'office'
   },
   {
     id: 'box',
     name: 'Box Enterprise',
     costPerUser: 20,
-    openSourceAlternative: 'NextCloud / Seafile',
-    savings: 100,
-    icon: <Box />,
-    serviceCost: 2.00,
+    openSourceAlternatives: [],
     category: 'office'
   },
   {
     id: 'onedrive',
     name: 'OneDrive for Business',
     costPerUser: 5,
-    openSourceAlternative: 'NextCloud / OwnCloud',
-    savings: 100,
-    icon: <Cloud />,
-    serviceCost: 0.50,
+    openSourceAlternatives: [],
     category: 'office'
   },
   {
     id: 'evernote',
     name: 'Evernote Business',
     costPerUser: 14.99,
-    openSourceAlternative: 'Joplin / StandardNotes',
-    savings: 100,
-    icon: <BookOpen />,
-    serviceCost: 1.50,
+    openSourceAlternatives: [],
     category: 'office'
   },
   
@@ -311,50 +281,35 @@ const toolOptions: ToolOption[] = [
     id: 'slack',
     name: 'Slack',
     costPerUser: 8,
-    openSourceAlternative: 'Mattermost / Rocket.Chat',
-    savings: 100,
-    icon: <MessageSquare />,
-    serviceCost: 0.80,
+    openSourceAlternatives: [],
     category: 'communication'
   },
   {
     id: 'zoom',
     name: 'Zoom',
     costPerUser: 15,
-    openSourceAlternative: 'Jitsi Meet',
-    savings: 100,
-    icon: <Video />,
-    serviceCost: 1.00,
+    openSourceAlternatives: [],
     category: 'communication'
   },
   {
     id: 'teams',
     name: 'Microsoft Teams',
     costPerUser: 8,
-    openSourceAlternative: 'Element (Matrix) / Rocket.Chat',
-    savings: 100,
-    icon: <Users />,
-    serviceCost: 0.80,
+    openSourceAlternatives: [],
     category: 'communication'
   },
   {
     id: 'discord-nitro',
     name: 'Discord Nitro',
     costPerUser: 9.99,
-    openSourceAlternative: 'Element (Matrix) / Revolt',
-    savings: 100,
-    icon: <Gamepad2 />,
-    serviceCost: 1.00,
+    openSourceAlternatives: [],
     category: 'communication'
   },
   {
     id: 'webex',
     name: 'Cisco Webex',
     costPerUser: 13.50,
-    openSourceAlternative: 'Jitsi Meet / BigBlueButton',
-    savings: 100,
-    icon: <VideoIcon />,
-    serviceCost: 1.35,
+    openSourceAlternatives: [],
     category: 'communication'
   },
   
@@ -363,60 +318,42 @@ const toolOptions: ToolOption[] = [
     id: 'salesforce',
     name: 'Salesforce',
     costPerUser: 25,
-    openSourceAlternative: 'SuiteCRM / EspoCRM',
-    savings: 100,
-    icon: <UsersRound />,
-    serviceCost: 3.00,
+    openSourceAlternatives: [],
     category: 'business'
   },
   {
     id: 'hubspot',
     name: 'HubSpot',
     costPerUser: 45,
-    openSourceAlternative: 'Mautic / SuiteCRM',
-    savings: 100,
-    icon: <Search />,
-    serviceCost: 4.50,
+    openSourceAlternatives: [],
     category: 'business'
   },
   {
     id: 'zendesk',
     name: 'Zendesk',
     costPerUser: 19,
-    openSourceAlternative: 'osTicket / Zammad',
-    savings: 100,
-    icon: <Headphones />,
-    serviceCost: 1.90,
+    openSourceAlternatives: [],
     category: 'business'
   },
   {
     id: 'tableau',
     name: 'Tableau',
     costPerUser: 70,
-    openSourceAlternative: 'Metabase / Apache Superset',
-    savings: 100,
-    icon: <BarChart3 />,
-    serviceCost: 7.00,
+    openSourceAlternatives: [],
     category: 'business'
   },
   {
     id: 'dynamics',
     name: 'Microsoft Dynamics',
     costPerUser: 40,
-    openSourceAlternative: 'Odoo / ERPNext',
-    savings: 100,
-    icon: <Building2 />,
-    serviceCost: 4.00,
+    openSourceAlternatives: [],
     category: 'business'
   },
   {
     id: 'quickbooks',
     name: 'Quickbooks',
     costPerUser: 25,
-    openSourceAlternative: 'Akaunting / ERPNext',
-    savings: 100,
-    icon: <DollarSign />,
-    serviceCost: 2.50,
+    openSourceAlternatives: [],
     category: 'business'
   },
   
@@ -425,60 +362,42 @@ const toolOptions: ToolOption[] = [
     id: 'mailchimp',
     name: 'Mailchimp',
     costPerUser: 20,
-    openSourceAlternative: 'Mautic / Listmonk',
-    savings: 100,
-    icon: <Mail />,
-    serviceCost: 2.00,
+    openSourceAlternatives: [],
     category: 'marketing'
   },
   {
     id: 'google-analytics',
     name: 'Google Analytics 360',
     costPerUser: 12.5,
-    openSourceAlternative: 'Matomo / Plausible',
-    savings: 100,
-    icon: <AreaChart />,
-    serviceCost: 1.25,
+    openSourceAlternatives: [],
     category: 'marketing'
   },
   {
     id: 'adobe-analytics',
     name: 'Adobe Analytics',
     costPerUser: 33.33,
-    openSourceAlternative: 'Matomo / Open Web Analytics',
-    savings: 100,
-    icon: <BarChart />,
-    serviceCost: 3.30,
+    openSourceAlternatives: [],
     category: 'marketing'
   },
   {
     id: 'semrush',
     name: 'SEMrush',
     costPerUser: 99.95,
-    openSourceAlternative: 'SEOPanel / OpenSEO',
-    savings: 100,
-    icon: <SearchIcon />,
-    serviceCost: 10.00,
+    openSourceAlternatives: [],
     category: 'marketing'
   },
   {
     id: 'hootsuite',
     name: 'Hootsuite',
     costPerUser: 19,
-    openSourceAlternative: 'SocialPilot / OpenSocial',
-    savings: 100,
-    icon: <Smartphone />,
-    serviceCost: 1.90,
+    openSourceAlternatives: [],
     category: 'marketing'
   },
   {
     id: 'buffer',
     name: 'Buffer',
     costPerUser: 15,
-    openSourceAlternative: 'SocialPilot / OpenSocial',
-    savings: 100,
-    icon: <TabletSmartphone />,
-    serviceCost: 1.50,
+    openSourceAlternatives: [],
     category: 'marketing'
   },
   
@@ -487,50 +406,35 @@ const toolOptions: ToolOption[] = [
     id: 'zapier',
     name: 'Zapier',
     costPerUser: 19.99,
-    openSourceAlternative: 'n8n / Huginn',
-    savings: 100,
-    icon: <Zap />,
-    serviceCost: 2.00,
+    openSourceAlternatives: [],
     category: 'automation'
   },
   {
     id: 'integromat',
     name: 'Make (Integromat)',
     costPerUser: 9.99,
-    openSourceAlternative: 'n8n / Activepieces',
-    savings: 100,
-    icon: <Cable />,
-    serviceCost: 1.00,
+    openSourceAlternatives: [],
     category: 'automation'
   },
   {
     id: 'power-automate',
     name: 'Microsoft Power Automate',
     costPerUser: 15,
-    openSourceAlternative: 'n8n / Apache Airflow',
-    savings: 100,
-    icon: <Cog />,
-    serviceCost: 1.50,
+    openSourceAlternatives: [],
     category: 'automation'
   },
   {
     id: 'tray-io',
     name: 'Tray.io',
     costPerUser: 29,
-    openSourceAlternative: 'n8n / Huginn',
-    savings: 100,
-    icon: <RefreshCw />,
-    serviceCost: 2.90,
+    openSourceAlternatives: [],
     category: 'automation'
   },
   {
     id: 'workato',
     name: 'Workato',
     costPerUser: 40,
-    openSourceAlternative: 'n8n / Apache NiFi',
-    savings: 100,
-    icon: <Cable />,
-    serviceCost: 4.00,
+    openSourceAlternatives: [],
     category: 'automation'
   },
   
@@ -539,63 +443,65 @@ const toolOptions: ToolOption[] = [
     id: 'nordvpn',
     name: 'NordVPN Teams',
     costPerUser: 7,
-    openSourceAlternative: 'OpenVPN / WireGuard',
-    savings: 100,
-    icon: <Lock />,
-    serviceCost: 0.70,
+    openSourceAlternatives: [],
     category: 'security'
   },
   {
     id: 'expressvpn',
     name: 'ExpressVPN',
     costPerUser: 8.32,
-    openSourceAlternative: 'OpenVPN / WireGuard',
-    savings: 100,
-    icon: <Lock />,
-    serviceCost: 0.83,
+    openSourceAlternatives: [],
     category: 'security'
   },
   {
     id: 'okta',
     name: 'Okta',
     costPerUser: 4,
-    openSourceAlternative: 'Keycloak / OpenIAM',
-    savings: 100,
-    icon: <KeyRound />,
-    serviceCost: 0.40,
+    openSourceAlternatives: [],
     category: 'security'
   },
   {
     id: 'lastpass',
     name: 'LastPass',
     costPerUser: 4,
-    openSourceAlternative: 'Bitwarden / Passbolt',
-    savings: 100,
-    icon: <Key />,
-    serviceCost: 0.40,
+    openSourceAlternatives: [],
     category: 'security'
   },
   {
     id: '1password',
     name: '1Password',
     costPerUser: 7.99,
-    openSourceAlternative: 'Bitwarden / Vaultwarden',
-    savings: 100,
-    icon: <Lock />,
-    serviceCost: 0.80,
+    openSourceAlternatives: [],
     category: 'security'
   },
   {
     id: 'crowdstrike',
     name: 'CrowdStrike',
     costPerUser: 8.99,
-    openSourceAlternative: 'Wazuh / OSSEC',
-    savings: 100,
-    icon: <ShieldCheck />,
-    serviceCost: 0.90,
+    openSourceAlternatives: [],
     category: 'security'
   }
 ];
+
+interface UserStorage {
+  email?: string;
+  name?: string;
+  jobTitle?: string;
+  posthogDistinctId?: string;
+  posthogSessionId?: string;
+  posthogDeviceId?: string;
+  assessmentResults?: any;
+  calculatorData?: any;
+  calculatorRefId?: string;
+  quizAnswers?: Record<string, any>;
+  lastCalBooking?: {
+    eventType?: string;
+    startTime?: string;
+    bookingId?: string;
+    [key: string]: any;
+  };
+  lastUpdated?: number;
+}
 
 export default function CostCalculator() {
   const [teamSize, setTeamSize] = useState<number>(0);
@@ -612,44 +518,16 @@ export default function CostCalculator() {
   const [showEmailForm, setShowEmailForm] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [jobTitle, setJobTitle] = useState<string>("");
+  const [calculatorData, setCalculatorData] = useState<CalculatorData>({});
 
   // Company data from data.json
   const { websiteUrl, companyName, contact } = siteData;
-
-  // Load saved data from localStorage
-  useEffect(() => {
-    const savedData = localStorage.getItem('calculatorData');
-    if (savedData) {
-      const data = JSON.parse(savedData);
-      setTeamSize(data.teamSize || 0);
-      setTeamSizeText(data.teamSizeText || "");
-      setSelectedTools(data.selectedTools || []);
-      setDepartments(data.departments || []);
-      setEmail(data.email || "");
-      setName(data.name || "");
-      setJobTitle(data.jobTitle || "");
-    }
-  }, []);
-
-  // Save data to localStorage whenever it changes
-  useEffect(() => {
-    const data = {
-      teamSize,
-      teamSizeText,
-      selectedTools,
-      departments,
-      email,
-      name,
-      jobTitle,
-    };
-    localStorage.setItem('calculatorData', JSON.stringify(data));
-  }, [teamSize, teamSizeText, selectedTools, departments, email, name, jobTitle]);
 
   // Calculate total savings
   const totalCostPerYear = useMemo(() => {
     return selectedTools.reduce((total, toolId) => {
       const tool = toolOptions.find(tool => tool.id === toolId);
-      return total + (tool ? (tool.costPerUser * teamSize) + (tool.serviceCost || 0) * teamSize : 0);
+      return total + (tool ? (tool.costPerUser * teamSize) : 0);
     }, 0);
   }, [selectedTools, teamSize]);
 
@@ -680,7 +558,7 @@ export default function CostCalculator() {
       
       const savings = toolsInCategory.reduce((total, toolId) => {
         const tool = toolOptions.find(t => t.id === toolId);
-        return total + (tool ? (tool.costPerUser * teamSize) + (tool.serviceCost || 0) * teamSize : 0);
+        return total + (tool ? (tool.costPerUser * teamSize) : 0);
       }, 0);
       
       categorySavings[category.id] = savings;
@@ -692,7 +570,7 @@ export default function CostCalculator() {
   const totalServiceFees = useMemo(() => {
     return selectedTools.reduce((total, toolId) => {
       const tool = toolOptions.find(tool => tool.id === toolId);
-      return total + (tool && tool.serviceCost ? tool.serviceCost * teamSize : 0);
+      return total + (tool && tool.costPerUser ? tool.costPerUser * teamSize : 0);
     }, 0);
   }, [selectedTools, teamSize]);
 
@@ -720,14 +598,39 @@ export default function CostCalculator() {
     }
   }, [step, activeCategory, showResults, departments]);
 
-  const handleTeamSizeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setTeamSizeText(value);
-    const size = parseInt(value);
-    if (!isNaN(size) && size > 0) {
-      setTeamSize(size);
-    } else {
-      setTeamSize(0);
+  const handleTeamSizeChange = (size: number) => {
+    setTeamSize(size);
+    
+    // Update localStorage for analytics only
+    updateUserStorage({
+      calculatorData: {
+        selectedTools: selectedTools.map(id => {
+          const tool = toolOptions.find(t => t.id === id) as PartialToolOption || { 
+            id: '', 
+            name: '', 
+            category: '', 
+            costPerUser: 0,
+            openSourceAlternatives: [] 
+          };
+          return {
+            id: tool.id,
+            name: tool.name,
+            category: tool.category,
+            price: tool.costPerUser
+          };
+        }),
+        teamSize: size
+      }
+    });
+    
+    // Track team size changes
+    if (selectedTools.length > 0) {
+      trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
+        action: "updated_team_size",
+        teamSize: size,
+        selectedToolsCount: selectedTools.length,
+        totalSavingsPerYear: totalSavingsPerYear
+      });
     }
   };
 
@@ -867,7 +770,7 @@ export default function CostCalculator() {
                 const tool = toolOptions.find(t => t.id === toolId);
                 if (!tool) return null;
                 
-                const toolCost = (tool.costPerUser * teamSize) + (tool.serviceCost || 0) * teamSize;
+                const toolCost = (tool.costPerUser * teamSize);
                 const category = toolCategories.find(c => c.id === tool.category);
                 
                 return (
@@ -877,7 +780,7 @@ export default function CostCalculator() {
                       <span>{tool.name}</span>
                     </td>
                     <td>{category?.name || ""}</td>
-                    <td>{tool.openSourceAlternative}</td>
+                    <td>{tool.openSourceAlternatives.map(alt => alt.name).join(', ')}</td>
                     <td className="text-success font-medium text-right">${toolCost.toLocaleString('en-US', { maximumFractionDigits: 0 })}</td>
                   </tr>
                 );
@@ -935,8 +838,76 @@ export default function CostCalculator() {
     );
   };
 
+  // Track tool selection without restoring state
+  const handleToolSelect = (toolId: string, isSelected: boolean) => {
+    // Toggle the tool selection
+    const updatedSelectedTools = isSelected
+      ? [...selectedTools, toolId]
+      : selectedTools.filter(id => id !== toolId);
+      
+    setSelectedTools(updatedSelectedTools);
+    
+    // Track the selection event
+    const selectedTool = toolOptions.find(tool => tool.id === toolId);
+    if (selectedTool) {
+      // Store analytics data in localStorage
+      updateUserStorage({
+        calculatorData: {
+          selectedTools: updatedSelectedTools.map(id => {
+            const tool = toolOptions.find(t => t.id === id) as PartialToolOption || { 
+              id: '', 
+              name: '', 
+              category: '', 
+              costPerUser: 0,
+              openSourceAlternatives: [] 
+            };
+            return {
+              id: tool.id,
+              name: tool.name,
+              category: tool.category,
+              price: tool.costPerUser
+            };
+          }),
+          teamSize: teamSize
+        }
+      });
+      
+      trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
+        action: isSelected ? "tool_selected" : "tool_deselected",
+        toolId,
+        toolName: selectedTool.name,
+        toolCategory: selectedTool.category,
+        toolPrice: selectedTool.costPerUser,
+        teamSize: teamSize,
+        totalTools: updatedSelectedTools.length
+      });
+    }
+  };
+
   // Function to handle PDF download
   const handleDownloadPDF = () => {
+    // Track the PDF download event with complete data
+    trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
+      action: "downloaded_pdf",
+      totalSavingsPerYear,
+      teamSize,
+      selectedTools: selectedTools.map(toolId => {
+        const tool = toolOptions.find(t => t.id === toolId) as PartialToolOption || { 
+          id: '', 
+          name: '', 
+          category: '', 
+          costPerUser: 0,
+          openSourceAlternatives: [] 
+        };
+        return {
+          id: tool.id,
+          name: tool.name,
+          category: tool.category,
+          price: tool.costPerUser
+        };
+      })
+    });
+    
     // Set document to print mode which we'll use to generate PDF
     const printWindow = window.open('', '_blank');
     if (!printWindow) {
@@ -1102,7 +1073,7 @@ export default function CostCalculator() {
                 const tool = toolOptions.find(t => t.id === toolId);
                 if (!tool) return '';
                 
-                const toolCost = (tool.costPerUser * teamSize) + (tool.serviceCost || 0) * teamSize;
+                const toolCost = (tool.costPerUser * teamSize);
                 const category = toolCategories.find(c => c.id === tool.category);
                 
                 return `
@@ -1110,7 +1081,7 @@ export default function CostCalculator() {
                     <td>${tool.name}</td>
                     <td>${category?.name || ""}</td>
                     <td>$${(tool.costPerUser * teamSize).toLocaleString('en-US', { maximumFractionDigits: 0 })}/year</td>
-                    <td>${tool.openSourceAlternative}</td>
+                    <td>${tool.openSourceAlternatives.map(alt => alt.name).join(', ')}</td>
                     <td class="success">$${toolCost.toLocaleString('en-US', { maximumFractionDigits: 0 })}</td>
                   </tr>
                 `;
@@ -1155,25 +1126,250 @@ export default function CostCalculator() {
     }, 500);
   };
 
-  const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Function to reset the calculator to its initial state
+  const handleStartOver = () => {
+    // Reset all state variables to their initial values
+    setTeamSize(0);
+    setTeamSizeText("");
+    setStep(1);
+    setSelectedTools([]);
+    setShowResults(false);
+    setActiveCategory('project');
+    setCompletedCategories([]);
+    setProgress(0);
+    setDepartments([]);
+    setShowEmailForm(false);
+    
+    // Track the restart event
+    trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
+      action: "started_over",
+      previousSavings: String(totalSavingsPerYear)
+    });
+  };
+
+  const handleEmailSubmit = async (formData: { email: string, name?: string, jobTitle?: string }) => {
     setIsSubmitting(true);
     
+    // Update local state
+    setEmail(formData.email);
+    setName(formData.name || '');
+    setJobTitle(formData.jobTitle || '');
+    
     try {
-      // Here you would typically send the data to your backend
-      // For now, we'll just simulate a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Generate calculator data for both tracking and email template
+      const calculatorData = {
+        email: formData.email,
+        name: formData.name || '',
+        jobTitle: formData.jobTitle || '',
+        totalSavingsPerYear,
+        teamSize,
+        selectedTools: selectedTools.map(toolId => {
+          const tool = toolOptions.find(t => t.id === toolId) as PartialToolOption || { 
+            id: '', 
+            name: '', 
+            category: '', 
+            costPerUser: 0,
+            openSourceAlternatives: [] 
+          };
+          return {
+            id: tool.id,
+            name: tool.name,
+            category: tool.category,
+            price: tool.costPerUser,
+            alternatives: tool.openSourceAlternatives
+          };
+        })
+      };
       
-      // Show success message
+      // Create a compact data string: t{teamSize},s{savings},i{tool1,tool2,tool3}
+      const dataString = `t${teamSize},s${Math.round(totalSavingsPerYear)},i${selectedTools.join(',')}`;
+      
+      // Store full data in localStorage
+      updateUserStorage({
+        calculatorData
+      });
+      
+      // Use environment variable for the domain or a fallback
+      const domain = process.env.NEXT_PUBLIC_DOMAIN || websiteUrl || 'https://cubeunity.com';
+      const domainWithoutProtocol = domain.replace(/https?:\/\//, ''); // Remove protocol
+      
+      // Track the event with complete data - ensure all values are strings for Plunk
+      await trackEvent(EventNames.IT_BUDGET_OPTIMIZER, formData, {
+        action: "requested_report",
+        // Convert numerical values to strings for Plunk
+        teamSize: String(teamSize),
+        totalSavingsPerYear: String(totalSavingsPerYear),
+        toolCount: String(selectedTools.length),
+        // Add template variables directly (not nested) for Plunk email
+        name: formData.name || '',
+        firstName: formData.name?.split(' ')[0] || '',
+        jobTitle: formData.jobTitle || '',
+        total_savings: `$${totalSavingsPerYear.toLocaleString('en-US', { maximumFractionDigits: 0 })}`,
+        three_year_savings: `$${(totalSavingsPerYear * 3).toLocaleString('en-US', { maximumFractionDigits: 0 })}`,
+        team_size: String(teamSize),
+        calculator_link: `${domain}/it-budget-optimizer?data=${encodeURIComponent(dataString)}`,
+        tool_count: String(selectedTools.length),
+        domain: domainWithoutProtocol
+      });
+      
+      // Close form after successful submission
       setShowEmailForm(false);
-      // You would typically show a success message here
+      
+      // Show a success message
+      alert("Thank you! We've sent your personalized cost savings report to your email.");
+      
     } catch (error) {
       console.error('Error submitting email:', error);
+      alert("There was an error sending your report. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
   
+  // Make the PDF generation function available globally for accessing from URL parameters
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Expose the function to the window object
+      (window as any).generatePDF = handleDownloadPDF;
+      
+      // Check for data parameter in URL to load calculator state
+      const urlParams = new URLSearchParams(window.location.search);
+      const dataParam = urlParams.get('data');
+      
+      if (dataParam) {
+        try {
+          // Parse the compact data string: t{teamSize},s{savings},i{tool1,tool2,tool3}
+          const parts = dataParam.split(',');
+          let decodedTeamSize = 0;
+          let decodedSelectedTools: string[] = [];
+          
+          parts.forEach(part => {
+            if (part.startsWith('t')) {
+              // Team size
+              decodedTeamSize = parseInt(part.substring(1));
+            } else if (part.startsWith('i')) {
+              // Tool IDs - the rest of this part is comma-separated tool IDs
+              const toolsString = part.substring(1);
+              decodedSelectedTools = toolsString.split(',').filter(Boolean);
+            }
+          });
+          
+          // Set state if we have valid data
+          if (decodedTeamSize > 0) {
+            setTeamSize(decodedTeamSize);
+            setTeamSizeText(decodedTeamSize.toString());
+          }
+          
+          if (decodedSelectedTools.length > 0) {
+            setSelectedTools(decodedSelectedTools);
+            setShowResults(true);
+            setStep(4);
+          }
+          
+          // Track that the calculator was loaded from URL
+          trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
+            action: "loaded_from_url",
+            teamSize: decodedTeamSize,
+            selectedTools: decodedSelectedTools
+          });
+        } catch (e) {
+          console.error('Error parsing URL data:', e);
+        }
+      }
+      
+      // Return cleanup function
+      return () => {
+        delete (window as any).generatePDF;
+      };
+    }
+  }, []);
+
+  // Email capture form component using UnifiedPopup
+  const EmailCaptureForm = ({ 
+    onSubmit, 
+    onCancel, 
+    isSubmitting, 
+    defaultValues 
+  }: { 
+    onSubmit: (data: { email: string, name?: string, jobTitle?: string }) => void, 
+    onCancel: () => void, 
+    isSubmitting: boolean, 
+    defaultValues?: { email?: string, name?: string, jobTitle?: string }
+  }) => {
+    const [formEmail, setFormEmail] = useState(defaultValues?.email || '');
+    const [formName, setFormName] = useState(defaultValues?.name || '');
+    const [formJobTitle, setFormJobTitle] = useState(defaultValues?.jobTitle || '');
+    
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      onSubmit({
+        email: formEmail,
+        name: formName,
+        jobTitle: formJobTitle
+      });
+    };
+    
+    return (
+      <UnifiedPopup
+        isOpen={true}
+        onClose={onCancel}
+        title="Email Me This Report"
+        description="We'll send your personalized savings report to your email address."
+      >
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Email *</span>
+            </label>
+            <input
+              type="email"
+              value={formEmail}
+              onChange={(e) => setFormEmail(e.target.value)}
+              placeholder="yourname@company.com"
+              className="input input-bordered w-full"
+              required
+            />
+          </div>
+          
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              type="text"
+              value={formName}
+              onChange={(e) => setFormName(e.target.value)}
+              placeholder="Your name"
+              className="input input-bordered w-full"
+            />
+          </div>
+          
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Job Title</span>
+            </label>
+            <input
+              type="text"
+              value={formJobTitle}
+              onChange={(e) => setFormJobTitle(e.target.value)}
+              placeholder="Your role"
+              className="input input-bordered w-full"
+            />
+          </div>
+          
+          <div className="flex justify-end space-x-2 mt-6">
+            <button type="button" onClick={onCancel} className="btn btn-ghost">
+              Cancel
+            </button>
+            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send Report'}
+            </button>
+          </div>
+        </form>
+      </UnifiedPopup>
+    );
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto bg-base-100 rounded-box shadow-xl p-6 md:p-8">
       {/* Add print styles - keep this for browser print if needed */}
@@ -1240,7 +1436,7 @@ export default function CostCalculator() {
               <input
                 type="number"
                 value={teamSizeText}
-                onChange={handleTeamSizeChange}
+                onChange={(e) => handleTeamSizeChange(parseInt(e.target.value))}
                 placeholder="Enter number of employees"
                 className="input input-bordered input-lg w-full focus:ring-2 focus:ring-primary"
                 min="1"
@@ -1329,7 +1525,7 @@ export default function CostCalculator() {
               .map(tool => (
                 <div 
                   key={tool.id}
-                  onClick={() => handleToolToggle(tool.id)}
+                  onClick={() => handleToolSelect(tool.id, !selectedTools.includes(tool.id))}
                   className={`card cursor-pointer transition-all duration-200 ${
                     selectedTools.includes(tool.id) 
                       ? 'bg-primary text-primary-content shadow-lg scale-[1.02]' 
@@ -1356,7 +1552,7 @@ export default function CostCalculator() {
                     </div>
                     <div className="mt-4">
                       <div className="text-sm opacity-80">
-                        Open Source Alternative: <span className="font-medium">{tool.openSourceAlternative}</span>
+                        Open Source Alternative: <span className="font-medium">{tool.openSourceAlternatives.map(alt => alt.name).join(', ')}</span>
                       </div>
                       <div className="mt-2 text-lg font-medium text-success">
                         Team Savings: ${(tool.costPerUser * teamSize).toLocaleString('en-US', { maximumFractionDigits: 0 })}/year
@@ -1416,98 +1612,60 @@ export default function CostCalculator() {
               maximizing your savings while minimizing disruption.
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
-              <a href={`${websiteUrl}/contact`} className="btn btn-primary btn-lg no-print">
-                Contact Us
+              <a href={`https://cal.com/cubeunity/discovery?utm_source=tool-calculator&ref=${email}`} 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 onClick={() => {
+                   // Create compact data string like in email function
+                   const dataString = `t${teamSize},s${Math.round(totalSavingsPerYear)},i${selectedTools.join(',')}`;
+                   
+                   // Store detailed data in localStorage before redirecting
+                   updateUserStorage({
+                     calculatorData: {
+                       totalSavingsPerYear,
+                       teamSize,
+                       selectedTools,
+                       timestamp: Date.now()
+                     }
+                   });
+                   
+                   // Track the click event
+                   trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
+                     action: "clicked_consultation",
+                     totalSavingsPerYear: String(totalSavingsPerYear),
+                     teamSize: String(teamSize),
+                     toolCount: String(selectedTools.length),
+                     dataString
+                   });
+                 }}
+                 className="btn btn-primary btn-lg">
+                Schedule a Free Consultation
               </a>
-              <button 
-                onClick={() => setShowEmailForm(true)} 
-                className="btn btn-outline btn-lg no-print"
-              >
-                <span className="mr-2">📧</span> Get Detailed Report
+              
+              <button onClick={() => setShowEmailForm(true)} className="btn btn-outline btn-lg">
+                Email Me This Report
+              </button>
+              
+              <button onClick={handleStartOver} className="btn btn-ghost btn-lg">
+                Start Over
               </button>
             </div>
           </div>
-
-          {showEmailForm && (
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
-              <div className="bg-base-100 p-8 rounded-lg shadow-xl max-w-md w-full">
-                <h3 className="text-2xl font-bold mb-4">Get Your Detailed Report</h3>
-                <p className="mb-6 opacity-80">
-                  Enter your details below and we'll send you a comprehensive PDF report of your potential savings.
-                </p>
-                <form onSubmit={handleEmailSubmit} className="space-y-4">
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Full Name</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Enter your full name"
-                      className="input input-bordered w-full"
-                      required
-                    />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Job Title</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={jobTitle}
-                      onChange={(e) => setJobTitle(e.target.value)}
-                      placeholder="Enter your job title"
-                      className="input input-bordered w-full"
-                      required
-                    />
-                  </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Email Address</span>
-                    </label>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email"
-                      className="input input-bordered w-full"
-                      required
-                    />
-                  </div>
-                  <div className="flex justify-end gap-4 mt-6">
-                    <button
-                      type="button"
-                      onClick={() => setShowEmailForm(false)}
-                      className="btn btn-outline"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <span className="loading loading-spinner loading-sm mr-2"></span>
-                          Sending...
-                        </>
-                      ) : (
-                        'Send Report'
-                      )}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
           
-          <div className="mt-12 pt-6 border-t text-center text-sm opacity-70 no-print">
-            <p>© {new Date().getFullYear()} {companyName} | <a href={websiteUrl} className="hover:underline">{websiteUrl}</a></p>
-          </div>
+          {showEmailForm && (
+            <EmailCaptureForm 
+              onSubmit={handleEmailSubmit} 
+              onCancel={() => setShowEmailForm(false)}
+              isSubmitting={isSubmitting}
+              defaultValues={{
+                email,
+                name,
+                jobTitle
+              }}
+            />
+          )}
         </div>
       )}
     </div>
   );
-} 
+}
