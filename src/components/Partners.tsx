@@ -1,7 +1,7 @@
 "use client";
 import data from "@/data.json";
 import React from "react";
-
+import Image from "next/image";
 const PartnerLogo: React.FC<{
   partner: {
     name: string;
@@ -23,7 +23,7 @@ const PartnerLogo: React.FC<{
         <div className="h-32 w-full flex items-center justify-center mb-2">
           {/* Use actual logo instead of placeholder */}
           {partner.logo ? (
-            <img
+            <Image
               src={partner.logo}
               alt={partner.name}
               className="object-contain p-2 w-full h-full grayscale group-hover:grayscale-0 transition-all duration-300"

@@ -28,7 +28,7 @@ export default function CalEmbed({ calLink, config, posthogRecordingId }: { calL
       const cal = await getCalApi();
       
       // Handle booking started
-      // @ts-ignore - the Cal API types are not fully defined
+      // @ts-expect-error - the Cal API types are not fully defined
       cal?.on?.('bookingStarted', (data: any) => {
         // Generate a unique ID for this booking started event
         const eventId = `${data.eventType?.id || ''}-${Date.now()}`;
@@ -53,7 +53,7 @@ export default function CalEmbed({ calLink, config, posthogRecordingId }: { calL
       });
       
       // Handle booking completed
-      // @ts-ignore - the Cal API types are not fully defined
+      // @ts-expect-error - the Cal API types are not fully defined
       cal?.on?.('bookingSuccessful', (data: any) => {
         // Generate a unique ID for this booking successful event
         const bookingId = data.booking?.id || `booking-${Date.now()}`;
@@ -88,10 +88,14 @@ export default function CalEmbed({ calLink, config, posthogRecordingId }: { calL
       });
     })();
     
+    // Store ref values to avoid closure issues in cleanup
+    const bookingStartedCurrent = bookingStartedRef.current;
+    const bookingSuccessfulCurrent = bookingSuccessfulRef.current;
+    
     // Clean up refs when component unmounts
     return () => {
-      bookingStartedRef.current.clear();
-      bookingSuccessfulRef.current.clear();
+      bookingStartedCurrent.clear();
+      bookingSuccessfulCurrent.clear();
     };
   }, [posthogRecordingId]);
 

@@ -1,51 +1,11 @@
 'use client';
-import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  Trello, 
-  FileText, 
-  CheckSquare, 
-  Calendar, 
-  BookOpen, 
-  Settings, 
-  BarChart, 
-  GitBranch, 
-  Github, 
-  GitMerge, 
-  Folder, 
-  Cloud, 
-  Dog,
-  BarChart2, 
-  AlertTriangle,
-  FileSpreadsheet, 
-  Box, 
-  MessageSquare,
-  Video, 
-  Users, 
-  Gamepad2, 
-  VideoIcon,
-  UsersRound,
-  Search, 
-  Headphones, 
-  Building2, 
-  DollarSign,
-  Mail, 
-  BarChart3, 
-  AreaChart, 
-  SearchIcon,
-  Smartphone, 
-  TabletSmartphone,
-  Zap, 
-  RefreshCw, 
-  Cog, 
-  Cable,
-  Lock, 
-  KeyRound, 
-  Key, 
-  ShieldCheck
-} from 'lucide-react';
+import React, { useState, useEffect, useMemo, useCallback, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { FileText } from 'lucide-react';
 import siteData from '../data.json';
-import { trackEvent, EventNames, getUserStorage, updateUserStorage } from '@/utils/analytics';
+import { trackEvent, EventNames, updateUserStorage } from '@/utils/analytics';
 import UnifiedPopup from './UnifiedPopup';
+import MeetingButton from './MeetingButton';
 
 // Define the OpenSourceAlternative interface
 interface OpenSourceAlternative {
@@ -76,6 +36,7 @@ interface PartialToolOption {
   openSourceAlternatives: OpenSourceAlternative[];
   type?: string;
   description?: string;
+  icon?: React.ReactNode;
 }
 
 // Add CalculatorData interface
@@ -102,69 +63,86 @@ const toolCategories = [
   { id: 'automation', name: 'Automation & Integration' }
 ];
 
-// Price data for common commercial tools and their open source alternatives
-const toolOptions: ToolOption[] = [
-  // Project Management & Collaboration
+// All tool options
+const toolOptions: Array<ToolOption | PartialToolOption> = [
+  // Project Management
   {
     id: 'jira',
     name: 'Jira',
-    costPerUser: 7.75,
-    openSourceAlternatives: [
-      { name: 'Taiga' },
-      { name: 'Redmine' }
-    ],
     category: 'project',
-    type: 'pm',
-    description: 'Project management tool'
+    type: 'project-management',
+    description: 'Project management tool',
+    costPerUser: 7,
+    openSourceAlternatives: [
+      { 
+        name: 'OpenProject', 
+        url: 'https://www.openproject.org/',
+        description: 'Open source project management software' 
+      }
+    ]
   },
   {
     id: 'confluence',
     name: 'Confluence',
     costPerUser: 5.75,
     openSourceAlternatives: [],
-    category: 'project'
+    category: 'project',
+    type: 'collaboration',
+    description: 'Team collaboration and wiki platform'
   },
   {
     id: 'asana',
     name: 'Asana',
     costPerUser: 10.99,
     openSourceAlternatives: [],
-    category: 'project'
+    category: 'project',
+    type: 'project-management',
+    description: 'Project and task management platform'
   },
   {
     id: 'monday',
     name: 'Monday.com',
     costPerUser: 10,
     openSourceAlternatives: [],
-    category: 'project'
+    category: 'project',
+    type: 'project-management',
+    description: 'Work operating system for team management'
   },
   {
     id: 'notion',
     name: 'Notion',
     costPerUser: 8,
     openSourceAlternatives: [],
-    category: 'project'
+    category: 'project',
+    type: 'collaboration',
+    description: 'All-in-one workspace for notes and collaboration'
   },
   {
     id: 'atlassian',
     name: 'Atlassian Suite',
     costPerUser: 29,
     openSourceAlternatives: [],
-    category: 'project'
+    category: 'project',
+    type: 'suite',
+    description: 'Collection of tools including Jira, Confluence, and more'
   },
   {
     id: 'clickup',
     name: 'ClickUp',
     costPerUser: 9,
     openSourceAlternatives: [],
-    category: 'project'
+    category: 'project',
+    type: 'project-management',
+    description: 'All-in-one productivity platform'
   },
   {
     id: 'trello',
     name: 'Trello',
     costPerUser: 5,
     openSourceAlternatives: [],
-    category: 'project'
+    category: 'project',
+    type: 'kanban',
+    description: 'Visual collaboration tool using boards and cards'
   },
   
   // Development & DevOps
@@ -173,63 +151,81 @@ const toolOptions: ToolOption[] = [
     name: 'GitHub Enterprise',
     costPerUser: 21,
     openSourceAlternatives: [],
-    category: 'development'
+    category: 'development',
+    type: 'version-control',
+    description: 'Code hosting and collaboration platform'
   },
   {
     id: 'gitlab-premium',
     name: 'GitLab Premium',
     costPerUser: 19,
     openSourceAlternatives: [],
-    category: 'development'
+    category: 'development',
+    type: 'version-control',
+    description: 'DevOps platform combining Git repository management, CI/CD, and more'
   },
   {
     id: 'gitlab-ci',
     name: 'GitLab CI/CD Premium',
     costPerUser: 19,
     openSourceAlternatives: [],
-    category: 'development'
+    category: 'development',
+    type: 'ci-cd',
+    description: 'Continuous integration and deployment platform'
   },
   {
     id: 'bitbucket',
     name: 'Bitbucket Premium',
     costPerUser: 6,
     openSourceAlternatives: [],
-    category: 'development'
+    category: 'development',
+    type: 'version-control',
+    description: 'Git solution for professional teams'
   },
   {
     id: 'azure-devops',
     name: 'Azure DevOps',
     costPerUser: 6,
     openSourceAlternatives: [],
-    category: 'development'
+    category: 'development',
+    type: 'devops',
+    description: 'Development tools for teams to share code, track work, and ship software'
   },
   {
     id: 'new-relic',
     name: 'New Relic',
     costPerUser: 15,
     openSourceAlternatives: [],
-    category: 'development'
+    category: 'development',
+    type: 'monitoring',
+    description: 'Observability platform for monitoring software performance'
   },
   {
     id: 'datadog',
     name: 'Datadog',
     costPerUser: 15,
     openSourceAlternatives: [],
-    category: 'development'
+    category: 'development',
+    type: 'monitoring',
+    description: 'Monitoring and security platform for cloud applications'
   },
   {
     id: 'posthog',
     name: 'PostHog',
     costPerUser: 10,
     openSourceAlternatives: [],
-    category: 'development'
+    category: 'development',
+    type: 'analytics',
+    description: 'Product analytics platform with session recordings and feature flags'
   },
   {
     id: 'sentry',
     name: 'Sentry',
     costPerUser: 12,
     openSourceAlternatives: [],
-    category: 'development'
+    category: 'development',
+    type: 'error-tracking',
+    description: 'Application monitoring with focus on error tracking'
   },
   
   // Office & Productivity
@@ -238,42 +234,54 @@ const toolOptions: ToolOption[] = [
     name: 'Microsoft Office 365',
     costPerUser: 12.5,
     openSourceAlternatives: [],
-    category: 'office'
+    category: 'office',
+    type: 'productivity-suite',
+    description: 'Business productivity suite including Word, Excel, and PowerPoint'
   },
   {
     id: 'gsuite',
     name: 'Google Workspace',
     costPerUser: 12,
     openSourceAlternatives: [],
-    category: 'office'
+    category: 'office',
+    type: 'productivity-suite',
+    description: 'Business apps including Gmail, Docs, Drive, and Calendar'
   },
   {
     id: 'dropbox',
     name: 'Dropbox Business',
     costPerUser: 15,
     openSourceAlternatives: [],
-    category: 'office'
+    category: 'office',
+    type: 'file-storage',
+    description: 'Cloud storage and file sharing for business'
   },
   {
     id: 'box',
     name: 'Box Enterprise',
     costPerUser: 20,
     openSourceAlternatives: [],
-    category: 'office'
+    category: 'office',
+    type: 'file-storage',
+    description: 'Secure content management and collaboration platform'
   },
   {
     id: 'onedrive',
     name: 'OneDrive for Business',
     costPerUser: 5,
     openSourceAlternatives: [],
-    category: 'office'
+    category: 'office',
+    type: 'file-storage',
+    description: 'Microsoft cloud storage and synchronization service'
   },
   {
     id: 'evernote',
     name: 'Evernote Business',
     costPerUser: 14.99,
     openSourceAlternatives: [],
-    category: 'office'
+    category: 'office',
+    type: 'note-taking',
+    description: 'Note-taking and task management application'
   },
   
   // Communication & Messaging
@@ -282,35 +290,45 @@ const toolOptions: ToolOption[] = [
     name: 'Slack',
     costPerUser: 8,
     openSourceAlternatives: [],
-    category: 'communication'
+    category: 'communication',
+    type: 'messaging',
+    description: 'Business communication and messaging platform'
   },
   {
     id: 'zoom',
     name: 'Zoom',
     costPerUser: 15,
     openSourceAlternatives: [],
-    category: 'communication'
+    category: 'communication',
+    type: 'video-conferencing',
+    description: 'Video conferencing and online meeting service'
   },
   {
     id: 'teams',
     name: 'Microsoft Teams',
     costPerUser: 8,
     openSourceAlternatives: [],
-    category: 'communication'
+    category: 'communication',
+    type: 'collaboration',
+    description: 'Chat-based workspace in Microsoft 365'
   },
   {
     id: 'discord-nitro',
     name: 'Discord Nitro',
     costPerUser: 9.99,
     openSourceAlternatives: [],
-    category: 'communication'
+    category: 'communication',
+    type: 'messaging',
+    description: 'Enhanced features for the Discord communication platform'
   },
   {
     id: 'webex',
     name: 'Cisco Webex',
     costPerUser: 13.50,
     openSourceAlternatives: [],
-    category: 'communication'
+    category: 'communication',
+    type: 'video-conferencing',
+    description: 'Enterprise solution for video conferencing and meetings'
   },
   
   // Business & CRM
@@ -319,42 +337,54 @@ const toolOptions: ToolOption[] = [
     name: 'Salesforce',
     costPerUser: 25,
     openSourceAlternatives: [],
-    category: 'business'
+    category: 'business',
+    type: 'crm',
+    description: 'Customer relationship management platform'
   },
   {
     id: 'hubspot',
     name: 'HubSpot',
     costPerUser: 45,
     openSourceAlternatives: [],
-    category: 'business'
+    category: 'business',
+    type: 'crm',
+    description: 'Marketing, sales, and service software'
   },
   {
     id: 'zendesk',
     name: 'Zendesk',
     costPerUser: 19,
     openSourceAlternatives: [],
-    category: 'business'
+    category: 'business',
+    type: 'customer-service',
+    description: 'Customer service software and support ticketing system'
   },
   {
     id: 'tableau',
     name: 'Tableau',
     costPerUser: 70,
     openSourceAlternatives: [],
-    category: 'business'
+    category: 'business',
+    type: 'analytics',
+    description: 'Interactive data visualization and business intelligence software'
   },
   {
     id: 'dynamics',
     name: 'Microsoft Dynamics',
     costPerUser: 40,
     openSourceAlternatives: [],
-    category: 'business'
+    category: 'business',
+    type: 'erp',
+    description: 'Enterprise resource planning and CRM applications'
   },
   {
     id: 'quickbooks',
     name: 'Quickbooks',
     costPerUser: 25,
     openSourceAlternatives: [],
-    category: 'business'
+    category: 'business',
+    type: 'accounting',
+    description: 'Accounting software for small businesses'
   },
   
   // Marketing & Analytics
@@ -363,42 +393,54 @@ const toolOptions: ToolOption[] = [
     name: 'Mailchimp',
     costPerUser: 20,
     openSourceAlternatives: [],
-    category: 'marketing'
+    category: 'marketing',
+    type: 'email-marketing',
+    description: 'Marketing automation platform and email marketing service'
   },
   {
     id: 'google-analytics',
     name: 'Google Analytics 360',
     costPerUser: 12.5,
     openSourceAlternatives: [],
-    category: 'marketing'
+    category: 'marketing',
+    type: 'analytics',
+    description: 'Enterprise web analytics service by Google'
   },
   {
     id: 'adobe-analytics',
     name: 'Adobe Analytics',
     costPerUser: 33.33,
     openSourceAlternatives: [],
-    category: 'marketing'
+    category: 'marketing',
+    type: 'analytics',
+    description: 'Analytics tool in Adobe Experience Cloud'
   },
   {
     id: 'semrush',
     name: 'SEMrush',
     costPerUser: 99.95,
     openSourceAlternatives: [],
-    category: 'marketing'
+    category: 'marketing',
+    type: 'seo',
+    description: 'SEO and competitive analysis tool'
   },
   {
     id: 'hootsuite',
     name: 'Hootsuite',
     costPerUser: 19,
     openSourceAlternatives: [],
-    category: 'marketing'
+    category: 'marketing',
+    type: 'social-media',
+    description: 'Social media management platform'
   },
   {
     id: 'buffer',
     name: 'Buffer',
     costPerUser: 15,
     openSourceAlternatives: [],
-    category: 'marketing'
+    category: 'marketing',
+    type: 'social-media',
+    description: 'Social media management software'
   },
   
   // Automation & Integration
@@ -407,35 +449,45 @@ const toolOptions: ToolOption[] = [
     name: 'Zapier',
     costPerUser: 19.99,
     openSourceAlternatives: [],
-    category: 'automation'
+    category: 'automation',
+    type: 'workflow-automation',
+    description: 'Online automation tool that connects apps and services'
   },
   {
     id: 'integromat',
     name: 'Make (Integromat)',
     costPerUser: 9.99,
     openSourceAlternatives: [],
-    category: 'automation'
+    category: 'automation',
+    type: 'workflow-automation',
+    description: 'Visual platform to connect apps and automate workflows'
   },
   {
     id: 'power-automate',
     name: 'Microsoft Power Automate',
     costPerUser: 15,
     openSourceAlternatives: [],
-    category: 'automation'
+    category: 'automation',
+    type: 'workflow-automation',
+    description: 'Cloud-based service that makes it practical to build automated workflows'
   },
   {
     id: 'tray-io',
     name: 'Tray.io',
     costPerUser: 29,
     openSourceAlternatives: [],
-    category: 'automation'
+    category: 'automation',
+    type: 'integration-platform',
+    description: 'General automation platform for enterprise'
   },
   {
     id: 'workato',
     name: 'Workato',
     costPerUser: 40,
     openSourceAlternatives: [],
-    category: 'automation'
+    category: 'automation',
+    type: 'integration-platform',
+    description: 'Enterprise automation and integration platform'
   },
   
   // Security & VPN
@@ -444,73 +496,66 @@ const toolOptions: ToolOption[] = [
     name: 'NordVPN Teams',
     costPerUser: 7,
     openSourceAlternatives: [],
-    category: 'security'
+    category: 'security',
+    type: 'vpn',
+    description: 'Business VPN solution for team security'
   },
   {
     id: 'expressvpn',
     name: 'ExpressVPN',
     costPerUser: 8.32,
     openSourceAlternatives: [],
-    category: 'security'
+    category: 'security',
+    type: 'vpn',
+    description: 'VPN service for secure internet connection'
   },
   {
     id: 'okta',
     name: 'Okta',
     costPerUser: 4,
     openSourceAlternatives: [],
-    category: 'security'
+    category: 'security',
+    type: 'identity-management',
+    description: 'Identity and access management solution'
   },
   {
     id: 'lastpass',
     name: 'LastPass',
     costPerUser: 4,
     openSourceAlternatives: [],
-    category: 'security'
+    category: 'security',
+    type: 'password-manager',
+    description: 'Password management solution'
   },
   {
     id: '1password',
     name: '1Password',
     costPerUser: 7.99,
     openSourceAlternatives: [],
-    category: 'security'
+    category: 'security',
+    type: 'password-manager',
+    description: 'Password manager for teams and businesses'
   },
   {
     id: 'crowdstrike',
     name: 'CrowdStrike',
     costPerUser: 8.99,
     openSourceAlternatives: [],
-    category: 'security'
+    category: 'security',
+    type: 'endpoint-security',
+    description: 'Cloud-delivered endpoint and workload protection'
   }
 ];
 
-interface UserStorage {
-  email?: string;
-  name?: string;
-  jobTitle?: string;
-  posthogDistinctId?: string;
-  posthogSessionId?: string;
-  posthogDeviceId?: string;
-  assessmentResults?: any;
-  calculatorData?: any;
-  calculatorRefId?: string;
-  quizAnswers?: Record<string, any>;
-  lastCalBooking?: {
-    eventType?: string;
-    startTime?: string;
-    bookingId?: string;
-    [key: string]: any;
-  };
-  lastUpdated?: number;
-}
-
-export default function CostCalculator() {
+// Create a wrapper component that uses useSearchParams
+function CostCalculatorWithParams() {
+  const searchParams = useSearchParams();
   const [teamSize, setTeamSize] = useState<number>(0);
   const [teamSizeText, setTeamSizeText] = useState<string>("");
   const [step, setStep] = useState<number>(1);
   const [selectedTools, setSelectedTools] = useState<string[]>([]);
   const [showResults, setShowResults] = useState<boolean>(false);
   const [activeCategory, setActiveCategory] = useState<string>('project');
-  const [completedCategories, setCompletedCategories] = useState<string[]>([]);
   const [progress, setProgress] = useState<number>(0);
   const [departments, setDepartments] = useState<string[]>([]);
   const [email, setEmail] = useState<string>("");
@@ -518,10 +563,26 @@ export default function CostCalculator() {
   const [showEmailForm, setShowEmailForm] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [jobTitle, setJobTitle] = useState<string>("");
-  const [calculatorData, setCalculatorData] = useState<CalculatorData>({});
 
   // Company data from data.json
   const { websiteUrl, companyName, contact } = siteData;
+
+  // Move getAllVisibleCategories to be defined BEFORE the useEffect that uses it
+  // And wrap it in useCallback to avoid recreating it on every render
+  const getAllVisibleCategories = useCallback(() => {
+    return toolCategories.filter(category => {
+      if (departments.length === 0) return true;
+      
+      if (category.id === 'project' && !departments.includes('product')) return false;
+      if (category.id === 'development' && !departments.includes('engineering')) return false;
+      if (category.id === 'office' && !departments.includes('operations')) return false;
+      if (category.id === 'business' && !departments.includes('sales')) return false;
+      if (category.id === 'marketing' && !departments.includes('marketing')) return false;
+      
+      // Always show communication, security, and automation
+      return true;
+    });
+  }, [departments]); // Only recreate when departments change
 
   // Calculate total savings
   const totalCostPerYear = useMemo(() => {
@@ -547,25 +608,6 @@ export default function CostCalculator() {
     return totalSavingsPerYear - ourServiceFee;
   }, [totalSavingsPerYear, ourServiceFee]);
 
-  const savingsByCategory = useMemo(() => {
-    const categorySavings: Record<string, number> = {};
-    
-    toolCategories.forEach(category => {
-      const toolsInCategory = selectedTools.filter(toolId => {
-        const tool = toolOptions.find(t => t.id === toolId);
-        return tool && tool.category === category.id;
-      });
-      
-      const savings = toolsInCategory.reduce((total, toolId) => {
-        const tool = toolOptions.find(t => t.id === toolId);
-        return total + (tool ? (tool.costPerUser * teamSize) : 0);
-      }, 0);
-      
-      categorySavings[category.id] = savings;
-    });
-    
-    return categorySavings;
-  }, [selectedTools, teamSize]);
 
   const totalServiceFees = useMemo(() => {
     return selectedTools.reduce((total, toolId) => {
@@ -596,7 +638,7 @@ export default function CostCalculator() {
         setProgress(50);
       }
     }
-  }, [step, activeCategory, showResults, departments]);
+  }, [step, activeCategory, showResults, departments, getAllVisibleCategories]);
 
   const handleTeamSizeChange = (size: number) => {
     setTeamSize(size);
@@ -646,22 +688,6 @@ export default function CostCalculator() {
       } else {
         return [...prev, toolId];
       }
-    });
-  };
-
-  // Helper function to get all visible categories based on selected departments
-  const getAllVisibleCategories = () => {
-    return toolCategories.filter(category => {
-      if (departments.length === 0) return true;
-      
-      if (category.id === 'project' && !departments.includes('product')) return false;
-      if (category.id === 'development' && !departments.includes('engineering')) return false;
-      if (category.id === 'office' && !departments.includes('operations')) return false;
-      if (category.id === 'business' && !departments.includes('sales')) return false;
-      if (category.id === 'marketing' && !departments.includes('marketing')) return false;
-      
-      // Always show communication, security, and automation
-      return true;
     });
   };
 
@@ -884,247 +910,335 @@ export default function CostCalculator() {
     }
   };
 
-  // Function to handle PDF download
-  const handleDownloadPDF = () => {
-    // Track the PDF download event with complete data
-    trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
-      action: "downloaded_pdf",
-      totalSavingsPerYear,
-      teamSize,
-      selectedTools: selectedTools.map(toolId => {
-        const tool = toolOptions.find(t => t.id === toolId) as PartialToolOption || { 
-          id: '', 
-          name: '', 
-          category: '', 
-          costPerUser: 0,
-          openSourceAlternatives: [] 
-        };
+  // Wrap handleDownloadPDF in useCallback to prevent it from changing on every render
+  const handleDownloadPDF = useCallback(() => {
+    try {
+      // Set document to print mode which we'll use to generate PDF
+      const printWindow = window.open('', '_blank');
+      if (!printWindow) {
+        alert('Please allow popups to download the PDF');
+        return;
+      }
+      
+      // Get all selected tools with details
+      const selectedToolsDetails = selectedTools.map(toolId => {
+        const tool = toolOptions.find(t => t.id === toolId) as PartialToolOption;
+        if (!tool) return null;
+        
+        // Get category name for this tool
+        const categoryObj = toolCategories.find(c => c.id === tool.category);
+        const categoryName = categoryObj ? categoryObj.name : tool.category;
+        
+        // Calculate annual cost for this tool
+        const annualCost = tool.costPerUser * teamSize * 12;
+        
         return {
-          id: tool.id,
-          name: tool.name,
-          category: tool.category,
-          price: tool.costPerUser
+          ...tool,
+          categoryName,
+          annualCost
         };
-      })
-    });
-    
-    // Set document to print mode which we'll use to generate PDF
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) {
-      alert('Please allow popups to download the PDF');
-      return;
-    }
+      }).filter(Boolean);
 
-    // Create a styled document with our content
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>Open Source Cost Savings - ${totalSavingsPerYear.toLocaleString('en-US', { maximumFractionDigits: 0 })}/year</title>
-          <style>
-            body {
-              font-family: Arial, sans-serif;
-              margin: 0;
-              padding: 40px;
-              color: #333;
-            }
-            .header {
-              text-align: center;
-              margin-bottom: 30px;
-            }
-            h1 {
-              color: #333;
-              font-size: 28px;
-              margin-bottom: 10px;
-            }
-            h2 {
-              color: #444;
-              font-size: 22px; 
-              margin-top: 30px;
-            }
-            h3 {
-              color: #555;
-              font-size: 18px;
-            }
-            .savings-cards {
-              display: flex;
-              justify-content: space-between;
-              margin: 30px 0;
-            }
-            .savings-card {
-              border: 1px solid #ddd;
-              border-radius: 8px;
-              padding: 20px;
-              width: 45%;
-              box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-            .savings-value {
-              font-size: 32px;
-              font-weight: bold;
-              color: #38b2ac;
-              margin: 10px 0;
-            }
-            .three-year-value {
-              color: #4299e1;
-            }
-            .service-fee {
-              margin-top: 20px;
-              padding: 20px;
-              background-color: #f9fafb;
-              border-radius: 8px;
-              border: 1px solid #eee;
-            }
-            .service-fee-title {
-              font-size: 18px;
-              font-weight: bold;
-              margin-bottom: 10px;
-            }
-            .service-fee-value {
-              font-size: 24px;
-              color: #f59e0b;
-              font-weight: bold;
-            }
-            .net-savings {
-              font-size: 24px;
-              color: #10b981;
-              font-weight: bold;
-            }
-            table {
-              width: 100%;
-              border-collapse: collapse;
-              margin: 20px 0;
-            }
-            th, td {
-              padding: 12px;
-              text-align: left;
-              border-bottom: 1px solid #ddd;
-            }
-            th {
-              background-color: #f9fafb;
-              font-weight: bold;
-            }
-            .contact-info {
-              margin-top: 40px;
-              text-align: center;
-              padding: 20px;
-              background-color: #f5f5f5;
-              border-radius: 8px;
-            }
-            .btn {
-              display: inline-block;
-              background-color: #4f46e5;
-              color: white;
-              padding: 10px 20px;
-              border-radius: 5px;
-              text-decoration: none;
-              font-weight: bold;
-              margin-top: 15px;
-            }
-            .footer {
-              margin-top: 50px;
-              text-align: center;
-              font-size: 14px;
-              color: #666;
-              border-top: 1px solid #eee;
-              padding-top: 20px;
-            }
-            .success {
-              color: #38b2ac;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="header">
-            <h1>Open Source Cost Savings Calculator</h1>
-            <p>Discover how much your organization could save by switching from commercial tools to open source alternatives.</p>
-          </div>
-          
-          <h2>Your Potential Savings</h2>
-          <p>Here's how much your team of ${teamSize} could save by switching to open source alternatives.</p>
-          
-          <div class="savings-cards">
-            <div class="savings-card">
-              <div>Annual Savings</div>
-              <div class="savings-value">$${totalSavingsPerYear.toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-              <div>By switching to open source</div>
+      // Group tools by category for better organization
+      const toolsByCategory: Record<string, any[]> = {};
+      selectedToolsDetails.forEach(tool => {
+        if (!tool) return;
+        if (!toolsByCategory[tool.category]) {
+          toolsByCategory[tool.category] = [];
+        }
+        toolsByCategory[tool.category].push(tool);
+      });
+      
+      // Calculate per-category savings
+      const categorySavings: Record<string, number> = {};
+      Object.keys(toolsByCategory).forEach(category => {
+        categorySavings[category] = toolsByCategory[category].reduce((total, tool) => {
+          return total + tool.annualCost;
+        }, 0);
+      });
+
+      // Create a styled document with our content
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Open Source Cost Savings - ${totalSavingsPerYear.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}/year</title>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 40px;
+                color: #333;
+                line-height: 1.5;
+              }
+              .header {
+                text-align: center;
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #eee;
+              }
+              .logo {
+                max-width: 100px;
+                margin-bottom: 15px;
+              }
+              h1 {
+                color: #333;
+                font-size: 28px;
+                margin-bottom: 10px;
+              }
+              h2 {
+                color: #444;
+                font-size: 22px; 
+                margin-top: 30px;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #eee;
+              }
+              h3 {
+                color: #555;
+                font-size: 18px;
+              }
+              .savings-cards {
+                display: flex;
+                justify-content: space-between;
+                margin: 30px 0;
+              }
+              .savings-card {
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 20px;
+                width: 45%;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+              }
+              .savings-value {
+                font-size: 32px;
+                font-weight: bold;
+                color: #38b2ac;
+                margin: 10px 0;
+              }
+              .three-year-value {
+                color: #4299e1;
+              }
+              table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+              }
+              th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+              }
+              th {
+                background-color: #f9fafb;
+                font-weight: bold;
+              }
+              .tool-card {
+                margin: 20px 0;
+                padding: 20px;
+                border: 1px solid #eee;
+                border-radius: 8px;
+                background-color: #f9fafb;
+              }
+              .tool-name {
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+              }
+              .tool-cost {
+                color: #e53e3e;
+                font-weight: normal;
+              }
+              .tool-description {
+                margin-bottom: 15px;
+              }
+              .text-primary {
+                color: #6B78CB; /* Primary color from globals.css */
+                text-decoration: none;
+              }
+              .text-primary:hover {
+                text-decoration: underline;
+              }
+              .badge {
+                background-color: #edf2f7;
+                color: #4a5568;
+                padding: 4px 8px;
+                border-radius: 12px;
+                font-size: 14px;
+                font-weight: 500;
+              }
+              .contact-info {
+                margin-top: 40px;
+                text-align: center;
+                padding: 25px;
+                background-color: #f5f5f5;
+                border-radius: 8px;
+                border: 1px solid #e2e8f0;
+              }
+              .btn {
+                display: inline-block;
+                background-color: #6B78CB;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 9999px;
+                text-decoration: none;
+                font-weight: bold;
+                margin-top: 15px;
+                margin-right: 10px;
+                transition: all 0.3s ease;
+              }
+              .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+              }
+              .btn-secondary {
+                background-color: #FC79DF;
+              }
+              .footer {
+                margin-top: 50px;
+                text-align: center;
+                font-size: 14px;
+                color: #666;
+                border-top: 1px solid #eee;
+                padding-top: 20px;
+              }
+              .success {
+                color: #38b2ac;
+              }
+              .category-section {
+                margin-bottom: 40px;
+              }
+              .category-header {
+                background-color: #edf2f7;
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              }
+              .category-savings {
+                font-weight: bold;
+                color: #38b2ac;
+              }
+              .chart-container {
+                margin: 30px 0;
+                height: 300px;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="header">
+              <img src="${websiteUrl}/logo.svg" alt="Logo" class="logo" />
+              <h1>Open Source Cost Savings Analysis</h1>
             </div>
             
-            <div class="savings-card">
-              <div>3 Year Savings</div>
-              <div class="savings-value three-year-value">$${(totalSavingsPerYear * 3).toLocaleString('en-US', { maximumFractionDigits: 0 })}</div>
-              <div>Long-term impact</div>
+            <h2>Executive Summary</h2>
+            <p>Based on your team size of <strong>${teamSize}</strong> and your current toolset, we've analyzed potential savings by transitioning to open source alternatives.</p>
+            
+            <div class="savings-cards">
+              <div class="savings-card">
+                <div>Annual Savings</div>
+                <div class="savings-value">${totalSavingsPerYear.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}</div>
+                <div>By switching to open source</div>
+              </div>
+              <div class="savings-card">
+                <div>3-Year Savings</div>
+                <div class="savings-value three-year-value">${(totalSavingsPerYear * 3).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}</div>
+                <div>Long-term impact</div>
+              </div>
             </div>
-          </div>
+            
+            <h2>Tools and Savings By Category</h2>
+            <p>Below is a breakdown of your current tools and potential savings by category.</p>
+            
+            ${Object.keys(toolsByCategory).map(categoryId => {
+              const categoryObj = toolCategories.find(c => c.id === categoryId);
+              const categoryName = categoryObj ? categoryObj.name : categoryId;
+              const savingsForCategory = categorySavings[categoryId];
+              
+              return `
+                <div class="category-section">
+                  <div class="category-header">
+                    <h3>${categoryName}</h3>
+                    <span class="category-savings">Potential Savings: ${savingsForCategory.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}/year</span>
+                  </div>
+                  
+                  ${toolsByCategory[categoryId].map(tool => `
+                    <div class="tool-card">
+                      <div class="tool-name">
+                        ${tool.name}
+                        <span class="tool-cost">${tool.costPerUser.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })}/user/month</span>
+                      </div>
+                      <div class="tool-description">
+                        ${tool.description || `Commercial ${categoryName.toLowerCase()} solution`}
+                      </div>
+                      <div>
+                        <strong>Team Annual Cost:</strong> ${tool.annualCost.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}/year
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              `;
+            }).join('')}
+            
+            <div class="contact-info">
+              <h3>Ready to Start Your Open Source Journey?</h3>
+              <p>
+                Our team can help you plan and execute a smooth transition to open source alternatives, 
+                maximizing your savings while minimizing disruption.
+              </p>
+              <p><strong>Email:</strong> <a href="mailto:${contact.email}" class="text-primary">${contact.email}</a></p>
+              <p><strong>Website:</strong> <a href="${websiteUrl}" class="text-primary" target="_blank">${websiteUrl.replace(/https?:\/\//, '')}</a></p>
+              <a href="https://cal.com/ruben/discovery?utm_source=pdf-report" target="_blank" class="btn">Schedule a Free Consultation</a>
+              <a href="${websiteUrl}/contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+            
+            <div class="footer">
+              <p>Generated on ${new Date().toLocaleDateString()} | ${websiteUrl}</p>
+              <p>© ${new Date().getFullYear()} ${companyName} - Open Source Solutions</p>
+            </div>
+          </body>
+        </html>
+      `);
+      
+      printWindow.document.close();
+      
+      // Allow the browser to render content before printing
+      setTimeout(() => {
+        printWindow.print();
+        // Close the window after printing (or saving as PDF)
+        printWindow.onafterprint = function() {
+          printWindow.close();
           
-     
-          
-          <h2>Selected Tools Summary</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Commercial Tool</th>
-                <th>Department</th>
-                <th>Cost</th>
-                <th>Open Source Alternative</th>
-                <th>Annual Savings</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${selectedTools.map(toolId => {
-                const tool = toolOptions.find(t => t.id === toolId);
-                if (!tool) return '';
-                
-                const toolCost = (tool.costPerUser * teamSize);
-                const category = toolCategories.find(c => c.id === tool.category);
-                
-                return `
-                  <tr>
-                    <td>${tool.name}</td>
-                    <td>${category?.name || ""}</td>
-                    <td>$${(tool.costPerUser * teamSize).toLocaleString('en-US', { maximumFractionDigits: 0 })}/year</td>
-                    <td>${tool.openSourceAlternatives.map(alt => alt.name).join(', ')}</td>
-                    <td class="success">$${toolCost.toLocaleString('en-US', { maximumFractionDigits: 0 })}</td>
-                  </tr>
-                `;
-              }).join('')}
-            </tbody>
-            <tfoot>
-              <tr>
-                <th colspan="3">Total</th>
-                <th></th>
-                <th class="success">$${totalSavingsPerYear.toLocaleString('en-US', { maximumFractionDigits: 0 })}</th>
-              </tr>
-            </tfoot>
-          </table>
-          
-          <div class="contact-info">
-            <h3>Ready to Start Your Open Source Journey?</h3>
-            <p>
-              Our team can help you plan and execute a smooth transition to open source alternatives, 
-              maximizing your savings while minimizing disruption.
-            </p>
-            <p><strong>Email:</strong> ${contact.email}</p>
-            <a href="${websiteUrl}/contact" class="btn">Contact Us</a>
-          </div>
-          
-          <div class="footer">
-            <p>Generated on ${new Date().toLocaleDateString()} | ${websiteUrl}</p>
-            <p>© ${new Date().getFullYear()} ${companyName} - Open Source Solutions</p>
-          </div>
-        </body>
-      </html>
-    `);
-    
-    printWindow.document.close();
-    
-    // Allow the browser to render content before printing
-    setTimeout(() => {
-      printWindow.print();
-      // Close the window after printing (or saving as PDF)
-      printWindow.onafterprint = function() {
-        printWindow.close();
-      };
-    }, 500);
-  };
+          // Only track the event AFTER successful PDF generation
+          // This helps prevent race conditions and reduce rate limiting
+          setTimeout(() => {
+            trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
+              action: "downloaded_pdf",
+              totalSavingsPerYear,
+              teamSize,
+              selectedTools: selectedTools.map(toolId => {
+                const tool = toolOptions.find(t => t.id === toolId) as PartialToolOption || { 
+                  id: '', name: '', category: '', costPerUser: 0, openSourceAlternatives: [] 
+                };
+                return {
+                  id: tool.id,
+                  name: tool.name,
+                  category: tool.category,
+                  price: tool.costPerUser
+                };
+              })
+            }).catch(err => {
+              console.log('Analytics tracking error handled:', err);
+            });
+          }, 500);
+        };
+      }, 500);
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+    }
+  }, [selectedTools, teamSize, contact.email, websiteUrl, companyName, totalSavingsPerYear, email]);
 
   // Function to reset the calculator to its initial state
   const handleStartOver = () => {
@@ -1135,7 +1249,6 @@ export default function CostCalculator() {
     setSelectedTools([]);
     setShowResults(false);
     setActiveCategory('project');
-    setCompletedCategories([]);
     setProgress(0);
     setDepartments([]);
     setShowEmailForm(false);
@@ -1233,8 +1346,7 @@ export default function CostCalculator() {
       (window as any).generatePDF = handleDownloadPDF;
       
       // Check for data parameter in URL to load calculator state
-      const urlParams = new URLSearchParams(window.location.search);
-      const dataParam = urlParams.get('data');
+      const dataParam = searchParams.get('data');
       
       if (dataParam) {
         try {
@@ -1243,7 +1355,7 @@ export default function CostCalculator() {
           let decodedTeamSize = 0;
           let decodedSelectedTools: string[] = [];
           
-          parts.forEach(part => {
+          parts.forEach((part: string) => {
             if (part.startsWith('t')) {
               // Team size
               decodedTeamSize = parseInt(part.substring(1));
@@ -1282,7 +1394,7 @@ export default function CostCalculator() {
         delete (window as any).generatePDF;
       };
     }
-  }, []);
+  }, [searchParams, handleDownloadPDF, email]);
 
   // Email capture form component using UnifiedPopup
   const EmailCaptureForm = ({ 
@@ -1394,9 +1506,11 @@ export default function CostCalculator() {
         }
       `}</style>
 
-      <div className={showResults ? "no-print" : ""}>
-        {renderStepIndicator()}
-      </div>
+      {!showResults && (
+        <div>
+          {renderStepIndicator()}
+        </div>
+      )}
       
       {step === 1 && (
         <div className="space-y-8">
@@ -1405,7 +1519,6 @@ export default function CostCalculator() {
               Calculate Your Open Source Savings
             </h2>
             <p className="text-xl opacity-80 mb-8">
-              Discover how much your organization could save by switching to open source alternatives.
               Start by entering your team size below.
             </p>
           </div>
@@ -1581,10 +1694,49 @@ export default function CostCalculator() {
         <div className="calculator-results">
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Your Open Source Savings Potential</h1>
-            <p className="text-xl opacity-80">Here's how much your team of {teamSize} could save by switching to open source alternatives.</p>
+            <p className="text-xl opacity-80 mb-6"></p>
+          
+            {/* Check if this was loaded from URL parameter */}
+            {searchParams.has('data') && (
+              <div className="flex justify-center gap-4 flex-wrap mb-10">
+                <MeetingButton
+                  text="Book a Free Consultation with Ruben"
+                  className="btn-lg rounded-full hover:shadow-lg transition-transform hover:-translate-y-1"
+                  onClick={() => {
+                    // Create compact data string
+                    const dataString = `t${teamSize},s${Math.round(totalSavingsPerYear)},i${selectedTools.join(',')}`;
+                    
+                    // Store detailed data in localStorage before redirecting
+                    updateUserStorage({
+                      calculatorData: {
+                        totalSavingsPerYear,
+                        teamSize,
+                        selectedTools,
+                        timestamp: Date.now()
+                      }
+                    });
+                    
+                    // Track the click event
+                    trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
+                      action: "clicked_consultation_from_shared",
+                      totalSavingsPerYear: String(totalSavingsPerYear),
+                      teamSize: String(teamSize),
+                      toolCount: String(selectedTools.length),
+                      dataString
+                    });
+                  }}
+                />
+                
+                <button 
+                  onClick={handleDownloadPDF} 
+                  className="btn btn-secondary btn-lg rounded-full hover:shadow-lg transition-transform hover:-translate-y-1">
+                  <FileText className="w-5 h-5 mr-2" /> Download PDF Report
+                </button>
+              </div>
+            )}
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             <div className="stats shadow-lg">
               <div className="stat">
                 <div className="stat-title text-lg">Annual Savings</div>
@@ -1602,55 +1754,115 @@ export default function CostCalculator() {
             </div>
           </div>
           
-          
           {renderSavingsChart()}
           
-          <div className="text-center space-y-6">
-            <h3 className="text-2xl font-bold">Ready to Start Your Open Source Journey?</h3>
-            <p className="text-lg opacity-80 max-w-2xl mx-auto">
-              Our team can help you plan and execute a smooth transition to open source alternatives, 
-              maximizing your savings while minimizing disruption.
-            </p>
-            <div className="flex justify-center gap-4 flex-wrap">
-              <a href={`https://cal.com/cubeunity/discovery?utm_source=tool-calculator&ref=${email}`} 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 onClick={() => {
-                   // Create compact data string like in email function
-                   const dataString = `t${teamSize},s${Math.round(totalSavingsPerYear)},i${selectedTools.join(',')}`;
-                   
-                   // Store detailed data in localStorage before redirecting
-                   updateUserStorage({
-                     calculatorData: {
-                       totalSavingsPerYear,
-                       teamSize,
-                       selectedTools,
-                       timestamp: Date.now()
-                     }
-                   });
-                   
-                   // Track the click event
-                   trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
-                     action: "clicked_consultation",
-                     totalSavingsPerYear: String(totalSavingsPerYear),
-                     teamSize: String(teamSize),
-                     toolCount: String(selectedTools.length),
-                     dataString
-                   });
-                 }}
-                 className="btn btn-primary btn-lg">
-                Schedule a Free Consultation
-              </a>
+          {/* Enhanced detailed tool information */}
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold mb-6">Your Selected Tools Analysis</h2>
+            
+            {toolCategories.filter(category => {
+              // Only show categories that have selected tools
+              return selectedTools.some(toolId => {
+                const tool = toolOptions.find(t => t.id === toolId);
+                return tool && tool.category === category.id;
+              });
+            }).map(category => {
+              // Get tools in this category
+              const toolsInThisCategory = selectedTools
+                .map(toolId => toolOptions.find(t => t.id === toolId))
+                .filter(Boolean)
+                .filter(tool => tool?.category === category.id);
+                
+              // Calculate category savings
+              const categorySavings = toolsInThisCategory.reduce((total, tool) => {
+                return total + (tool ? tool.costPerUser * teamSize : 0);
+              }, 0);
               
-              <button onClick={() => setShowEmailForm(true)} className="btn btn-outline btn-lg">
-                Email Me This Report
-              </button>
-              
-              <button onClick={handleStartOver} className="btn btn-ghost btn-lg">
-                Start Over
-              </button>
-            </div>
+              return (
+                <div key={category.id} className="mb-8">
+                  <div className="bg-base-200 p-4 rounded-lg flex justify-between items-center mb-4">
+                    <h3 className="font-bold text-xl">{category.name}</h3>
+                    <span className="badge badge-primary badge-lg">
+                      ${categorySavings.toLocaleString('en-US', { maximumFractionDigits: 0 })}/year savings
+                    </span>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 gap-4">
+                    {toolsInThisCategory.map(tool => tool && (
+                      <div key={tool.id} className="card bg-base-100 shadow-md">
+                        <div className="card-body">
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <h4 className="text-xl font-bold">{tool.name}</h4>
+                              <p className="text-lg">${tool.costPerUser}/user/month</p>
+                            </div>
+                            <div className="badge badge-secondary">
+                              ${(tool.costPerUser * teamSize).toLocaleString('en-US', { maximumFractionDigits: 0 })}/year
+                            </div>
+                          </div>
+                          
+                          {tool.description && (
+                            <p className="my-2 opacity-80">{tool.description}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
+          
+          {!searchParams.has('data') && (
+            <div className="text-center space-y-6">
+              <h3 className="text-2xl font-bold">Ready to Start Your Open Source Journey?</h3>
+              <p className="text-lg opacity-80 max-w-2xl mx-auto">
+                Our team can help you plan and execute a smooth transition to open source alternatives, 
+                maximizing your savings while minimizing disruption.
+              </p>
+              <div className="flex justify-center gap-4 flex-wrap">
+                <MeetingButton
+                  text="Schedule a Free Consultation with Ruben"
+                  className="btn-lg rounded-full hover:shadow-lg transition-transform hover:-translate-y-1"
+                  onClick={() => {
+                    // Create compact data string like in email function
+                    const dataString = `t${teamSize},s${Math.round(totalSavingsPerYear)},i${selectedTools.join(',')}`;
+                    
+                    // Store detailed data in localStorage before redirecting
+                    updateUserStorage({
+                      calculatorData: {
+                        totalSavingsPerYear,
+                        teamSize,
+                        selectedTools,
+                        timestamp: Date.now()
+                      }
+                    });
+                    
+                    // Track the click event
+                    trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email }, {
+                      action: "clicked_consultation",
+                      totalSavingsPerYear: String(totalSavingsPerYear),
+                      teamSize: String(teamSize),
+                      toolCount: String(selectedTools.length),
+                      dataString
+                    });
+                  }}
+                />
+                
+                <button onClick={handleDownloadPDF} className="btn btn-secondary btn-lg rounded-full hover:shadow-lg transition-transform hover:-translate-y-1">
+                  <FileText className="w-5 h-5 mr-2" /> Download PDF Report
+                </button>
+                
+                <button onClick={() => setShowEmailForm(true)} className="btn btn-outline btn-lg rounded-full hover:shadow-lg transition-transform hover:-translate-y-1">
+                  Email Me This Report
+                </button>
+                
+                <button onClick={handleStartOver} className="btn btn-ghost btn-lg rounded-full hover:shadow-lg transition-transform hover:-translate-y-1">
+                  Start Over
+                </button>
+              </div>
+            </div>
+          )}
           
           {showEmailForm && (
             <EmailCaptureForm 
@@ -1669,3 +1881,14 @@ export default function CostCalculator() {
     </div>
   );
 }
+
+// Modify your main component to accept searchParams as a prop instead of using the hook directly
+function CostCalculator() {
+  return (
+    <Suspense fallback={<div className="w-full max-w-4xl mx-auto p-8 text-center">Loading calculator...</div>}>
+      <CostCalculatorWithParams />
+    </Suspense>
+  );
+}
+
+export default CostCalculator;
