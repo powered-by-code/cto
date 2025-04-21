@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
 import { PostHogProvider } from "@/components/PostHogProvider";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Fractional CTO Services",
-  description: "Expert tech leadership when you need it, without the full-time cost.",
+  description:
+    "Expert tech leadership when you need it, without the full-time cost.",
 };
 
 export default function RootLayout({
@@ -24,10 +26,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <PostHogProvider>
           <ThemeProvider>
-            {children}
+            <Suspense>{children}</Suspense>
           </ThemeProvider>
         </PostHogProvider>
       </body>
