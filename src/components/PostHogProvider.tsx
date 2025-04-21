@@ -9,11 +9,18 @@ import { env } from "@/env"
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    posthog.init( env.NEXT_PUBLIC_POSTHOG_KEY!, {
-      api_host: "https://us.i.posthog.com",
-      person_profiles: 'always',
-      capture_pageview: true, // We capture pageviews manually
-      capture_pageleave: true, // Enable pageleave capture
+    posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY!, {
+      api_host: window.location.origin,
+      ui_host: "https://us.i.posthog.com",
+      loaded: (posthog) => {
+        if (process.env.NODE_ENV === 'development') {
+          // Log successful initialization
+          console.log('PostHog initialized successfully');
+        }
+      },
+      autocapture: true,
+      capture_pageview: true,
+      capture_pageleave: true,
       debug: process.env.NODE_ENV === "development",
     })
   }, [])

@@ -21,16 +21,24 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/ingest/static/:path*",
-        destination: "https://us-assets.i.posthog.com/static/:path*",
-      },
-      {
         source: "/ingest/:path*",
         destination: "https://us.i.posthog.com/:path*",
       },
       {
-        source: "/ingest/decide",
+        source: "/decide",
         destination: "https://us.i.posthog.com/decide",
+      },
+      {
+        source: "/e",
+        destination: "https://us.i.posthog.com/e",
+      },
+      {
+        source: "/s",
+        destination: "https://us.i.posthog.com/s",
+      },
+      {
+        source: "/static/:path*",
+        destination: "https://us-assets.i.posthog.com/static/:path*",
       },
     ];
   },
