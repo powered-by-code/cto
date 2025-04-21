@@ -34,8 +34,8 @@ jobs:
     steps:
       - name: Echo variables
         run: |
-          echo "NEXT_PUBLIC_POSTHOG_KEY: ${{ env.NEXT_PUBLIC_POSTHOG_KEY }}"
-          echo "NEXT_PUBLIC_DOMAIN: ${{ env.NEXT_PUBLIC_DOMAIN }}"
+          echo "NEXT_PUBLIC_POSTHOG_KEY: $NEXT_PUBLIC_POSTHOG_KEY"
+          echo "NEXT_PUBLIC_DOMAIN: $NEXT_PUBLIC_DOMAIN"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Detect package manager
