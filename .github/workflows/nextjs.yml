@@ -32,6 +32,10 @@ jobs:
       NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY }}
       NEXT_PUBLIC_DOMAIN: ${{ secrets.NEXT_PUBLIC_DOMAIN }}
     steps:
+      - name: Echo variables
+        run: |
+          echo "NEXT_PUBLIC_POSTHOG_KEY: ${{ env.NEXT_PUBLIC_POSTHOG_KEY }}"
+          echo "NEXT_PUBLIC_DOMAIN: ${{ env.NEXT_PUBLIC_DOMAIN }}"
       - name: Checkout
         uses: actions/checkout@v4
       - name: Detect package manager
