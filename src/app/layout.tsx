@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+
 import ThemeProvider from "@/components/ThemeProvider";
 import { PostHogProvider } from "@/components/PostHogProvider";
-import { Suspense } from "react";
+import { initEnv } from "@/env";
+
+import "./globals.css";
+
+initEnv();
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +25,7 @@ export const metadata: Metadata = {
   description:
     "Expert tech leadership when you need it, without the full-time cost.",
 };
+
 
 export default function RootLayout({
   children,
