@@ -81,7 +81,8 @@ export default async function ServicePage({ params }: { params: Params }) {
         </section>
 
         {/* Featured CTO Section */}
-        {service.longDescription &&
+        {/* TODO: Uncomment this when we have a long description */}
+        {/* {service.longDescription &&
           <section className="bg-gray-700 text-white py-12">
             <div className="container mx-auto px-4">
               <div className="flex flex-col items-center text-center">
@@ -114,7 +115,7 @@ export default async function ServicePage({ params }: { params: Params }) {
                 </div>
               </div>
             </div>
-          </section>}
+          </section>} */}
 
         {/* What We Offer Section */}
         {service.offerings && (

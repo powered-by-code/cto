@@ -55,7 +55,8 @@ export default async function IndustryPage({ params }: { params: Params }) {
               </p>
               
               <p className="mb-8">
-                {industry.longDescription}
+                {/* TODO: Uncomment this when we have a long description */}
+                {/* {industry.longDescription} */}
               </p>
               
               <h2 className="text-2xl font-bold mt-8 mb-4">Our Technical Expertise</h2>

@@ -47,15 +47,16 @@ export default function CostCalculatorPage() {
         
         // Trigger PDF download automatically
         setTimeout(() => {
+          const windowGlobal = window as any;
           // Call the generatePDF function
-          if (typeof window !== 'undefined' && window.generatePDF) {
-            window.generatePDF();
+          if (typeof windowGlobal !== 'undefined' && windowGlobal.generatePDF) {
+            windowGlobal.generatePDF();
           } else {
             console.log('PDF generator not ready yet, waiting...');
             // Try again after a delay
             setTimeout(() => {
-              if (typeof window !== 'undefined' && window.generatePDF) {
-                window.generatePDF();
+              if (typeof windowGlobal !== 'undefined' && windowGlobal.generatePDF) {
+                windowGlobal.generatePDF();
               }
             }, 2000);
           }
