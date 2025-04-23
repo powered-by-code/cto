@@ -21,7 +21,7 @@ export const links: NavLink[] = [
       })),
       {
         href: "/contact",
-        label: "Consultation (15 min free)",
+        label: "Consultation (30 min free)",
       },
     ],
   },

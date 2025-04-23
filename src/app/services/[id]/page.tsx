@@ -81,39 +81,40 @@ export default async function ServicePage({ params }: { params: Params }) {
         </section>
 
         {/* Featured CTO Section */}
-        <section className="bg-gray-700 text-white py-12">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col items-center text-center">
-              <p className="text-lg mb-6 max-w-2xl">
-                {service.longDescription}
-              </p>
-              <div className="flex items-center flex-col">
-                <div className="avatar">
-                  <div className="w-16 h-16 rounded-full overflow-hidden">
-                    <Image
-                      src={
-                        service.testimonialImage ||
-                        "/images/team/default-avatar.jpg"
-                      }
-                      alt={service.testimonialName || "CTO Profile"}
-                      width={64}
-                      height={64}
-                      className="object-cover"
-                    />
+        {service.longDescription &&
+          <section className="bg-gray-700 text-white py-12">
+            <div className="container mx-auto px-4">
+              <div className="flex flex-col items-center text-center">
+                <p className="text-lg mb-6 max-w-2xl">
+                  {service.longDescription}
+                </p>
+                <div className="flex items-center flex-col">
+                  <div className="avatar">
+                    <div className="w-16 h-16 rounded-full overflow-hidden">
+                      <Image
+                        src={
+                          service.testimonialImage ||
+                          "/images/team/default-avatar.jpg"
+                        }
+                        alt={service.testimonialName || "CTO Profile"}
+                        width={64}
+                        height={64}
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="mt-2">
-                  <p className="font-semibold">
-                    {service.testimonialName || "JASON GARY"}
-                  </p>
-                  <p className="text-xs">
-                    {service.testimonialTitle || "CTO at ACME"}
-                  </p>
+                  <div className="mt-2">
+                    <p className="font-semibold">
+                      {service.testimonialName || "JASON GARY"}
+                    </p>
+                    <p className="text-xs">
+                      {service.testimonialTitle || "CTO at ACME"}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>}
 
         {/* What We Offer Section */}
         {service.offerings && (

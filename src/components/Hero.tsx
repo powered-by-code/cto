@@ -90,6 +90,17 @@ const Hero: React.FC = () => {
     };
   }, [embedUrl]);
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://widget.clutch.co/static/js/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const handleOpen = () => {
     if (iframeRef.current) {
       // Add autoplay parameter when opening
@@ -118,6 +129,21 @@ const Hero: React.FC = () => {
               {heroData.cta.secondary.text}
             </Link>
           </div>
+
+          {/* Add Clutch Widget */}
+          <div className="mt-4 flex justify-start">
+            <div
+              className="clutch-widget"
+              data-url="https://widget.clutch.co"
+              data-widget-type="13"
+              data-height="50"
+              data-nofollow="true"
+              data-expandifr="true"
+              data-scale="100"
+              data-clutchcompany-id="2439017"
+            />
+          </div>
+
           <div className="mt-4 flex flex-wrap gap-y-2 items-center text-sm">
             {heroData.features.map((feature, index) => (
               <div key={index} className="flex items-center mr-4">
