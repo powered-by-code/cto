@@ -1,16 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import data from "@/data.json";
-import { navLinks } from "@/lib/navLinks";
+import { footerLinks } from "@/lib/navLinks";
 import { Youtube, Linkedin, Instagram, Facebook, Twitter } from "lucide-react";
 
 const Footer: React.FC = () => {
-  // Calculate the number of columns based on navLinks length
+  // Calculate the number of columns based on footerLinks length
   const columnClass = `grid-cols-1 ${
-    navLinks.length === 2 ? 'md:grid-cols-2' :
-    navLinks.length === 3 ? 'md:grid-cols-3' :
-    navLinks.length === 4 ? 'md:grid-cols-4' :
-    navLinks.length >= 5 ? 'md:grid-cols-4 lg:grid-cols-5' : ''
+    footerLinks.length === 2 ? 'md:grid-cols-2' :
+    footerLinks.length === 3 ? 'md:grid-cols-3' :
+    footerLinks.length === 4 ? 'md:grid-cols-4' :
+    footerLinks.length >= 5 ? 'md:grid-cols-4 lg:grid-cols-5' : ''
   }`;
 
   return (
@@ -47,15 +47,14 @@ const Footer: React.FC = () => {
         </div>
 
         <div className={`grid ${columnClass} gap-8 max-w-6xl mx-auto px-4`}>
-          {navLinks.map((section, index) => (
+          {footerLinks.map((section, index) => (
             <div key={index} className="flex flex-col gap-2">
-              
-                <Link
-                  href={section.href || ''}
-                  className="text-sm font-bold hover:text-primary"
-                >
-                  {section.label}
-                </Link>
+              <Link
+                href={section.href || ''}
+                className="text-sm font-bold hover:text-primary"
+              >
+                {section.label}
+              </Link>
 
               {section.children && (
                 <div className="flex flex-col gap-2">

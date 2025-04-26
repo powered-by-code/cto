@@ -5,6 +5,7 @@ interface NavLink {
   href?: string;
   label: string;
   hidden?: boolean;
+  showInFooterOnly?: boolean;
   children?: NavLink[];
 }
 
@@ -52,9 +53,24 @@ export const links: NavLink[] = [
       { href: "/assessment", label: "Fractional CTO Need Assessment Test" },
     ],
   },
+  {
+    href: "/referral-program",
+    label: "Referral Program",
+    showInFooterOnly: true,
+    children: []
+  }
 ];
 
+// For the main navigation, filter out hidden and footer-only items
 export const navLinks = links
+  .filter((link) => !link.hidden && !link.showInFooterOnly)
+  .map((link) => ({
+    ...link,
+    children: link.children?.filter((child) => !child?.hidden),
+  }));
+
+// For the footer, filter out only hidden items (keep footer-only items)
+export const footerLinks = links
   .filter((link) => !link.hidden)
   .map((link) => ({
     ...link,
