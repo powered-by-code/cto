@@ -1,7 +1,7 @@
 ---
 title: "Building High-Performing Teams in the Age of AI: The Human Element"
 excerpt: "Learn how to hire and build high-performing teams in the AI era by focusing on human connection, effective hiring practices, and creating strong team foundations."
-date: "2024-03-21"
+date: "2024-04-15"
 author: "Cubeunity Team"
 coverImage: "/images/articles/team-building.png"
 tags: ["Leadership", "Team Building", "Hiring", "AI", "Management"]

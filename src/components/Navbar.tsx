@@ -74,12 +74,12 @@ const Navbar: React.FC = () => {
                         </div>
                         <ChevronDown className="w-4 h-4 ml-1" />
                       </div>
-                      <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box whitespace-nowrap">
+                      <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box whitespace-nowrap mt-1!">
                         {link.children.map((child, childIndex) => (
                           <li key={childIndex}>
                             <Link
                               href={child.href || ""}
-                              className={`hover:bg-base-300 whitespace-nowrap ${
+                              className={`hover:bg-base-300 whitespace-nowrap px-5 ${
                                 isActive(child.href || "")
                                   ? "text-primary font-bold"
                                   : ""

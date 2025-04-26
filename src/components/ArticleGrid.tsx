@@ -1,18 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
-
-interface Article {
-  slug: string;
-  title: string;
-  date: string;
-  coverImage: string;
-  tags: string[];
-  excerpt: string;
-}
+import ArticleCard from "./ArticleCard";
+import { Article } from "@/lib/articles";
 
 interface ArticleGridProps {
   articles: Article[];
@@ -76,53 +67,9 @@ export default function ArticleGrid({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredArticles.map((article) => (
-          <Link
-            key={article.slug}
-            href={`/articles/${article.slug}`}
-            className="group h-full"
-          >
-            <div className="rounded-xl overflow-hidden shadow-lg bg-white transition-transform hover:-translate-y-1 h-full flex flex-col">
-              <div className="relative h-30">
-                <Image
-                  src={article.coverImage}
-                  alt={article.title}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h2 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                  {article.title}
-                </h2>
-                <div className="text-base-content/70 text-sm mb-3">
-                  {new Date(article.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </div>
-                <p className="text-base-content/70 mb-4 line-clamp-3 flex-grow">
-                  {article.excerpt}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {article.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`px-2 py-1 text-sm rounded ${
-                        selectedTags.includes(tag)
-                          ? "bg-primary/20 text-primary"
-                          : "bg-base-200 text-base-content"
-                      }`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Link>
+          <ArticleCard key={article.slug} article={article} />
         ))}
       </div>
     </div>

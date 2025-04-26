@@ -3,7 +3,7 @@ import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Industries from '@/components/Industries';
 import CaseStudies from '@/components/CaseStudies';
-import Resources from '@/components/Resources';
+import FeaturedArticles from '@/components/FeaturedArticles';
 import CTA from '@/components/CTA';
 import Partners from '@/components/Partners';
 import Footer from '@/components/Footer';
@@ -43,11 +43,11 @@ export default function Home() {
 
         {/* TODO: uncomment when case studies are ready */}
         
-        {/* <CaseStudies />
+        {/* <CaseStudies /> */}
         
         <hr className="border-base-content/10 my-6" />
         
-        <Resources /> */}
+        <FeaturedArticles />
         
         {/* <hr className="border-base-content/10 my-6" /> */}
         
