@@ -40,11 +40,11 @@ export const links: NavLink[] = [
     href: "/resources",
     label: "RESOURCES",
     children: [
-      { href: "/resources", label: "ARTICLES" },
-      { href: "/case-studies", label: "CASE STUDIES" },
-      { href: "/resources/podcasts", label: "PODCASTS" },
+      { href: "/articles", label: "Articles" },
+      { href: "/case-studies", label: "Case Studies", hidden: true },
+      { href: "/resources/podcasts", label: "Podcasts" },
     ],
-    hidden: true,
+    // hidden: true,
   },
   {
     label: "Free Tools",
