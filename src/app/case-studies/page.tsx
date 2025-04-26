@@ -2,6 +2,18 @@ import PageLayout from '@/components/PageLayout';
 import data from '@/data.json';
 import MeetingButton from '@/components/MeetingButton';
 import { CaseStudyCard } from '@/components/CaseStudies';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Case Studies | Success Stories | Cubeunity',
+  description: 'Explore how our fractional CTO services have helped startups and growing businesses overcome technical challenges and accelerate growth.',
+  keywords: 'case studies, client success stories, fractional CTO, tech consulting results',
+  openGraph: {
+    title: 'Case Studies | Success Stories | Cubeunity',
+    description: 'Explore how our fractional CTO services have helped startups and growing businesses overcome technical challenges and accelerate growth.',
+    type: 'website',
+  },
+};
 
 // Get case study details from data.json
 const caseStudyDetails = data.caseStudies;

@@ -3,11 +3,17 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CalEmbed from '@/components/CalEmbed';
 import data from '@/data.json';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: "Contact Us | Fractional CTO Services",
-  description:
-    "Get in touch with our team of technical experts to discuss how we can help your business grow.",
+export const metadata: Metadata = {
+  title: "Contact Us | Fractional CTO Services | Cubeunity",
+  description: "Get in touch with our team of technical experts to discuss how we can help your business grow.",
+  keywords: "contact, fractional CTO services, tech consulting, schedule meeting",
+  openGraph: {
+    title: "Contact Us | Fractional CTO Services | Cubeunity",
+    description: "Get in touch with our team of technical experts to discuss how we can help your business grow.",
+    type: 'website',
+  },
 };
 
 export default function Contact() {

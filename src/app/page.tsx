@@ -8,6 +8,18 @@ import CTA from '@/components/CTA';
 import Partners from '@/components/Partners';
 import Footer from '@/components/Footer';
 import data from '@/data.json';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Fractional CTO Services | Expert Tech Leadership | Cubeunity',
+  description: 'Expert tech leadership when you need it, without the full-time cost. Cubeunity provides fractional CTO services for startups and growing companies.',
+  keywords: 'fractional CTO, tech leadership, startup technology, software development, tech consulting',
+  openGraph: {
+    title: 'Fractional CTO Services | Expert Tech Leadership | Cubeunity',
+    description: 'Expert tech leadership when you need it, without the full-time cost. Cubeunity provides fractional CTO services for startups and growing companies.',
+    type: 'website',
+  },
+};
 
 export default function Home() {
   // Find the fractional CTO service and get its additionalCTA

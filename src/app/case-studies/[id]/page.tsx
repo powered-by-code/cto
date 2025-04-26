@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import CaseStudyQuiz from "@/components/CaseStudyQuiz";
 import data from "@/data.json";
 import MeetingButton from "@/components/MeetingButton";
+import { Metadata } from "next";
 
 // Get case study details from data.json
 const caseStudyDetails = data.caseStudies;
@@ -16,6 +17,33 @@ export async function generateStaticParams() {
 }
 
 type Params = Promise<{ id: string }>;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const caseStudy = caseStudyDetails.find((cs) => cs.id === id);
+
+  if (!caseStudy) {
+    return {
+      title: "Case Study Not Found | Cubeunity",
+    };
+  }
+
+  return {
+    title: `${caseStudy.title} | Case Study | Cubeunity`,
+    description: caseStudy.description,
+    keywords: `${caseStudy.industry}, ${caseStudy.title.toLowerCase()}, case study, success story, fractional CTO`,
+    openGraph: {
+      title: `${caseStudy.title} | Case Study | Cubeunity`,
+      description: caseStudy.description,
+      type: 'website',
+      images: caseStudy.image ? [{ url: caseStudy.image }] : undefined,
+    },
+  };
+}
 
 export default async function CaseStudyPage({ params }: { params: Params }) {
   const { id } = await params;

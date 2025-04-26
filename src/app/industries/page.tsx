@@ -3,6 +3,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import data from '@/data.json';
 import MeetingButton from '@/components/MeetingButton';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Industries We Serve | Specialized Technical Leadership | Cubeunity',
+  description: 'Discover how our fractional CTO services provide specialized technical leadership across various industries with domain expertise for each unique challenge.',
+  keywords: 'industries, fractional CTO, tech consulting, specialized technical leadership',
+  openGraph: {
+    title: 'Industries We Serve | Specialized Technical Leadership | Cubeunity',
+    description: 'Discover how our fractional CTO services provide specialized technical leadership across various industries with domain expertise for each unique challenge.',
+    type: 'website',
+  },
+};
 
 // Get industries data from data.json
 const industriesData = data.industries;

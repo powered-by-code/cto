@@ -3,6 +3,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import data from '@/data.json';
 import MeetingButton from '@/components/MeetingButton';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Us | Our Team and Values | Cubeunity',
+  description: 'Learn about Cubeunity\'s team of expert technical leaders, our values, and our approach to providing fractional CTO services.',
+  keywords: 'fractional CTO, tech leadership team, tech consulting, Cubeunity team',
+  openGraph: {
+    title: 'About Us | Our Team and Values | Cubeunity',
+    description: 'Learn about Cubeunity\'s team of expert technical leaders, our values, and our approach to providing fractional CTO services.',
+    type: 'website',
+  },
+};
 
 export default function AboutUsPage() {
   // Get data from data.json

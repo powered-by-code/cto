@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import data from '@/data.json';
 import MeetingButton from '@/components/MeetingButton';
+import { Metadata } from 'next';
 
 // Get industry details from data.json
 const industryDetails = data.industries;
@@ -15,6 +16,33 @@ export async function generateStaticParams() {
 }
 
 type Params = Promise<{ id: string }>;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const industry = industryDetails.find((ind) => ind.id === id);
+
+  if (!industry) {
+    return {
+      title: "Industry Not Found | Cubeunity",
+    };
+  }
+
+  return {
+    title: `${industry.title} | Fractional CTO Services | Cubeunity`,
+    description: industry.description,
+    keywords: `${industry.title.toLowerCase()}, fractional CTO services, technical leadership, ${industry.services.slice(0, 3).join(', ').toLowerCase()}`,
+    openGraph: {
+      title: `${industry.title} | Fractional CTO Services | Cubeunity`,
+      description: industry.description,
+      type: 'website',
+      images: industry.image ? [{ url: industry.image }] : undefined,
+    },
+  };
+}
 
 export default async function IndustryPage({ params }: { params: Params }) {
   const { id } = await params;

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CheckIcon, XIcon } from "lucide-react";
+import { Metadata } from "next";
 
 import data from "@/data.json";
 import MeetingButton from "@/components/MeetingButton";
@@ -40,6 +41,32 @@ export async function generateStaticParams() {
 }
 
 type Params = Promise<{ id: string }>;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const service = serviceDetails.find((s) => s.id === id);
+
+  if (!service) {
+    return {
+      title: "Service Not Found | Cubeunity",
+    };
+  }
+
+  return {
+    title: `${service.title} | Fractional CTO Services | Cubeunity`,
+    description: service.description,
+    keywords: `${service.title.toLowerCase()}, fractional CTO, tech consulting, ${service.id.replace(/-/g, ' ')}`,
+    openGraph: {
+      title: `${service.title} | Fractional CTO Services | Cubeunity`,
+      description: service.description,
+      type: 'website',
+    },
+  };
+}
 
 export default async function ServicePage({ params }: { params: Params }) {
   const { id } = await params;

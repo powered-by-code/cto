@@ -1,6 +1,6 @@
 ---
 title: "Modernizing Legacy Systems: A Strategic Guide to Successful Transformation"
-date: "2025-04-26"
+date: "2025-04-20"
 coverImage: "/images/articles/legacy-modernization.png"
 tags: ["Legacy Systems", "System Modernization", "Technical Strategy", "Architecture"]
 excerpt: "Learn the essential steps and strategies for successfully modernizing legacy systems while minimizing risks and maintaining business continuity."
