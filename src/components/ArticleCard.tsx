@@ -10,7 +10,7 @@ interface ArticleCardProps {
 export default function ArticleCard({ article, className = '' }: ArticleCardProps) {
   return (
     <Link href={`/articles/${article.slug}`} className={`card bg-base-100 shadow-lg hover:shadow-xl transition-all h-full ${className}`}>
-      <figure className="relative h-40">
+      <figure className="relative h-20">
         <Image
           src={article.coverImage}
           alt={article.title}

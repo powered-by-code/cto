@@ -417,10 +417,10 @@ export default function CTOAssessmentPage() {
 
   return (
     <PageLayout>
-      <div className="py-16 bg-gradient-to-br from-base-200/50 via-base-100 to-base-200/30">
+      <div className="py-4 bg-gradient-to-br from-base-200/50 via-base-100 to-base-200/30">
         <div className="max-w-3xl mx-auto px-4">
           {/* Enhanced header section with fade-in animation */}
-          <div className="text-center mb-16 animate-fadeIn">
+          <div className="text-center mb-4 animate-fadeIn">
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-primary/10 text-primary text-sm font-medium shadow-sm">
               <Award size={16} />
               <span>Free Technology Assessment</span>

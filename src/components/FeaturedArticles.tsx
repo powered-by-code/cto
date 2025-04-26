@@ -24,12 +24,6 @@ export default async function FeaturedArticles() {
             <ArticleCard key={article.slug} article={article} />
           ))}
         </div>
-
-        <div className="text-center mt-10">
-          <Link href="/articles" className="btn btn-primary">
-            VIEW ALL ARTICLES
-          </Link>
-        </div>
       </div>
     </section>
   );

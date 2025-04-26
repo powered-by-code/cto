@@ -49,7 +49,7 @@
     {
       "additionalCTA": {
         "href": "/assessment",
-        "label": "Fractional CTO Need Assessment Test"
+        "label": "CTO Need Assessment Test"
       },
       "order": 1,
       "id": "fractional-cto",

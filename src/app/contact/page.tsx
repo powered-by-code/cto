@@ -27,7 +27,7 @@ export default function Contact() {
             Contact Us
           </h1>
           <p className="text-xl text-center max-w-3xl mx-auto mb-12">
-            Schedule a call with our technical experts to discuss how we can
+            Schedule a call with Ruben to discuss how we can
             help your business grow.
           </p>
 

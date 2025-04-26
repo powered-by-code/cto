@@ -159,7 +159,7 @@ const ReferralProgram: React.FC = () => {
             </p>
             <p className="text-base-content/80">
               Want in? Contact us on{' '}
-              <a href="https://t.me/cubeunity" className="link link-primary">Telegram</a>
+              <a href="https://t.me/rubunity" className="link link-primary">Telegram</a>
               {' '}or email us at{' '}
               <a href="mailto:ruben@cubeunity.com" className="link link-primary">ruben@cubeunity.com</a>
             </p>
