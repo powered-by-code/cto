@@ -10,7 +10,7 @@
 
   --color-primary: "#6B78CB";
   --color-secondary: "#FC79DF";
-  --color-accent: "#86dc71";
+  --color-accent: "rgb(0, 189, 3)";
   --color-neutral: "#FC79DF";
 }
 
@@ -33,6 +33,18 @@
   }
   to {
     content: attr(data-value);
+  }
+}
+
+@keyframes bounce-custom {
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  50% {
+    transform: translateY(-1.5px);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
 }
 
@@ -119,6 +131,15 @@
   animation: gradientShift 5s ease infinite;
 }
 
+.animate-bounce-custom {
+  animation: bounce-custom 1.5s infinite;
+}
+
+/* Stop animation on hover */
+.animate-bounce-custom:hover {
+  animation: none;
+}
+
 /* Step Indicator Styles */
 .step-item {
   display: flex;
@@ -186,5 +207,22 @@
   .animate-float {
     animation: float var(--duration, 8s) ease-in-out infinite;
     will-change: transform;
+  }
+}
+
+/* Add custom text size for ultra-small text on mobile */
+.text-2xs {
+  font-size: 0.625rem; /* 10px */
+  line-height: 0.875rem; /* 14px */
+}
+
+/* XS screen size breakpoint */
+@media (min-width: 475px) {
+  .xs\:inline {
+    display: inline;
+  }
+
+  .xs\:hidden {
+    display: none;
   }
 }

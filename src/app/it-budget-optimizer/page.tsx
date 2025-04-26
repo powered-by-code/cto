@@ -71,29 +71,29 @@ export default function CostCalculatorPage() {
     <main className="bg-base-100 min-h-screen relative">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-primary/10 to-transparent"></div>
-        <div className="absolute bottom-0 inset-x-0 h-96 bg-gradient-to-t from-secondary/10 to-transparent"></div>
+        <div className="absolute top-0 inset-x-0 h-48 sm:h-96 bg-gradient-to-b from-primary/10 to-transparent"></div>
+        <div className="absolute bottom-0 inset-x-0 h-48 sm:h-96 bg-gradient-to-t from-secondary/10 to-transparent"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-2 sm:px-4 relative z-10">
         <Navbar />
         
-        <div className="py-16">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent h-15">IT Budget Optimizer</h1>
-            <p className="text-xl opacity-80">
+        <div className="py-1 sm:py-3">
+          <div className="max-w-3xl mx-auto text-center mb-2 sm:mb-6">
+            <h1 className="text-xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent h-8 sm:h-12">IT Budget Optimizer</h1>
+            <p className="text-xs sm:text-base opacity-80">
               Discover how much your organization could save by switching from commercial tools to open source alternatives.
             </p>
           </div>
           
           <CostCalculator />
           
-          <div className="max-w-4xl mx-auto mt-20">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="card bg-base-100 shadow-xl">
-                <div className="card-body">
-                  <h2 className="card-title text-2xl">Why Consider Open Source?</h2>
-                  <ul className="list-disc pl-5 space-y-2 mt-4">
+          <div className="max-w-3xl mx-auto mt-4 sm:mt-10">
+            <div className="grid sm:grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm">
+              <div className="card bg-base-100 shadow-sm sm:shadow-md">
+                <div className="card-body p-2 sm:p-4">
+                  <h2 className="card-title text-sm sm:text-lg">Why Consider Open Source?</h2>
+                  <ul className="list-disc pl-4 space-y-0.5 sm:space-y-1 mt-1 sm:mt-2 text-xs sm:text-sm">
                     <li>Eliminate licensing costs</li>
                     <li>Avoid vendor lock-in</li>
                     <li>Customize solutions to your exact needs</li>
@@ -104,10 +104,10 @@ export default function CostCalculatorPage() {
                 </div>
               </div>
               
-              <div className="card bg-base-100 shadow-xl">
-                <div className="card-body">
-                  <h2 className="card-title text-2xl">Our Migration Support</h2>
-                  <ul className="list-disc pl-5 space-y-2 mt-4">
+              <div className="card bg-base-100 shadow-sm sm:shadow-md">
+                <div className="card-body p-2 sm:p-4">
+                  <h2 className="card-title text-sm sm:text-lg">Our Migration Support</h2>
+                  <ul className="list-disc pl-4 space-y-0.5 sm:space-y-1 mt-1 sm:mt-2 text-xs sm:text-sm">
                     <li>Comprehensive migration planning</li>
                     <li>Tool selection tailored to your needs</li>
                     <li>Data migration assistance</li>

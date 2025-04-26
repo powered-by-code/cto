@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.2",
+    "@react-pdf/renderer": "^4.3.0",
     "daisyui": "^5.0.6",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.483.0",
