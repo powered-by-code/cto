@@ -83,7 +83,7 @@ export default function EmailPopup({
       isOpen={isOpen}
       onClose={onClose}
       title={isSubmitted ? "Check Your Email!" : title}
-      description={isSubmitted ? "We've sent your report to your email. Please check your inbox and spam folder." : description}
+      description={isSubmitted ? "We've sent your report to your email." : description}
     >
       {!isSubmitted ? (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -165,7 +165,6 @@ export default function EmailPopup({
           
           {serviceUrl && serviceName && (
             <div className="text-center">
-              <p className="mb-4">While you wait, learn more about our</p>
               <Link 
                 href={serviceUrl}
                 className="btn btn-primary btn-block"
@@ -177,7 +176,7 @@ export default function EmailPopup({
           )}
           
           <div className="text-center text-sm text-base-content/70">
-            <p>Can't find the email? Check your spam folder or contact us for help.</p>
+            <p>Can't find the email? Check your spam folder or <a href="mailto:ruben@cubeunity.com" className="link link-primary">contact us</a> for help.</p>
           </div>
         </div>
       )}
