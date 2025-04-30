@@ -16,8 +16,8 @@ export async function GET() {
       const stat = fs.statSync(filePath);
       
       if (stat.isDirectory()) {
-        // Skip directories that start with _ or . or sitemap.xml
-        if (!file.startsWith('_') && !file.startsWith('.') && file !== 'sitemap.xml') {
+        // Skip directories that start with _ or . or server-sitemap.xml
+        if (!file.startsWith('_') && !file.startsWith('.') && file !== 'server-sitemap.xml') {
           allPages = findPages(filePath, allPages);
         }
       } else if (file === 'page.tsx') {

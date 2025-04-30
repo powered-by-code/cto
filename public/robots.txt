@@ -7,3 +7,4 @@ Host: https://ctoprime.com
 
 # Sitemaps
 Sitemap: https://ctoprime.com/sitemap.xml
+Sitemap: https://ctoprime.com/server-sitemap.xml

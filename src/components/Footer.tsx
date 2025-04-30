@@ -72,6 +72,13 @@ const Footer: React.FC = () => {
             </div>
           ))}
         </div>
+
+        <div className="mt-12 text-center text-xs text-gray-400">
+          <div className="flex justify-center gap-4">
+            <Link href="/server-sitemap.xml" className="hover:text-primary">Sitemap</Link>
+            {/* Add more links here if needed */}
+          </div>
+        </div>
       </div>
     </footer>
   );

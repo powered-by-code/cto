@@ -4,10 +4,10 @@ module.exports = {
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   outDir: './public',
-  exclude: ['/sitemap.xml'],
+  exclude: ['/server-sitemap.xml'],
   robotsTxtOptions: {
     additionalSitemaps: [
-      'https://ctoprime.com/sitemap.xml',
+      'https://ctoprime.com/server-sitemap.xml',
     ],
   },
 } 
