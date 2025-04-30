@@ -3,6 +3,10 @@ import { MetadataRoute } from 'next';
 import fs from 'fs';
 import path from 'path';
 
+// Make this route compatible with static exports
+export const dynamic = 'force-static';
+export const revalidate = false;
+
 export async function GET() {
   // Base URL for your site
   const baseUrl = 'https://ctoprime.com';
