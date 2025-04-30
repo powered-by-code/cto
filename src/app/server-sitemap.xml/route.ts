@@ -65,21 +65,6 @@ export async function GET() {
     });
   }
   
-  // Case studies
-  if (data.caseStudies) {
-    data.caseStudies.forEach(caseStudy => {
-      // Skip hidden case studies if the property exists
-      if (!('hidden' in caseStudy) || !caseStudy.hidden) {
-        allPages.push({
-          loc: `${baseUrl}/case-studies/${caseStudy.id}`,
-          lastmod: new Date().toISOString(),
-          changefreq: 'weekly',
-          priority: 0.7,
-        });
-      }
-    });
-  }
-  
   // Articles (from content/articles directory)
   const articlesDir = path.join(process.cwd(), 'content', 'articles');
   if (fs.existsSync(articlesDir)) {

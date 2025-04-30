@@ -3,3 +3,8 @@ commit-and-push:
 	git commit
 	git push
 
+build:
+	npm run build
+
+start:
+	npm run start

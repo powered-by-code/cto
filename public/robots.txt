@@ -3,8 +3,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://ctoprime.com
+Host: https://cubeunity.com
 
 # Sitemaps
-Sitemap: https://ctoprime.com/sitemap.xml
-Sitemap: https://ctoprime.com/server-sitemap.xml
+Sitemap: https://cubeunity.com/sitemap.xml
+Sitemap: https://cubeunity.com/server-sitemap.xml
