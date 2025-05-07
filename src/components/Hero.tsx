@@ -4,16 +4,21 @@ import { useRef, useEffect } from "react";
 import MeetingButton from "./MeetingButton";
 import { Check, Play, X } from "lucide-react";
 
-const heroData = {
-  video: {
-    url: "https://www.youtube.com/watch?v=JpfvxnNIHx8",
-    thumbnails: {
-      max: "https://img.youtube.com/vi/JpfvxnNIHx8/maxresdefault.jpg",
-      high: "https://img.youtube.com/vi/JpfvxnNIHx8/hqdefault.jpg",
-      medium: "https://img.youtube.com/vi/JpfvxnNIHx8/mqdefault.jpg",
-      fallback: "https://img.youtube.com/vi/JpfvxnNIHx8/0.jpg",
-    },
+const videoUrl = "https://www.youtube.com/watch?v=Jk3nRw8otmk";
+const videoId = videoUrl.split("v=")[1];
+
+const video = {
+  url: videoUrl,
+  thumbnails: {
+    max: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+    high: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+    medium: `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+    fallback: `https://img.youtube.com/vi/${videoId}/0.jpg`,
   },
+};
+
+const heroData = {
+  video,
   header: {
     tagline: "Helping Startups & Growing Businesses",
     title: "Fractional CTO Solutions & Tech Leadership",
@@ -91,8 +96,8 @@ const Hero: React.FC = () => {
   }, [embedUrl]);
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://widget.clutch.co/static/js/widget.js';
+    const script = document.createElement("script");
+    script.src = "https://widget.clutch.co/static/js/widget.js";
     script.async = true;
     document.body.appendChild(script);
 
