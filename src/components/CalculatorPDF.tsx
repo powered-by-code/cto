@@ -3,126 +3,120 @@ import { Document, Page, Text, View, StyleSheet, Link, Image } from '@react-pdf/
 import siteData from "../data.json";
 import { Svg, Path } from '@react-pdf/renderer';
 
+// Embed logo as base64 (truncated for brevity, use full string in real code)
+const logoBase64 =
+  "iVBORw0KGgoAAAANSUhEUgAAB9AAAAjECAYAAAD0N/QdAAAACXBIWXMAACHKAAAhygE7RgpNAAAA..."; // Replace with full string from logo.png.b64
+const logoLink = "https://cubeunity.com/services/tech-cost-optimization";
+
 // Create styles with website colors
 const styles = StyleSheet.create({
   page: {
     padding: 30,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
   },
   header: {
-    marginBottom: 20,
+    marginBottom: 16,
     textAlign: 'center',
   },
-  title: {
-    fontSize: 24,
+  logo: {
+    width: 80,
+    height: 80,
+    margin: '0 auto',
     marginBottom: 10,
+  },
+  title: {
+    fontSize: 26,
+    color: '#6B78CB', // primary
+    fontWeight: 'bold',
+    marginBottom: 6,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 18,
+    color: '#6B78CB', // blue only
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
   },
   text: {
     fontSize: 12,
     marginBottom: 10,
+    color: '#333',
+    textAlign: 'center',
   },
   section: {
     margin: 10,
-    padding: 10,
-    borderRadius: 8,
-  },
-  subtitle: {
-    fontSize: 18,
-    marginBottom: 10,
-    color: '#2D3748',
-  },
-  table: {
-    width: 'auto',
-    marginVertical: 10,
-    borderRadius: 8,
-    backgroundColor: '#F7FAFC',
-  },
-  tableRow: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#E2E8F0',
-    borderBottomStyle: 'solid',
-    alignItems: 'center',
-    minHeight: 30,
-  },
-  tableHeader: {
-    backgroundColor: '#EDF2F7',
-  },
-  tableHeaderText: {
-    color: '#2D3748',
-    fontSize: 12,
-    fontWeight: 'bold',
-  },
-  tableCell: {
-    flex: 1,
-    padding: 8,
-    fontSize: 11,
+    padding: 18,
+    borderRadius: 12,
+    backgroundColor: '#F7FAFC', // light blue/gray
+    boxShadow: '0 2px 8px #eee',
   },
   savings: {
-    fontSize: 20,
-    color: '#276749',
+    fontSize: 22,
+    color: '#00BD03', // green text
     textAlign: 'center',
-    marginVertical: 15,
-    backgroundColor: '#F0FFF4',
-    padding: 10,
-    borderRadius: 8,
+    marginVertical: 18,
+    backgroundColor: '#F3F4F6', // light gray
+    padding: 14,
+    borderRadius: 10,
+    fontWeight: 'bold',
   },
   alternativeSection: {
-    backgroundColor: '#F7FAFC',
-    borderRadius: 8,
-    padding: 10,
-    marginBottom: 10,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 16,
+    marginBottom: 16,
+    boxShadow: '0 1px 4px #eee',
   },
   alternativeTitle: {
-    fontSize: 14,
-    color: '#2D3748',
-    marginBottom: 5,
+    fontSize: 15,
+    color: '#6B78CB', // blue only
+    marginBottom: 6,
     fontWeight: 'bold',
   },
   alternativeItem: {
-    marginLeft: 15,
+    marginLeft: 18,
     marginBottom: 8,
   },
   alternativeText: {
-    fontSize: 11,
+    fontSize: 12,
     color: '#4A5568',
-    marginBottom: 3,
+    marginBottom: 2,
   },
   alternativeLink: {
-    fontSize: 10,
-    color: '#2B6CB0',
+    fontSize: 11,
+    color: '#6B78CB', // blue link
     textDecoration: 'underline',
     marginLeft: 15,
   },
-  footer: {
-    position: 'absolute',
-    bottom: 30,
-    left: 30,
-    right: 30,
-    textAlign: 'center',
-  },
-  link: {
-    color: '#2B6CB0',
-    textDecoration: 'underline',
-  },
   ctaSection: {
-    marginTop: 20,
-    padding: 15,
-    backgroundColor: '#EDF2F7',
-    borderRadius: 8,
+    marginTop: 24,
+    padding: 18,
+    backgroundColor: '#F3E8FB', // pink bg
+    borderRadius: 12,
     textAlign: 'center',
   },
   ctaText: {
-    fontSize: 14,
-    color: '#2D3748',
+    fontSize: 16,
+    color: '#6B78CB', // blue only
     marginBottom: 10,
     fontWeight: 'bold',
   },
-  divider: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#E2E8F0',
-    borderBottomStyle: 'solid',
-    marginVertical: 15,
+  link: {
+    color: '#6B78CB', // blue link
+    textDecoration: 'underline',
+    fontSize: 13,
+    marginTop: 8,
+  },
+  logoLink: {
+    alignSelf: 'center',
+    marginBottom: 10,
+  },
+  footer: {
+    marginTop: 30,
+    textAlign: 'center',
+    fontSize: 10,
+    color: '#888',
   },
 });
 
@@ -149,6 +143,7 @@ interface CalculatorPDFProps {
   selectedTools: SelectedTool[];
   totalSavingsPerYear: number;
   openSourceAlternatives: AlternativeTool[];
+  logoBase64?: string;
 }
 
 const CalculatorPDF: React.FC<CalculatorPDFProps> = ({
@@ -156,6 +151,7 @@ const CalculatorPDF: React.FC<CalculatorPDFProps> = ({
   selectedTools,
   totalSavingsPerYear,
   openSourceAlternatives,
+  logoBase64,
 }) => {
   const { websiteUrl, companyName } = siteData;
   
@@ -163,41 +159,19 @@ const CalculatorPDF: React.FC<CalculatorPDFProps> = ({
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
-          <Text style={styles.title}>Open Source Cost Savings Report</Text>
+          {logoBase64 && (
+            <Link src={logoLink} style={styles.logoLink}>
+              <Image src={`data:image/png;base64,${logoBase64}`} style={styles.logo} />
+            </Link>
+          )}
+          <Text style={styles.title}>Open Source Savings Report</Text>
           <Text style={styles.text}>Generated by {companyName}</Text>
         </View>
         
         <View style={styles.section}>
-          <Text style={styles.text}>Team Size: {teamSize} members</Text>
-          
-          <View style={styles.divider} />
-          
-          <Text style={styles.subtitle}>Selected Tools Summary</Text>
-          <View style={styles.table}>
-            <View style={[styles.tableRow, styles.tableHeader]}>
-              <Text style={[styles.tableCell, styles.tableHeaderText]}>Tool</Text>
-              <Text style={[styles.tableCell, styles.tableHeaderText]}>Category</Text>
-              <Text style={[styles.tableCell, styles.tableHeaderText]}>Annual Cost</Text>
-            </View>
-            {selectedTools.map((tool, index) => (
-              <View key={index} style={styles.tableRow}>
-                <Text style={styles.tableCell}>{tool.name}</Text>
-                <Text style={styles.tableCell}>{tool.category}</Text>
-                <Text style={styles.tableCell}>
-                  ${(tool.costPerUser * teamSize * 12).toLocaleString()}
-                </Text>
-              </View>
-            ))}
-          </View>
-
-          <View style={styles.savings}>
-            <Text>Total Annual Savings Potential</Text>
-            <Text>${(totalSavingsPerYear).toLocaleString()}</Text>
-          </View>
-
-          <View style={styles.divider} />
-
           <Text style={styles.subtitle}>Recommended Open Source Alternatives</Text>
+          <Text style={styles.text}>Team Size: {teamSize} members</Text>
+          <Text style={styles.savings}>Total Annual Savings Potential: ${totalSavingsPerYear.toLocaleString()}</Text>
           {openSourceAlternatives.map((item, index) => (
             <View key={index} style={styles.alternativeSection}>
               <Text style={styles.alternativeTitle}>
@@ -229,15 +203,8 @@ const CalculatorPDF: React.FC<CalculatorPDFProps> = ({
         </View>
 
         <View style={styles.footer}>
-          <Text style={styles.text}>
-            Visit us at{' '}
-            <Link src={websiteUrl} style={styles.link}>
-              {websiteUrl}
-            </Link>
-          </Text>
-          <Text style={[styles.text, { fontSize: 10, marginTop: 5 }]}>
-            Copyright © {new Date().getFullYear()} {companyName}. All rights reserved.
-          </Text>
+          <Text>Visit us at <Link src={websiteUrl} style={styles.link}>{websiteUrl}</Link></Text>
+          <Text>Copyright © {new Date().getFullYear()} {companyName}. All rights reserved.</Text>
         </View>
       </Page>
     </Document>

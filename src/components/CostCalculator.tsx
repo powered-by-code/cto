@@ -1559,396 +1559,304 @@ function CostCalculatorWithParams() {
   return (
     <div className="calculator-container max-w-3xl mx-auto bg-base-100 rounded-box shadow-md p-2 sm:p-4 text-xs sm:text-sm">
       {/* Progress indicator */}
-      <div className="mb-3 sm:mb-5">{renderStepIndicator()}</div>
-
-      {step === 1 && (
-        <div className="space-y-3 sm:space-y-5">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              What's your team size?
-            </h2>
-            <p className="text-sm sm:text-base opacity-80">
-              Enter how many people need access to your software tools.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3">
-            {[25, 50, 100, 200].map((size) => (
-              <div
-                key={size}
-                onClick={() => handleTeamSizeSelect(size)}
-                className={`card cursor-pointer transition-all duration-200 ${
-                  teamSize === size
-                    ? "bg-primary text-primary-content shadow-md"
-                    : "bg-base-200 hover:bg-base-300"
-                }`}
-              >
-                <div className="card-body p-2 sm:p-4 text-center">
-                  <div className="text-base sm:text-lg font-bold">{size}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="form-control mt-2 sm:mt-4">
-            <label className="label py-1">
-              <span className="label-text text-sm sm:text-base w-full text-end">
-                Or enter a custom number:
-              </span>
-            </label>
-            <div className="grid grid-cols-4 gap-2 my-4">
-              <input
-                type="text"
-                placeholder=""
-                className="input input-bordered input-lg"
-                value={teamSizeText}
-                onChange={(e) => setTeamSizeText(e.target.value)}
-                onBlur={() => {
-                  const size = parseInt(teamSizeText);
-                  if (!isNaN(size) && size > 0) {
-                    handleTeamSizeChange(size);
-                  }
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    const size = parseInt(teamSizeText);
-                    if (!isNaN(size) && size > 0) {
-                      handleTeamSizeChange(size);
-                      handleNextStep();
-                    }
-                  }
-                }}
-              />
-            </div>
-            <div className="flex justify-end">
-              {" "}
-              <button
-                onClick={handleNextStep}
-                className="btn btn-primary btn-sm"
-                disabled={teamSize <= 0}
-              >
-                Next <span className="ml-1">→</span>
-              </button>
-            </div>
-          </div>
-        </div>
+      {!(showResults && searchParams.get("data")) && (
+        <div className="mb-3 sm:mb-5">{renderStepIndicator()}</div>
       )}
 
-      {step === 2 && (
-        <div className="space-y-3 sm:space-y-5">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Which departments use software tools?
-            </h2>
-            <p className="text-sm sm:text-base opacity-80">
-              Select all that apply to tailor our recommendations to your needs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3">
-            {[
-              {
-                id: "development",
-                name: "Engineering",
-                icon: "🛠️",
-                desc: "Development, DevOps, QA",
-              },
-              {
-                id: "design",
-                name: "Design",
-                icon: "🎨",
-                desc: "UX/UI, Graphics, Creative",
-              },
-              {
-                id: "product",
-                name: "Product",
-                icon: "📊",
-                desc: "Product Management, Analytics",
-              },
-              {
-                id: "marketing",
-                name: "Marketing",
-                icon: "📢",
-                desc: "Marketing, Content",
-              },
-              {
-                id: "sales",
-                name: "Sales & CRM",
-                icon: "💼",
-                desc: "Sales, Customer Relations",
-              },
-              {
-                id: "operations",
-                name: "Operations",
-                icon: "🏢",
-                desc: "Finance, HR, Administration",
-              },
-              {
-                id: "support",
-                name: "Support",
-                icon: "🎧",
-                desc: "Customer Support, Success",
-              },
-            ].map((dept) => (
-              <div
-                key={dept.id}
-                onClick={() => handleDepartmentToggle(dept.id)}
-                className={`card cursor-pointer transition-all duration-200 ${
-                  departments.includes(dept.id)
-                    ? "bg-primary text-primary-content shadow-md"
-                    : "bg-base-200 hover:bg-base-300"
-                }`}
-              >
-                <div className="card-body p-2 sm:p-3">
-                  <div className="text-xl sm:text-2xl mb-0.5 sm:mb-1">
-                    {dept.icon}
-                  </div>
-                  <h3 className="font-bold text-xs sm:text-base">
-                    {dept.name}
-                  </h3>
-                  <p className="text-2xs opacity-70 hidden sm:block">
-                    {dept.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex justify-between">
-            <button
-              onClick={handlePrevStep}
-              className="btn btn-outline btn-xs sm:btn-sm"
-            >
-              <span className="mr-1">←</span> Back
-            </button>
-            <button
-              onClick={handleNextStep}
-              className="btn btn-primary btn-xs sm:btn-sm"
-              disabled={departments.length === 0}
-            >
-              Next <span className="ml-1">→</span>
-            </button>
-          </div>
-        </div>
-      )}
-
-      {step === 3 && !showResults && (
-        <div className="space-y-3 sm:space-y-5">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Which tools is your team currently using?
-            </h2>
-            <p className="text-sm sm:text-base opacity-80">
-              Select the commercial tools your team uses for a personalized
-              savings estimate.
-            </p>
-          </div>
-
-          {getCurrentCategoryInfo() && (
-            <div className="bg-base-200 p-2 sm:p-3 rounded-lg flex justify-between items-center">
-              <h3 className="font-bold text-sm sm:text-base">
-                {getCurrentCategoryInfo()?.name || ""}
-              </h3>
-              <span className="badge badge-primary badge-sm">
-                {getCurrentCategoryInfo()?.progress || ""}
-              </span>
-            </div>
-          )}
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
-            {toolOptions
-              .filter((tool) => tool.category === activeCategory)
-              .map((tool) => (
-                <div
-                  key={tool.id}
-                  onClick={() =>
-                    handleToolSelect(tool.id, !selectedTools.includes(tool.id))
-                  }
-                  className={`card cursor-pointer transition-all duration-200 ${
-                    selectedTools.includes(tool.id)
-                      ? "bg-primary text-primary-content shadow-md"
-                      : "bg-base-200 hover:bg-base-300"
-                  }`}
-                >
-                  <div className="card-body p-2 sm:p-3">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <div className="text-lg sm:text-xl mb-0.5 sm:mb-1">
-                          {tool.icon}
-                        </div>
-                        <h3 className="font-bold text-xs sm:text-base">
-                          {tool.name}
-                        </h3>
-                        <div className="text-2xs sm:text-sm font-medium mt-0.5 sm:mt-1">
-                          ${tool.costPerUser}/user/mo
-                        </div>
-                      </div>
-                      <div className="form-control">
-                        <input
-                          type="checkbox"
-                          className="checkbox checkbox-sm"
-                          checked={selectedTools.includes(tool.id)}
-                          onChange={() => {}} // Handle in parent onclick
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
-
-          <div className="flex justify-between">
-            <button
-              onClick={handlePrevStep}
-              className="btn btn-outline btn-xs sm:btn-sm"
-            >
-              <span className="mr-1">←</span> Back
-            </button>
-            <button
-              onClick={handleNextStep}
-              className="btn btn-primary btn-xs sm:btn-sm"
-            >
-              {activeCategory === toolCategories[toolCategories.length - 1].id
-                ? "View Results"
-                : "Next Category"}
-            </button>
-          </div>
-        </div>
-      )}
-
-      {showResults && (
-        <div className="calculator-results space-y-3 sm:space-y-5">
+      {showResults && searchParams.get("data") ? (
+        <div>
           <div className="text-center">
-            <h1 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Your Open Source Savings Potential
+            <h1 className="text-2xl sm:text-4xl font-bold mb-10 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Your Open Source Savings Potential is ${totalSavingsPerYear.toLocaleString("en-US", { maximumFractionDigits: 0 })}
             </h1>
           </div>
-
-          {renderSavingsChart()}
-          
-          <div className="grid grid-cols-1">
-            <div className="stats shadow-sm sm:shadow-md">
-              <div className="stat p-2 sm:p-4">
-                <div className="stat-title text-xs sm:text-base">
-                  Annual Savings
-                </div>
-                <div className="text-center stat-value text-success text-xl sm:text-4xl">
-                  ${totalSavingsPerYear.toLocaleString("en-US", {
-                    maximumFractionDigits: 0,
-                  })}
-                </div>
-                <div className="text-end stat-desc text-2xs sm:text-sm">
-                  By switching to open source
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Show open source alternatives if coming from link params */}
-          {searchParams.get("data") && (
-            <div className="mt-8">
-              <h2 className="text-lg sm:text-xl font-bold mb-4">Recommended Open Source Alternatives</h2>
-              <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
-                  <thead>
-                    <tr>
-                      <th>Current Tool</th>
-                      <th>Cost/User</th>
-                      <th>Open Source Alternative</th>
-                      <th>Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {getOpenSourceAlternatives(selectedTools).map((item, index) => (
-                      item.alternatives.map((alt, altIndex) => (
-                        <tr key={`${index}-${altIndex}`}>
-                          {altIndex === 0 && (
-                            <>
-                              <td rowSpan={item.alternatives.length} className="font-medium">
-                                {item.toolName}
-                              </td>
-                              <td rowSpan={item.alternatives.length}>
-                                ${item.costPerUser}/mo
-                              </td>
-                            </>
-                          )}
-                          <td>
-                            {alt.url ? (
-                              <a href={alt.url} target="_blank" rel="noopener noreferrer" className="link link-primary">
-                                {alt.name}
-                              </a>
-                            ) : (
-                              alt.name
-                            )}
-                          </td>
-                          <td className="text-sm opacity-80">{alt.description}</td>
-                        </tr>
-                      ))
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-
-            <div className="text-center space-y-2 sm:space-y-3">
-              <h3 className="text-lg sm:text-xl font-bold">
-                Ready to Start Your Open Source Journey?
-              </h3>
-              <p className="text-xs sm:text-sm opacity-80 max-w-2xl mx-auto">
-              Our team can help you plan and execute a smooth transition to open source alternatives.
-              </p>
-              <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
-                <MeetingButton
-                text="Schedule a Free Consultation"
-                  className="btn-xs sm:btn-sm rounded-full hover:shadow-md transition-transform hover:-translate-y-1"
-                  onClick={() => {
-                  trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email: "" }, {
-                        action: "clicked_consultation",
-                        totalSavingsPerYear: String(totalSavingsPerYear),
-                        teamSize: String(teamSize),
-                        toolCount: String(selectedTools.length),
-                  });
-                  }}
-                />
-              {searchParams.get("data") ? (
-                <PDFDownloadButton
-                  teamSize={teamSize}
-                  selectedTools={selectedTools.map(toolId => {
-                    const tool = toolOptions.find(t => t.id === toolId);
-                    return tool ? {
-                      name: tool.name,
-                      category: tool.category,
-                      costPerUser: tool.costPerUser
-                    } : null;
-                  }).filter((tool): tool is SelectedTool => tool !== null)}
-                  totalSavingsPerYear={totalCostPerYear}
-                  openSourceAlternatives={getOpenSourceAlternatives(selectedTools)}
-                />
-              ) : (
-                <button
-                  onClick={() => setShowEmailForm(true)}
-                  className="btn btn-secondary btn-xs sm:btn-sm hover:shadow-md transition-transform hover:-translate-y-1 animate-bounce-custom"
-                >
-                  <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                  Email detailed report
-                </button>
-              )}
-              </div>
-            </div>
-
-          {showEmailForm && (
-            <EmailPopup
-              isOpen={showEmailForm}
-              onClose={() => setShowEmailForm(false)}
-              onSubmit={handleEmailSubmit}
-              title="Get Your Detailed Report"
-              description="We'll send your personalized savings report to your email address."
-              serviceUrl="/services/tech-cost-optimization"
-              serviceName="Tech Cost Optimization Service"
+          <div className="flex flex-col items-center gap-4 mt-0">
+            <PDFDownloadButton
+              teamSize={teamSize}
+              selectedTools={selectedTools.map(toolId => {
+                const tool = toolOptions.find(t => t.id === toolId);
+                return tool ? {
+                  name: tool.name,
+                  category: tool.category,
+                  costPerUser: tool.costPerUser
+                } : null;
+              }).filter((tool): tool is SelectedTool => tool !== null)}
+              totalSavingsPerYear={totalCostPerYear}
+              openSourceAlternatives={getOpenSourceAlternatives(selectedTools)}
+              className="btn btn-primary btn-lg sm:btn-xl w-full max-w-lg text-xl sm:text-2xl py-4 sm:py-5 mb-0 shadow-xl flex items-center justify-center"
+              iconSize="1.75em"
             />
-          )}
+            <MeetingButton
+              text="Schedule a Free Consultation"
+              className="btn btn-primary btn-lg sm:btn-xl w-full max-w-lg text-xl sm:text-2xl py-4 sm:py-5 shadow-xl"
+              onClick={() => {
+                trackEvent(EventNames.IT_BUDGET_OPTIMIZER, { email: "" }, {
+                  action: "clicked_consultation",
+                  totalSavingsPerYear: String(totalSavingsPerYear),
+                  teamSize: String(teamSize),
+                  toolCount: String(selectedTools.length),
+                });
+              }}
+            />
+          </div>
         </div>
+      ) : (
+        <>
+          {step === 1 && (
+            <div className="space-y-3 sm:space-y-5">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  What's your team size?
+                </h2>
+                <p className="text-sm sm:text-base opacity-80">
+                  Enter how many people need access to your software tools.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3">
+                {[25, 50, 100, 200].map((size) => (
+                  <div
+                    key={size}
+                    onClick={() => handleTeamSizeSelect(size)}
+                    className={`card cursor-pointer transition-all duration-200 ${
+                      teamSize === size
+                        ? "bg-primary text-primary-content shadow-md"
+                        : "bg-base-200 hover:bg-base-300"
+                    }`}
+                  >
+                    <div className="card-body p-2 sm:p-4 text-center">
+                      <div className="text-base sm:text-lg font-bold">{size}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="form-control mt-2 sm:mt-4">
+                <label className="label py-1">
+                  <span className="label-text text-sm sm:text-base w-full text-end">
+                    Or enter a custom number:
+                  </span>
+                </label>
+                <div className="grid grid-cols-4 gap-2 my-4">
+                  <input
+                    type="text"
+                    placeholder=""
+                    className="input input-bordered input-lg"
+                    value={teamSizeText}
+                    onChange={(e) => setTeamSizeText(e.target.value)}
+                    onBlur={() => {
+                      const size = parseInt(teamSizeText);
+                      if (!isNaN(size) && size > 0) {
+                        handleTeamSizeChange(size);
+                      }
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        const size = parseInt(teamSizeText);
+                        if (!isNaN(size) && size > 0) {
+                          handleTeamSizeChange(size);
+                          handleNextStep();
+                        }
+                      }
+                    }}
+                  />
+                </div>
+                <div className="flex justify-end">
+                  {" "}
+                  <button
+                    onClick={handleNextStep}
+                    className="btn btn-primary btn-sm"
+                    disabled={teamSize <= 0}
+                  >
+                    Next <span className="ml-1">→</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {step === 2 && (
+            <div className="space-y-3 sm:space-y-5">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Which departments use software tools?
+                </h2>
+                <p className="text-sm sm:text-base opacity-80">
+                  Select all that apply to tailor our recommendations to your needs.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3">
+                {[
+                  {
+                    id: "development",
+                    name: "Engineering",
+                    icon: "🛠️",
+                    desc: "Development, DevOps, QA",
+                  },
+                  {
+                    id: "design",
+                    name: "Design",
+                    icon: "🎨",
+                    desc: "UX/UI, Graphics, Creative",
+                  },
+                  {
+                    id: "product",
+                    name: "Product",
+                    icon: "📊",
+                    desc: "Product Management, Analytics",
+                  },
+                  {
+                    id: "marketing",
+                    name: "Marketing",
+                    icon: "📢",
+                    desc: "Marketing, Content",
+                  },
+                  {
+                    id: "sales",
+                    name: "Sales & CRM",
+                    icon: "💼",
+                    desc: "Sales, Customer Relations",
+                  },
+                  {
+                    id: "operations",
+                    name: "Operations",
+                    icon: "🏢",
+                    desc: "Finance, HR, Administration",
+                  },
+                  {
+                    id: "support",
+                    name: "Support",
+                    icon: "🎧",
+                    desc: "Customer Support, Success",
+                  },
+                ].map((dept) => (
+                  <div
+                    key={dept.id}
+                    onClick={() => handleDepartmentToggle(dept.id)}
+                    className={`card cursor-pointer transition-all duration-200 ${
+                      departments.includes(dept.id)
+                        ? "bg-primary text-primary-content shadow-md"
+                        : "bg-base-200 hover:bg-base-300"
+                    }`}
+                  >
+                    <div className="card-body p-2 sm:p-3">
+                      <div className="text-xl sm:text-2xl mb-0.5 sm:mb-1">
+                        {dept.icon}
+                      </div>
+                      <h3 className="font-bold text-xs sm:text-base">
+                        {dept.name}
+                      </h3>
+                      <p className="text-2xs opacity-70 hidden sm:block">
+                        {dept.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex justify-between">
+                <button
+                  onClick={handlePrevStep}
+                  className="btn btn-outline btn-xs sm:btn-sm"
+                >
+                  <span className="mr-1">←</span> Back
+                </button>
+                <button
+                  onClick={handleNextStep}
+                  className="btn btn-primary btn-xs sm:btn-sm"
+                  disabled={departments.length === 0}
+                >
+                  Next <span className="ml-1">→</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {step === 3 && !showResults && (
+            <div className="space-y-3 sm:space-y-5">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Which tools is your team currently using?
+                </h2>
+                <p className="text-sm sm:text-base opacity-80">
+                  Select the commercial tools your team uses for a personalized
+                  savings estimate.
+                </p>
+              </div>
+
+              {getCurrentCategoryInfo() && (
+                <div className="bg-base-200 p-2 sm:p-3 rounded-lg flex justify-between items-center">
+                  <h3 className="font-bold text-sm sm:text-base">
+                    {getCurrentCategoryInfo()?.name || ""}
+                  </h3>
+                  <span className="badge badge-primary badge-sm">
+                    {getCurrentCategoryInfo()?.progress || ""}
+                  </span>
+                </div>
+              )}
+
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+                {toolOptions
+                  .filter((tool) => tool.category === activeCategory)
+                  .map((tool) => (
+                    <div
+                      key={tool.id}
+                      onClick={() =>
+                        handleToolSelect(tool.id, !selectedTools.includes(tool.id))
+                      }
+                      className={`card cursor-pointer transition-all duration-200 ${
+                        selectedTools.includes(tool.id)
+                          ? "bg-primary text-primary-content shadow-md"
+                          : "bg-base-200 hover:bg-base-300"
+                      }`}
+                    >
+                      <div className="card-body p-2 sm:p-3">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <div className="text-lg sm:text-xl mb-0.5 sm:mb-1">
+                              {tool.icon}
+                            </div>
+                            <h3 className="font-bold text-xs sm:text-base">
+                              {tool.name}
+                            </h3>
+                            <div className="text-2xs sm:text-sm font-medium mt-0.5 sm:mt-1">
+                              ${tool.costPerUser}/user/mo
+                            </div>
+                          </div>
+                          <div className="form-control">
+                            <input
+                              type="checkbox"
+                              className="checkbox checkbox-sm"
+                              checked={selectedTools.includes(tool.id)}
+                              onChange={() => {}} // Handle in parent onclick
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              <div className="flex justify-between">
+                <button
+                  onClick={handlePrevStep}
+                  className="btn btn-outline btn-xs sm:btn-sm"
+                >
+                  <span className="mr-1">←</span> Back
+                </button>
+                <button
+                  onClick={handleNextStep}
+                  className="btn btn-primary btn-xs sm:btn-sm"
+                >
+                  {activeCategory === toolCategories[toolCategories.length - 1].id
+                    ? "View Results"
+                    : "Next Category"}
+                </button>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
