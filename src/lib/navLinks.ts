@@ -18,7 +18,7 @@ export const links: NavLink[] = [
       ...data.services.sort(sortByOrder).map((service) => ({
         href: `/services/${service.id}`,
         label: service.title,
-        hidden: service.hidden,
+        hidden: ('hidden' in service ? service.hidden : false) as boolean | undefined,
       })),
       {
         href: "/contact",

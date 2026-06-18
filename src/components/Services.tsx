@@ -4,7 +4,7 @@ import ServiceCard from './ServiceCard';
 
 const Services = () => {
   // Get services from data.json and show only the first 4
-  const services = data.services.filter((service) => !service.hidden).slice(0, 4);
+  const services = data.services.filter((service) => !('hidden' in service && service.hidden)).slice(0, 4);
 
   return (
     <section className="py-6 relative">

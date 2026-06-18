@@ -99,7 +99,7 @@ export default async function ServicePage({ params }: { params: Params }) {
               </p>
               <div className="flex justify-center">
                 <MeetingButton
-                  text={"buttonText" in service && service.buttonText ? service.buttonText : "Schedule a Call with Ruben"}
+                  text="Schedule a Call with Ruben"
                   className="btn-primary"
                 />
               </div>
@@ -403,7 +403,7 @@ export default async function ServicePage({ params }: { params: Params }) {
                     {service.additionalCTA.label}
                   </Link>
                   <MeetingButton
-                    text={service?.CTA?.label || "Free Consultation"}
+                    text="Free Consultation"
                     variant="outline"
                     className="btn-lg"
                   />
