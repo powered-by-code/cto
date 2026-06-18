@@ -99,7 +99,7 @@ export default async function ServicePage({ params }: { params: Params }) {
               </p>
               <div className="flex justify-center">
                 <MeetingButton
-                  text={service.buttonText || "Schedule a Call with Ruben"}
+                  text={"buttonText" in service && service.buttonText ? service.buttonText : "Schedule a Call with Ruben"}
                   className="btn-primary"
                 />
               </div>
