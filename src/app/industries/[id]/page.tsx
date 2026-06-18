@@ -32,11 +32,11 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${industry.title} | Fractional CTO Services | Cubeunity`,
+    title: `${industry.title} | AI & Tech Services | Cubeunity`,
     description: industry.description,
-    keywords: `${industry.title.toLowerCase()}, fractional CTO services, technical leadership, ${industry.services.slice(0, 3).join(', ').toLowerCase()}`,
+    keywords: `${industry.title.toLowerCase()}, AI consultancy, tech services, ${industry.services.slice(0, 3).join(', ').toLowerCase()}`,
     openGraph: {
-      title: `${industry.title} | Fractional CTO Services | Cubeunity`,
+      title: `${industry.title} | AI & Tech Services | Cubeunity`,
       description: industry.description,
       type: 'website',
       images: industry.image ? [{ url: industry.image }] : undefined,
@@ -138,7 +138,7 @@ export default async function IndustryPage({ params }: { params: Params }) {
               <div className="card-body">
                 <h3 className="card-title">Need Technical Leadership in {industry.title}?</h3>
                 <p className="my-4">
-                  Our fractional CTO services help {industry.title.toLowerCase()} companies navigate technical challenges and build scalable systems.
+                  We help {industry.title.toLowerCase()} companies navigate technical challenges, integrate AI, and build scalable systems.
                 </p>
                 <MeetingButton text="Schedule a Consultation" className="w-full" />
               </div>

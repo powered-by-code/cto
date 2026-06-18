@@ -6,11 +6,11 @@ import data from '@/data.json';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Contact Us | Fractional CTO Services | Cubeunity",
-  description: "Get in touch with our team of technical experts to discuss how we can help your business grow.",
-  keywords: "contact, fractional CTO services, tech consulting, schedule meeting",
+  title: "Contact Us | AI & Tech Services | Cubeunity",
+  description: "Get in touch with our team to discuss how AI and modern technology can help your business grow.",
+  keywords: "contact, AI consultancy, tech services, schedule meeting",
   openGraph: {
-    title: "Contact Us | Fractional CTO Services | Cubeunity",
+    title: "Contact Us | AI & Tech Services | Cubeunity",
     description: "Get in touch with our team of technical experts to discuss how we can help your business grow.",
     type: 'website',
   },

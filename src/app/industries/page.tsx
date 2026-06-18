@@ -7,11 +7,11 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Industries We Serve | Specialized Technical Leadership | Cubeunity',
-  description: 'Discover how our fractional CTO services provide specialized technical leadership across various industries with domain expertise for each unique challenge.',
-  keywords: 'industries, fractional CTO, tech consulting, specialized technical leadership',
+  description: 'Discover how Cubeunity helps businesses across industries with AI strategy, web development, legacy modernization, and technical IT services.',
+  keywords: 'industries, AI consultancy, tech services, web development, legacy modernization',
   openGraph: {
     title: 'Industries We Serve | Specialized Technical Leadership | Cubeunity',
-    description: 'Discover how our fractional CTO services provide specialized technical leadership across various industries with domain expertise for each unique challenge.',
+    description: 'Discover how Cubeunity helps businesses across industries with AI strategy, web development, legacy modernization, and technical IT services.',
     type: 'website',
   },
 };

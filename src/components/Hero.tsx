@@ -20,10 +20,10 @@ const video = {
 const heroData = {
   video,
   header: {
-    tagline: "Helping Startups & Growing Businesses",
-    title: "Fractional CTO Solutions & Tech Leadership",
+    tagline: "AI & Technology Consultancy for SMBs & Startups",
+    title: "We Help Your Business Work Smarter with AI & Modern Tech",
     description:
-      "Get the strategic technical guidance you need, exactly when you need it. Our fractional CTO services help startups and scaling companies make informed tech decisions, build scalable systems, and accelerate growth.",
+      "From building your first web platform to automating your operations with AI — we give you the technical expertise your business needs, in plain language, without the full-time tech team cost.",
   },
   cta: {
     primary: {
@@ -36,15 +36,15 @@ const heroData = {
   },
   features: [
     {
-      text: "Flexible engagement options",
+      text: "No technical knowledge required",
       delay: "0s",
     },
     {
-      text: "Transparent monthly pricing",
+      text: "Plain language, no jargon",
       delay: "0.5s",
     },
     {
-      text: "No long-term commitments",
+      text: "Results in weeks, not months",
       delay: "1s",
     },
   ],

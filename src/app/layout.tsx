@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fractional CTO Services",
+  title: "AI Consultancy & Tech Services | Cubeunity",
   description:
-    "Expert tech leadership when you need it, without the full-time cost.",
+    "AI strategy, web platform development, and tech services for SMBs and startups. Expert guidance in plain language.",
 };
 
 export default function RootLayout({

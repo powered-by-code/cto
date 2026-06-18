@@ -11,20 +11,19 @@ import data from '@/data.json';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Fractional CTO Services | Expert Tech Leadership | Cubeunity',
-  description: 'Expert tech leadership when you need it, without the full-time cost. Cubeunity provides fractional CTO services for startups and growing companies.',
-  keywords: 'fractional CTO, tech leadership, startup technology, software development, tech consulting',
+  title: 'AI Consultancy & Tech Services for SMBs | Cubeunity',
+  description: 'AI strategy, web platform development, legacy modernization, and tech services for SMBs and startups. Expert guidance in plain language — no technical knowledge required.',
+  keywords: 'AI consultancy, web platform development, legacy modernization, technical IT services, company brain, AI integration, tech consultancy',
   openGraph: {
-    title: 'Fractional CTO Services | Expert Tech Leadership | Cubeunity',
-    description: 'Expert tech leadership when you need it, without the full-time cost. Cubeunity provides fractional CTO services for startups and growing companies.',
+    title: 'AI Consultancy & Tech Services for SMBs | Cubeunity',
+    description: 'AI strategy, web platform development, legacy modernization, and tech services for SMBs and startups. Expert guidance in plain language — no technical knowledge required.',
     type: 'website',
   },
 };
 
 export default function Home() {
-  // Find the fractional CTO service and get its additionalCTA
-  const fractionalCTOService = data.services.find(s => s.id === 'fractional-cto');
-  const additionalCTA = fractionalCTOService?.additionalCTA;
+  const aiStrategyService = data.services.find(s => s.id === 'ai-strategy');
+  const additionalCTA = aiStrategyService?.additionalCTA;
 
   return (
     <main className="bg-base-100 min-h-screen relative">

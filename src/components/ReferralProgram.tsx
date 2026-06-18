@@ -37,7 +37,7 @@ const ReferralProgram: React.FC = () => {
             <li>▸ Startup mentors, advisors, and consultants</li>
             <li>▸ VC fund managers & accelerator program leaders</li>
             <li>▸ Developers, engineers</li>
-            <li>▸ Founders who've worked with a Fractional CTO</li>
+            <li>▸ Founders who've worked with tech consultants or AI services</li>
           </ul>
         </div>
 

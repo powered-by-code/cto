@@ -6,11 +6,11 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Case Studies | Success Stories | Cubeunity',
-  description: 'Explore how our fractional CTO services have helped startups and growing businesses overcome technical challenges and accelerate growth.',
-  keywords: 'case studies, client success stories, fractional CTO, tech consulting results',
+  description: 'Explore how Cubeunity has helped SMBs and startups solve technical challenges, modernize systems, and grow with AI and modern technology.',
+  keywords: 'case studies, client success stories, AI consultancy, tech services results',
   openGraph: {
     title: 'Case Studies | Success Stories | Cubeunity',
-    description: 'Explore how our fractional CTO services have helped startups and growing businesses overcome technical challenges and accelerate growth.',
+    description: 'Explore how Cubeunity has helped SMBs and startups solve technical challenges, modernize systems, and grow with AI and modern technology.',
     type: 'website',
   },
 };
@@ -25,7 +25,7 @@ export default function CaseStudiesPage() {
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-4">Client Success Stories</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Explore how our fractional CTO services have helped startups and growing businesses overcome technical challenges and accelerate growth.
+            Explore how Cubeunity has helped SMBs and startups solve technical challenges, modernize their systems, and grow with AI and modern technology.
           </p>
         </div>
         

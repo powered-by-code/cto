@@ -18,10 +18,10 @@ const iconMap = {
 } as const;
 
 const ctaData = {
-  badge: "Strategic Tech Leadership",
-  title: "Is Your Startup Ready for Tech Leadership?",
+  badge: "AI & Technology Consultancy",
+  title: "Ready to Work Smarter with AI & Modern Tech?",
   description:
-    "Take our 2-minute CTO Needs Assessment to find out how a fractional CTO can help solve your technical challenges and accelerate your growth.",
+    "Book a free 30-minute consultation. We'll listen to your challenges and tell you honestly what technology can and can't do for your business — no jargon, no sales pitch.",
   defaultCTA: "Free Consultation",
   features: [
     {

@@ -57,11 +57,11 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${service.title} | Fractional CTO Services | Cubeunity`,
+    title: `${service.title} | AI & Tech Services | Cubeunity`,
     description: service.description,
-    keywords: `${service.title.toLowerCase()}, fractional CTO, tech consulting, ${service.id.replace(/-/g, ' ')}`,
+    keywords: `${service.title.toLowerCase()}, AI consultancy, tech services, ${service.id.replace(/-/g, ' ')}`,
     openGraph: {
-      title: `${service.title} | Fractional CTO Services | Cubeunity`,
+      title: `${service.title} | AI & Tech Services | Cubeunity`,
       description: service.description,
       type: 'website',
     },

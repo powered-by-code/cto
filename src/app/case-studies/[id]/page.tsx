@@ -35,7 +35,7 @@ export async function generateMetadata({
   return {
     title: `${caseStudy.title} | Case Study | Cubeunity`,
     description: caseStudy.description,
-    keywords: `${caseStudy.industry}, ${caseStudy.title.toLowerCase()}, case study, success story, fractional CTO`,
+    keywords: `${caseStudy.industry}, ${caseStudy.title.toLowerCase()}, case study, success story, AI consultancy, tech services`,
     openGraph: {
       title: `${caseStudy.title} | Case Study | Cubeunity`,
       description: caseStudy.description,
@@ -171,8 +171,7 @@ export default async function CaseStudyPage({ params }: { params: Params }) {
               <div className="card-body">
                 <h3 className="card-title">Need Similar Results?</h3>
                 <p className="my-4">
-                  Our fractional CTO services help businesses solve complex
-                  technical challenges and achieve impressive results.
+                  We help businesses solve complex technical challenges with AI strategy, modern platforms, and expert guidance.
                 </p>
                 <MeetingButton text="Book a Consultation" className="w-full" />
 

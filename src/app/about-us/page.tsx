@@ -7,11 +7,11 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About Us | Our Team and Values | Cubeunity',
-  description: 'Learn about Cubeunity\'s team of expert technical leaders, our values, and our approach to providing fractional CTO services.',
-  keywords: 'fractional CTO, tech leadership team, tech consulting, Cubeunity team',
+  description: 'Learn about Cubeunity\'s team of AI and technology experts, our values, and our approach to helping SMBs and startups work smarter with modern tech.',
+  keywords: 'AI consultancy team, tech services, Cubeunity team, technology experts',
   openGraph: {
     title: 'About Us | Our Team and Values | Cubeunity',
-    description: 'Learn about Cubeunity\'s team of expert technical leaders, our values, and our approach to providing fractional CTO services.',
+    description: 'Learn about Cubeunity\'s team of AI and technology experts, our values, and our approach to helping SMBs and startups work smarter with modern tech.',
     type: 'website',
   },
 };

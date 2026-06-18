@@ -61,10 +61,10 @@ const quizQuestions = {
   },
   // Default fallback quiz
   'default': {
-    question: 'Based on this case study, what would you say is the most valuable aspect of working with a fractional CTO?',
+    question: 'Based on this case study, what would you say is the most valuable aspect of working with a tech consultancy?',
     options: [
       { id: 'option1', text: 'Technical expertise and specialized knowledge' },
-      { id: 'option2', text: 'Cost-effective alternative to a full-time CTO' },
+      { id: 'option2', text: 'Cost-effective alternative to hiring in-house' },
       { id: 'option3', text: 'Strategic guidance for long-term growth' },
       { id: 'option4', text: 'Ability to solve immediate technical challenges' }
     ]
@@ -136,12 +136,12 @@ export default function CaseStudyQuiz({ caseStudyId }: { caseStudyId: string }) 
             </div>
             
             <p className="mb-4">
-              A good fractional CTO brings:
+              A good AI & tech consultancy brings:
             </p>
             <ul className="list-disc pl-5 mb-6 space-y-2">
               <li>Deep technical expertise in specific domains</li>
               <li>Strategic vision and planning capabilities</li>
-              <li>Cost-effective leadership compared to full-time executives</li>
+              <li>Cost-effective guidance compared to hiring in-house</li>
               <li>Rapid problem-solving and implementation skills</li>
               <li>Experience from multiple companies and industries</li>
             </ul>
@@ -151,7 +151,7 @@ export default function CaseStudyQuiz({ caseStudyId }: { caseStudyId: string }) 
             <h3 className="font-bold text-lg mb-3">Want more insights like this?</h3>
             <p className="mb-4">
               Enter your email to receive our complete analysis of this case study, plus exclusive resources on 
-              how a fractional CTO could help your {caseStudy?.industry} business overcome similar challenges.
+              how Cubeunity could help your {caseStudy?.industry} business overcome similar challenges.
             </p>
             
             <div className="form-control">

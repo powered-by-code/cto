@@ -8,8 +8,8 @@ interface PageLayoutProps {
 }
 
 const PageLayout: React.FC<PageLayoutProps> = ({ children, showCTA = false }) => {
-  const fractionalCTOService = data.services.find(s => s.id === 'fractional-cto');
-  const additionalCTA = fractionalCTOService?.additionalCTA;
+  const aiStrategyService = data.services.find(s => s.id === 'ai-strategy');
+  const additionalCTA = aiStrategyService?.additionalCTA;
   return (
     <main className="bg-base-100 min-h-screen">
       <div className="container mx-auto px-4">
