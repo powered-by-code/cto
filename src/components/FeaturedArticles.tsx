@@ -15,7 +15,7 @@ export default async function FeaturedArticles() {
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-3">Featured Articles</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Access our collection of guides, templates, and case studies designed to help you build and scale your technical organization effectively.
+            Plain-language guides on AI, technology, and growing your business — written for founders and business owners, not engineers.
           </p>
         </div>
 

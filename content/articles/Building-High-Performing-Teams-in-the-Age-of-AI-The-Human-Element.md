@@ -11,7 +11,7 @@ In an era where artificial intelligence is reshaping how we work, one truth rema
 
 ## The Human-First Approach to Team Building
 
-Despite the rise of AI-powered recruitment tools and automated assessments, building exceptional teams remains a deeply human process. [Our tech team building services](/services/tech-team-building) specialize in this crucial aspect, helping organizations:
+Despite the rise of AI-powered recruitment tools and automated assessments, building exceptional teams remains a deeply human process. [Our technical IT services](/services/technical-it-services) specialize in this crucial aspect, helping organizations:
 
 - Identify and attract top talent that aligns with your company culture
 - Design and implement effective hiring processes
@@ -49,7 +49,7 @@ One of the most important realizations in modern leadership is that it's okay no
 
 ## The Modern Leader as a Compass
 
-The role of leadership has evolved significantly. Rather than being the source of all answers, [successful fractional CTOs and technical leaders](/services/fractional-cto) act as compasses for their teams. They:
+The role of leadership has evolved significantly. Rather than being the source of all answers, [successful tech consultants and technical leaders](/services/tech-consultancy) act as compasses for their teams. They:
 
 - Guide hiring decisions and team composition
 - Create environments where experimentation is encouraged

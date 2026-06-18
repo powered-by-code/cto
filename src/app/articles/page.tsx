@@ -24,7 +24,7 @@ export default async function ArticlesPage() {
           <div className="container mx-auto px-4 py-12">
             <h1 className="text-4xl md:text-5xl font-bold">Articles</h1>
             <p className="text-xl text-gray-600">
-              Technical insights and best practices from our team
+              Plain-language guides on AI, technology, and growing your business — no technical background required.
             </p>
           </div>
         </div>

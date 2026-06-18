@@ -128,7 +128,7 @@ For content-heavy websites, static site generation can offer significant benefit
 
 ## Ensuring Success
 
-Legacy system modernization is a complex undertaking that requires careful planning and execution. Working with experienced technical leadership can help navigate these challenges successfully. Consider engaging a [fractional CTO](/services/fractional-cto) to guide your modernization journey and ensure alignment with business objectives.
+Legacy system modernization is a complex undertaking that requires careful planning and execution. Working with experienced technical guidance can help navigate these challenges successfully. Consider engaging a [legacy modernization specialist](/services/legacy-modernization) to guide your modernization journey and ensure alignment with business objectives.
 
 ## Conclusion
 
@@ -140,6 +140,6 @@ Remember that each modernization project is unique, and the approach should be t
 
 Navigating the complexities of legacy system modernization requires both technical expertise and strategic vision. At Cubeunity, our team of experienced technical leaders can guide you through each step of the modernization process, from initial assessment to successful implementation.
 
-Our [fractional CTO services](/services/fractional-cto) provide the technical leadership you need to make informed decisions, manage risks, and ensure your modernization project delivers maximum business value. Whether you need a few hours of strategic guidance or ongoing technical leadership, we're here to help you transform your legacy systems into modern, scalable solutions that support your business goals.
+Our [Legacy System Modernization service](/services/legacy-modernization) provides the technical expertise you need to make informed decisions, manage risks, and ensure your modernization project delivers maximum business value. Whether you need a full migration or a phased upgrade, we're here to help you transform your legacy systems into modern, scalable solutions that support your business goals.
 
 Contact us today to discuss how we can help with your legacy system modernization challenges and set your technology foundation for future success. 
